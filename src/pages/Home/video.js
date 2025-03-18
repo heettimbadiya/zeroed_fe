@@ -1,180 +1,172 @@
-import React, { useState, useRef, useEffect } from 'react'
-import { useDropzone } from 'react-dropzone'
-import Dialog from '../../component/Dialog'
-import { ErrorMessage } from 'formik'
+import React, { useState, useRef, useEffect } from "react";
+import { useDropzone } from "react-dropzone";
+import Dialog from "../../component/Dialog";
 
-const VideoUploader = ({ defaultVideo, onVideoUpload }) => {
-  const [videoSrc, setVideoSrc] = useState(null)
-  const [videoError, setVideoError] = useState('')
-  const mediaRecorderRef = useRef(null)
-  const [recording, setRecording] = useState(false)
-  const [stream, setStream] = useState(null)
-  const videoRef = useRef(null)
-  const [isOpen, setIsOpen] = useState(false)
+const VideoUploader = ({ defaultVideo, onVideoUpload, defaultSecondaryVideo, onSecondaryVideoUpload }) => {
+  const [recordedVideo, setRecordedVideo] = useState(null);
+  const [secondaryVideo, setSecondaryVideo] = useState(null);
+  const [videoError, setVideoError] = useState("");
+  const [isRecording, setIsRecording] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+  const [isSecondaryOpen, setIsSecondaryOpen] = useState(false);
+  const mediaRecorderRef = useRef(null);
+  const videoRef = useRef(null);
+  const streamRef = useRef(null);
 
   useEffect(() => {
     if (defaultVideo) {
-      setVideoSrc(process.env.REACT_APP_FILE_URL + '/' + defaultVideo)
+      setRecordedVideo(process.env.REACT_APP_FILE_URL + "/" + defaultVideo);
     }
-  }, [defaultVideo])
+  }, [defaultVideo]);
 
-  const openDialog = () => setIsOpen(true)
-  const closeDialog = () => {
-    setVideoError('') // Clear error when dialog is closed
-    setIsOpen(false)
-  }
+  useEffect(() => {
+    if (defaultSecondaryVideo) {
+      setSecondaryVideo(process.env.REACT_APP_FILE_URL + "/" + defaultSecondaryVideo);
+    }
+  }, [defaultSecondaryVideo]);
 
-  const onDrop = (acceptedFiles) => {
-    const file = acceptedFiles[0]
+  const openPrimaryDialog = () => setIsOpen(true);
+  const openSecondaryDialog = () => setIsSecondaryOpen(true);
 
-    // Validate video type
-    const validTypes = ['video/mp4', 'video/avi', 'video/mov', 'video/webm']
+  const closePrimaryDialog = () => setIsOpen(false);
+  const closeSecondaryDialog = () => setIsSecondaryOpen(false);
+
+  const onDrop = (acceptedFiles, type) => {
+    const file = acceptedFiles[0];
+    const validTypes = ["video/mp4", "video/avi", "video/mov", "video/webm"];
+
     if (!validTypes.includes(file.type)) {
-      setVideoError(
-        'Invalid video type. Please upload an MP4, AVI, MOV, or WEBM file.',
-      )
-      return
+      setVideoError("Invalid video type. Please upload MP4, AVI, MOV, or WEBM.");
+      return;
     }
 
-    const url = URL.createObjectURL(file)
-    setVideoSrc(url)
-    onVideoUpload(file)
-    closeDialog()
-  }
+    const url = URL.createObjectURL(file);
+    if (type === "recorded") {
+      setRecordedVideo(url);
+      onVideoUpload(file);
+    } else {
+      setSecondaryVideo(url);
+      onSecondaryVideoUpload(file);
+    }
 
-  const { getRootProps, getInputProps } = useDropzone({
-    accept: 'video/*',
-    onDrop,
-  })
+    closePrimaryDialog();
+    closeSecondaryDialog();
+  };
+
+  const { getRootProps: getPrimaryProps, getInputProps: getPrimaryInput } = useDropzone({
+    accept: "video/*",
+    onDrop: (files) => onDrop(files, "recorded"),
+  });
+
+  const { getRootProps: getSecondaryProps, getInputProps: getSecondaryInput } = useDropzone({
+    accept: "video/*",
+    onDrop: (files) => onDrop(files, "secondary"),
+  });
 
   const startRecording = async () => {
     try {
-      const newStream = await navigator.mediaDevices.getUserMedia({
-        video: true,
-        audio: true,
-      })
-      setStream(newStream)
-      mediaRecorderRef.current = new MediaRecorder(newStream)
+      const stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
+      streamRef.current = stream;
+      mediaRecorderRef.current = new MediaRecorder(stream);
+      const chunks = [];
 
-      const chunks = []
-      mediaRecorderRef.current.ondataavailable = (event) => {
-        chunks.push(event.data)
-      }
-
+      mediaRecorderRef.current.ondataavailable = (event) => chunks.push(event.data);
       mediaRecorderRef.current.onstop = () => {
-        const blob = new Blob(chunks, { type: 'video/webm' })
-        const file = new File([blob], 'recorded-video.webm', {
-          type: 'video/webm',
-        })
-        const url = URL.createObjectURL(blob)
-        setVideoSrc(url)
-        onVideoUpload(file) // Pass the actual File object
-        newStream.getTracks().forEach((track) => track.stop())
-      }
+        const blob = new Blob(chunks, { type: "video/webm" });
+        const file = new File([blob], "recorded-video.webm", { type: "video/webm" });
+        const url = URL.createObjectURL(blob);
+        setRecordedVideo(url);
+        onVideoUpload(file);
+        stream.getTracks().forEach((track) => track.stop());
+      };
 
-      mediaRecorderRef.current.start()
-      setRecording(true)
-      setIsOpen(false)
+      mediaRecorderRef.current.start();
+      setIsRecording(true);
+      setIsOpen(false);
 
-      // Set the video element to show the live stream
       if (videoRef.current) {
-        videoRef.current.srcObject = newStream
-        videoRef.current.play()
+        videoRef.current.srcObject = stream;
+        videoRef.current.play();
       }
     } catch (err) {
-      console.error('Error accessing media devices.', err)
+      console.error("Error accessing media devices.", err);
     }
-  }
+  };
 
   const stopRecording = () => {
     if (mediaRecorderRef.current) {
-      mediaRecorderRef.current.stop()
-      setRecording(false)
-      if (stream) {
-        stream.getTracks().forEach((track) => track.stop())
-      }
+      mediaRecorderRef.current.stop();
+      setIsRecording(false);
+      streamRef.current?.getTracks().forEach((track) => track.stop());
     }
-  }
-
-  const toggleFullscreen = () => {
-    if (videoRef.current) {
-      if (document.fullscreenElement) {
-        document.exitFullscreen()
-      } else {
-        videoRef.current.requestFullscreen()
-      }
-    }
-  }
+  };
 
   return (
-    <div>
-      <Dialog isOpen={isOpen} onClose={closeDialog} title="Upload video">
-        <div className="flex gap-x-2 justify-between items-center">
+      <div className="w-full">
+        {/* Video Upload & Recording Buttons */}
+        <div className="flex justify-between items-center gap-4 mt-2">
           <div
-            {...getRootProps({ className: 'dropzone' })}
-            className="bg-primary px-4 py-2 text-white rounded cursor-pointer"
+              onClick={openPrimaryDialog}
+              className="border border-text-border border-b-4 focus:border-b-4 focus:border-primary outline-none rounded-lg px-4 py-3 w-1/2 text-center cursor-pointer"
           >
-            <input {...getInputProps()} name="video" />
-            <div>Select video</div>
+            Record Video
           </div>
           <div
-            onClick={startRecording}
-            disabled={recording}
-            className="bg-primary px-4 py-2 text-white rounded cursor-pointer"
+              onClick={openSecondaryDialog}
+              className="border border-text-border border-b-4 focus:border-b-4 focus:border-primary outline-none rounded-lg px-4 py-3 w-1/2 text-center cursor-pointer"
           >
-            Start Recording
+            Secondary Video
           </div>
         </div>
-        {/* Display error message if any */}
-        {videoError && (
-          <div className="text-xs text-red-500 ml-1 mt-1">{videoError}</div>
-        )}
-      </Dialog>
 
-      <div
-        onClick={openDialog}
-        className="border border-text-border border-b-4 focus:border-b-4 focus:border-primary outline-none rounded-lg mt-1 px-2 py-3 pr-10 w-full cursor-pointer"
-      >
-        Record video
-      </div>
-
-      <div className="mt-2">
-        <video
-          ref={videoRef}
-          autoPlay
-          playsInline
-          width="600"
-          style={{ display: recording ? 'block' : 'none' }} // Hide when not recording
-        />
-        {!recording && videoSrc && (
-          <div>
-            <video controls src={videoSrc} width="600" />
+        {/* Primary Video Dialog */}
+        <Dialog isOpen={isOpen} onClose={closePrimaryDialog} title="Upload or Record Primary Video">
+          <div className="flex gap-x-2 justify-between items-center">
+            <div {...getPrimaryProps()} className="bg-primary px-4 py-2 text-white rounded cursor-pointer">
+              <input {...getPrimaryInput()} name="primary-video" />
+              <div>Select Primary Video</div>
+            </div>
+            <div onClick={startRecording} disabled={isRecording} className="bg-primary px-4 py-2 text-white rounded cursor-pointer">
+              Start Recording
+            </div>
           </div>
-        )}
-      </div>
+          {videoError && <div className="text-xs text-red-500 mt-1">{videoError}</div>}
+        </Dialog>
 
-      <div className="flex gap-x-1 mt-1">
-        {recording && (
-          <div
-            onClick={stopRecording}
-            disabled={!recording}
-            className="bg-primary text-xs px-2 py-2 text-white rounded cursor-pointer"
-          >
-            Stop Recording
+        {/* Secondary Video Dialog */}
+        <Dialog isOpen={isSecondaryOpen} onClose={closeSecondaryDialog} title="Upload Secondary Video">
+          <div {...getSecondaryProps()} className="bg-primary px-4 py-2 text-white rounded cursor-pointer">
+            <input {...getSecondaryInput()} name="secondary-video" />
+            <div>Select Secondary Video</div>
           </div>
-        )}
-        {stream && recording && (
-          <div
-            onClick={toggleFullscreen}
-            disabled={!stream}
-            className="bg-primary text-xs px-2 py-2 text-white rounded cursor-pointer"
-          >
-            Toggle Fullscreen
-          </div>
-        )}
-      </div>
-    </div>
-  )
-}
+        </Dialog>
 
-export default VideoUploader
+        {/* Video Previews */}
+        <div className="mt-4 flex gap-4">
+          {recordedVideo && (
+              <div className="w-1/2">
+                <h3 className="text-lg font-semibold">Recorded Video</h3>
+                <video controls src={recordedVideo} className="w-full rounded-md shadow-md" />
+              </div>
+          )}
+          {secondaryVideo && (
+              <div className="w-1/2">
+                <h3 className="text-lg font-semibold">Secondary Video</h3>
+                <video controls src={secondaryVideo} className="w-full rounded-md shadow-md" />
+              </div>
+          )}
+        </div>
+
+        {/* Recording Controls */}
+        <div className="flex justify-center mt-2">
+          {isRecording && (
+              <div onClick={stopRecording} className="bg-red-600 text-white px-4 py-2 rounded cursor-pointer">
+                Stop Recording
+              </div>
+          )}
+        </div>
+      </div>
+  );
+};
+
+export default VideoUploader;
