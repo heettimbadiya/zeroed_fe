@@ -141,6 +141,11 @@ export const jobFormValidation = yup.object({
   career_field: yup.string().required('Career field is required'),
   noc_number: yup.string().required('NOC number is required'),
   video: yup.mixed().nullable().required('Video is required'),
+    college_name: yup.string().required('Field of study is required'),
+    global_gpa: yup.string().required('Field of study is required'),
+    credential_no: yup.string().required('Field of study is required'),
+    credential_institute_name: yup.string().required('Field of study is required'),
+    credential_assesed: yup.boolean().required('Field of study is required'),
   // video: yup
   //   .mixed()
   //   .nullable()

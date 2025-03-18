@@ -313,7 +313,12 @@ function ProfileDetails({ data }) {
                                   </div>
                                 </div>
                                 <div className="flex flex-wrap gap-x-4 justify-between items-center">
-                                  <div className="xl:text-base text-xs">
+                                  <div className="xl:text-base text-xs" onClick={(e) => {
+                                    if (ex?.work_experience_company_website) {
+                                      window.open(ex?.work_experience_company_website, '_blank');
+                                      e.stopPropagation();
+                                    }
+                                  }}>
                                     {ex?.work_experience_company_website}
                                   </div>
                                 </div>
