@@ -1,0 +1,4637 @@
+[
+  {
+    "field": "IT",
+    "core_skills": "Cloud Computing",
+    "sub_skills": [
+      {
+        "sub_skill": "AWS"
+      },
+      {
+        "sub_skill": "Microsoft Azure"
+      },
+      {
+        "sub_skill": "Google Cloud"
+      },
+      {
+        "sub_skill": "cloud architecture"
+      },
+      {
+        "sub_skill": "DevOps"
+      },
+      {
+        "sub_skill": "cloud security"
+      },
+      {
+        "sub_skill": "Kubernetes"
+      },
+      {
+        "sub_skill": "Terraform"
+      }
+    ]
+  },
+  {
+    "field": "IT",
+    "core_skills": "Cybersecurity",
+    "sub_skills": [
+      {
+        "sub_skill": "Threat detection"
+      },
+      {
+        "sub_skill": "ethical hacking"
+      },
+      {
+        "sub_skill": "penetration testing"
+      },
+      {
+        "sub_skill": "incident response"
+      },
+      {
+        "sub_skill": "network security"
+      }
+    ]
+  },
+  {
+    "field": "IT",
+    "core_skills": "Data Science & Analytics",
+    "sub_skills": [
+      {
+        "sub_skill": "Machine learning"
+      },
+      {
+        "sub_skill": "data visualization"
+      },
+      {
+        "sub_skill": "data engineering"
+      },
+      {
+        "sub_skill": "Python"
+      },
+      {
+        "sub_skill": "R"
+      },
+      {
+        "sub_skill": "SQL"
+      },
+      {
+        "sub_skill": "Hadoop"
+      },
+      {
+        "sub_skill": "Spark"
+      }
+    ]
+  },
+  {
+    "field": "IT",
+    "core_skills": "Artificial Intelligence & ML",
+    "sub_skills": [
+      {
+        "sub_skill": "Natural language processing"
+      },
+      {
+        "sub_skill": "deep learning"
+      },
+      {
+        "sub_skill": "neural networks"
+      },
+      {
+        "sub_skill": "TensorFlow"
+      },
+      {
+        "sub_skill": "PyTorch"
+      }
+    ]
+  },
+  {
+    "field": "IT",
+    "core_skills": "Software Development",
+    "sub_skills": [
+      {
+        "sub_skill": "Java"
+      },
+      {
+        "sub_skill": "Python"
+      },
+      {
+        "sub_skill": "JavaScript"
+      },
+      {
+        "sub_skill": "C#"
+      },
+      {
+        "sub_skill": "Ruby"
+      },
+      {
+        "sub_skill": "React"
+      },
+      {
+        "sub_skill": "Angular"
+      },
+      {
+        "sub_skill": "Spring Boot"
+      },
+      {
+        "sub_skill": "Django"
+      },
+      {
+        "sub_skill": "REST APIs"
+      }
+    ]
+  },
+  {
+    "field": "IT",
+    "core_skills": "DevOps & Automation",
+    "sub_skills": [
+      {
+        "sub_skill": "Jenkins"
+      },
+      {
+        "sub_skill": "Docker"
+      },
+      {
+        "sub_skill": "Kubernetes"
+      },
+      {
+        "sub_skill": "Ansible"
+      },
+      {
+        "sub_skill": "Git"
+      },
+      {
+        "sub_skill": "CI/CD"
+      },
+      {
+        "sub_skill": "infrastructure automation"
+      },
+      {
+        "sub_skill": "containerization"
+      }
+    ]
+  },
+  {
+    "field": "IT",
+    "core_skills": "Blockchain & Web3",
+    "sub_skills": [
+      {
+        "sub_skill": "Smart contracts"
+      },
+      {
+        "sub_skill": "decentralized apps (DApps)"
+      },
+      {
+        "sub_skill": "Solidity"
+      },
+      {
+        "sub_skill": "Ethereum"
+      },
+      {
+        "sub_skill": "cryptography"
+      }
+    ]
+  },
+  {
+    "field": "IT",
+    "core_skills": "Mobile App Development",
+    "sub_skills": [
+      {
+        "sub_skill": "Swift (iOS)"
+      },
+      {
+        "sub_skill": "Kotlin (Android)"
+      },
+      {
+        "sub_skill": "mobile UI/UX design"
+      },
+      {
+        "sub_skill": "React Native"
+      },
+      {
+        "sub_skill": "Flutter"
+      }
+    ]
+  },
+  {
+    "field": "IT",
+    "core_skills": "UI/UX Design",
+    "sub_skills": [
+      {
+        "sub_skill": "User experience research"
+      },
+      {
+        "sub_skill": "interaction design"
+      },
+      {
+        "sub_skill": "prototyping"
+      },
+      {
+        "sub_skill": "wireframing tools (Sketch, Figma, Adobe XD)"
+      }
+    ]
+  },
+  {
+    "field": "IT",
+    "core_skills": "Project Management & Agile",
+    "sub_skills": [
+      {
+        "sub_skill": "Scrum"
+      },
+      {
+        "sub_skill": "Kanban"
+      },
+      {
+        "sub_skill": "Agile frameworks"
+      },
+      {
+        "sub_skill": "Jira"
+      },
+      {
+        "sub_skill": "communication"
+      },
+      {
+        "sub_skill": "stakeholder management"
+      }
+    ]
+  },
+  {
+    "field": "IT",
+    "core_skills": "Networking & IT Infrastructure",
+    "sub_skills": [
+      {
+        "sub_skill": "Network configuration"
+      },
+      {
+        "sub_skill": "cloud networking"
+      },
+      {
+        "sub_skill": "hybrid IT environments"
+      },
+      {
+        "sub_skill": "Cisco (CCNA, CCNP)"
+      }
+    ]
+  },
+  {
+    "field": "IT",
+    "core_skills": "Quantum Computing",
+    "sub_skills": [
+      {
+        "sub_skill": "Quantum algorithms"
+      },
+      {
+        "sub_skill": "quantum cryptography"
+      },
+      {
+        "sub_skill": "quantum programming (Qiskit)"
+      }
+    ]
+  },
+  {
+    "field": "IT",
+    "core_skills": "RPA & AI-driven Automation",
+    "sub_skills": [
+      {
+        "sub_skill": "UiPath"
+      },
+      {
+        "sub_skill": "Blue Prism"
+      },
+      {
+        "sub_skill": "Automation Anywhere"
+      }
+    ]
+  },
+  {
+    "field": "IT",
+    "core_skills": "IT Compliance & Governance",
+    "sub_skills": [
+      {
+        "sub_skill": "GDPR"
+      },
+      {
+        "sub_skill": "SOC 2"
+      },
+      {
+        "sub_skill": "ISO 27001"
+      },
+      {
+        "sub_skill": "IT audits"
+      },
+      {
+        "sub_skill": "data privacy policies"
+      }
+    ]
+  },
+  {
+    "field": "Marketing",
+    "core_skills": "Digital Marketing",
+    "sub_skills": [
+      {
+        "sub_skill": "SEO (Search Engine Optimization)"
+      },
+      {
+        "sub_skill": "SEM (Search Engine Marketing)"
+      },
+      {
+        "sub_skill": "Google Ads"
+      },
+      {
+        "sub_skill": "Bing Ads"
+      },
+      {
+        "sub_skill": "Digital Strategy"
+      }
+    ]
+  },
+  {
+    "field": "Marketing",
+    "core_skills": "Social Media Marketing",
+    "sub_skills": [
+      {
+        "sub_skill": "Social Media Strategy"
+      },
+      {
+        "sub_skill": "Content Creation"
+      },
+      {
+        "sub_skill": "Paid Social Ads (Facebook, Instagram, LinkedIn)"
+      },
+      {
+        "sub_skill": "Community Management"
+      }
+    ]
+  },
+  {
+    "field": "Marketing",
+    "core_skills": "Content Marketing",
+    "sub_skills": [
+      {
+        "sub_skill": "Copywriting"
+      },
+      {
+        "sub_skill": "Blog Writing"
+      },
+      {
+        "sub_skill": "Video Content Creation"
+      },
+      {
+        "sub_skill": "Content Strategy"
+      },
+      {
+        "sub_skill": "Storytelling"
+      },
+      {
+        "sub_skill": "Content Calendars"
+      }
+    ]
+  },
+  {
+    "field": "Marketing",
+    "core_skills": "Email Marketing",
+    "sub_skills": [
+      {
+        "sub_skill": "Campaign Automation"
+      },
+      {
+        "sub_skill": "Segmentation"
+      },
+      {
+        "sub_skill": "A/B Testing"
+      },
+      {
+        "sub_skill": "CRM Tools (HubSpot, Mailchimp)"
+      }
+    ]
+  },
+  {
+    "field": "Marketing",
+    "core_skills": "Analytics & Data-Driven Marketing",
+    "sub_skills": [
+      {
+        "sub_skill": "Google Analytics"
+      },
+      {
+        "sub_skill": "Data Interpretation"
+      },
+      {
+        "sub_skill": "Marketing Performance Tracking"
+      },
+      {
+        "sub_skill": "Dashboards (Tableau, Power BI)"
+      }
+    ]
+  },
+  {
+    "field": "Marketing",
+    "core_skills": "Search Engine Optimization (SEO)",
+    "sub_skills": [
+      {
+        "sub_skill": "Keyword Research"
+      },
+      {
+        "sub_skill": "On-page SEO"
+      },
+      {
+        "sub_skill": "Technical SEO"
+      },
+      {
+        "sub_skill": "Link Building"
+      },
+      {
+        "sub_skill": "Local SEO"
+      }
+    ]
+  },
+  {
+    "field": "Marketing",
+    "core_skills": "Pay-Per-Click (PPC) Advertising",
+    "sub_skills": [
+      {
+        "sub_skill": "Google Ads"
+      },
+      {
+        "sub_skill": "Facebook Ads Manager"
+      },
+      {
+        "sub_skill": "YouTube Advertising"
+      },
+      {
+        "sub_skill": "Bid Management"
+      },
+      {
+        "sub_skill": "Ad Copy Optimization"
+      }
+    ]
+  },
+  {
+    "field": "Marketing",
+    "core_skills": "Influencer & Affiliate Marketing",
+    "sub_skills": [
+      {
+        "sub_skill": "Influencer Outreach"
+      },
+      {
+        "sub_skill": "Affiliate Partnerships"
+      },
+      {
+        "sub_skill": "Campaign Management"
+      },
+      {
+        "sub_skill": "ROI Tracking"
+      }
+    ]
+  },
+  {
+    "field": "Marketing",
+    "core_skills": "Brand Strategy & Development",
+    "sub_skills": [
+      {
+        "sub_skill": "Brand Positioning"
+      },
+      {
+        "sub_skill": "Brand Identity"
+      },
+      {
+        "sub_skill": "Messaging"
+      },
+      {
+        "sub_skill": "Competitive Analysis"
+      },
+      {
+        "sub_skill": "Market Research"
+      }
+    ]
+  },
+  {
+    "field": "Marketing",
+    "core_skills": "Customer Experience (CX) & UX Design",
+    "sub_skills": [
+      {
+        "sub_skill": "Customer Journey Mapping"
+      },
+      {
+        "sub_skill": "User Experience Testing"
+      },
+      {
+        "sub_skill": "Personalization Strategies"
+      }
+    ]
+  },
+  {
+    "field": "Marketing",
+    "core_skills": "Marketing Automation",
+    "sub_skills": [
+      {
+        "sub_skill": "Tools (Marketo, HubSpot, Pardot)"
+      },
+      {
+        "sub_skill": "Lead Nurturing"
+      },
+      {
+        "sub_skill": "Workflow Automation"
+      },
+      {
+        "sub_skill": "Retargeting Strategies"
+      }
+    ]
+  },
+  {
+    "field": "Marketing",
+    "core_skills": "Video Marketing",
+    "sub_skills": [
+      {
+        "sub_skill": "Video Production"
+      },
+      {
+        "sub_skill": "Editing"
+      },
+      {
+        "sub_skill": "YouTube SEO"
+      },
+      {
+        "sub_skill": "Video Ad Campaigns"
+      },
+      {
+        "sub_skill": "Live Streaming"
+      }
+    ]
+  },
+  {
+    "field": "Marketing",
+    "core_skills": "Public Relations (PR)",
+    "sub_skills": [
+      {
+        "sub_skill": "Media Outreach"
+      },
+      {
+        "sub_skill": "Press Release Writing"
+      },
+      {
+        "sub_skill": "Crisis Communication"
+      },
+      {
+        "sub_skill": "Reputation Management"
+      }
+    ]
+  },
+  {
+    "field": "Marketing",
+    "core_skills": "E-commerce Marketing",
+    "sub_skills": [
+      {
+        "sub_skill": "Conversion Rate Optimization"
+      },
+      {
+        "sub_skill": "Shopify"
+      },
+      {
+        "sub_skill": "WooCommerce"
+      },
+      {
+        "sub_skill": "Amazon Marketing"
+      }
+    ]
+  },
+  {
+    "field": "Marketing",
+    "core_skills": "Event Marketing",
+    "sub_skills": [
+      {
+        "sub_skill": "Event Planning"
+      },
+      {
+        "sub_skill": "Webinar Management"
+      },
+      {
+        "sub_skill": "Virtual Events"
+      },
+      {
+        "sub_skill": "Sponsorships"
+      },
+      {
+        "sub_skill": "Event Promotions"
+      }
+    ]
+  },
+  {
+    "field": "Marketing",
+    "core_skills": "Graphic Design for Marketing",
+    "sub_skills": [
+      {
+        "sub_skill": "Adobe Creative Suite (Photoshop, Illustrator, InDesign)"
+      },
+      {
+        "sub_skill": "Canva"
+      },
+      {
+        "sub_skill": "Visual Storytelling"
+      }
+    ]
+  },
+  {
+    "field": "Marketing",
+    "core_skills": "Product Marketing",
+    "sub_skills": [
+      {
+        "sub_skill": "Product Positioning"
+      },
+      {
+        "sub_skill": "Go-to-Market Strategies"
+      },
+      {
+        "sub_skill": "Customer Insights"
+      },
+      {
+        "sub_skill": "Competitor Analysis"
+      }
+    ]
+  },
+  {
+    "field": "Sales",
+    "core_skills": "Sales Strategy & Planning",
+    "sub_skills": [
+      {
+        "sub_skill": "Territory Management"
+      },
+      {
+        "sub_skill": "Sales Forecasting"
+      },
+      {
+        "sub_skill": "Pipeline Management"
+      },
+      {
+        "sub_skill": "Competitive Analysis"
+      }
+    ]
+  },
+  {
+    "field": "Sales",
+    "core_skills": "B2B Sales",
+    "sub_skills": [
+      {
+        "sub_skill": "Lead Generation"
+      },
+      {
+        "sub_skill": "Account-Based Selling"
+      },
+      {
+        "sub_skill": "Enterprise Sales"
+      },
+      {
+        "sub_skill": "Solution Selling"
+      }
+    ]
+  },
+  {
+    "field": "Sales",
+    "core_skills": "B2C Sales",
+    "sub_skills": [
+      {
+        "sub_skill": "Customer Engagement"
+      },
+      {
+        "sub_skill": "Retail Sales"
+      },
+      {
+        "sub_skill": "Direct Selling"
+      },
+      {
+        "sub_skill": "Product Demonstrations"
+      }
+    ]
+  },
+  {
+    "field": "Sales",
+    "core_skills": "CRM Software Proficiency",
+    "sub_skills": [
+      {
+        "sub_skill": "Salesforce"
+      },
+      {
+        "sub_skill": "HubSpot"
+      },
+      {
+        "sub_skill": "Zoho CRM"
+      },
+      {
+        "sub_skill": "Microsoft Dynamics"
+      }
+    ]
+  },
+  {
+    "field": "Sales",
+    "core_skills": "Cold Calling & Prospecting",
+    "sub_skills": [
+      {
+        "sub_skill": "Outbound Sales Techniques"
+      },
+      {
+        "sub_skill": "Lead Qualification"
+      },
+      {
+        "sub_skill": "Appointment Setting"
+      },
+      {
+        "sub_skill": "Email Outreach"
+      }
+    ]
+  },
+  {
+    "field": "Sales",
+    "core_skills": "Negotiation & Closing Deals",
+    "sub_skills": [
+      {
+        "sub_skill": "Objection Handling"
+      },
+      {
+        "sub_skill": "Contract Negotiation"
+      },
+      {
+        "sub_skill": "Deal Structuring"
+      },
+      {
+        "sub_skill": "Closing Techniques"
+      }
+    ]
+  },
+  {
+    "field": "Sales",
+    "core_skills": "Consultative Selling",
+    "sub_skills": [
+      {
+        "sub_skill": "Needs-Based Selling"
+      },
+      {
+        "sub_skill": "Relationship Building"
+      },
+      {
+        "sub_skill": "Trust-Based Selling"
+      },
+      {
+        "sub_skill": "Problem-Solving"
+      }
+    ]
+  },
+  {
+    "field": "Sales",
+    "core_skills": "Sales Presentations",
+    "sub_skills": [
+      {
+        "sub_skill": "Pitch Decks"
+      },
+      {
+        "sub_skill": "Storytelling"
+      },
+      {
+        "sub_skill": "PowerPoint"
+      },
+      {
+        "sub_skill": "Product Demos"
+      }
+    ]
+  },
+  {
+    "field": "Sales",
+    "core_skills": "Customer Relationship Management",
+    "sub_skills": [
+      {
+        "sub_skill": "Client Retention"
+      },
+      {
+        "sub_skill": "Follow-Up Strategies"
+      },
+      {
+        "sub_skill": "Loyalty Programs"
+      },
+      {
+        "sub_skill": "Cross-Selling"
+      }
+    ]
+  },
+  {
+    "field": "Sales",
+    "core_skills": "Sales Analytics & Reporting",
+    "sub_skills": [
+      {
+        "sub_skill": "Sales Performance Metrics"
+      },
+      {
+        "sub_skill": "Pipeline Analysis"
+      },
+      {
+        "sub_skill": "Dashboard Tools (Tableau, Power BI)"
+      }
+    ]
+  },
+  {
+    "field": "Sales",
+    "core_skills": "Sales Automation Tools",
+    "sub_skills": [
+      {
+        "sub_skill": "Outreach.io"
+      },
+      {
+        "sub_skill": "SalesLoft"
+      },
+      {
+        "sub_skill": "LinkedIn Sales Navigator"
+      },
+      {
+        "sub_skill": "Email Automation"
+      }
+    ]
+  },
+  {
+    "field": "Sales",
+    "core_skills": "Product Knowledge",
+    "sub_skills": [
+      {
+        "sub_skill": "Deep Understanding of Product Features"
+      },
+      {
+        "sub_skill": "Competitive Products"
+      },
+      {
+        "sub_skill": "Industry Trends"
+      }
+    ]
+  },
+  {
+    "field": "Sales",
+    "core_skills": "Social Selling",
+    "sub_skills": [
+      {
+        "sub_skill": "LinkedIn Networking"
+      },
+      {
+        "sub_skill": "Social Media Outreach"
+      },
+      {
+        "sub_skill": "Content Sharing"
+      },
+      {
+        "sub_skill": "Online Reputation Building"
+      }
+    ]
+  },
+  {
+    "field": "Sales",
+    "core_skills": "Team Collaboration",
+    "sub_skills": [
+      {
+        "sub_skill": "Collaboration with Marketing"
+      },
+      {
+        "sub_skill": "Product Teams"
+      },
+      {
+        "sub_skill": "Customer Service to Align Goals"
+      }
+    ]
+  },
+  {
+    "field": "Sales",
+    "core_skills": "Customer Experience (CX)",
+    "sub_skills": [
+      {
+        "sub_skill": "Mapping Customer Journey"
+      },
+      {
+        "sub_skill": "Addressing Pain Points"
+      },
+      {
+        "sub_skill": "Providing Personalized Solutions"
+      }
+    ]
+  },
+  {
+    "field": "Sales",
+    "core_skills": "Sales Training & Development",
+    "sub_skills": [
+      {
+        "sub_skill": "Sales Coaching"
+      },
+      {
+        "sub_skill": "Mentoring"
+      },
+      {
+        "sub_skill": "Continuous Learning"
+      },
+      {
+        "sub_skill": "Leadership Development"
+      }
+    ]
+  },
+  {
+    "field": "Customer Service",
+    "core_skills": "Communication Skills",
+    "sub_skills": [
+      {
+        "sub_skill": "Active Listening"
+      },
+      {
+        "sub_skill": "Clear Verbal Communication"
+      },
+      {
+        "sub_skill": "Written Communication"
+      },
+      {
+        "sub_skill": "Empathy"
+      }
+    ]
+  },
+  {
+    "field": "Customer Service",
+    "core_skills": "Problem-Solving",
+    "sub_skills": [
+      {
+        "sub_skill": "Critical Thinking"
+      },
+      {
+        "sub_skill": "Conflict Resolution"
+      },
+      {
+        "sub_skill": "Troubleshooting"
+      },
+      {
+        "sub_skill": "Root Cause Analysis"
+      }
+    ]
+  },
+  {
+    "field": "Customer Service",
+    "core_skills": "CRM Software Proficiency",
+    "sub_skills": [
+      {
+        "sub_skill": "Salesforce"
+      },
+      {
+        "sub_skill": "Zendesk"
+      },
+      {
+        "sub_skill": "HubSpot"
+      },
+      {
+        "sub_skill": "Freshdesk"
+      },
+      {
+        "sub_skill": "Microsoft Dynamics"
+      }
+    ]
+  },
+  {
+    "field": "Customer Service",
+    "core_skills": "Multichannel Support",
+    "sub_skills": [
+      {
+        "sub_skill": "Phone Support"
+      },
+      {
+        "sub_skill": "Email Support"
+      },
+      {
+        "sub_skill": "Live Chat"
+      },
+      {
+        "sub_skill": "Social Media Customer Service"
+      }
+    ]
+  },
+  {
+    "field": "Customer Service",
+    "core_skills": "Customer Relationship Management",
+    "sub_skills": [
+      {
+        "sub_skill": "Client Retention"
+      },
+      {
+        "sub_skill": "Follow-Up Strategies"
+      },
+      {
+        "sub_skill": "Personalized Service"
+      },
+      {
+        "sub_skill": "Loyalty Programs"
+      }
+    ]
+  },
+  {
+    "field": "Customer Service",
+    "core_skills": "Product Knowledge",
+    "sub_skills": [
+      {
+        "sub_skill": "In-Depth Product Expertise"
+      },
+      {
+        "sub_skill": "Understanding Features"
+      },
+      {
+        "sub_skill": "Ability to Explain Benefits"
+      }
+    ]
+  },
+  {
+    "field": "Customer Service",
+    "core_skills": "Time Management",
+    "sub_skills": [
+      {
+        "sub_skill": "Handling Multiple Requests"
+      },
+      {
+        "sub_skill": "Prioritizing Tasks"
+      },
+      {
+        "sub_skill": "Meeting Response Time SLAs"
+      }
+    ]
+  },
+  {
+    "field": "Customer Service",
+    "core_skills": "Emotional Intelligence",
+    "sub_skills": [
+      {
+        "sub_skill": "Empathy"
+      },
+      {
+        "sub_skill": "Patience"
+      },
+      {
+        "sub_skill": "Handling Difficult Customers"
+      },
+      {
+        "sub_skill": "Emotional Resilience"
+      }
+    ]
+  },
+  {
+    "field": "Customer Service",
+    "core_skills": "Customer Experience (CX)",
+    "sub_skills": [
+      {
+        "sub_skill": "Customer Journey Mapping"
+      },
+      {
+        "sub_skill": "Identifying Customer Pain Points"
+      },
+      {
+        "sub_skill": "Feedback Collection"
+      }
+    ]
+  },
+  {
+    "field": "Customer Service",
+    "core_skills": "Technical Support Skills",
+    "sub_skills": [
+      {
+        "sub_skill": "Troubleshooting"
+      },
+      {
+        "sub_skill": "Technical Documentation"
+      },
+      {
+        "sub_skill": "Understanding of Software/Hardware"
+      }
+    ]
+  },
+  {
+    "field": "Customer Service",
+    "core_skills": "Conflict Resolution",
+    "sub_skills": [
+      {
+        "sub_skill": "Handling Complaints"
+      },
+      {
+        "sub_skill": "De-Escalation Techniques"
+      },
+      {
+        "sub_skill": "Maintaining Professionalism"
+      }
+    ]
+  },
+  {
+    "field": "Customer Service",
+    "core_skills": "Adaptability & Flexibility",
+    "sub_skills": [
+      {
+        "sub_skill": "Adjusting to New Technologies"
+      },
+      {
+        "sub_skill": "Processes or Policies"
+      },
+      {
+        "sub_skill": "Managing Change in Customer Needs"
+      }
+    ]
+  },
+  {
+    "field": "Customer Service",
+    "core_skills": "Active Listening",
+    "sub_skills": [
+      {
+        "sub_skill": "Understanding Customer Needs"
+      },
+      {
+        "sub_skill": "Asking Clarifying Questions"
+      },
+      {
+        "sub_skill": "Rephrasing Concerns"
+      }
+    ]
+  },
+  {
+    "field": "Customer Service",
+    "core_skills": "Team Collaboration",
+    "sub_skills": [
+      {
+        "sub_skill": "Working with Other Departments (Sales, Tech Support)"
+      },
+      {
+        "sub_skill": "Escalating Issues"
+      },
+      {
+        "sub_skill": "Providing Feedback"
+      }
+    ]
+  },
+  {
+    "field": "Customer Service",
+    "core_skills": "Service Recovery",
+    "sub_skills": [
+      {
+        "sub_skill": "Apologizing"
+      },
+      {
+        "sub_skill": "Compensating for Service Failures"
+      },
+      {
+        "sub_skill": "Ensuring Customer Satisfaction"
+      }
+    ]
+  },
+  {
+    "field": "Customer Service",
+    "core_skills": "Customer Feedback & Surveys",
+    "sub_skills": [
+      {
+        "sub_skill": "Gathering Customer Insights"
+      },
+      {
+        "sub_skill": "NPS (Net Promoter Score) Analysis"
+      },
+      {
+        "sub_skill": "Feedback Management"
+      }
+    ]
+  },
+  {
+    "field": "Customer Service",
+    "core_skills": "Cultural Awareness",
+    "sub_skills": [
+      {
+        "sub_skill": "Understanding Diverse Customer Backgrounds"
+      },
+      {
+        "sub_skill": "Offering Tailored Solutions"
+      },
+      {
+        "sub_skill": "Global Communication Skills"
+      }
+    ]
+  },
+  {
+    "field": "Customer Service",
+    "core_skills": "Automation Tools",
+    "sub_skills": [
+      {
+        "sub_skill": "Chatbots"
+      },
+      {
+        "sub_skill": "AI-Based Customer Service"
+      },
+      {
+        "sub_skill": "Self-Service Solutions"
+      },
+      {
+        "sub_skill": "Knowledge Base Tools"
+      }
+    ]
+  },
+  {
+    "field": "Healthcare",
+    "core_skills": "Clinical Skills",
+    "sub_skills": [
+      {
+        "sub_skill": "Patient Assessment"
+      },
+      {
+        "sub_skill": "Diagnostics"
+      },
+      {
+        "sub_skill": "Vital Signs Monitoring"
+      },
+      {
+        "sub_skill": "Medication Administration"
+      }
+    ]
+  },
+  {
+    "field": "Healthcare",
+    "core_skills": "Nursing & Patient Care",
+    "sub_skills": [
+      {
+        "sub_skill": "Wound Care"
+      },
+      {
+        "sub_skill": "IV Insertion"
+      },
+      {
+        "sub_skill": "Patient Advocacy"
+      },
+      {
+        "sub_skill": "Elder Care"
+      },
+      {
+        "sub_skill": "Pediatric Care"
+      },
+      {
+        "sub_skill": "Palliative Care"
+      }
+    ]
+  },
+  {
+    "field": "Healthcare",
+    "core_skills": "Medical Technology",
+    "sub_skills": [
+      {
+        "sub_skill": "EHR (Electronic Health Records) Systems (Epic, Cerner)"
+      },
+      {
+        "sub_skill": "Medical Imaging Technology (MRI, CT, Ultrasound)"
+      }
+    ]
+  },
+  {
+    "field": "Healthcare",
+    "core_skills": "Telemedicine & Remote Care",
+    "sub_skills": [
+      {
+        "sub_skill": "Virtual Consultations"
+      },
+      {
+        "sub_skill": "Remote Monitoring"
+      },
+      {
+        "sub_skill": "Telehealth Platforms"
+      },
+      {
+        "sub_skill": "Patient Communication Tools"
+      }
+    ]
+  },
+  {
+    "field": "Healthcare",
+    "core_skills": "Pharmacy Skills",
+    "sub_skills": [
+      {
+        "sub_skill": "Prescription Management"
+      },
+      {
+        "sub_skill": "Drug Interactions"
+      },
+      {
+        "sub_skill": "Patient Counseling"
+      },
+      {
+        "sub_skill": "Medication Safety"
+      }
+    ]
+  },
+  {
+    "field": "Healthcare",
+    "core_skills": "Mental Health Care",
+    "sub_skills": [
+      {
+        "sub_skill": "Counseling"
+      },
+      {
+        "sub_skill": "Crisis Intervention"
+      },
+      {
+        "sub_skill": "Psychotherapy"
+      },
+      {
+        "sub_skill": "Mental Health Assessments"
+      },
+      {
+        "sub_skill": "Addiction Support"
+      }
+    ]
+  },
+  {
+    "field": "Healthcare",
+    "core_skills": "Surgical Assistance",
+    "sub_skills": [
+      {
+        "sub_skill": "Preoperative and Postoperative Care"
+      },
+      {
+        "sub_skill": "Sterile Techniques"
+      },
+      {
+        "sub_skill": "Surgical Instruments Handling"
+      }
+    ]
+  },
+  {
+    "field": "Healthcare",
+    "core_skills": "Laboratory Skills",
+    "sub_skills": [
+      {
+        "sub_skill": "Phlebotomy"
+      },
+      {
+        "sub_skill": "Lab Test Interpretation"
+      },
+      {
+        "sub_skill": "Specimen Collection"
+      },
+      {
+        "sub_skill": "Lab Equipment Handling"
+      }
+    ]
+  },
+  {
+    "field": "Healthcare",
+    "core_skills": "Rehabilitation & Physical Therapy",
+    "sub_skills": [
+      {
+        "sub_skill": "Physiotherapy Techniques"
+      },
+      {
+        "sub_skill": "Exercise Therapy"
+      },
+      {
+        "sub_skill": "Patient Mobility"
+      },
+      {
+        "sub_skill": "Pain Management"
+      }
+    ]
+  },
+  {
+    "field": "Healthcare",
+    "core_skills": "Infection Control & Safety",
+    "sub_skills": [
+      {
+        "sub_skill": "Sterilization Techniques"
+      },
+      {
+        "sub_skill": "PPE Protocols"
+      },
+      {
+        "sub_skill": "Infection Prevention"
+      },
+      {
+        "sub_skill": "Public Health Guidelines"
+      }
+    ]
+  },
+  {
+    "field": "Healthcare",
+    "core_skills": "Health Information Management",
+    "sub_skills": [
+      {
+        "sub_skill": "Coding and Billing (ICD-10, CPT)"
+      },
+      {
+        "sub_skill": "Patient Data Management"
+      },
+      {
+        "sub_skill": "HIPAA Compliance"
+      },
+      {
+        "sub_skill": "Medical Transcription"
+      }
+    ]
+  },
+  {
+    "field": "Healthcare",
+    "core_skills": "Geriatric Care",
+    "sub_skills": [
+      {
+        "sub_skill": "Long-Term Care"
+      },
+      {
+        "sub_skill": "Dementia Care"
+      },
+      {
+        "sub_skill": "Mobility Assistance"
+      },
+      {
+        "sub_skill": "Elder-Specific Health Management"
+      }
+    ]
+  },
+  {
+    "field": "Healthcare",
+    "core_skills": "Emergency Care",
+    "sub_skills": [
+      {
+        "sub_skill": "Triage"
+      },
+      {
+        "sub_skill": "CPR"
+      },
+      {
+        "sub_skill": "Trauma Care"
+      },
+      {
+        "sub_skill": "Emergency Response Protocols"
+      },
+      {
+        "sub_skill": "Life Support Certification"
+      }
+    ]
+  },
+  {
+    "field": "Healthcare",
+    "core_skills": "Chronic Disease Management",
+    "sub_skills": [
+      {
+        "sub_skill": "Diabetes Management"
+      },
+      {
+        "sub_skill": "Hypertension Care"
+      },
+      {
+        "sub_skill": "Asthma/COPD Care"
+      },
+      {
+        "sub_skill": "Patient Education"
+      }
+    ]
+  },
+  {
+    "field": "Healthcare",
+    "core_skills": "Health Education & Promotion",
+    "sub_skills": [
+      {
+        "sub_skill": "Patient Health Education"
+      },
+      {
+        "sub_skill": "Preventive Care"
+      },
+      {
+        "sub_skill": "Nutrition Counseling"
+      },
+      {
+        "sub_skill": "Wellness Programs"
+      }
+    ]
+  },
+  {
+    "field": "Healthcare",
+    "core_skills": "Leadership & Healthcare Administration",
+    "sub_skills": [
+      {
+        "sub_skill": "Healthcare Management"
+      },
+      {
+        "sub_skill": "Budgeting"
+      },
+      {
+        "sub_skill": "Staff Coordination"
+      },
+      {
+        "sub_skill": "Healthcare Policy Compliance"
+      }
+    ]
+  },
+  {
+    "field": "Healthcare",
+    "core_skills": "Home Care & Personal Support",
+    "sub_skills": [
+      {
+        "sub_skill": "Assistance with Daily Activities"
+      },
+      {
+        "sub_skill": "Home Health Services"
+      },
+      {
+        "sub_skill": "Personal Care Aide Skills"
+      }
+    ]
+  },
+  {
+    "field": "Healthcare",
+    "core_skills": "Cultural Competency",
+    "sub_skills": [
+      {
+        "sub_skill": "Understanding Diverse Populations"
+      },
+      {
+        "sub_skill": "Providing Tailored Care"
+      },
+      {
+        "sub_skill": "Language and Communication Skills"
+      }
+    ]
+  },
+  {
+    "field": "Healthcare",
+    "core_skills": "Medical Ethics & Legal Compliance",
+    "sub_skills": [
+      {
+        "sub_skill": "Patient Rights"
+      },
+      {
+        "sub_skill": "Confidentiality"
+      },
+      {
+        "sub_skill": "Ethical Decision-Making"
+      },
+      {
+        "sub_skill": "Legal Reporting (e.g., Abuse, Neglect)"
+      }
+    ]
+  },
+  {
+    "field": "Healthcare",
+    "core_skills": "Health Informatics & Data Analysis",
+    "sub_skills": [
+      {
+        "sub_skill": "Data-Driven Decision-Making"
+      },
+      {
+        "sub_skill": "Healthcare Analytics"
+      },
+      {
+        "sub_skill": "Health Data Visualization"
+      },
+      {
+        "sub_skill": "Population Health Management"
+      }
+    ]
+  },
+  {
+    "field": "Hospitality and Travel",
+    "core_skills": "Customer Service",
+    "sub_skills": [
+      {
+        "sub_skill": "Guest Relations"
+      },
+      {
+        "sub_skill": "Problem-Solving"
+      },
+      {
+        "sub_skill": "Conflict Resolution"
+      },
+      {
+        "sub_skill": "Concierge Services"
+      }
+    ]
+  },
+  {
+    "field": "Hospitality and Travel",
+    "core_skills": "Communication Skills",
+    "sub_skills": [
+      {
+        "sub_skill": "Verbal Communication"
+      },
+      {
+        "sub_skill": "Written Communication"
+      },
+      {
+        "sub_skill": "Active Listening"
+      },
+      {
+        "sub_skill": "Multilingualism"
+      }
+    ]
+  },
+  {
+    "field": "Hospitality and Travel",
+    "core_skills": "Reservation & Booking Systems",
+    "sub_skills": [
+      {
+        "sub_skill": "PMS (Property Management Systems)"
+      },
+      {
+        "sub_skill": "GDS (Global Distribution Systems)"
+      },
+      {
+        "sub_skill": "OTA Platforms (Booking.com, Expedia)"
+      }
+    ]
+  },
+  {
+    "field": "Hospitality and Travel",
+    "core_skills": "Event Planning & Management",
+    "sub_skills": [
+      {
+        "sub_skill": "Event Coordination"
+      },
+      {
+        "sub_skill": "Vendor Management"
+      },
+      {
+        "sub_skill": "Budget Management"
+      },
+      {
+        "sub_skill": "On-Site Execution"
+      }
+    ]
+  },
+  {
+    "field": "Hospitality and Travel",
+    "core_skills": "Food & Beverage Service",
+    "sub_skills": [
+      {
+        "sub_skill": "Menu Planning"
+      },
+      {
+        "sub_skill": "Food Safety"
+      },
+      {
+        "sub_skill": "Mixology"
+      },
+      {
+        "sub_skill": "Fine Dining Service"
+      },
+      {
+        "sub_skill": "Barista Skills"
+      }
+    ]
+  },
+  {
+    "field": "Hospitality and Travel",
+    "core_skills": "Housekeeping & Maintenance",
+    "sub_skills": [
+      {
+        "sub_skill": "Room Cleaning"
+      },
+      {
+        "sub_skill": "Inventory Management"
+      },
+      {
+        "sub_skill": "Quality Control"
+      },
+      {
+        "sub_skill": "Health & Safety Standards"
+      }
+    ]
+  },
+  {
+    "field": "Hospitality and Travel",
+    "core_skills": "Sales & Marketing",
+    "sub_skills": [
+      {
+        "sub_skill": "Travel Promotions"
+      },
+      {
+        "sub_skill": "Upselling Services"
+      },
+      {
+        "sub_skill": "Social Media Marketing"
+      },
+      {
+        "sub_skill": "Content Creation"
+      }
+    ]
+  },
+  {
+    "field": "Hospitality and Travel",
+    "core_skills": "Travel & Tourism Expertise",
+    "sub_skills": [
+      {
+        "sub_skill": "Destination Knowledge"
+      },
+      {
+        "sub_skill": "Travel Itineraries"
+      },
+      {
+        "sub_skill": "Tour Guiding"
+      },
+      {
+        "sub_skill": "Vacation Package Design"
+      }
+    ]
+  },
+  {
+    "field": "Hospitality and Travel",
+    "core_skills": "Hotel Management",
+    "sub_skills": [
+      {
+        "sub_skill": "Staff Management"
+      },
+      {
+        "sub_skill": "Budget Control"
+      },
+      {
+        "sub_skill": "Occupancy Rate Optimization"
+      },
+      {
+        "sub_skill": "Guest Satisfaction"
+      }
+    ]
+  },
+  {
+    "field": "Hospitality and Travel",
+    "core_skills": "Revenue Management",
+    "sub_skills": [
+      {
+        "sub_skill": "Yield Management"
+      },
+      {
+        "sub_skill": "Pricing Strategies"
+      },
+      {
+        "sub_skill": "Forecasting"
+      },
+      {
+        "sub_skill": "Occupancy Analysis"
+      }
+    ]
+  },
+  {
+    "field": "Hospitality and Travel",
+    "core_skills": "Culinary Skills",
+    "sub_skills": [
+      {
+        "sub_skill": "Food Preparation"
+      },
+      {
+        "sub_skill": "Kitchen Safety"
+      },
+      {
+        "sub_skill": "Cooking Techniques"
+      },
+      {
+        "sub_skill": "Menu Design"
+      }
+    ]
+  },
+  {
+    "field": "Hospitality and Travel",
+    "core_skills": "Cultural Awareness",
+    "sub_skills": [
+      {
+        "sub_skill": "Understanding Diverse Guest Backgrounds"
+      },
+      {
+        "sub_skill": "Providing Tailored Experiences"
+      },
+      {
+        "sub_skill": "Global Etiquette"
+      }
+    ]
+  },
+  {
+    "field": "Hospitality and Travel",
+    "core_skills": "Health & Safety Compliance",
+    "sub_skills": [
+      {
+        "sub_skill": "Food Safety Certifications"
+      },
+      {
+        "sub_skill": "Workplace Safety Regulations"
+      },
+      {
+        "sub_skill": "COVID-19 Protocols"
+      }
+    ]
+  },
+  {
+    "field": "Hospitality and Travel",
+    "core_skills": "Travel Technology",
+    "sub_skills": [
+      {
+        "sub_skill": "Online Booking Tools"
+      },
+      {
+        "sub_skill": "Mobile Apps"
+      },
+      {
+        "sub_skill": "Travel CRM Systems"
+      },
+      {
+        "sub_skill": "Payment Gateways"
+      }
+    ]
+  },
+  {
+    "field": "Hospitality and Travel",
+    "core_skills": "Tourism Sustainability",
+    "sub_skills": [
+      {
+        "sub_skill": "Eco-Tourism"
+      },
+      {
+        "sub_skill": "Sustainable Travel Practices"
+      },
+      {
+        "sub_skill": "Green Certifications"
+      },
+      {
+        "sub_skill": "Environmental Impact Assessment"
+      }
+    ]
+  },
+  {
+    "field": "Hospitality and Travel",
+    "core_skills": "Leadership & Team Management",
+    "sub_skills": [
+      {
+        "sub_skill": "Staff Training"
+      },
+      {
+        "sub_skill": "Conflict Resolution"
+      },
+      {
+        "sub_skill": "Scheduling"
+      },
+      {
+        "sub_skill": "Motivation and Team Development"
+      }
+    ]
+  },
+  {
+    "field": "Hospitality and Travel",
+    "core_skills": "Crisis Management",
+    "sub_skills": [
+      {
+        "sub_skill": "Handling Emergencies"
+      },
+      {
+        "sub_skill": "Guest Complaints"
+      },
+      {
+        "sub_skill": "Travel Disruptions"
+      },
+      {
+        "sub_skill": "Safety Protocols"
+      }
+    ]
+  },
+  {
+    "field": "Hospitality and Travel",
+    "core_skills": "Luxury Service",
+    "sub_skills": [
+      {
+        "sub_skill": "VIP Guest Handling"
+      },
+      {
+        "sub_skill": "Personalized Experiences"
+      },
+      {
+        "sub_skill": "High-End Service Standards"
+      }
+    ]
+  },
+  {
+    "field": "Hospitality and Travel",
+    "core_skills": "Foreign Language Proficiency",
+    "sub_skills": [
+      {
+        "sub_skill": "Proficiency in Languages such as French, Spanish, Mandarin, German, or Others Relevant to Tourism"
+      }
+    ]
+  },
+  {
+    "field": "Hospitality and Travel",
+    "core_skills": "Travel Insurance Knowledge",
+    "sub_skills": [
+      {
+        "sub_skill": "Travel Insurance Products"
+      },
+      {
+        "sub_skill": "Claim Management"
+      },
+      {
+        "sub_skill": "Policy Advice to Customers"
+      }
+    ]
+  },
+  {
+    "field": "Hospitality and Travel",
+    "core_skills": "Logistics & Transportation",
+    "sub_skills": [
+      {
+        "sub_skill": "Coordination of Transportation Services"
+      },
+      {
+        "sub_skill": "Airport Transfers"
+      },
+      {
+        "sub_skill": "Car Rentals"
+      },
+      {
+        "sub_skill": "Tour Buses"
+      }
+    ]
+  },
+  {
+    "field": "Hospitality and Travel",
+    "core_skills": "Digital Skills",
+    "sub_skills": [
+      {
+        "sub_skill": "Social Media Marketing"
+      },
+      {
+        "sub_skill": "Online Review Management"
+      },
+      {
+        "sub_skill": "Digital Reputation Management"
+      }
+    ]
+  },
+  {
+    "field": "Supply Chain",
+    "core_skills": "Supply Chain Management",
+    "sub_skills": [
+      {
+        "sub_skill": "Inventory Control"
+      },
+      {
+        "sub_skill": "Demand Forecasting"
+      },
+      {
+        "sub_skill": "Procurement"
+      },
+      {
+        "sub_skill": "Supplier Relationship Management"
+      }
+    ]
+  },
+  {
+    "field": "Supply Chain",
+    "core_skills": "Logistics & Transportation",
+    "sub_skills": [
+      {
+        "sub_skill": "Freight Management"
+      },
+      {
+        "sub_skill": "Route Optimization"
+      },
+      {
+        "sub_skill": "Fleet Management"
+      },
+      {
+        "sub_skill": "Third-Party Logistics (3PL)"
+      }
+    ]
+  },
+  {
+    "field": "Supply Chain",
+    "core_skills": "Warehouse Management",
+    "sub_skills": [
+      {
+        "sub_skill": "Inventory Tracking"
+      },
+      {
+        "sub_skill": "Warehouse Automation"
+      },
+      {
+        "sub_skill": "Space Optimization"
+      },
+      {
+        "sub_skill": "Picking and Packing"
+      }
+    ]
+  },
+  {
+    "field": "Supply Chain",
+    "core_skills": "Data Analysis & Forecasting",
+    "sub_skills": [
+      {
+        "sub_skill": "Predictive Analytics"
+      },
+      {
+        "sub_skill": "Demand Forecasting"
+      },
+      {
+        "sub_skill": "Data Interpretation"
+      },
+      {
+        "sub_skill": "Trend Analysis"
+      }
+    ]
+  },
+  {
+    "field": "Supply Chain",
+    "core_skills": "ERP Systems Proficiency",
+    "sub_skills": [
+      {
+        "sub_skill": "SAP"
+      },
+      {
+        "sub_skill": "Oracle ERP"
+      },
+      {
+        "sub_skill": "Microsoft Dynamics"
+      },
+      {
+        "sub_skill": "JD Edwards"
+      },
+      {
+        "sub_skill": "Infor"
+      }
+    ]
+  },
+  {
+    "field": "Supply Chain",
+    "core_skills": "Procurement & Sourcing",
+    "sub_skills": [
+      {
+        "sub_skill": "Strategic Sourcing"
+      },
+      {
+        "sub_skill": "Supplier Evaluation"
+      },
+      {
+        "sub_skill": "Contract Negotiation"
+      },
+      {
+        "sub_skill": "Cost Management"
+      }
+    ]
+  },
+  {
+    "field": "Supply Chain",
+    "core_skills": "Inventory Management",
+    "sub_skills": [
+      {
+        "sub_skill": "Stock Control"
+      },
+      {
+        "sub_skill": "Safety Stock Management"
+      },
+      {
+        "sub_skill": "Just-In-Time (JIT) Inventory"
+      },
+      {
+        "sub_skill": "ABC Analysis"
+      }
+    ]
+  },
+  {
+    "field": "Supply Chain",
+    "core_skills": "Supplier Relationship Management",
+    "sub_skills": [
+      {
+        "sub_skill": "Supplier Performance Evaluation"
+      },
+      {
+        "sub_skill": "Vendor Development"
+      },
+      {
+        "sub_skill": "Long-Term Sourcing Strategies"
+      }
+    ]
+  },
+  {
+    "field": "Supply Chain",
+    "core_skills": "Risk Management",
+    "sub_skills": [
+      {
+        "sub_skill": "Supply Chain Risk Assessment"
+      },
+      {
+        "sub_skill": "Contingency Planning"
+      },
+      {
+        "sub_skill": "Disaster Recovery"
+      },
+      {
+        "sub_skill": "Risk Mitigation"
+      }
+    ]
+  },
+  {
+    "field": "Supply Chain",
+    "core_skills": "Global Trade & Compliance",
+    "sub_skills": [
+      {
+        "sub_skill": "Import/Export Regulations"
+      },
+      {
+        "sub_skill": "Customs Documentation"
+      },
+      {
+        "sub_skill": "Free Trade Agreements"
+      },
+      {
+        "sub_skill": "Trade Compliance"
+      }
+    ]
+  },
+  {
+    "field": "Supply Chain",
+    "core_skills": "Lean & Six Sigma",
+    "sub_skills": [
+      {
+        "sub_skill": "Process Improvement"
+      },
+      {
+        "sub_skill": "Waste Reduction"
+      },
+      {
+        "sub_skill": "Lean Methodologies"
+      },
+      {
+        "sub_skill": "Six Sigma Certification"
+      }
+    ]
+  },
+  {
+    "field": "Supply Chain",
+    "core_skills": "Sustainability & Green Supply Chain",
+    "sub_skills": [
+      {
+        "sub_skill": "Eco-Friendly Sourcing"
+      },
+      {
+        "sub_skill": "Carbon Footprint Reduction"
+      },
+      {
+        "sub_skill": "Circular Economy"
+      },
+      {
+        "sub_skill": "Sustainable Logistics"
+      }
+    ]
+  },
+  {
+    "field": "Supply Chain",
+    "core_skills": "Distribution & Fulfillment",
+    "sub_skills": [
+      {
+        "sub_skill": "Order Fulfillment"
+      },
+      {
+        "sub_skill": "E-Commerce Logistics"
+      },
+      {
+        "sub_skill": "Last-Mile Delivery"
+      },
+      {
+        "sub_skill": "Reverse Logistics"
+      }
+    ]
+  },
+  {
+    "field": "Supply Chain",
+    "core_skills": "Automation & Technology Integration",
+    "sub_skills": [
+      {
+        "sub_skill": "Robotics in Logistics"
+      },
+      {
+        "sub_skill": "IoT in Supply Chain"
+      },
+      {
+        "sub_skill": "AI-Driven Supply Chain Optimization"
+      }
+    ]
+  },
+  {
+    "field": "Supply Chain",
+    "core_skills": "Blockchain in Supply Chain",
+    "sub_skills": [
+      {
+        "sub_skill": "Transparency"
+      },
+      {
+        "sub_skill": "Traceability"
+      },
+      {
+        "sub_skill": "Blockchain Implementation for Supply Chain Visibility"
+      }
+    ]
+  },
+  {
+    "field": "Supply Chain",
+    "core_skills": "Customer Relationship Management (CRM)",
+    "sub_skills": [
+      {
+        "sub_skill": "Customer Demand Forecasting"
+      },
+      {
+        "sub_skill": "Service Level Agreements (SLAs)"
+      },
+      {
+        "sub_skill": "Customer Satisfaction Strategies"
+      }
+    ]
+  },
+  {
+    "field": "Supply Chain",
+    "core_skills": "Cost Reduction Strategies",
+    "sub_skills": [
+      {
+        "sub_skill": "Cost-Benefit Analysis"
+      },
+      {
+        "sub_skill": "Total Cost of Ownership (TCO)"
+      },
+      {
+        "sub_skill": "Value Chain Optimization"
+      }
+    ]
+  },
+  {
+    "field": "Supply Chain",
+    "core_skills": "Transportation Management Systems (TMS)",
+    "sub_skills": [
+      {
+        "sub_skill": "Route Planning"
+      },
+      {
+        "sub_skill": "Carrier Management"
+      },
+      {
+        "sub_skill": "Shipment Tracking"
+      },
+      {
+        "sub_skill": "Real-Time Visibility"
+      }
+    ]
+  },
+  {
+    "field": "Supply Chain",
+    "core_skills": "Ethical Sourcing",
+    "sub_skills": [
+      {
+        "sub_skill": "Fair Trade Practices"
+      },
+      {
+        "sub_skill": "Labor Rights"
+      },
+      {
+        "sub_skill": "Responsible Sourcing"
+      },
+      {
+        "sub_skill": "Corporate Social Responsibility"
+      }
+    ]
+  },
+  {
+    "field": "Supply Chain",
+    "core_skills": "E-commerce & Omni-channel Logistics",
+    "sub_skills": [
+      {
+        "sub_skill": "E-Commerce Platforms"
+      },
+      {
+        "sub_skill": "Multi-Channel Distribution"
+      },
+      {
+        "sub_skill": "Fulfillment Center Management"
+      }
+    ]
+  },
+  {
+    "field": "Supply Chain",
+    "core_skills": "Inventory Optimization",
+    "sub_skills": [
+      {
+        "sub_skill": "Stock Turnover Ratio"
+      },
+      {
+        "sub_skill": "Demand-Driven Replenishment"
+      },
+      {
+        "sub_skill": "Inventory Audits"
+      },
+      {
+        "sub_skill": "Cycle Counting"
+      }
+    ]
+  },
+  {
+    "field": "Supply Chain",
+    "core_skills": "Project Management",
+    "sub_skills": [
+      {
+        "sub_skill": "Supply Chain Project Planning"
+      },
+      {
+        "sub_skill": "Execution"
+      },
+      {
+        "sub_skill": "Resource Allocation"
+      },
+      {
+        "sub_skill": "Stakeholder Coordination"
+      }
+    ]
+  },
+  {
+    "field": "Supply Chain",
+    "core_skills": "Financial Acumen in Supply Chain",
+    "sub_skills": [
+      {
+        "sub_skill": "Budgeting"
+      },
+      {
+        "sub_skill": "Cost Control"
+      },
+      {
+        "sub_skill": "Supply Chain Finance"
+      },
+      {
+        "sub_skill": "Working Capital Optimization"
+      }
+    ]
+  },
+  {
+    "field": "Supply Chain",
+    "core_skills": "Collaboration & Communication",
+    "sub_skills": [
+      {
+        "sub_skill": "Cross-Functional Collaboration"
+      },
+      {
+        "sub_skill": "Supplier Coordination"
+      },
+      {
+        "sub_skill": "Internal Communication"
+      }
+    ]
+  },
+  {
+    "field": "Accounting and Finance",
+    "core_skills": "Financial Reporting",
+    "sub_skills": [
+      {
+        "sub_skill": "GAAP"
+      },
+      {
+        "sub_skill": "IFRS"
+      },
+      {
+        "sub_skill": "Financial Statement Preparation"
+      },
+      {
+        "sub_skill": "Cash Flow Analysis"
+      },
+      {
+        "sub_skill": "Financial Audits"
+      }
+    ]
+  },
+  {
+    "field": "Accounting and Finance",
+    "core_skills": "Budgeting & Forecasting",
+    "sub_skills": [
+      {
+        "sub_skill": "Financial Planning"
+      },
+      {
+        "sub_skill": "Variance Analysis"
+      },
+      {
+        "sub_skill": "Budgeting Software (Adaptive Insights, Anaplan)"
+      }
+    ]
+  },
+  {
+    "field": "Accounting and Finance",
+    "core_skills": "Taxation",
+    "sub_skills": [
+      {
+        "sub_skill": "Tax Compliance"
+      },
+      {
+        "sub_skill": "Corporate Tax"
+      },
+      {
+        "sub_skill": "Tax Planning"
+      },
+      {
+        "sub_skill": "GST/HST"
+      },
+      {
+        "sub_skill": "Payroll Taxes"
+      },
+      {
+        "sub_skill": "Tax Software (TurboTax, ProFile)"
+      }
+    ]
+  },
+  {
+    "field": "Accounting and Finance",
+    "core_skills": "Cost Accounting",
+    "sub_skills": [
+      {
+        "sub_skill": "Cost Analysis"
+      },
+      {
+        "sub_skill": "Activity-Based Costing (ABC)"
+      },
+      {
+        "sub_skill": "Job Costing"
+      },
+      {
+        "sub_skill": "Variance Analysis"
+      }
+    ]
+  },
+  {
+    "field": "Accounting and Finance",
+    "core_skills": "Audit & Assurance",
+    "sub_skills": [
+      {
+        "sub_skill": "Internal and External Audits"
+      },
+      {
+        "sub_skill": "Audit Reporting"
+      },
+      {
+        "sub_skill": "SOX Compliance"
+      },
+      {
+        "sub_skill": "Risk Assessment"
+      }
+    ]
+  },
+  {
+    "field": "Accounting and Finance",
+    "core_skills": "Financial Analysis",
+    "sub_skills": [
+      {
+        "sub_skill": "Ratio Analysis"
+      },
+      {
+        "sub_skill": "Trend Analysis"
+      },
+      {
+        "sub_skill": "Financial Modeling"
+      },
+      {
+        "sub_skill": "Profitability Analysis"
+      }
+    ]
+  },
+  {
+    "field": "Accounting and Finance",
+    "core_skills": "Accounts Payable & Receivable",
+    "sub_skills": [
+      {
+        "sub_skill": "Invoice Management"
+      },
+      {
+        "sub_skill": "Collections"
+      },
+      {
+        "sub_skill": "Payment Processing"
+      },
+      {
+        "sub_skill": "Reconciliation"
+      },
+      {
+        "sub_skill": "Vendor Management"
+      }
+    ]
+  },
+  {
+    "field": "Accounting and Finance",
+    "core_skills": "General Ledger Management",
+    "sub_skills": [
+      {
+        "sub_skill": "Journal Entries"
+      },
+      {
+        "sub_skill": "Account Reconciliation"
+      },
+      {
+        "sub_skill": "Trial Balance"
+      },
+      {
+        "sub_skill": "Chart of Accounts"
+      }
+    ]
+  },
+  {
+    "field": "Accounting and Finance",
+    "core_skills": "ERP Systems Proficiency",
+    "sub_skills": [
+      {
+        "sub_skill": "SAP"
+      },
+      {
+        "sub_skill": "Oracle"
+      },
+      {
+        "sub_skill": "Microsoft Dynamics"
+      },
+      {
+        "sub_skill": "NetSuite"
+      },
+      {
+        "sub_skill": "QuickBooks"
+      }
+    ]
+  },
+  {
+    "field": "Accounting and Finance",
+    "core_skills": "Compliance & Regulatory Reporting",
+    "sub_skills": [
+      {
+        "sub_skill": "Sarbanes-Oxley (SOX)"
+      },
+      {
+        "sub_skill": "Anti-Money Laundering (AML)"
+      },
+      {
+        "sub_skill": "Tax Compliance"
+      },
+      {
+        "sub_skill": "Financial Regulations"
+      }
+    ]
+  },
+  {
+    "field": "Accounting and Finance",
+    "core_skills": "Payroll Management",
+    "sub_skills": [
+      {
+        "sub_skill": "Payroll Processing"
+      },
+      {
+        "sub_skill": "Benefits Administration"
+      },
+      {
+        "sub_skill": "Compliance with Labor Laws"
+      },
+      {
+        "sub_skill": "Payroll Systems (ADP, Payworks)"
+      }
+    ]
+  },
+  {
+    "field": "Accounting and Finance",
+    "core_skills": "Financial Planning & Analysis (FP&A)",
+    "sub_skills": [
+      {
+        "sub_skill": "Financial Forecasting"
+      },
+      {
+        "sub_skill": "Budgeting"
+      },
+      {
+        "sub_skill": "Variance Analysis"
+      },
+      {
+        "sub_skill": "Business Strategy Alignment"
+      }
+    ]
+  },
+  {
+    "field": "Accounting and Finance",
+    "core_skills": "Investment & Portfolio Management",
+    "sub_skills": [
+      {
+        "sub_skill": "Asset Allocation"
+      },
+      {
+        "sub_skill": "Investment Analysis"
+      },
+      {
+        "sub_skill": "Portfolio Performance Tracking"
+      },
+      {
+        "sub_skill": "Risk Management"
+      }
+    ]
+  },
+  {
+    "field": "Accounting and Finance",
+    "core_skills": "Capital Markets & Treasury",
+    "sub_skills": [
+      {
+        "sub_skill": "Liquidity Management"
+      },
+      {
+        "sub_skill": "Cash Flow Forecasting"
+      },
+      {
+        "sub_skill": "Currency Risk Management"
+      },
+      {
+        "sub_skill": "Capital Structure Optimization"
+      }
+    ]
+  },
+  {
+    "field": "Accounting and Finance",
+    "core_skills": "Risk Management",
+    "sub_skills": [
+      {
+        "sub_skill": "Credit Risk"
+      },
+      {
+        "sub_skill": "Market Risk"
+      },
+      {
+        "sub_skill": "Operational Risk"
+      },
+      {
+        "sub_skill": "Financial Risk Mitigation Strategies"
+      }
+    ]
+  },
+  {
+    "field": "Accounting and Finance",
+    "core_skills": "Corporate Finance",
+    "sub_skills": [
+      {
+        "sub_skill": "Mergers & Acquisitions"
+      },
+      {
+        "sub_skill": "Capital Raising"
+      },
+      {
+        "sub_skill": "Debt Structuring"
+      },
+      {
+        "sub_skill": "Financial Due Diligence"
+      }
+    ]
+  },
+  {
+    "field": "Accounting and Finance",
+    "core_skills": "Data Analysis & Financial Modeling",
+    "sub_skills": [
+      {
+        "sub_skill": "Excel (Advanced)"
+      },
+      {
+        "sub_skill": "Financial Modeling"
+      },
+      {
+        "sub_skill": "Data Visualization"
+      },
+      {
+        "sub_skill": "Scenario Analysis"
+      },
+      {
+        "sub_skill": "Business Intelligence Tools (Power BI, Tableau)"
+      }
+    ]
+  },
+  {
+    "field": "Accounting and Finance",
+    "core_skills": "Ethics & Integrity in Finance",
+    "sub_skills": [
+      {
+        "sub_skill": "Ethical Standards in Financial Reporting"
+      },
+      {
+        "sub_skill": "Transparency"
+      },
+      {
+        "sub_skill": "Accountability"
+      }
+    ]
+  },
+  {
+    "field": "Accounting and Finance",
+    "core_skills": "Accounts Reconciliation",
+    "sub_skills": [
+      {
+        "sub_skill": "Bank Reconciliation"
+      },
+      {
+        "sub_skill": "Ledger Reconciliation"
+      },
+      {
+        "sub_skill": "Variance Resolution"
+      },
+      {
+        "sub_skill": "Account Analysis"
+      }
+    ]
+  },
+  {
+    "field": "Accounting and Finance",
+    "core_skills": "Budgeting & Forecasting",
+    "sub_skills": [
+      {
+        "sub_skill": "Financial Planning"
+      },
+      {
+        "sub_skill": "Variance Analysis"
+      },
+      {
+        "sub_skill": "Budgeting Software (Adaptive Insights, Anaplan)"
+      }
+    ]
+  },
+  {
+    "field": "Accounting and Finance",
+    "core_skills": "Taxation",
+    "sub_skills": [
+      {
+        "sub_skill": "Tax Compliance"
+      },
+      {
+        "sub_skill": "Corporate Tax"
+      },
+      {
+        "sub_skill": "Tax Planning"
+      },
+      {
+        "sub_skill": "GST/HST"
+      },
+      {
+        "sub_skill": "Payroll Taxes"
+      },
+      {
+        "sub_skill": "Tax Software (TurboTax, ProFile)"
+      }
+    ]
+  },
+  {
+    "field": "Accounting and Finance",
+    "core_skills": "Cost Accounting",
+    "sub_skills": [
+      {
+        "sub_skill": "Cost Analysis"
+      },
+      {
+        "sub_skill": "Activity-Based Costing (ABC)"
+      },
+      {
+        "sub_skill": "Job Costing"
+      },
+      {
+        "sub_skill": "Variance Analysis"
+      }
+    ]
+  },
+  {
+    "field": "Accounting and Finance",
+    "core_skills": "Audit & Assurance",
+    "sub_skills": [
+      {
+        "sub_skill": "Internal and External Audits"
+      },
+      {
+        "sub_skill": "Audit Reporting"
+      },
+      {
+        "sub_skill": "SOX Compliance"
+      },
+      {
+        "sub_skill": "Risk Assessment"
+      }
+    ]
+  },
+  {
+    "field": "Accounting and Finance",
+    "core_skills": "Financial Analysis",
+    "sub_skills": [
+      {
+        "sub_skill": "Ratio Analysis"
+      },
+      {
+        "sub_skill": "Trend Analysis"
+      },
+      {
+        "sub_skill": "Financial Modeling"
+      },
+      {
+        "sub_skill": "Profitability Analysis"
+      }
+    ]
+  },
+  {
+    "field": "Accounting and Finance",
+    "core_skills": "Accounts Payable & Receivable",
+    "sub_skills": [
+      {
+        "sub_skill": "Invoice Management"
+      },
+      {
+        "sub_skill": "Collections"
+      },
+      {
+        "sub_skill": "Payment Processing"
+      },
+      {
+        "sub_skill": "Reconciliation"
+      },
+      {
+        "sub_skill": "Vendor Management"
+      }
+    ]
+  },
+  {
+    "field": "Accounting and Finance",
+    "core_skills": "General Ledger Management",
+    "sub_skills": [
+      {
+        "sub_skill": "Journal Entries"
+      },
+      {
+        "sub_skill": "Account Reconciliation"
+      },
+      {
+        "sub_skill": "Trial Balance"
+      },
+      {
+        "sub_skill": "Chart of Accounts"
+      }
+    ]
+  },
+  {
+    "field": "Accounting and Finance",
+    "core_skills": "ERP Systems Proficiency",
+    "sub_skills": [
+      {
+        "sub_skill": "SAP"
+      },
+      {
+        "sub_skill": "Oracle"
+      },
+      {
+        "sub_skill": "Microsoft Dynamics"
+      },
+      {
+        "sub_skill": "NetSuite"
+      },
+      {
+        "sub_skill": "QuickBooks"
+      }
+    ]
+  },
+  {
+    "field": "Accounting and Finance",
+    "core_skills": "Compliance & Regulatory Reporting",
+    "sub_skills": [
+      {
+        "sub_skill": "Sarbanes-Oxley (SOX)"
+      },
+      {
+        "sub_skill": "Anti-Money Laundering (AML)"
+      },
+      {
+        "sub_skill": "Tax Compliance"
+      },
+      {
+        "sub_skill": "Financial Regulations"
+      }
+    ]
+  },
+  {
+    "field": "Accounting and Finance",
+    "core_skills": "Payroll Management",
+    "sub_skills": [
+      {
+        "sub_skill": "Payroll Processing"
+      },
+      {
+        "sub_skill": "Benefits Administration"
+      },
+      {
+        "sub_skill": "Compliance with Labor Laws"
+      },
+      {
+        "sub_skill": "Payroll Systems (ADP, Payworks)"
+      }
+    ]
+  },
+  {
+    "field": "Accounting and Finance",
+    "core_skills": "Financial Planning & Analysis (FP&A)",
+    "sub_skills": [
+      {
+        "sub_skill": "Financial Forecasting"
+      },
+      {
+        "sub_skill": "Budgeting"
+      },
+      {
+        "sub_skill": "Variance Analysis"
+      },
+      {
+        "sub_skill": "Business Strategy Alignment"
+      }
+    ]
+  },
+  {
+    "field": "Accounting and Finance",
+    "core_skills": "Investment & Portfolio Management",
+    "sub_skills": [
+      {
+        "sub_skill": "Asset Allocation"
+      },
+      {
+        "sub_skill": "Investment Analysis"
+      },
+      {
+        "sub_skill": "Portfolio Performance Tracking"
+      },
+      {
+        "sub_skill": "Risk Management"
+      }
+    ]
+  },
+  {
+    "field": "Accounting and Finance",
+    "core_skills": "Capital Markets & Treasury",
+    "sub_skills": [
+      {
+        "sub_skill": "Liquidity Management"
+      },
+      {
+        "sub_skill": "Cash Flow Forecasting"
+      },
+      {
+        "sub_skill": "Currency Risk Management"
+      },
+      {
+        "sub_skill": "Capital Structure Optimization"
+      }
+    ]
+  },
+  {
+    "field": "Accounting and Finance",
+    "core_skills": "Risk Management",
+    "sub_skills": [
+      {
+        "sub_skill": "Credit Risk"
+      },
+      {
+        "sub_skill": "Market Risk"
+      },
+      {
+        "sub_skill": "Operational Risk"
+      },
+      {
+        "sub_skill": "Financial Risk Mitigation Strategies"
+      }
+    ]
+  },
+  {
+    "field": "Accounting and Finance",
+    "core_skills": "Corporate Finance",
+    "sub_skills": [
+      {
+        "sub_skill": "Mergers & Acquisitions"
+      },
+      {
+        "sub_skill": "Capital Raising"
+      },
+      {
+        "sub_skill": "Debt Structuring"
+      },
+      {
+        "sub_skill": "Financial Due Diligence"
+      }
+    ]
+  },
+  {
+    "field": "Accounting and Finance",
+    "core_skills": "Data Analysis & Financial Modeling",
+    "sub_skills": [
+      {
+        "sub_skill": "Excel (Advanced)"
+      },
+      {
+        "sub_skill": "Financial Modeling"
+      },
+      {
+        "sub_skill": "Data Visualization"
+      },
+      {
+        "sub_skill": "Scenario Analysis"
+      },
+      {
+        "sub_skill": "Business Intelligence Tools (Power BI, Tableau)"
+      }
+    ]
+  },
+  {
+    "field": "Accounting and Finance",
+    "core_skills": "Ethics & Integrity in Finance",
+    "sub_skills": [
+      {
+        "sub_skill": "Ethical Standards in Financial Reporting"
+      },
+      {
+        "sub_skill": "Transparency"
+      },
+      {
+        "sub_skill": "Accountability"
+      }
+    ]
+  },
+  {
+    "field": "Accounting and Finance",
+    "core_skills": "Accounts Reconciliation",
+    "sub_skills": [
+      {
+        "sub_skill": "Bank Reconciliation"
+      },
+      {
+        "sub_skill": "Ledger Reconciliation"
+      },
+      {
+        "sub_skill": "Variance Resolution"
+      },
+      {
+        "sub_skill": "Account Analysis"
+      }
+    ]
+  },
+  {
+    "field": "Accounting and Finance",
+    "core_skills": "Sustainability Accounting",
+    "sub_skills": [
+      {
+        "sub_skill": "ESG (Environmental, Social, and Governance) Reporting"
+      },
+      {
+        "sub_skill": "Sustainability Metrics"
+      },
+      {
+        "sub_skill": "Integrated Reporting"
+      }
+    ]
+  },
+  {
+    "field": "Accounting and Finance",
+    "core_skills": "Financial Software Proficiency",
+    "sub_skills": [
+      {
+        "sub_skill": "QuickBooks"
+      },
+      {
+        "sub_skill": "Xero"
+      },
+      {
+        "sub_skill": "Sage"
+      },
+      {
+        "sub_skill": "FreshBooks"
+      },
+      {
+        "sub_skill": "Zoho Books"
+      }
+    ]
+  },
+  {
+    "field": "Accounting and Finance",
+    "core_skills": "Project Accounting",
+    "sub_skills": [
+      {
+        "sub_skill": "Project-Based Financial Reporting"
+      },
+      {
+        "sub_skill": "Job Costing"
+      },
+      {
+        "sub_skill": "Project Budgets"
+      },
+      {
+        "sub_skill": "Contract Billing"
+      }
+    ]
+  },
+  {
+    "field": "Accounting and Finance",
+    "core_skills": "Strategic Financial Management",
+    "sub_skills": [
+      {
+        "sub_skill": "Long-Term Financial Planning"
+      },
+      {
+        "sub_skill": "Corporate Strategy"
+      },
+      {
+        "sub_skill": "Resource Allocation"
+      }
+    ]
+  },
+  {
+    "field": "Accounting and Finance",
+    "core_skills": "Debt & Credit Management",
+    "sub_skills": [
+      {
+        "sub_skill": "Credit Analysis"
+      },
+      {
+        "sub_skill": "Loan Management"
+      },
+      {
+        "sub_skill": "Debt Restructuring"
+      },
+      {
+        "sub_skill": "Interest Rate Risk Management"
+      }
+    ]
+  },
+  {
+    "field": "Human Resource",
+    "core_skills": "Recruitment & Talent Acquisition",
+    "sub_skills": [
+      {
+        "sub_skill": "Sourcing Strategies"
+      },
+      {
+        "sub_skill": "Interview Techniques"
+      },
+      {
+        "sub_skill": "Applicant Tracking Systems (ATS)"
+      },
+      {
+        "sub_skill": "Onboarding"
+      }
+    ]
+  },
+  {
+    "field": "Human Resource",
+    "core_skills": "Employee Relations",
+    "sub_skills": [
+      {
+        "sub_skill": "Conflict Resolution"
+      },
+      {
+        "sub_skill": "Employee Engagement"
+      },
+      {
+        "sub_skill": "Grievance Handling"
+      },
+      {
+        "sub_skill": "Mediation"
+      }
+    ]
+  },
+  {
+    "field": "Human Resource",
+    "core_skills": "Performance Management",
+    "sub_skills": [
+      {
+        "sub_skill": "Performance Appraisals"
+      },
+      {
+        "sub_skill": "Goal Setting"
+      },
+      {
+        "sub_skill": "Feedback Delivery"
+      },
+      {
+        "sub_skill": "Performance Improvement Plans"
+      }
+    ]
+  },
+  {
+    "field": "Human Resource",
+    "core_skills": "HR Compliance & Legal",
+    "sub_skills": [
+      {
+        "sub_skill": "Employment Laws"
+      },
+      {
+        "sub_skill": "Labor Regulations"
+      },
+      {
+        "sub_skill": "Workplace Safety"
+      },
+      {
+        "sub_skill": "HR Policies and Procedures"
+      }
+    ]
+  },
+  {
+    "field": "Human Resource",
+    "core_skills": "Compensation & Benefits",
+    "sub_skills": [
+      {
+        "sub_skill": "Salary Benchmarking"
+      },
+      {
+        "sub_skill": "Benefits Administration"
+      },
+      {
+        "sub_skill": "Payroll Management"
+      },
+      {
+        "sub_skill": "Incentive Programs"
+      }
+    ]
+  },
+  {
+    "field": "Human Resource",
+    "core_skills": "Training & Development",
+    "sub_skills": [
+      {
+        "sub_skill": "Learning Needs Analysis"
+      },
+      {
+        "sub_skill": "Training Program Design"
+      },
+      {
+        "sub_skill": "E-Learning Tools"
+      },
+      {
+        "sub_skill": "Career Development"
+      }
+    ]
+  },
+  {
+    "field": "Human Resource",
+    "core_skills": "Organizational Development",
+    "sub_skills": [
+      {
+        "sub_skill": "Change Management"
+      },
+      {
+        "sub_skill": "Organizational Design"
+      },
+      {
+        "sub_skill": "Team Building"
+      },
+      {
+        "sub_skill": "Leadership Development"
+      }
+    ]
+  },
+  {
+    "field": "Human Resource",
+    "core_skills": "HR Analytics & Reporting",
+    "sub_skills": [
+      {
+        "sub_skill": "HR Metrics"
+      },
+      {
+        "sub_skill": "Data Analysis"
+      },
+      {
+        "sub_skill": "Reporting Tools (HRIS, Excel)"
+      },
+      {
+        "sub_skill": "Workforce Planning"
+      }
+    ]
+  },
+  {
+    "field": "Human Resource",
+    "core_skills": "Employee Health & Well-being",
+    "sub_skills": [
+      {
+        "sub_skill": "Wellness Programs"
+      },
+      {
+        "sub_skill": "Mental Health Support"
+      },
+      {
+        "sub_skill": "Work-Life Balance Initiatives"
+      }
+    ]
+  },
+  {
+    "field": "Human Resource",
+    "core_skills": "HR Information Systems (HRIS)",
+    "sub_skills": [
+      {
+        "sub_skill": "System Implementation"
+      },
+      {
+        "sub_skill": "Data Management"
+      },
+      {
+        "sub_skill": "HR Software (Workday, SuccessFactors, BambooHR)"
+      }
+    ]
+  },
+  {
+    "field": "Human Resource",
+    "core_skills": "Diversity & Inclusion",
+    "sub_skills": [
+      {
+        "sub_skill": "DEI (Diversity, Equity, Inclusion) Initiatives"
+      },
+      {
+        "sub_skill": "Bias Training"
+      },
+      {
+        "sub_skill": "Inclusive Recruitment Practices"
+      }
+    ]
+  },
+  {
+    "field": "Human Resource",
+    "core_skills": "Talent Management",
+    "sub_skills": [
+      {
+        "sub_skill": "Succession Planning"
+      },
+      {
+        "sub_skill": "Career Pathing"
+      },
+      {
+        "sub_skill": "High-Potential Employee Development"
+      }
+    ]
+  },
+  {
+    "field": "Human Resource",
+    "core_skills": "Strategic HR Planning",
+    "sub_skills": [
+      {
+        "sub_skill": "Aligning HR Strategy with Business Goals"
+      },
+      {
+        "sub_skill": "Workforce Planning"
+      },
+      {
+        "sub_skill": "Strategic Initiatives"
+      }
+    ]
+  },
+  {
+    "field": "Human Resource",
+    "core_skills": "Legal & Ethical Issues",
+    "sub_skills": [
+      {
+        "sub_skill": "HR Ethics"
+      },
+      {
+        "sub_skill": "Confidentiality"
+      },
+      {
+        "sub_skill": "Compliance with Employment Laws"
+      },
+      {
+        "sub_skill": "Handling Sensitive Information"
+      }
+    ]
+  },
+  {
+    "field": "Human Resource",
+    "core_skills": "Employee Engagement",
+    "sub_skills": [
+      {
+        "sub_skill": "Surveys and Feedback Mechanisms"
+      },
+      {
+        "sub_skill": "Engagement Strategies"
+      },
+      {
+        "sub_skill": "Recognition Programs"
+      }
+    ]
+  },
+  {
+    "field": "Human Resource",
+    "core_skills": "Labor Relations",
+    "sub_skills": [
+      {
+        "sub_skill": "Union Negotiations"
+      },
+      {
+        "sub_skill": "Collective Bargaining"
+      },
+      {
+        "sub_skill": "Labor Contract Administration"
+      }
+    ]
+  },
+  {
+    "field": "Human Resource",
+    "core_skills": "Workforce Planning",
+    "sub_skills": [
+      {
+        "sub_skill": "Staffing Needs Analysis"
+      },
+      {
+        "sub_skill": "Resource Allocation"
+      },
+      {
+        "sub_skill": "Succession Planning"
+      }
+    ]
+  },
+  {
+    "field": "Human Resource",
+    "core_skills": "Cultural Competency",
+    "sub_skills": [
+      {
+        "sub_skill": "Understanding Diverse Workforce Needs"
+      },
+      {
+        "sub_skill": "Cross-Cultural Communication"
+      },
+      {
+        "sub_skill": "Global HR Practices"
+      }
+    ]
+  },
+  {
+    "field": "Human Resource",
+    "core_skills": "HR Project Management",
+    "sub_skills": [
+      {
+        "sub_skill": "Project Planning"
+      },
+      {
+        "sub_skill": "Implementation"
+      },
+      {
+        "sub_skill": "Stakeholder Management"
+      },
+      {
+        "sub_skill": "Change Management"
+      }
+    ]
+  },
+  {
+    "field": "Human Resource",
+    "core_skills": "HR Policies & Procedures",
+    "sub_skills": [
+      {
+        "sub_skill": "Policy Development"
+      },
+      {
+        "sub_skill": "Procedural Documentation"
+      },
+      {
+        "sub_skill": "Compliance Enforcement"
+      }
+    ]
+  },
+  {
+    "field": "Human Resource",
+    "core_skills": "Talent Development & Coaching",
+    "sub_skills": [
+      {
+        "sub_skill": "Coaching Techniques"
+      },
+      {
+        "sub_skill": "Mentoring Programs"
+      },
+      {
+        "sub_skill": "Skill Development"
+      }
+    ]
+  },
+  {
+    "field": "Human Resource",
+    "core_skills": "Recruitment Technology",
+    "sub_skills": [
+      {
+        "sub_skill": "Familiarity with AI in Recruitment"
+      },
+      {
+        "sub_skill": "Applicant Tracking Systems"
+      },
+      {
+        "sub_skill": "Social Recruiting Platforms"
+      }
+    ]
+  },
+  {
+    "field": "Human Resource",
+    "core_skills": "Employee Retention",
+    "sub_skills": [
+      {
+        "sub_skill": "Retention Strategies"
+      },
+      {
+        "sub_skill": "Career Development Plans"
+      },
+      {
+        "sub_skill": "Employee Feedback Integration"
+      }
+    ]
+  },
+  {
+    "field": "Human Resource",
+    "core_skills": "Crisis Management",
+    "sub_skills": [
+      {
+        "sub_skill": "Handling Workplace Emergencies"
+      },
+      {
+        "sub_skill": "HR Response Plans"
+      },
+      {
+        "sub_skill": "Communication Strategies"
+      }
+    ]
+  },
+  {
+    "field": "Civil Engineering",
+    "core_skills": "Structural Engineering",
+    "sub_skills": [
+      {
+        "sub_skill": "Structural Analysis"
+      },
+      {
+        "sub_skill": "Load Calculations"
+      },
+      {
+        "sub_skill": "Design of Steel and Concrete Structures"
+      },
+      {
+        "sub_skill": "CAD Software (AutoCAD, Revit)"
+      }
+    ]
+  },
+  {
+    "field": "Civil Engineering",
+    "core_skills": "Geotechnical Engineering",
+    "sub_skills": [
+      {
+        "sub_skill": "Soil Testing"
+      },
+      {
+        "sub_skill": "Foundation Design"
+      },
+      {
+        "sub_skill": "Slope Stability"
+      },
+      {
+        "sub_skill": "Geotechnical Investigation"
+      }
+    ]
+  },
+  {
+    "field": "Civil Engineering",
+    "core_skills": "Transportation Engineering",
+    "sub_skills": [
+      {
+        "sub_skill": "Traffic Analysis"
+      },
+      {
+        "sub_skill": "Road Design"
+      },
+      {
+        "sub_skill": "Transportation Planning"
+      },
+      {
+        "sub_skill": "Highway Engineering"
+      }
+    ]
+  },
+  {
+    "field": "Civil Engineering",
+    "core_skills": "Environmental Engineering",
+    "sub_skills": [
+      {
+        "sub_skill": "Environmental Impact Assessments"
+      },
+      {
+        "sub_skill": "Water Treatment"
+      },
+      {
+        "sub_skill": "Waste Management"
+      },
+      {
+        "sub_skill": "Sustainability Practices"
+      }
+    ]
+  },
+  {
+    "field": "Civil Engineering",
+    "core_skills": "Construction Management",
+    "sub_skills": [
+      {
+        "sub_skill": "Project Management"
+      },
+      {
+        "sub_skill": "Cost Estimation"
+      },
+      {
+        "sub_skill": "Construction Scheduling"
+      },
+      {
+        "sub_skill": "Contract Management"
+      }
+    ]
+  },
+  {
+    "field": "Civil Engineering",
+    "core_skills": "Hydraulics & Hydrology",
+    "sub_skills": [
+      {
+        "sub_skill": "Hydraulic Modeling"
+      },
+      {
+        "sub_skill": "Flood Risk Assessment"
+      },
+      {
+        "sub_skill": "Water Resource Management"
+      },
+      {
+        "sub_skill": "Stormwater Management"
+      }
+    ]
+  },
+  {
+    "field": "Civil Engineering",
+    "core_skills": "Civil Engineering Design",
+    "sub_skills": [
+      {
+        "sub_skill": "Site Design"
+      },
+      {
+        "sub_skill": "Drainage Systems"
+      },
+      {
+        "sub_skill": "Urban Infrastructure Planning"
+      },
+      {
+        "sub_skill": "Design Software (Civil 3D, MicroStation)"
+      }
+    ]
+  },
+  {
+    "field": "Civil Engineering",
+    "core_skills": "Building Codes & Standards",
+    "sub_skills": [
+      {
+        "sub_skill": "Knowledge of Canadian Building Codes"
+      },
+      {
+        "sub_skill": "Safety Regulations"
+      },
+      {
+        "sub_skill": "Industry Standards"
+      }
+    ]
+  },
+  {
+    "field": "Civil Engineering",
+    "core_skills": "Surveying & Mapping",
+    "sub_skills": [
+      {
+        "sub_skill": "Land Surveying"
+      },
+      {
+        "sub_skill": "GIS (Geographic Information Systems)"
+      },
+      {
+        "sub_skill": "Topographic Mapping"
+      },
+      {
+        "sub_skill": "Field Data Collection"
+      }
+    ]
+  },
+  {
+    "field": "Civil Engineering",
+    "core_skills": "Project Planning & Execution",
+    "sub_skills": [
+      {
+        "sub_skill": "Project Lifecycle Management"
+      },
+      {
+        "sub_skill": "Resource Allocation"
+      },
+      {
+        "sub_skill": "Risk Management"
+      },
+      {
+        "sub_skill": "Scheduling Tools (MS Project, Primavera)"
+      }
+    ]
+  },
+  {
+    "field": "Civil Engineering",
+    "core_skills": "Materials Science",
+    "sub_skills": [
+      {
+        "sub_skill": "Concrete Technology"
+      },
+      {
+        "sub_skill": "Material Testing"
+      },
+      {
+        "sub_skill": "Durability Analysis"
+      },
+      {
+        "sub_skill": "Construction Materials Selection"
+      }
+    ]
+  },
+  {
+    "field": "Civil Engineering",
+    "core_skills": "Structural Health Monitoring",
+    "sub_skills": [
+      {
+        "sub_skill": "Condition Assessment"
+      },
+      {
+        "sub_skill": "Structural Inspections"
+      },
+      {
+        "sub_skill": "Monitoring Technologies"
+      },
+      {
+        "sub_skill": "Repair Techniques"
+      }
+    ]
+  },
+  {
+    "field": "Civil Engineering",
+    "core_skills": "Environmental Regulations",
+    "sub_skills": [
+      {
+        "sub_skill": "Compliance with Environmental Laws"
+      },
+      {
+        "sub_skill": "Pollution Control"
+      },
+      {
+        "sub_skill": "Regulatory Reporting"
+      }
+    ]
+  },
+  {
+    "field": "Civil Engineering",
+    "core_skills": "Computer-Aided Design (CAD)",
+    "sub_skills": [
+      {
+        "sub_skill": "Proficiency in CAD Software"
+      },
+      {
+        "sub_skill": "3D Modeling"
+      },
+      {
+        "sub_skill": "BIM (Building Information Modeling)"
+      }
+    ]
+  },
+  {
+    "field": "Civil Engineering",
+    "core_skills": "Energy Efficiency",
+    "sub_skills": [
+      {
+        "sub_skill": "Green Building Practices"
+      },
+      {
+        "sub_skill": "Energy Modeling"
+      },
+      {
+        "sub_skill": "Sustainable Design Principles"
+      }
+    ]
+  },
+  {
+    "field": "Civil Engineering",
+    "core_skills": "Safety Management",
+    "sub_skills": [
+      {
+        "sub_skill": "Workplace Safety Protocols"
+      },
+      {
+        "sub_skill": "Hazard Assessment"
+      },
+      {
+        "sub_skill": "Construction Site Safety"
+      }
+    ]
+  },
+  {
+    "field": "Civil Engineering",
+    "core_skills": "Water Resources Engineering",
+    "sub_skills": [
+      {
+        "sub_skill": "Water Distribution Systems"
+      },
+      {
+        "sub_skill": "Hydraulic Engineering"
+      },
+      {
+        "sub_skill": "Water Conservation Practices"
+      }
+    ]
+  },
+  {
+    "field": "Civil Engineering",
+    "core_skills": "Quality Assurance & Control",
+    "sub_skills": [
+      {
+        "sub_skill": "Quality Management Systems"
+      },
+      {
+        "sub_skill": "Inspection Techniques"
+      },
+      {
+        "sub_skill": "Compliance with Specifications"
+      }
+    ]
+  },
+  {
+    "field": "Civil Engineering",
+    "core_skills": "Collaboration & Communication",
+    "sub_skills": [
+      {
+        "sub_skill": "Team Collaboration"
+      },
+      {
+        "sub_skill": "Stakeholder Communication"
+      },
+      {
+        "sub_skill": "Interdisciplinary Coordination"
+      }
+    ]
+  },
+  {
+    "field": "Civil Engineering",
+    "core_skills": "Regulatory Compliance",
+    "sub_skills": [
+      {
+        "sub_skill": "Adherence to Municipal, Provincial, and Federal Regulations"
+      },
+      {
+        "sub_skill": "Permitting Processes"
+      }
+    ]
+  },
+  {
+    "field": "Civil Engineering",
+    "core_skills": "Advanced Engineering Software",
+    "sub_skills": [
+      {
+        "sub_skill": "Experience with Specialized Software (SAP2000, STAAD.Pro, ETABS)"
+      }
+    ]
+  },
+  {
+    "field": "Civil Engineering",
+    "core_skills": "Construction Techniques",
+    "sub_skills": [
+      {
+        "sub_skill": "Knowledge of Modern Construction Methods"
+      },
+      {
+        "sub_skill": "Prefabrication"
+      },
+      {
+        "sub_skill": "Sustainable Building Practices"
+      }
+    ]
+  },
+  {
+    "field": "Mechanical Engineering",
+    "core_skills": "Thermodynamics",
+    "sub_skills": [
+      {
+        "sub_skill": "Heat Transfer"
+      },
+      {
+        "sub_skill": "Energy Systems"
+      },
+      {
+        "sub_skill": "Refrigeration Cycles"
+      },
+      {
+        "sub_skill": "Thermal Analysis"
+      }
+    ]
+  },
+  {
+    "field": "Mechanical Engineering",
+    "core_skills": "Fluid Mechanics",
+    "sub_skills": [
+      {
+        "sub_skill": "Fluid Dynamics"
+      },
+      {
+        "sub_skill": "Hydraulic Systems"
+      },
+      {
+        "sub_skill": "Pumps and Valves"
+      },
+      {
+        "sub_skill": "Computational Fluid Dynamics (CFD)"
+      }
+    ]
+  },
+  {
+    "field": "Mechanical Engineering",
+    "core_skills": "Mechanical Design",
+    "sub_skills": [
+      {
+        "sub_skill": "CAD Software (SolidWorks, AutoCAD, CATIA)"
+      },
+      {
+        "sub_skill": "3D Modeling"
+      },
+      {
+        "sub_skill": "Design for Manufacturability"
+      }
+    ]
+  },
+  {
+    "field": "Mechanical Engineering",
+    "core_skills": "Materials Science",
+    "sub_skills": [
+      {
+        "sub_skill": "Material Selection"
+      },
+      {
+        "sub_skill": "Properties of Metals"
+      },
+      {
+        "sub_skill": "Polymers"
+      },
+      {
+        "sub_skill": "Ceramics"
+      },
+      {
+        "sub_skill": "Composites"
+      }
+    ]
+  },
+  {
+    "field": "Mechanical Engineering",
+    "core_skills": "Manufacturing Processes",
+    "sub_skills": [
+      {
+        "sub_skill": "CNC Machining"
+      },
+      {
+        "sub_skill": "Additive Manufacturing"
+      },
+      {
+        "sub_skill": "Welding"
+      },
+      {
+        "sub_skill": "Casting"
+      },
+      {
+        "sub_skill": "Fabrication Techniques"
+      }
+    ]
+  },
+  {
+    "field": "Mechanical Engineering",
+    "core_skills": "Structural Analysis",
+    "sub_skills": [
+      {
+        "sub_skill": "Stress and Strain Analysis"
+      },
+      {
+        "sub_skill": "Finite Element Analysis (FEA)"
+      },
+      {
+        "sub_skill": "Structural Integrity"
+      }
+    ]
+  },
+  {
+    "field": "Mechanical Engineering",
+    "core_skills": "Control Systems",
+    "sub_skills": [
+      {
+        "sub_skill": "Automation"
+      },
+      {
+        "sub_skill": "PLC Programming"
+      },
+      {
+        "sub_skill": "Control Theory"
+      },
+      {
+        "sub_skill": "Robotics"
+      },
+      {
+        "sub_skill": "Instrumentation"
+      }
+    ]
+  },
+  {
+    "field": "Mechanical Engineering",
+    "core_skills": "Heat Transfer",
+    "sub_skills": [
+      {
+        "sub_skill": "Conduction"
+      },
+      {
+        "sub_skill": "Convection"
+      },
+      {
+        "sub_skill": "Radiation"
+      },
+      {
+        "sub_skill": "Heat Exchangers"
+      },
+      {
+        "sub_skill": "Thermal Insulation"
+      }
+    ]
+  },
+  {
+    "field": "Mechanical Engineering",
+    "core_skills": "HVAC Systems",
+    "sub_skills": [
+      {
+        "sub_skill": "Heating"
+      },
+      {
+        "sub_skill": "Ventilation"
+      },
+      {
+        "sub_skill": "Air Conditioning Design"
+      },
+      {
+        "sub_skill": "HVAC Controls"
+      },
+      {
+        "sub_skill": "Energy Efficiency"
+      }
+    ]
+  },
+  {
+    "field": "Mechanical Engineering",
+    "core_skills": "Mechanical Systems Design",
+    "sub_skills": [
+      {
+        "sub_skill": "System Integration"
+      },
+      {
+        "sub_skill": "Mechanical Components"
+      },
+      {
+        "sub_skill": "Reliability Engineering"
+      },
+      {
+        "sub_skill": "Vibration Analysis"
+      }
+    ]
+  },
+  {
+    "field": "Mechanical Engineering",
+    "core_skills": "Project Management",
+    "sub_skills": [
+      {
+        "sub_skill": "Project Planning"
+      },
+      {
+        "sub_skill": "Scheduling"
+      },
+      {
+        "sub_skill": "Resource Management"
+      },
+      {
+        "sub_skill": "Budgeting"
+      },
+      {
+        "sub_skill": "Risk Management"
+      }
+    ]
+  },
+  {
+    "field": "Mechanical Engineering",
+    "core_skills": "Simulation & Testing",
+    "sub_skills": [
+      {
+        "sub_skill": "Performance Testing"
+      },
+      {
+        "sub_skill": "Prototype Evaluation"
+      },
+      {
+        "sub_skill": "Simulation Tools (ANSYS, COMSOL)"
+      }
+    ]
+  },
+  {
+    "field": "Mechanical Engineering",
+    "core_skills": "Energy Systems",
+    "sub_skills": [
+      {
+        "sub_skill": "Renewable Energy"
+      },
+      {
+        "sub_skill": "Power Generation"
+      },
+      {
+        "sub_skill": "Energy Efficiency"
+      },
+      {
+        "sub_skill": "Energy Conservation"
+      }
+    ]
+  },
+  {
+    "field": "Mechanical Engineering",
+    "core_skills": "Engineering Mechanics",
+    "sub_skills": [
+      {
+        "sub_skill": "Statics"
+      },
+      {
+        "sub_skill": "Dynamics"
+      },
+      {
+        "sub_skill": "Mechanical Vibrations"
+      },
+      {
+        "sub_skill": "Kinematics"
+      }
+    ]
+  },
+  {
+    "field": "Mechanical Engineering",
+    "core_skills": "Robotics & Automation",
+    "sub_skills": [
+      {
+        "sub_skill": "Robot Design"
+      },
+      {
+        "sub_skill": "Automation Systems"
+      },
+      {
+        "sub_skill": "Robotics Programming"
+      },
+      {
+        "sub_skill": "Mechatronics"
+      }
+    ]
+  },
+  {
+    "field": "Mechanical Engineering",
+    "core_skills": "System Integration",
+    "sub_skills": [
+      {
+        "sub_skill": "Integration of Mechanical, Electrical, and Software Systems"
+      },
+      {
+        "sub_skill": "Multidisciplinary Approach"
+      }
+    ]
+  },
+  {
+    "field": "Mechanical Engineering",
+    "core_skills": "Engineering Software Proficiency",
+    "sub_skills": [
+      {
+        "sub_skill": "Experience with Software (MATLAB, Simulink, LabVIEW)"
+      },
+      {
+        "sub_skill": "Data Analysis Tools"
+      }
+    ]
+  },
+  {
+    "field": "Mechanical Engineering",
+    "core_skills": "Quality Control",
+    "sub_skills": [
+      {
+        "sub_skill": "Quality Assurance"
+      },
+      {
+        "sub_skill": "Inspection Techniques"
+      },
+      {
+        "sub_skill": "Compliance with Standards and Regulations"
+      }
+    ]
+  },
+  {
+    "field": "Mechanical Engineering",
+    "core_skills": "Maintenance & Reliability",
+    "sub_skills": [
+      {
+        "sub_skill": "Predictive Maintenance"
+      },
+      {
+        "sub_skill": "Reliability Analysis"
+      },
+      {
+        "sub_skill": "Fault Detection"
+      },
+      {
+        "sub_skill": "Maintenance Planning"
+      }
+    ]
+  },
+  {
+    "field": "Mechanical Engineering",
+    "core_skills": "Engineering Ethics & Compliance",
+    "sub_skills": [
+      {
+        "sub_skill": "Adherence to Ethical Standards"
+      },
+      {
+        "sub_skill": "Regulatory Compliance"
+      },
+      {
+        "sub_skill": "Safety Protocols"
+      }
+    ]
+  },
+  {
+    "field": "Mechanical Engineering",
+    "core_skills": "Collaboration & Communication",
+    "sub_skills": [
+      {
+        "sub_skill": "Team Collaboration"
+      },
+      {
+        "sub_skill": "Interdisciplinary Communication"
+      },
+      {
+        "sub_skill": "Stakeholder Management"
+      }
+    ]
+  },
+  {
+    "field": "Mechanical Engineering",
+    "core_skills": "Problem-Solving",
+    "sub_skills": [
+      {
+        "sub_skill": "Analytical Thinking"
+      },
+      {
+        "sub_skill": "Troubleshooting"
+      },
+      {
+        "sub_skill": "Root Cause Analysis"
+      },
+      {
+        "sub_skill": "Innovative Solutions"
+      }
+    ]
+  },
+  {
+    "field": "Mechanical Engineering",
+    "core_skills": "Sustainable Engineering",
+    "sub_skills": [
+      {
+        "sub_skill": "Green Design Principles"
+      },
+      {
+        "sub_skill": "Sustainable Practices"
+      },
+      {
+        "sub_skill": "Lifecycle Analysis"
+      }
+    ]
+  },
+  {
+    "field": "Retail",
+    "core_skills": "Customer Service",
+    "sub_skills": [
+      {
+        "sub_skill": "Effective Communication"
+      },
+      {
+        "sub_skill": "Conflict Resolution"
+      },
+      {
+        "sub_skill": "Active Listening"
+      },
+      {
+        "sub_skill": "Customer Engagement"
+      }
+    ]
+  },
+  {
+    "field": "Retail",
+    "core_skills": "Sales Skills",
+    "sub_skills": [
+      {
+        "sub_skill": "Upselling"
+      },
+      {
+        "sub_skill": "Cross-Selling"
+      },
+      {
+        "sub_skill": "Product Knowledge"
+      },
+      {
+        "sub_skill": "Closing Techniques"
+      }
+    ]
+  },
+  {
+    "field": "Retail",
+    "core_skills": "Inventory Management",
+    "sub_skills": [
+      {
+        "sub_skill": "Stock Control"
+      },
+      {
+        "sub_skill": "Inventory Tracking Systems"
+      },
+      {
+        "sub_skill": "Demand Forecasting"
+      },
+      {
+        "sub_skill": "Order Management"
+      }
+    ]
+  },
+  {
+    "field": "Retail",
+    "core_skills": "Visual Merchandising",
+    "sub_skills": [
+      {
+        "sub_skill": "Store Layout Design"
+      },
+      {
+        "sub_skill": "Product Displays"
+      },
+      {
+        "sub_skill": "Merchandising Techniques"
+      },
+      {
+        "sub_skill": "Promotional Signage"
+      }
+    ]
+  },
+  {
+    "field": "Retail",
+    "core_skills": "Point of Sale (POS) Systems",
+    "sub_skills": [
+      {
+        "sub_skill": "Familiarity with POS Software"
+      },
+      {
+        "sub_skill": "Payment Processing"
+      },
+      {
+        "sub_skill": "Transaction Management"
+      }
+    ]
+  },
+  {
+    "field": "Retail",
+    "core_skills": "Data Analysis",
+    "sub_skills": [
+      {
+        "sub_skill": "Sales Data Analysis"
+      },
+      {
+        "sub_skill": "Customer Behavior Analysis"
+      },
+      {
+        "sub_skill": "Performance Metrics"
+      },
+      {
+        "sub_skill": "Reporting Tools"
+      }
+    ]
+  },
+  {
+    "field": "Retail",
+    "core_skills": "Retail Operations Management",
+    "sub_skills": [
+      {
+        "sub_skill": "Store Operations"
+      },
+      {
+        "sub_skill": "Staff Scheduling"
+      },
+      {
+        "sub_skill": "Compliance with Policies"
+      },
+      {
+        "sub_skill": "Loss Prevention Strategies"
+      }
+    ]
+  },
+  {
+    "field": "Retail",
+    "core_skills": "E-commerce & Omnichannel Retailing",
+    "sub_skills": [
+      {
+        "sub_skill": "Online Sales Platforms"
+      },
+      {
+        "sub_skill": "Integration of Online and In-Store Experiences"
+      },
+      {
+        "sub_skill": "Digital Marketing"
+      }
+    ]
+  },
+  {
+    "field": "Retail",
+    "core_skills": "Marketing & Promotion",
+    "sub_skills": [
+      {
+        "sub_skill": "Campaign Development"
+      },
+      {
+        "sub_skill": "Promotional Strategies"
+      },
+      {
+        "sub_skill": "Social Media Marketing"
+      },
+      {
+        "sub_skill": "Customer Outreach"
+      }
+    ]
+  },
+  {
+    "field": "Retail",
+    "core_skills": "Product Knowledge",
+    "sub_skills": [
+      {
+        "sub_skill": "In-Depth Understanding of Products/Services"
+      },
+      {
+        "sub_skill": "Competitor Analysis"
+      },
+      {
+        "sub_skill": "Industry Trends"
+      }
+    ]
+  },
+  {
+    "field": "Retail",
+    "core_skills": "Team Leadership",
+    "sub_skills": [
+      {
+        "sub_skill": "Staff Training and Development"
+      },
+      {
+        "sub_skill": "Team Motivation"
+      },
+      {
+        "sub_skill": "Performance Management"
+      }
+    ]
+  },
+  {
+    "field": "Retail",
+    "core_skills": "Financial Acumen",
+    "sub_skills": [
+      {
+        "sub_skill": "Budgeting"
+      },
+      {
+        "sub_skill": "Profit and Loss Analysis"
+      },
+      {
+        "sub_skill": "Cost Control"
+      },
+      {
+        "sub_skill": "Financial Reporting"
+      }
+    ]
+  },
+  {
+    "field": "Retail",
+    "core_skills": "Supply Chain Management",
+    "sub_skills": [
+      {
+        "sub_skill": "Understanding Supply Chain Processes"
+      },
+      {
+        "sub_skill": "Logistics Coordination"
+      },
+      {
+        "sub_skill": "Vendor Management"
+      }
+    ]
+  },
+  {
+    "field": "Retail",
+    "core_skills": "Regulatory Compliance",
+    "sub_skills": [
+      {
+        "sub_skill": "Knowledge of Retail Laws"
+      },
+      {
+        "sub_skill": "Health and Safety Regulations"
+      },
+      {
+        "sub_skill": "Consumer Protection Laws"
+      }
+    ]
+  },
+  {
+    "field": "Retail",
+    "core_skills": "Technology Proficiency",
+    "sub_skills": [
+      {
+        "sub_skill": "Familiarity with Retail Software"
+      },
+      {
+        "sub_skill": "Mobile Apps and Technology Tools for Retail Management"
+      }
+    ]
+  },
+  {
+    "field": "Retail",
+    "core_skills": "Customer Relationship Management (CRM)",
+    "sub_skills": [
+      {
+        "sub_skill": "CRM Software Proficiency"
+      },
+      {
+        "sub_skill": "Customer Engagement Strategies"
+      },
+      {
+        "sub_skill": "Loyalty Programs"
+      }
+    ]
+  },
+  {
+    "field": "Retail",
+    "core_skills": "Cultural Competency",
+    "sub_skills": [
+      {
+        "sub_skill": "Understanding Diverse Customer Needs"
+      }
+    ]
+  },
+  {
+    "field": "Retail",
+    "core_skills": "Time Management",
+    "sub_skills": [
+      {
+        "sub_skill": "Prioritizing Tasks"
+      },
+      {
+        "sub_skill": "Meeting Deadlines"
+      },
+      {
+        "sub_skill": "Efficient Multitasking"
+      }
+    ]
+  },
+  {
+    "field": "Retail",
+    "core_skills": "Problem-Solving",
+    "sub_skills": [
+      {
+        "sub_skill": "Critical Thinking"
+      },
+      {
+        "sub_skill": "Troubleshooting"
+      },
+      {
+        "sub_skill": "Effective Decision-Making"
+      }
+    ]
+  },
+  {
+    "field": "Retail",
+    "core_skills": "Adaptability & Flexibility",
+    "sub_skills": [
+      {
+        "sub_skill": "Ability to Respond to Changing Market Trends"
+      },
+      {
+        "sub_skill": "Customer Preferences"
+      },
+      {
+        "sub_skill": "Retail Environments"
+      }
+    ]
+  },
+  {
+    "field": "Retail",
+    "core_skills": "Networking Skills",
+    "sub_skills": [
+      {
+        "sub_skill": "Building Relationships with Suppliers"
+      },
+      {
+        "sub_skill": "Industry Networking"
+      },
+      {
+        "sub_skill": "Community Engagement"
+      }
+    ]
+  },
+  {
+    "field": "Retail",
+    "core_skills": "Sales Forecasting",
+    "sub_skills": [
+      {
+        "sub_skill": "Market Trend Analysis"
+      },
+      {
+        "sub_skill": "Demand Planning"
+      },
+      {
+        "sub_skill": "Sales Projections"
+      }
+    ]
+  },
+  {
+    "field": "Retail",
+    "core_skills": "Training & Development",
+    "sub_skills": [
+      {
+        "sub_skill": "Conducting Training Sessions"
+      },
+      {
+        "sub_skill": "Developing Onboarding Programs"
+      },
+      {
+        "sub_skill": "Performance Evaluations"
+      }
+    ]
+  }
+]

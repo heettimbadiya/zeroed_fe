@@ -1,0 +1,241 @@
+[
+  {
+    "name": "Accommodation and food services",
+    "subsector": [
+      { "name": "Hotels" },
+      { "name": "Motels" },
+      { "name": "Restaurants" },
+      { "name": "Fast food chains" },
+      { "name": "Catering" },
+      { "name": "Event management" },
+      { "name": "Bars" },
+      { "name": "Cafés" },
+      { "name": "Resorts" },
+      { "name": "Bed & breakfast" }
+    ]
+  },
+  {
+    "name": "Administrative and support, waste management and remediation services",
+    "subsector": [
+      { "name": "Employment agencies" },
+      { "name": "Office support services" },
+      { "name": "Document preparation" },
+      { "name": "Cleaning services" },
+      { "name": "Security services" },
+      { "name": "Waste collection" },
+      { "name": "Hazardous waste management" },
+      { "name": "Landscaping" }
+    ]
+  },
+  {
+    "name": "Agriculture, forestry, fishing and hunting",
+    "subsector": [
+      { "name": "Crop production" },
+      { "name": "Animal farming" },
+      { "name": "Forestry" },
+      { "name": "Timber production" },
+      { "name": "Fishing" },
+      { "name": "Aquaculture" },
+      { "name": "Hunting" },
+      { "name": "Logging" }
+    ]
+  },
+  {
+    "name": "Arts, entertainment and recreation",
+    "subsector": [
+      { "name": "Museums" },
+      { "name": "Art galleries" },
+      { "name": "Performing arts" },
+      { "name": "Movie production" },
+      { "name": "Amusement parks" },
+      { "name": "Arcades" },
+      { "name": "Fitness centers" },
+      { "name": "Zoos" },
+      { "name": "Sports clubs" },
+      { "name": "Gambling" }
+    ]
+  },
+  {
+    "name": "Construction",
+    "subsector": [
+      { "name": "Residential construction" },
+      { "name": "Commercial construction" },
+      { "name": "Heavy civil construction" },
+      { "name": "Industrial construction" },
+      { "name": "Plumbing" },
+      { "name": "Electrical" },
+      { "name": "HVAC" },
+      { "name": "Carpentry" }
+    ]
+  },
+  {
+    "name": "Educational services",
+    "subsector": [
+      { "name": "Elementary schools" },
+      { "name": "Secondary schools" },
+      { "name": "Colleges" },
+      { "name": "Universities" },
+      { "name": "Vocational schools" },
+      { "name": "Online education platforms" },
+      { "name": "Tutoring services" },
+      { "name": "Language schools" }
+    ]
+  },
+  {
+    "name": "Finance and insurance",
+    "subsector": [
+      { "name": "Banking" },
+      { "name": "Investment management" },
+      { "name": "Financial advisory" },
+      { "name": "Insurance underwriting" },
+      { "name": "Credit unions" },
+      { "name": "Pension funds" },
+      { "name": "Mortgage services" },
+      { "name": "Brokerage firms" }
+    ]
+  },
+  {
+    "name": "Health care and social assistance",
+    "subsector": [
+      { "name": "Hospitals" },
+      { "name": "Nursing homes" },
+      { "name": "Clinics" },
+      { "name": "Doctor's offices" },
+      { "name": "Outpatient care" },
+      { "name": "Home health care services" },
+      { "name": "Mental health services" },
+      { "name": "Daycare services" },
+      { "name": "Elderly care" }
+    ]
+  },
+  {
+    "name": "Information and cultural industries",
+    "subsector": [
+      { "name": "Publishing" },
+      { "name": "Broadcasting" },
+      { "name": "Film production" },
+      { "name": "TV production" },
+      { "name": "Music production" },
+      { "name": "Telecommunications" },
+      { "name": "Software development" },
+      { "name": "Video games" },
+      { "name": "Digital media" }
+    ]
+  },
+  {
+    "name": "Management of companies and enterprises",
+    "subsector": [
+      { "name": "Holding companies" },
+      { "name": "Corporate offices" },
+      { "name": "Management consulting" },
+      { "name": "Strategic management" },
+      { "name": "Business advisory services" }
+    ]
+  },
+  {
+    "name": "Manufacturing",
+    "subsector": [
+      { "name": "Automobile manufacturing" },
+      { "name": "Electronics" },
+      { "name": "Pharmaceuticals" },
+      { "name": "Food production" },
+      { "name": "Apparel" },
+      { "name": "Machinery" },
+      { "name": "Chemicals" },
+      { "name": "Furniture" },
+      { "name": "Plastics" },
+      { "name": "Paper" }
+    ]
+  },
+  {
+    "name": "Mining, quarrying, and oil and gas extraction",
+    "subsector": [
+      { "name": "Coal mining" },
+      { "name": "Metal ore mining" },
+      { "name": "Oil and gas extraction" },
+      { "name": "Quarrying" },
+      { "name": "Drilling" },
+      { "name": "Natural gas distribution" },
+      { "name": "Support services for mining" }
+    ]
+  },
+  {
+    "name": "Other services (except public administration)",
+    "subsector": [
+      { "name": "Repair services" },
+      { "name": "Personal care services" },
+      { "name": "Religious organizations" },
+      { "name": "Civic organizations" },
+      { "name": "Laundry services" },
+      { "name": "Maintenance services" },
+      { "name": "Pet care services" }
+    ]
+  },
+  {
+    "name": "Professional, scientific and technical services",
+    "subsector": [
+      { "name": "Legal services" },
+      { "name": "Accounting services" },
+      { "name": "Architecture" },
+      { "name": "Engineering" },
+      { "name": "Scientific research" },
+      { "name": "Advertising" },
+      { "name": "Consulting" },
+      { "name": "Market research" },
+      { "name": "Computer services" },
+      { "name": "Design" }
+    ]
+  },
+  {
+    "name": "Public administration",
+    "subsector": [
+      { "name": "Government services" },
+      { "name": "Legislative bodies" },
+      { "name": "Executive offices" },
+      { "name": "Public safety" },
+      { "name": "Law enforcement" },
+      { "name": "Social services" },
+      { "name": "Emergency services" },
+      { "name": "Regulatory bodies" }
+    ]
+  },
+  {
+    "name": "Real estate and rental and leasing",
+    "subsector": [
+      { "name": "Residential property management" },
+      { "name": "Commercial real estate" },
+      { "name": "Real estate brokerage" },
+      { "name": "Property leasing" },
+      { "name": "Equipment leasing" },
+      { "name": "Vacation rentals" }
+    ]
+  },
+  {
+    "name": "Retail trade",
+    "subsector": [
+      { "name": "Grocery stores" },
+      { "name": "Department stores" },
+      { "name": "Online retail" },
+      { "name": "Apparel stores" },
+      { "name": "Electronics stores" },
+      { "name": "Auto dealers" },
+      { "name": "Pharmacies" },
+      { "name": "Convenience stores" },
+      { "name": "Specialty stores" }
+    ]
+  },
+  {
+    "name": "Transportation and warehousing",
+    "subsector": [
+      { "name": "Air transportation" },
+      { "name": "Rail transportation" },
+      { "name": "Trucking" },
+      { "name": "Maritime transport" },
+      { "name": "Public transit" },
+      { "name": "Warehousing" },
+      { "name": "Storage" },
+      { "name": "Freight forwarding" },
+      { "name": "Logistics" }
+    ]
+  }
+]

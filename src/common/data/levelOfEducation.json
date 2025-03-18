@@ -1,0 +1,30 @@
+[
+  {
+    "name": "Less than high school",
+    "value": "Less than high school"
+  },
+  {
+    "name": "High school graduation",
+    "value": "High school graduation"
+  },
+  {
+    "name": "One year program",
+    "value": "One year program"
+  },
+  {
+    "name": "Two year program",
+    "value": "Two year program"
+  },
+  {
+    "name": "Bachelors Degree",
+    "value": "Bachelors Degree"
+  },
+  {
+    "name": "Masters Degree",
+    "value": "Masters Degree"
+  },
+  {
+    "name": "Doctoral Level",
+    "value": "Doctoral Level"
+  }
+]

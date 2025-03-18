@@ -1,0 +1,2552 @@
+[
+  {
+    "TEERCategory": 0,
+    "NOCCode": 10010,
+    "classTitle": "Financial managers"
+  },
+  {
+    "TEERCategory": 0,
+    "NOCCode": 10011,
+    "classTitle": "Human resources managers"
+  },
+  {
+    "TEERCategory": 0,
+    "NOCCode": 10012,
+    "classTitle": "Purchasing managers"
+  },
+  {
+    "TEERCategory": 0,
+    "NOCCode": 10019,
+    "classTitle": "Other administrative services managers"
+  },
+  {
+    "TEERCategory": 0,
+    "NOCCode": 10020,
+    "classTitle": "Insurance, real estate and financial brokerage managers"
+  },
+  {
+    "TEERCategory": 0,
+    "NOCCode": 10021,
+    "classTitle": "Banking, credit and other investment managers"
+  },
+  {
+    "TEERCategory": 0,
+    "NOCCode": 10022,
+    "classTitle": "Advertising, marketing and public relations managers"
+  },
+  {
+    "TEERCategory": 0,
+    "NOCCode": 10029,
+    "classTitle": "Other business services managers"
+  },
+  {
+    "TEERCategory": 0,
+    "NOCCode": 10030,
+    "classTitle": "Telecommunication carriers managers"
+  },
+  {
+    "TEERCategory": 0,
+    "NOCCode": 20010,
+    "classTitle": "Engineering managers"
+  },
+  {
+    "TEERCategory": 0,
+    "NOCCode": 20011,
+    "classTitle": "Architecture and science managers"
+  },
+  {
+    "TEERCategory": 0,
+    "NOCCode": 20012,
+    "classTitle": "Computer and information systems managers"
+  },
+  {
+    "TEERCategory": 0,
+    "NOCCode": 30010,
+    "classTitle": "Managers in health care"
+  },
+  {
+    "TEERCategory": 0,
+    "NOCCode": 40010,
+    "classTitle": "Government managers - health and social policy development and program administration"
+  },
+  {
+    "TEERCategory": 0,
+    "NOCCode": 40011,
+    "classTitle": "Government managers - economic analysis, policy development and program administration"
+  },
+  {
+    "TEERCategory": 0,
+    "NOCCode": 40012,
+    "classTitle": "Government managers - education policy development and program administration"
+  },
+  {
+    "TEERCategory": 0,
+    "NOCCode": 40019,
+    "classTitle": "Other managers in public administration"
+  },
+  {
+    "TEERCategory": 0,
+    "NOCCode": 40020,
+    "classTitle": "Administrators - post-secondary education and vocational training"
+  },
+  {
+    "TEERCategory": 0,
+    "NOCCode": 40021,
+    "classTitle": "School principals and administrators of elementary and secondary education"
+  },
+  {
+    "TEERCategory": 0,
+    "NOCCode": 40030,
+    "classTitle": "Managers in social, community and correctional services"
+  },
+  {
+    "TEERCategory": 0,
+    "NOCCode": 40040,
+    "classTitle": "Commissioned police officers and related occupations in public protection services"
+  },
+  {
+    "TEERCategory": 0,
+    "NOCCode": 40041,
+    "classTitle": "Fire chiefs and senior firefighting officers"
+  },
+  {
+    "TEERCategory": 0,
+    "NOCCode": 40042,
+    "classTitle": "Commissioned officers of the Canadian Armed Forces"
+  },
+  {
+    "TEERCategory": 0,
+    "NOCCode": 50010,
+    "classTitle": "Library, archive, museum and art gallery managers"
+  },
+  {
+    "TEERCategory": 0,
+    "NOCCode": 50011,
+    "classTitle": "Managers - publishing, motion pictures, broadcasting and performing arts"
+  },
+  {
+    "TEERCategory": 0,
+    "NOCCode": 50012,
+    "classTitle": "Recreation, sports and fitness program and service directors"
+  },
+  {
+    "TEERCategory": 0,
+    "NOCCode": 60010,
+    "classTitle": "Corporate sales managers"
+  },
+  {
+    "TEERCategory": 0,
+    "NOCCode": 60020,
+    "classTitle": "Retail and wholesale trade managers"
+  },
+  {
+    "TEERCategory": 0,
+    "NOCCode": 60030,
+    "classTitle": "Restaurant and food service managers"
+  },
+  {
+    "TEERCategory": 0,
+    "NOCCode": 60031,
+    "classTitle": "Accommodation service managers"
+  },
+  {
+    "TEERCategory": 0,
+    "NOCCode": 60040,
+    "classTitle": "Managers in customer and personal services"
+  },
+  {
+    "TEERCategory": 0,
+    "NOCCode": 70010,
+    "classTitle": "Construction managers"
+  },
+  {
+    "TEERCategory": 0,
+    "NOCCode": 70011,
+    "classTitle": "Home building and renovation managers"
+  },
+  {
+    "TEERCategory": 0,
+    "NOCCode": 70012,
+    "classTitle": "Facility operation and maintenance managers"
+  },
+  {
+    "TEERCategory": 0,
+    "NOCCode": 70020,
+    "classTitle": "Managers in transportation"
+  },
+  {
+    "TEERCategory": 0,
+    "NOCCode": 70021,
+    "classTitle": "Postal and courier services managers"
+  },
+  {
+    "TEERCategory": 0,
+    "NOCCode": 80010,
+    "classTitle": "Managers in natural resources production and fishing"
+  },
+  {
+    "TEERCategory": 0,
+    "NOCCode": 80020,
+    "classTitle": "Managers in agriculture"
+  },
+  {
+    "TEERCategory": 0,
+    "NOCCode": 80021,
+    "classTitle": "Managers in horticulture"
+  },
+  {
+    "TEERCategory": 0,
+    "NOCCode": 80022,
+    "classTitle": "Managers in aquaculture"
+  },
+  {
+    "TEERCategory": 0,
+    "NOCCode": 90010,
+    "classTitle": "Manufacturing managers"
+  },
+  {
+    "TEERCategory": 0,
+    "NOCCode": 90011,
+    "classTitle": "Utilities managers"
+  },
+  {
+    "TEERCategory": 1,
+    "NOCCode": 11100,
+    "classTitle": "Financial auditors and accountants"
+  },
+  {
+    "TEERCategory": 1,
+    "NOCCode": 11101,
+    "classTitle": "Financial and investment analysts"
+  },
+  {
+    "TEERCategory": 1,
+    "NOCCode": 11102,
+    "classTitle": "Financial advisors"
+  },
+  {
+    "TEERCategory": 1,
+    "NOCCode": 11103,
+    "classTitle": "Securities agents, investment dealers and brokers"
+  },
+  {
+    "TEERCategory": 1,
+    "NOCCode": 11109,
+    "classTitle": "Other financial officers"
+  },
+  {
+    "TEERCategory": 1,
+    "NOCCode": 11200,
+    "classTitle": "Human resources professionals"
+  },
+  {
+    "TEERCategory": 1,
+    "NOCCode": 11201,
+    "classTitle": "Professional occupations in business management consulting"
+  },
+  {
+    "TEERCategory": 1,
+    "NOCCode": 11202,
+    "classTitle": "Professional occupations in advertising, marketing and public relations"
+  },
+  {
+    "TEERCategory": 1,
+    "NOCCode": 21100,
+    "classTitle": "Physicists and astronomers"
+  },
+  {
+    "TEERCategory": 1,
+    "NOCCode": 21101,
+    "classTitle": "Chemists"
+  },
+  {
+    "TEERCategory": 1,
+    "NOCCode": 21102,
+    "classTitle": "Geoscientists and oceanographers"
+  },
+  {
+    "TEERCategory": 1,
+    "NOCCode": 21103,
+    "classTitle": "Meteorologists and climatologists"
+  },
+  {
+    "TEERCategory": 1,
+    "NOCCode": 21109,
+    "classTitle": "Other professional occupations in physical sciences"
+  },
+  {
+    "TEERCategory": 1,
+    "NOCCode": 21110,
+    "classTitle": "Biologists and related scientists"
+  },
+  {
+    "TEERCategory": 1,
+    "NOCCode": 21111,
+    "classTitle": "Forestry professionals"
+  },
+  {
+    "TEERCategory": 1,
+    "NOCCode": 21112,
+    "classTitle": "Agricultural representatives, consultants and specialists"
+  },
+  {
+    "TEERCategory": 1,
+    "NOCCode": 21120,
+    "classTitle": "Public and environmental health and safety professionals"
+  },
+  {
+    "TEERCategory": 1,
+    "NOCCode": 21200,
+    "classTitle": "Architects"
+  },
+  {
+    "TEERCategory": 1,
+    "NOCCode": 21201,
+    "classTitle": "Landscape architects"
+  },
+  {
+    "TEERCategory": 1,
+    "NOCCode": 21202,
+    "classTitle": "Urban and land use planners"
+  },
+  {
+    "TEERCategory": 1,
+    "NOCCode": 21203,
+    "classTitle": "Land surveyors"
+  },
+  {
+    "TEERCategory": 1,
+    "NOCCode": 21210,
+    "classTitle": "Mathematicians, statisticians and actuaries"
+  },
+  {
+    "TEERCategory": 1,
+    "NOCCode": 21211,
+    "classTitle": "Data scientists"
+  },
+  {
+    "TEERCategory": 1,
+    "NOCCode": 21220,
+    "classTitle": "Cybersecurity specialists"
+  },
+  {
+    "TEERCategory": 1,
+    "NOCCode": 21221,
+    "classTitle": "Business systems specialists"
+  },
+  {
+    "TEERCategory": 1,
+    "NOCCode": 21222,
+    "classTitle": "Information systems specialists"
+  },
+  {
+    "TEERCategory": 1,
+    "NOCCode": 21223,
+    "classTitle": "Database analysts and data administrators"
+  },
+  {
+    "TEERCategory": 1,
+    "NOCCode": 21230,
+    "classTitle": "Computer systems developers and programmers"
+  },
+  {
+    "TEERCategory": 1,
+    "NOCCode": 21231,
+    "classTitle": "Software engineers and designers"
+  },
+  {
+    "TEERCategory": 1,
+    "NOCCode": 21232,
+    "classTitle": "Software developers and programmers"
+  },
+  {
+    "TEERCategory": 1,
+    "NOCCode": 21233,
+    "classTitle": "Web designers"
+  },
+  {
+    "TEERCategory": 1,
+    "NOCCode": 21234,
+    "classTitle": "Web developers and programmers"
+  },
+  {
+    "TEERCategory": 1,
+    "NOCCode": 21300,
+    "classTitle": "Civil engineers"
+  },
+  {
+    "TEERCategory": 1,
+    "NOCCode": 21301,
+    "classTitle": "Mechanical engineers"
+  },
+  {
+    "TEERCategory": 1,
+    "NOCCode": 21310,
+    "classTitle": "Electrical and electronics engineers"
+  },
+  {
+    "TEERCategory": 1,
+    "NOCCode": 21311,
+    "classTitle": "Computer engineers (except software engineers and designers)"
+  },
+  {
+    "TEERCategory": 1,
+    "NOCCode": 21320,
+    "classTitle": "Chemical engineers"
+  },
+  {
+    "TEERCategory": 1,
+    "NOCCode": 21321,
+    "classTitle": "Industrial and manufacturing engineers"
+  },
+  {
+    "TEERCategory": 1,
+    "NOCCode": 21322,
+    "classTitle": "Metallurgical and materials engineers"
+  },
+  {
+    "TEERCategory": 1,
+    "NOCCode": 21330,
+    "classTitle": "Mining engineers"
+  },
+  {
+    "TEERCategory": 1,
+    "NOCCode": 21331,
+    "classTitle": "Geological engineers"
+  },
+  {
+    "TEERCategory": 1,
+    "NOCCode": 21332,
+    "classTitle": "Petroleum engineers"
+  },
+  {
+    "TEERCategory": 1,
+    "NOCCode": 21390,
+    "classTitle": "Aerospace engineers"
+  },
+  {
+    "TEERCategory": 1,
+    "NOCCode": 21399,
+    "classTitle": "Other professional engineers"
+  },
+  {
+    "TEERCategory": 1,
+    "NOCCode": 31100,
+    "classTitle": "Specialists in clinical and laboratory medicine"
+  },
+  {
+    "TEERCategory": 1,
+    "NOCCode": 31101,
+    "classTitle": "Specialists in surgery"
+  },
+  {
+    "TEERCategory": 1,
+    "NOCCode": 31102,
+    "classTitle": "General practitioners and family physicians"
+  },
+  {
+    "TEERCategory": 1,
+    "NOCCode": 31103,
+    "classTitle": "Veterinarians"
+  },
+  {
+    "TEERCategory": 1,
+    "NOCCode": 31110,
+    "classTitle": "Dentists"
+  },
+  {
+    "TEERCategory": 1,
+    "NOCCode": 31111,
+    "classTitle": "Optometrists"
+  },
+  {
+    "TEERCategory": 1,
+    "NOCCode": 31112,
+    "classTitle": "Audiologists and speech-language pathologists"
+  },
+  {
+    "TEERCategory": 1,
+    "NOCCode": 31120,
+    "classTitle": "Pharmacists"
+  },
+  {
+    "TEERCategory": 1,
+    "NOCCode": 31121,
+    "classTitle": "Dietitians and nutritionists"
+  },
+  {
+    "TEERCategory": 1,
+    "NOCCode": 31200,
+    "classTitle": "Psychologists"
+  },
+  {
+    "TEERCategory": 1,
+    "NOCCode": 31201,
+    "classTitle": "Chiropractors"
+  },
+  {
+    "TEERCategory": 1,
+    "NOCCode": 31202,
+    "classTitle": "Physiotherapists"
+  },
+  {
+    "TEERCategory": 1,
+    "NOCCode": 31203,
+    "classTitle": "Occupational therapists"
+  },
+  {
+    "TEERCategory": 1,
+    "NOCCode": 31204,
+    "classTitle": "Kinesiologists and other professional occupations in therapy and assessment"
+  },
+  {
+    "TEERCategory": 1,
+    "NOCCode": 31209,
+    "classTitle": "Other professional occupations in health diagnosing and treating"
+  },
+  {
+    "TEERCategory": 1,
+    "NOCCode": 31300,
+    "classTitle": "Nursing coordinators and supervisors"
+  },
+  {
+    "TEERCategory": 1,
+    "NOCCode": 31301,
+    "classTitle": "Registered nurses and registered psychiatric nurses"
+  },
+  {
+    "TEERCategory": 1,
+    "NOCCode": 31302,
+    "classTitle": "Nurse practitioners"
+  },
+  {
+    "TEERCategory": 1,
+    "NOCCode": 31303,
+    "classTitle": "Physician assistants, midwives and allied health professionals"
+  },
+  {
+    "TEERCategory": 1,
+    "NOCCode": 41100,
+    "classTitle": "Judges"
+  },
+  {
+    "TEERCategory": 1,
+    "NOCCode": 41101,
+    "classTitle": "Lawyers and Quebec notaries"
+  },
+  {
+    "TEERCategory": 1,
+    "NOCCode": 41200,
+    "classTitle": "University professors and lecturers"
+  },
+  {
+    "TEERCategory": 1,
+    "NOCCode": 41201,
+    "classTitle": "Post-secondary teaching and research assistants"
+  },
+  {
+    "TEERCategory": 1,
+    "NOCCode": 41210,
+    "classTitle": "College and other vocational instructors"
+  },
+  {
+    "TEERCategory": 1,
+    "NOCCode": 41220,
+    "classTitle": "Secondary school teachers"
+  },
+  {
+    "TEERCategory": 1,
+    "NOCCode": 41221,
+    "classTitle": "Elementary school and kindergarten teachers"
+  },
+  {
+    "TEERCategory": 1,
+    "NOCCode": 41300,
+    "classTitle": "Social workers"
+  },
+  {
+    "TEERCategory": 1,
+    "NOCCode": 41301,
+    "classTitle": "Therapists in counselling and related specialized therapies"
+  },
+  {
+    "TEERCategory": 1,
+    "NOCCode": 41302,
+    "classTitle": "Religious leaders"
+  },
+  {
+    "TEERCategory": 1,
+    "NOCCode": 41310,
+    "classTitle": "Police investigators and other investigative occupations"
+  },
+  {
+    "TEERCategory": 1,
+    "NOCCode": 41311,
+    "classTitle": "Probation and parole officers"
+  },
+  {
+    "TEERCategory": 1,
+    "NOCCode": 41320,
+    "classTitle": "Educational counsellors"
+  },
+  {
+    "TEERCategory": 1,
+    "NOCCode": 41321,
+    "classTitle": "Career development practitioners and career counsellors (except education)"
+  },
+  {
+    "TEERCategory": 1,
+    "NOCCode": 41400,
+    "classTitle": "Natural and applied science policy researchers, consultants and program officers"
+  },
+  {
+    "TEERCategory": 1,
+    "NOCCode": 41401,
+    "classTitle": "Economists and economic policy researchers and analysts"
+  },
+  {
+    "TEERCategory": 1,
+    "NOCCode": 41402,
+    "classTitle": "Business development officers and market researchers and analysts"
+  },
+  {
+    "TEERCategory": 1,
+    "NOCCode": 41403,
+    "classTitle": "Social policy researchers, consultants and program officers"
+  },
+  {
+    "TEERCategory": 1,
+    "NOCCode": 41404,
+    "classTitle": "Health policy researchers, consultants and program officers"
+  },
+  {
+    "TEERCategory": 1,
+    "NOCCode": 41405,
+    "classTitle": "Education policy researchers, consultants and program officers"
+  },
+  {
+    "TEERCategory": 1,
+    "NOCCode": 41406,
+    "classTitle": "Recreation, sports and fitness policy researchers, consultants and program officers"
+  },
+  {
+    "TEERCategory": 1,
+    "NOCCode": 41407,
+    "classTitle": "Program officers unique to government"
+  },
+  {
+    "TEERCategory": 1,
+    "NOCCode": 41409,
+    "classTitle": "Other professional occupations in social science"
+  },
+  {
+    "TEERCategory": 1,
+    "NOCCode": 51100,
+    "classTitle": "Librarians"
+  },
+  {
+    "TEERCategory": 1,
+    "NOCCode": 51101,
+    "classTitle": "Conservators and curators"
+  },
+  {
+    "TEERCategory": 1,
+    "NOCCode": 51102,
+    "classTitle": "Archivists"
+  },
+  {
+    "TEERCategory": 1,
+    "NOCCode": 51110,
+    "classTitle": "Editors"
+  },
+  {
+    "TEERCategory": 1,
+    "NOCCode": 51111,
+    "classTitle": "Authors and writers (except technical)"
+  },
+  {
+    "TEERCategory": 1,
+    "NOCCode": 51112,
+    "classTitle": "Technical writers"
+  },
+  {
+    "TEERCategory": 1,
+    "NOCCode": 51113,
+    "classTitle": "Journalists"
+  },
+  {
+    "TEERCategory": 1,
+    "NOCCode": 51114,
+    "classTitle": "Translators, terminologists and interpreters"
+  },
+  {
+    "TEERCategory": 1,
+    "NOCCode": 51120,
+    "classTitle": "Producers, directors, choreographers and related occupations"
+  },
+  {
+    "TEERCategory": 1,
+    "NOCCode": 51121,
+    "classTitle": "Conductors, composers and arrangers"
+  },
+  {
+    "TEERCategory": 1,
+    "NOCCode": 51122,
+    "classTitle": "Musicians and singers"
+  },
+  {
+    "TEERCategory": 2,
+    "NOCCode": 12010,
+    "classTitle": "Supervisors, general office and administrative support workers"
+  },
+  {
+    "TEERCategory": 2,
+    "NOCCode": 12011,
+    "classTitle": "Supervisors, finance and insurance office workers"
+  },
+  {
+    "TEERCategory": 2,
+    "NOCCode": 12012,
+    "classTitle": "Supervisors, library, correspondence and related information workers"
+  },
+  {
+    "TEERCategory": 2,
+    "NOCCode": 12013,
+    "classTitle": "Supervisors, supply chain, tracking and scheduling coordination occupations"
+  },
+  {
+    "TEERCategory": 2,
+    "NOCCode": 12100,
+    "classTitle": "Executive assistants"
+  },
+  {
+    "TEERCategory": 2,
+    "NOCCode": 12101,
+    "classTitle": "Human resources and recruitment officers"
+  },
+  {
+    "TEERCategory": 2,
+    "NOCCode": 12102,
+    "classTitle": "Procurement and purchasing agents and officers"
+  },
+  {
+    "TEERCategory": 2,
+    "NOCCode": 12103,
+    "classTitle": "Conference and event planners"
+  },
+  {
+    "TEERCategory": 2,
+    "NOCCode": 12104,
+    "classTitle": "Employment insurance and revenue officers"
+  },
+  {
+    "TEERCategory": 2,
+    "NOCCode": 12110,
+    "classTitle": "Court reporters, medical transcriptionists and related occupations"
+  },
+  {
+    "TEERCategory": 2,
+    "NOCCode": 12111,
+    "classTitle": "Health information management occupations"
+  },
+  {
+    "TEERCategory": 2,
+    "NOCCode": 12112,
+    "classTitle": "Records management technicians"
+  },
+  {
+    "TEERCategory": 2,
+    "NOCCode": 12113,
+    "classTitle": "Statistical officers and related research support occupations"
+  },
+  {
+    "TEERCategory": 2,
+    "NOCCode": 12200,
+    "classTitle": "Accounting technicians and bookkeepers"
+  },
+  {
+    "TEERCategory": 2,
+    "NOCCode": 12201,
+    "classTitle": "Insurance adjusters and claims examiners"
+  },
+  {
+    "TEERCategory": 2,
+    "NOCCode": 12202,
+    "classTitle": "Insurance underwriters"
+  },
+  {
+    "TEERCategory": 2,
+    "NOCCode": 12203,
+    "classTitle": "Assessors, business valuators and appraisers"
+  },
+  {
+    "TEERCategory": 2,
+    "NOCCode": 22100,
+    "classTitle": "Chemical technologists and technicians"
+  },
+  {
+    "TEERCategory": 2,
+    "NOCCode": 22101,
+    "classTitle": "Geological and mineral technologists and technicians"
+  },
+  {
+    "TEERCategory": 2,
+    "NOCCode": 22110,
+    "classTitle": "Biological technologists and technicians"
+  },
+  {
+    "TEERCategory": 2,
+    "NOCCode": 22111,
+    "classTitle": "Agricultural and fish products inspectors"
+  },
+  {
+    "TEERCategory": 2,
+    "NOCCode": 22112,
+    "classTitle": "Forestry technologists and technicians"
+  },
+  {
+    "TEERCategory": 2,
+    "NOCCode": 22113,
+    "classTitle": "Conservation and fishery officers"
+  },
+  {
+    "TEERCategory": 2,
+    "NOCCode": 22114,
+    "classTitle": "Landscape and horticulture technicians and specialists"
+  },
+  {
+    "TEERCategory": 2,
+    "NOCCode": 22210,
+    "classTitle": "Architectural technologists and technicians"
+  },
+  {
+    "TEERCategory": 2,
+    "NOCCode": 22211,
+    "classTitle": "Industrial designers"
+  },
+  {
+    "TEERCategory": 2,
+    "NOCCode": 22212,
+    "classTitle": "Drafting technologists and technicians"
+  },
+  {
+    "TEERCategory": 2,
+    "NOCCode": 22213,
+    "classTitle": "Land survey technologists and technicians"
+  },
+  {
+    "TEERCategory": 2,
+    "NOCCode": 22214,
+    "classTitle": "Technical occupations in geomatics and meteorology"
+  },
+  {
+    "TEERCategory": 2,
+    "NOCCode": 22220,
+    "classTitle": "Computer network and web technicians"
+  },
+  {
+    "TEERCategory": 2,
+    "NOCCode": 22221,
+    "classTitle": "User support technicians"
+  },
+  {
+    "TEERCategory": 2,
+    "NOCCode": 22222,
+    "classTitle": "Information systems testing technicians"
+  },
+  {
+    "TEERCategory": 2,
+    "NOCCode": 22230,
+    "classTitle": "Non-destructive testers and inspectors"
+  },
+  {
+    "TEERCategory": 2,
+    "NOCCode": 22231,
+    "classTitle": "Engineering inspectors and regulatory officers"
+  },
+  {
+    "TEERCategory": 2,
+    "NOCCode": 22232,
+    "classTitle": "Occupational health and safety specialists"
+  },
+  {
+    "TEERCategory": 2,
+    "NOCCode": 22233,
+    "classTitle": "Construction inspectors"
+  },
+  {
+    "TEERCategory": 2,
+    "NOCCode": 22300,
+    "classTitle": "Civil engineering technologists and technicians"
+  },
+  {
+    "TEERCategory": 2,
+    "NOCCode": 22301,
+    "classTitle": "Mechanical engineering technologists and technicians"
+  },
+  {
+    "TEERCategory": 2,
+    "NOCCode": 22302,
+    "classTitle": "Industrial engineering and manufacturing technologists and technicians"
+  },
+  {
+    "TEERCategory": 2,
+    "NOCCode": 22303,
+    "classTitle": "Construction estimators"
+  },
+  {
+    "TEERCategory": 2,
+    "NOCCode": 22310,
+    "classTitle": "Electrical and electronics engineering technologists and technicians"
+  },
+  {
+    "TEERCategory": 2,
+    "NOCCode": 22311,
+    "classTitle": "Electronic service technicians (household and business equipment)"
+  },
+  {
+    "TEERCategory": 2,
+    "NOCCode": 22312,
+    "classTitle": "Industrial instrument technicians and mechanics"
+  },
+  {
+    "TEERCategory": 2,
+    "NOCCode": 22313,
+    "classTitle": "Aircraft instrument, electrical and avionics mechanics, technicians and inspectors"
+  },
+  {
+    "TEERCategory": 2,
+    "NOCCode": 32100,
+    "classTitle": "Opticians"
+  },
+  {
+    "TEERCategory": 2,
+    "NOCCode": 32101,
+    "classTitle": "Licensed practical nurses"
+  },
+  {
+    "TEERCategory": 2,
+    "NOCCode": 32102,
+    "classTitle": "Paramedical occupations"
+  },
+  {
+    "TEERCategory": 2,
+    "NOCCode": 32103,
+    "classTitle": "Respiratory therapists, clinical perfusionists and cardiopulmonary technologists"
+  },
+  {
+    "TEERCategory": 2,
+    "NOCCode": 32104,
+    "classTitle": "Animal health technologists and veterinary technicians"
+  },
+  {
+    "TEERCategory": 2,
+    "NOCCode": 32109,
+    "classTitle": "Other technical occupations in therapy and assessment"
+  },
+  {
+    "TEERCategory": 2,
+    "NOCCode": 32110,
+    "classTitle": "Denturists"
+  },
+  {
+    "TEERCategory": 2,
+    "NOCCode": 32111,
+    "classTitle": "Dental hygienists and dental therapists"
+  },
+  {
+    "TEERCategory": 2,
+    "NOCCode": 32112,
+    "classTitle": "Dental technologists and technicians"
+  },
+  {
+    "TEERCategory": 2,
+    "NOCCode": 32120,
+    "classTitle": "Medical laboratory technologists"
+  },
+  {
+    "TEERCategory": 2,
+    "NOCCode": 32121,
+    "classTitle": "Medical radiation technologists"
+  },
+  {
+    "TEERCategory": 2,
+    "NOCCode": 32122,
+    "classTitle": "Medical sonographers"
+  },
+  {
+    "TEERCategory": 2,
+    "NOCCode": 32123,
+    "classTitle": "Cardiology technologists and electrophysiological diagnostic technologists"
+  },
+  {
+    "TEERCategory": 2,
+    "NOCCode": 32124,
+    "classTitle": "Pharmacy technicians"
+  },
+  {
+    "TEERCategory": 2,
+    "NOCCode": 32129,
+    "classTitle": "Other medical technologists and technicians"
+  },
+  {
+    "TEERCategory": 2,
+    "NOCCode": 32200,
+    "classTitle": "Traditional Chinese medicine practitioners and acupuncturists"
+  },
+  {
+    "TEERCategory": 2,
+    "NOCCode": 32201,
+    "classTitle": "Massage therapists"
+  },
+  {
+    "TEERCategory": 2,
+    "NOCCode": 32209,
+    "classTitle": "Other practitioners of natural healing"
+  },
+  {
+    "TEERCategory": 2,
+    "NOCCode": 42100,
+    "classTitle": "Police officers (except commissioned)"
+  },
+  {
+    "TEERCategory": 2,
+    "NOCCode": 42101,
+    "classTitle": "Firefighters"
+  },
+  {
+    "TEERCategory": 2,
+    "NOCCode": 42102,
+    "classTitle": "Specialized members of the Canadian Armed Forces"
+  },
+  {
+    "TEERCategory": 2,
+    "NOCCode": 42200,
+    "classTitle": "Paralegals and related occupations"
+  },
+  {
+    "TEERCategory": 2,
+    "NOCCode": 42201,
+    "classTitle": "Social and community service workers"
+  },
+  {
+    "TEERCategory": 2,
+    "NOCCode": 42202,
+    "classTitle": "Early childhood educators and assistants"
+  },
+  {
+    "TEERCategory": 2,
+    "NOCCode": 42203,
+    "classTitle": "Instructors of persons with disabilities"
+  },
+  {
+    "TEERCategory": 2,
+    "NOCCode": 42204,
+    "classTitle": "Religion workers"
+  },
+  {
+    "TEERCategory": 2,
+    "NOCCode": 52100,
+    "classTitle": "Library and public archive technicians"
+  },
+  {
+    "TEERCategory": 2,
+    "NOCCode": 52110,
+    "classTitle": "Film and video camera operators"
+  },
+  {
+    "TEERCategory": 2,
+    "NOCCode": 52111,
+    "classTitle": "Graphic arts technicians"
+  },
+  {
+    "TEERCategory": 2,
+    "NOCCode": 52112,
+    "classTitle": "Broadcast technicians"
+  },
+  {
+    "TEERCategory": 2,
+    "NOCCode": 52113,
+    "classTitle": "Audio and video recording technicians"
+  },
+  {
+    "TEERCategory": 2,
+    "NOCCode": 52114,
+    "classTitle": "Announcers and other broadcasters"
+  },
+  {
+    "TEERCategory": 2,
+    "NOCCode": 52119,
+    "classTitle": "Other technical and coordinating occupations in motion pictures, broadcasting and the performing arts"
+  },
+  {
+    "TEERCategory": 2,
+    "NOCCode": 52120,
+    "classTitle": "Graphic designers and illustrators"
+  },
+  {
+    "TEERCategory": 2,
+    "NOCCode": 52121,
+    "classTitle": "Interior designers and interior decorators"
+  },
+  {
+    "TEERCategory": 2,
+    "NOCCode": 62010,
+    "classTitle": "Retail sales supervisors"
+  },
+  {
+    "TEERCategory": 2,
+    "NOCCode": 62020,
+    "classTitle": "Food service supervisors"
+  },
+  {
+    "TEERCategory": 2,
+    "NOCCode": 62021,
+    "classTitle": "Executive housekeepers"
+  },
+  {
+    "TEERCategory": 2,
+    "NOCCode": 62022,
+    "classTitle": "Accommodation, travel, tourism and related services supervisors"
+  },
+  {
+    "TEERCategory": 2,
+    "NOCCode": 62023,
+    "classTitle": "Customer and information services supervisors"
+  },
+  {
+    "TEERCategory": 2,
+    "NOCCode": 62024,
+    "classTitle": "Cleaning supervisors"
+  },
+  {
+    "TEERCategory": 2,
+    "NOCCode": 62029,
+    "classTitle": "Other services supervisors"
+  },
+  {
+    "TEERCategory": 2,
+    "NOCCode": 62100,
+    "classTitle": "Technical sales specialists - wholesale trade"
+  },
+  {
+    "TEERCategory": 2,
+    "NOCCode": 62101,
+    "classTitle": "Retail and wholesale buyers"
+  },
+  {
+    "TEERCategory": 2,
+    "NOCCode": 62200,
+    "classTitle": "Chefs"
+  },
+  {
+    "TEERCategory": 2,
+    "NOCCode": 62201,
+    "classTitle": "Funeral directors and embalmers"
+  },
+  {
+    "TEERCategory": 2,
+    "NOCCode": 62202,
+    "classTitle": "Jewellers, jewellery and watch repairers and related occupations"
+  },
+  {
+    "TEERCategory": 2,
+    "NOCCode": 72010,
+    "classTitle": "Contractors and supervisors, machining, metal forming, shaping and erecting trades and related occupations"
+  },
+  {
+    "TEERCategory": 2,
+    "NOCCode": 72011,
+    "classTitle": "Contractors and supervisors, electrical trades and telecommunications occupations"
+  },
+  {
+    "TEERCategory": 2,
+    "NOCCode": 72012,
+    "classTitle": "Contractors and supervisors, pipefitting trades"
+  },
+  {
+    "TEERCategory": 2,
+    "NOCCode": 72013,
+    "classTitle": "Contractors and supervisors, carpentry trades"
+  },
+  {
+    "TEERCategory": 2,
+    "NOCCode": 72014,
+    "classTitle": "Contractors and supervisors, other construction trades, installers, repairers and servicers"
+  },
+  {
+    "TEERCategory": 2,
+    "NOCCode": 72020,
+    "classTitle": "Contractors and supervisors, mechanic trades"
+  },
+  {
+    "TEERCategory": 2,
+    "NOCCode": 72021,
+    "classTitle": "Contractors and supervisors, heavy equipment operator crews"
+  },
+  {
+    "TEERCategory": 2,
+    "NOCCode": 72022,
+    "classTitle": "Supervisors, printing and related occupations"
+  },
+  {
+    "TEERCategory": 2,
+    "NOCCode": 72023,
+    "classTitle": "Supervisors, railway transport operations"
+  },
+  {
+    "TEERCategory": 2,
+    "NOCCode": 72024,
+    "classTitle": "Supervisors, motor transport and other ground transit operators"
+  },
+  {
+    "TEERCategory": 2,
+    "NOCCode": 72025,
+    "classTitle": "Supervisors, mail and message distribution occupations"
+  },
+  {
+    "TEERCategory": 2,
+    "NOCCode": 72100,
+    "classTitle": "Machinists and machining and tooling inspectors"
+  },
+  {
+    "TEERCategory": 2,
+    "NOCCode": 72101,
+    "classTitle": "Tool and die makers"
+  },
+  {
+    "TEERCategory": 2,
+    "NOCCode": 72102,
+    "classTitle": "Sheet metal workers"
+  },
+  {
+    "TEERCategory": 2,
+    "NOCCode": 72103,
+    "classTitle": "Boilermakers"
+  },
+  {
+    "TEERCategory": 2,
+    "NOCCode": 72104,
+    "classTitle": "Structural metal and platework fabricators and fitters"
+  },
+  {
+    "TEERCategory": 2,
+    "NOCCode": 72105,
+    "classTitle": "Ironworkers"
+  },
+  {
+    "TEERCategory": 2,
+    "NOCCode": 72106,
+    "classTitle": "Welders and related machine operators"
+  },
+  {
+    "TEERCategory": 2,
+    "NOCCode": 72200,
+    "classTitle": "Electricians (except industrial and power system)"
+  },
+  {
+    "TEERCategory": 2,
+    "NOCCode": 72201,
+    "classTitle": "Industrial electricians"
+  },
+  {
+    "TEERCategory": 2,
+    "NOCCode": 72202,
+    "classTitle": "Power system electricians"
+  },
+  {
+    "TEERCategory": 2,
+    "NOCCode": 72203,
+    "classTitle": "Electrical power line and cable workers"
+  },
+  {
+    "TEERCategory": 2,
+    "NOCCode": 72204,
+    "classTitle": "Telecommunications line and cable installers and repairers"
+  },
+  {
+    "TEERCategory": 2,
+    "NOCCode": 72205,
+    "classTitle": "Telecommunications equipment installation and cable television service technicians"
+  },
+  {
+    "TEERCategory": 2,
+    "NOCCode": 72300,
+    "classTitle": "Plumbers"
+  },
+  {
+    "TEERCategory": 2,
+    "NOCCode": 72301,
+    "classTitle": "Steamfitters, pipefitters and sprinkler system installers"
+  },
+  {
+    "TEERCategory": 2,
+    "NOCCode": 72302,
+    "classTitle": "Gas fitters"
+  },
+  {
+    "TEERCategory": 2,
+    "NOCCode": 72310,
+    "classTitle": "Carpenters"
+  },
+  {
+    "TEERCategory": 2,
+    "NOCCode": 72311,
+    "classTitle": "Cabinetmakers"
+  },
+  {
+    "TEERCategory": 2,
+    "NOCCode": 72320,
+    "classTitle": "Bricklayers"
+  },
+  {
+    "TEERCategory": 2,
+    "NOCCode": 72321,
+    "classTitle": "Insulators"
+  },
+  {
+    "TEERCategory": 2,
+    "NOCCode": 72400,
+    "classTitle": "Construction millwrights and industrial mechanics"
+  },
+  {
+    "TEERCategory": 2,
+    "NOCCode": 72401,
+    "classTitle": "Heavy-duty equipment mechanics"
+  },
+  {
+    "TEERCategory": 2,
+    "NOCCode": 72402,
+    "classTitle": "Heating, refrigeration and air conditioning mechanics"
+  },
+  {
+    "TEERCategory": 2,
+    "NOCCode": 72403,
+    "classTitle": "Railway carmen/women"
+  },
+  {
+    "TEERCategory": 2,
+    "NOCCode": 72404,
+    "classTitle": "Aircraft mechanics and aircraft inspectors"
+  },
+  {
+    "TEERCategory": 2,
+    "NOCCode": 72405,
+    "classTitle": "Machine fitters"
+  },
+  {
+    "TEERCategory": 2,
+    "NOCCode": 72406,
+    "classTitle": "Elevator constructors and mechanics"
+  },
+  {
+    "TEERCategory": 2,
+    "NOCCode": 72410,
+    "classTitle": "Automotive service technicians, truck and bus mechanics and mechanical repairers"
+  },
+  {
+    "TEERCategory": 2,
+    "NOCCode": 72411,
+    "classTitle": "Auto body collision, refinishing and glass technicians and damage repair estimators"
+  },
+  {
+    "TEERCategory": 2,
+    "NOCCode": 72420,
+    "classTitle": "Oil and solid fuel heating mechanics"
+  },
+  {
+    "TEERCategory": 2,
+    "NOCCode": 72421,
+    "classTitle": "Appliance servicers and repairers"
+  },
+  {
+    "TEERCategory": 2,
+    "NOCCode": 72422,
+    "classTitle": "Electrical mechanics"
+  },
+  {
+    "TEERCategory": 2,
+    "NOCCode": 72423,
+    "classTitle": "Motorcycle, all-terrain vehicle and other related mechanics"
+  },
+  {
+    "TEERCategory": 2,
+    "NOCCode": 72429,
+    "classTitle": "Other small engine and small equipment repairers"
+  },
+  {
+    "TEERCategory": 2,
+    "NOCCode": 72500,
+    "classTitle": "Crane operators"
+  },
+  {
+    "TEERCategory": 2,
+    "NOCCode": 72501,
+    "classTitle": "Water well drillers"
+  },
+  {
+    "TEERCategory": 2,
+    "NOCCode": 72600,
+    "classTitle": "Air pilots, flight engineers and flying instructors"
+  },
+  {
+    "TEERCategory": 2,
+    "NOCCode": 72601,
+    "classTitle": "Air traffic controllers and related occupations"
+  },
+  {
+    "TEERCategory": 2,
+    "NOCCode": 72602,
+    "classTitle": "Deck officers, water transport"
+  },
+  {
+    "TEERCategory": 2,
+    "NOCCode": 72603,
+    "classTitle": "Engineer officers, water transport"
+  },
+  {
+    "TEERCategory": 2,
+    "NOCCode": 72604,
+    "classTitle": "Railway traffic controllers and marine traffic regulators"
+  },
+  {
+    "TEERCategory": 2,
+    "NOCCode": 72999,
+    "classTitle": "Other technical trades and related occupations"
+  },
+  {
+    "TEERCategory": 2,
+    "NOCCode": 82010,
+    "classTitle": "Supervisors, logging and forestry"
+  },
+  {
+    "TEERCategory": 2,
+    "NOCCode": 82020,
+    "classTitle": "Supervisors, mining and quarrying"
+  },
+  {
+    "TEERCategory": 2,
+    "NOCCode": 82021,
+    "classTitle": "Contractors and supervisors, oil and gas drilling and services"
+  },
+  {
+    "TEERCategory": 2,
+    "NOCCode": 82030,
+    "classTitle": "Agricultural service contractors and farm supervisors"
+  },
+  {
+    "TEERCategory": 2,
+    "NOCCode": 82031,
+    "classTitle": "Contractors and supervisors, landscaping, grounds maintenance and horticulture services"
+  },
+  {
+    "TEERCategory": 2,
+    "NOCCode": 92010,
+    "classTitle": "Supervisors, mineral and metal processing"
+  },
+  {
+    "TEERCategory": 2,
+    "NOCCode": 92011,
+    "classTitle": "Supervisors, petroleum, gas and chemical processing and utilities"
+  },
+  {
+    "TEERCategory": 2,
+    "NOCCode": 92012,
+    "classTitle": "Supervisors, food and beverage processing"
+  },
+  {
+    "TEERCategory": 2,
+    "NOCCode": 92013,
+    "classTitle": "Supervisors, plastic and rubber products manufacturing"
+  },
+  {
+    "TEERCategory": 2,
+    "NOCCode": 92014,
+    "classTitle": "Supervisors, forest products processing"
+  },
+  {
+    "TEERCategory": 2,
+    "NOCCode": 92015,
+    "classTitle": "Supervisors, textile, fabric, fur and leather products processing and manufacturing"
+  },
+  {
+    "TEERCategory": 2,
+    "NOCCode": 92020,
+    "classTitle": "Supervisors, motor vehicle assembling"
+  },
+  {
+    "TEERCategory": 2,
+    "NOCCode": 92021,
+    "classTitle": "Supervisors, electronics and electrical products manufacturing"
+  },
+  {
+    "TEERCategory": 2,
+    "NOCCode": 92022,
+    "classTitle": "Supervisors, furniture and fixtures manufacturing"
+  },
+  {
+    "TEERCategory": 2,
+    "NOCCode": 92023,
+    "classTitle": "Supervisors, other mechanical and metal products manufacturing"
+  },
+  {
+    "TEERCategory": 2,
+    "NOCCode": 92024,
+    "classTitle": "Supervisors, other products manufacturing and assembly"
+  },
+  {
+    "TEERCategory": 2,
+    "NOCCode": 92100,
+    "classTitle": "Power engineers and power systems operators"
+  },
+  {
+    "TEERCategory": 2,
+    "NOCCode": 92101,
+    "classTitle": "Water and waste treatment plant operators"
+  },
+  {
+    "TEERCategory": 3,
+    "NOCCode": 13100,
+    "classTitle": "Administrative officers"
+  },
+  {
+    "TEERCategory": 3,
+    "NOCCode": 13101,
+    "classTitle": "Property administrators"
+  },
+  {
+    "TEERCategory": 3,
+    "NOCCode": 13102,
+    "classTitle": "Payroll administrators"
+  },
+  {
+    "TEERCategory": 3,
+    "NOCCode": 13110,
+    "classTitle": "Administrative assistants"
+  },
+  {
+    "TEERCategory": 3,
+    "NOCCode": 13111,
+    "classTitle": "Legal administrative assistants"
+  },
+  {
+    "TEERCategory": 3,
+    "NOCCode": 13112,
+    "classTitle": "Medical administrative assistants"
+  },
+  {
+    "TEERCategory": 3,
+    "NOCCode": 13200,
+    "classTitle": "Customs, ship and other brokers"
+  },
+  {
+    "TEERCategory": 3,
+    "NOCCode": 13201,
+    "classTitle": "Production and transportation logistics coordinators"
+  },
+  {
+    "TEERCategory": 3,
+    "NOCCode": 33100,
+    "classTitle": "Dental assistants and dental laboratory assistants"
+  },
+  {
+    "TEERCategory": 3,
+    "NOCCode": 33101,
+    "classTitle": "Medical laboratory assistants and related technical occupations"
+  },
+  {
+    "TEERCategory": 3,
+    "NOCCode": 33102,
+    "classTitle": "Nurse aides, orderlies and patient service associates"
+  },
+  {
+    "TEERCategory": 3,
+    "NOCCode": 33103,
+    "classTitle": "Pharmacy technical assistants and pharmacy assistants"
+  },
+  {
+    "TEERCategory": 3,
+    "NOCCode": 33109,
+    "classTitle": "Other assisting occupations in support of health services"
+  },
+  {
+    "TEERCategory": 3,
+    "NOCCode": 43100,
+    "classTitle": "Elementary and secondary school teacher assistants"
+  },
+  {
+    "TEERCategory": 3,
+    "NOCCode": 43109,
+    "classTitle": "Other instructors"
+  },
+  {
+    "TEERCategory": 3,
+    "NOCCode": 43200,
+    "classTitle": "Sheriffs and bailiffs"
+  },
+  {
+    "TEERCategory": 3,
+    "NOCCode": 43201,
+    "classTitle": "Correctional service officers"
+  },
+  {
+    "TEERCategory": 3,
+    "NOCCode": 43202,
+    "classTitle": "By-law enforcement and other regulatory officers"
+  },
+  {
+    "TEERCategory": 3,
+    "NOCCode": 43203,
+    "classTitle": "Border services, customs, and immigration officers"
+  },
+  {
+    "TEERCategory": 3,
+    "NOCCode": 43204,
+    "classTitle": "Operations members of the Canadian Armed Forces"
+  },
+  {
+    "TEERCategory": 3,
+    "NOCCode": 53100,
+    "classTitle": "Registrars, restorers, interpreters and other occupations related to museum and art galleries"
+  },
+  {
+    "TEERCategory": 3,
+    "NOCCode": 53110,
+    "classTitle": "Photographers"
+  },
+  {
+    "TEERCategory": 3,
+    "NOCCode": 53111,
+    "classTitle": "Motion pictures, broadcasting, photography and performing arts assistants and operators"
+  },
+  {
+    "TEERCategory": 3,
+    "NOCCode": 53120,
+    "classTitle": "Dancers"
+  },
+  {
+    "TEERCategory": 3,
+    "NOCCode": 53121,
+    "classTitle": "Actors, comedians and circus performers"
+  },
+  {
+    "TEERCategory": 3,
+    "NOCCode": 53122,
+    "classTitle": "Painters, sculptors and other visual artists"
+  },
+  {
+    "TEERCategory": 3,
+    "NOCCode": 53123,
+    "classTitle": "Theatre, fashion, exhibit and other creative designers"
+  },
+  {
+    "TEERCategory": 3,
+    "NOCCode": 53124,
+    "classTitle": "Artisans and craftspersons"
+  },
+  {
+    "TEERCategory": 3,
+    "NOCCode": 53125,
+    "classTitle": "Patternmakers - textile, leather and fur products"
+  },
+  {
+    "TEERCategory": 3,
+    "NOCCode": 53200,
+    "classTitle": "Athletes"
+  },
+  {
+    "TEERCategory": 3,
+    "NOCCode": 53201,
+    "classTitle": "Coaches"
+  },
+  {
+    "TEERCategory": 3,
+    "NOCCode": 53202,
+    "classTitle": "Sports officials and referees"
+  },
+  {
+    "TEERCategory": 3,
+    "NOCCode": 63100,
+    "classTitle": "Insurance agents and brokers"
+  },
+  {
+    "TEERCategory": 3,
+    "NOCCode": 63101,
+    "classTitle": "Real estate agents and salespersons"
+  },
+  {
+    "TEERCategory": 3,
+    "NOCCode": 63102,
+    "classTitle": "Financial sales representatives"
+  },
+  {
+    "TEERCategory": 3,
+    "NOCCode": 63200,
+    "classTitle": "Cooks"
+  },
+  {
+    "TEERCategory": 3,
+    "NOCCode": 63201,
+    "classTitle": "Butchers - retail and wholesale"
+  },
+  {
+    "TEERCategory": 3,
+    "NOCCode": 63202,
+    "classTitle": "Bakers"
+  },
+  {
+    "TEERCategory": 3,
+    "NOCCode": 63210,
+    "classTitle": "Hairstylists and barbers"
+  },
+  {
+    "TEERCategory": 3,
+    "NOCCode": 63211,
+    "classTitle": "Estheticians, electrologists and related occupations"
+  },
+  {
+    "TEERCategory": 3,
+    "NOCCode": 63220,
+    "classTitle": "Shoe repairers and shoemakers"
+  },
+  {
+    "TEERCategory": 3,
+    "NOCCode": 63221,
+    "classTitle": "Upholsterers"
+  },
+  {
+    "TEERCategory": 3,
+    "NOCCode": 73100,
+    "classTitle": "Concrete finishers"
+  },
+  {
+    "TEERCategory": 3,
+    "NOCCode": 73101,
+    "classTitle": "Tilesetters"
+  },
+  {
+    "TEERCategory": 3,
+    "NOCCode": 73102,
+    "classTitle": "Plasterers, drywall installers and finishers and lathers"
+  },
+  {
+    "TEERCategory": 3,
+    "NOCCode": 73110,
+    "classTitle": "Roofers and shinglers"
+  },
+  {
+    "TEERCategory": 3,
+    "NOCCode": 73111,
+    "classTitle": "Glaziers"
+  },
+  {
+    "TEERCategory": 3,
+    "NOCCode": 73112,
+    "classTitle": "Painters and decorators (except interior decorators)"
+  },
+  {
+    "TEERCategory": 3,
+    "NOCCode": 73113,
+    "classTitle": "Floor covering installers"
+  },
+  {
+    "TEERCategory": 3,
+    "NOCCode": 73200,
+    "classTitle": "Residential and commercial installers and servicers"
+  },
+  {
+    "TEERCategory": 3,
+    "NOCCode": 73201,
+    "classTitle": "General building maintenance workers and building superintendents"
+  },
+  {
+    "TEERCategory": 3,
+    "NOCCode": 73202,
+    "classTitle": "Pest controllers and fumigators"
+  },
+  {
+    "TEERCategory": 3,
+    "NOCCode": 73209,
+    "classTitle": "Other repairers and servicers"
+  },
+  {
+    "TEERCategory": 3,
+    "NOCCode": 73300,
+    "classTitle": "Transport truck drivers"
+  },
+  {
+    "TEERCategory": 3,
+    "NOCCode": 73301,
+    "classTitle": "Bus drivers, subway operators and other transit operators"
+  },
+  {
+    "TEERCategory": 3,
+    "NOCCode": 73310,
+    "classTitle": "Railway and yard locomotive engineers"
+  },
+  {
+    "TEERCategory": 3,
+    "NOCCode": 73311,
+    "classTitle": "Railway conductors and brakemen/women"
+  },
+  {
+    "TEERCategory": 3,
+    "NOCCode": 73400,
+    "classTitle": "Heavy equipment operators"
+  },
+  {
+    "TEERCategory": 3,
+    "NOCCode": 73401,
+    "classTitle": "Printing press operators"
+  },
+  {
+    "TEERCategory": 3,
+    "NOCCode": 73402,
+    "classTitle": "Drillers and blasters - surface mining, quarrying and construction"
+  },
+  {
+    "TEERCategory": 3,
+    "NOCCode": 83100,
+    "classTitle": "Underground production and development miners"
+  },
+  {
+    "TEERCategory": 3,
+    "NOCCode": 83101,
+    "classTitle": "Oil and gas well drillers, servicers, testers and related workers"
+  },
+  {
+    "TEERCategory": 3,
+    "NOCCode": 83110,
+    "classTitle": "Logging machinery operators"
+  },
+  {
+    "TEERCategory": 3,
+    "NOCCode": 83120,
+    "classTitle": "Fishing masters and officers"
+  },
+  {
+    "TEERCategory": 3,
+    "NOCCode": 83121,
+    "classTitle": "Fishermen/women"
+  },
+  {
+    "TEERCategory": 3,
+    "NOCCode": 93100,
+    "classTitle": "Central control and process operators, mineral and metal processing"
+  },
+  {
+    "TEERCategory": 3,
+    "NOCCode": 93101,
+    "classTitle": "Central control and process operators, petroleum, gas and chemical processing"
+  },
+  {
+    "TEERCategory": 3,
+    "NOCCode": 93102,
+    "classTitle": "Pulping, papermaking and coating control operators"
+  },
+  {
+    "TEERCategory": 3,
+    "NOCCode": 93200,
+    "classTitle": "Aircraft assemblers and aircraft assembly inspectors"
+  },
+  {
+    "TEERCategory": 4,
+    "NOCCode": 14100,
+    "classTitle": "General office support workers"
+  },
+  {
+    "TEERCategory": 4,
+    "NOCCode": 14101,
+    "classTitle": "Receptionists"
+  },
+  {
+    "TEERCategory": 4,
+    "NOCCode": 14102,
+    "classTitle": "Personnel clerks"
+  },
+  {
+    "TEERCategory": 4,
+    "NOCCode": 14103,
+    "classTitle": "Court clerks and related court services occupations"
+  },
+  {
+    "TEERCategory": 4,
+    "NOCCode": 14110,
+    "classTitle": "Survey interviewers and statistical clerks"
+  },
+  {
+    "TEERCategory": 4,
+    "NOCCode": 14111,
+    "classTitle": "Data entry clerks"
+  },
+  {
+    "TEERCategory": 4,
+    "NOCCode": 14112,
+    "classTitle": "Desktop publishing operators and related occupations"
+  },
+  {
+    "TEERCategory": 4,
+    "NOCCode": 14200,
+    "classTitle": "Accounting and related clerks"
+  },
+  {
+    "TEERCategory": 4,
+    "NOCCode": 14201,
+    "classTitle": "Banking, insurance and other financial clerks"
+  },
+  {
+    "TEERCategory": 4,
+    "NOCCode": 14202,
+    "classTitle": "Collection clerks"
+  },
+  {
+    "TEERCategory": 4,
+    "NOCCode": 14300,
+    "classTitle": "Library assistants and clerks"
+  },
+  {
+    "TEERCategory": 4,
+    "NOCCode": 14301,
+    "classTitle": "Correspondence, publication and regulatory clerks"
+  },
+  {
+    "TEERCategory": 4,
+    "NOCCode": 14400,
+    "classTitle": "Shippers and receivers"
+  },
+  {
+    "TEERCategory": 4,
+    "NOCCode": 14401,
+    "classTitle": "Storekeepers and partspersons"
+  },
+  {
+    "TEERCategory": 4,
+    "NOCCode": 14402,
+    "classTitle": "Production logistics workers"
+  },
+  {
+    "TEERCategory": 4,
+    "NOCCode": 14403,
+    "classTitle": "Purchasing and inventory control workers"
+  },
+  {
+    "TEERCategory": 4,
+    "NOCCode": 14404,
+    "classTitle": "Dispatchers"
+  },
+  {
+    "TEERCategory": 4,
+    "NOCCode": 14405,
+    "classTitle": "Transportation route and crew schedulers"
+  },
+  {
+    "TEERCategory": 4,
+    "NOCCode": 44100,
+    "classTitle": "Home child care providers"
+  },
+  {
+    "TEERCategory": 4,
+    "NOCCode": 44101,
+    "classTitle": "Home support workers, caregivers and related occupations"
+  },
+  {
+    "TEERCategory": 4,
+    "NOCCode": 44200,
+    "classTitle": "Primary combat members of the Canadian Armed Forces"
+  },
+  {
+    "TEERCategory": 4,
+    "NOCCode": 54100,
+    "classTitle": "Program leaders and instructors in recreation, sport and fitness"
+  },
+  {
+    "TEERCategory": 4,
+    "NOCCode": 64100,
+    "classTitle": "Retail salespersons and visual merchandisers"
+  },
+  {
+    "TEERCategory": 4,
+    "NOCCode": 64101,
+    "classTitle": "Sales and account representatives - wholesale trade (non-technical)"
+  },
+  {
+    "TEERCategory": 4,
+    "NOCCode": 64200,
+    "classTitle": "Tailors, dressmakers, furriers and milliners"
+  },
+  {
+    "TEERCategory": 4,
+    "NOCCode": 64201,
+    "classTitle": "Image, social and other personal consultants"
+  },
+  {
+    "TEERCategory": 4,
+    "NOCCode": 64300,
+    "classTitle": "Maîtres d'hôtel and hosts/hostesses"
+  },
+  {
+    "TEERCategory": 4,
+    "NOCCode": 64301,
+    "classTitle": "Bartenders"
+  },
+  {
+    "TEERCategory": 4,
+    "NOCCode": 64310,
+    "classTitle": "Travel counsellors"
+  },
+  {
+    "TEERCategory": 4,
+    "NOCCode": 64311,
+    "classTitle": "Pursers and flight attendants"
+  },
+  {
+    "TEERCategory": 4,
+    "NOCCode": 64312,
+    "classTitle": "Airline ticket and service agents"
+  },
+  {
+    "TEERCategory": 4,
+    "NOCCode": 64313,
+    "classTitle": "Ground and water transport ticket agents, cargo service representatives and related clerks"
+  },
+  {
+    "TEERCategory": 4,
+    "NOCCode": 64314,
+    "classTitle": "Hotel front desk clerks"
+  },
+  {
+    "TEERCategory": 4,
+    "NOCCode": 64320,
+    "classTitle": "Tour and travel guides"
+  },
+  {
+    "TEERCategory": 4,
+    "NOCCode": 64321,
+    "classTitle": "Casino workers"
+  },
+  {
+    "TEERCategory": 4,
+    "NOCCode": 64322,
+    "classTitle": "Outdoor sport and recreational guides"
+  },
+  {
+    "TEERCategory": 4,
+    "NOCCode": 64400,
+    "classTitle": "Customer services representatives - financial institutions"
+  },
+  {
+    "TEERCategory": 4,
+    "NOCCode": 64401,
+    "classTitle": "Postal services representatives"
+  },
+  {
+    "TEERCategory": 4,
+    "NOCCode": 64409,
+    "classTitle": "Other customer and information services representatives"
+  },
+  {
+    "TEERCategory": 4,
+    "NOCCode": 64410,
+    "classTitle": "Security guards and related security service occupations"
+  },
+  {
+    "TEERCategory": 4,
+    "NOCCode": 74100,
+    "classTitle": "Mail and parcel sorters and related occupations"
+  },
+  {
+    "TEERCategory": 4,
+    "NOCCode": 74101,
+    "classTitle": "Letter carriers"
+  },
+  {
+    "TEERCategory": 4,
+    "NOCCode": 74102,
+    "classTitle": "Couriers and messengers"
+  },
+  {
+    "TEERCategory": 4,
+    "NOCCode": 74200,
+    "classTitle": "Railway yard and track maintenance workers"
+  },
+  {
+    "TEERCategory": 4,
+    "NOCCode": 74201,
+    "classTitle": "Water transport deck and engine room crew"
+  },
+  {
+    "TEERCategory": 4,
+    "NOCCode": 74202,
+    "classTitle": "Air transport ramp attendants"
+  },
+  {
+    "TEERCategory": 4,
+    "NOCCode": 74203,
+    "classTitle": "Automotive and heavy truck and equipment parts installers and servicers"
+  },
+  {
+    "TEERCategory": 4,
+    "NOCCode": 74204,
+    "classTitle": "Utility maintenance workers"
+  },
+  {
+    "TEERCategory": 4,
+    "NOCCode": 74205,
+    "classTitle": "Public works maintenance equipment operators and related workers"
+  },
+  {
+    "TEERCategory": 4,
+    "NOCCode": 84100,
+    "classTitle": "Underground mine service and support workers"
+  },
+  {
+    "TEERCategory": 4,
+    "NOCCode": 84101,
+    "classTitle": "Oil and gas well drilling and related workers and services operators"
+  },
+  {
+    "TEERCategory": 4,
+    "NOCCode": 84110,
+    "classTitle": "Chain saw and skidder operators"
+  },
+  {
+    "TEERCategory": 4,
+    "NOCCode": 84111,
+    "classTitle": "Silviculture and forestry workers"
+  },
+  {
+    "TEERCategory": 4,
+    "NOCCode": 84120,
+    "classTitle": "Specialized livestock workers and farm machinery operators"
+  },
+  {
+    "TEERCategory": 4,
+    "NOCCode": 84121,
+    "classTitle": "Fishing vessel deckhands"
+  },
+  {
+    "TEERCategory": 4,
+    "NOCCode": 94100,
+    "classTitle": "Machine operators, mineral and metal processing"
+  },
+  {
+    "TEERCategory": 4,
+    "NOCCode": 94101,
+    "classTitle": "Foundry workers"
+  },
+  {
+    "TEERCategory": 4,
+    "NOCCode": 94102,
+    "classTitle": "Glass forming and finishing machine operators and glass cutters"
+  },
+  {
+    "TEERCategory": 4,
+    "NOCCode": 94103,
+    "classTitle": "Concrete, clay and stone forming operators"
+  },
+  {
+    "TEERCategory": 4,
+    "NOCCode": 94104,
+    "classTitle": "Inspectors and testers, mineral and metal processing"
+  },
+  {
+    "TEERCategory": 4,
+    "NOCCode": 94105,
+    "classTitle": "Metalworking and forging machine operators"
+  },
+  {
+    "TEERCategory": 4,
+    "NOCCode": 94106,
+    "classTitle": "Machining tool operators"
+  },
+  {
+    "TEERCategory": 4,
+    "NOCCode": 94107,
+    "classTitle": "Machine operators of other metal products"
+  },
+  {
+    "TEERCategory": 4,
+    "NOCCode": 94110,
+    "classTitle": "Chemical plant machine operators"
+  },
+  {
+    "TEERCategory": 4,
+    "NOCCode": 94111,
+    "classTitle": "Plastics processing machine operators"
+  },
+  {
+    "TEERCategory": 4,
+    "NOCCode": 94112,
+    "classTitle": "Rubber processing machine operators and related workers"
+  },
+  {
+    "TEERCategory": 4,
+    "NOCCode": 94120,
+    "classTitle": "Sawmill machine operators"
+  },
+  {
+    "TEERCategory": 4,
+    "NOCCode": 94121,
+    "classTitle": "Pulp mill, papermaking and finishing machine operators"
+  },
+  {
+    "TEERCategory": 4,
+    "NOCCode": 94122,
+    "classTitle": "Paper converting machine operators"
+  },
+  {
+    "TEERCategory": 4,
+    "NOCCode": 94123,
+    "classTitle": "Lumber graders and other wood processing inspectors and graders"
+  },
+  {
+    "TEERCategory": 4,
+    "NOCCode": 94124,
+    "classTitle": "Woodworking machine operators"
+  },
+  {
+    "TEERCategory": 4,
+    "NOCCode": 94129,
+    "classTitle": "Other wood processing machine operators"
+  },
+  {
+    "TEERCategory": 4,
+    "NOCCode": 94130,
+    "classTitle": "Textile fibre and yarn, hide and pelt processing machine operators and workers"
+  },
+  {
+    "TEERCategory": 4,
+    "NOCCode": 94131,
+    "classTitle": "Weavers, knitters and other fabric making occupations"
+  },
+  {
+    "TEERCategory": 4,
+    "NOCCode": 94132,
+    "classTitle": "Industrial sewing machine operators"
+  },
+  {
+    "TEERCategory": 4,
+    "NOCCode": 94133,
+    "classTitle": "Inspectors and graders, textile, fabric, fur and leather products manufacturing"
+  },
+  {
+    "TEERCategory": 4,
+    "NOCCode": 94140,
+    "classTitle": "Process control and machine operators, food and beverage processing"
+  },
+  {
+    "TEERCategory": 4,
+    "NOCCode": 94141,
+    "classTitle": "Industrial butchers and meat cutters, poultry preparers and related workers"
+  },
+  {
+    "TEERCategory": 4,
+    "NOCCode": 94142,
+    "classTitle": "Fish and seafood plant workers"
+  },
+  {
+    "TEERCategory": 4,
+    "NOCCode": 94143,
+    "classTitle": "Testers and graders, food and beverage processing"
+  },
+  {
+    "TEERCategory": 4,
+    "NOCCode": 94150,
+    "classTitle": "Plateless printing equipment operators"
+  },
+  {
+    "TEERCategory": 4,
+    "NOCCode": 94151,
+    "classTitle": "Camera, platemaking and other prepress occupations"
+  },
+  {
+    "TEERCategory": 4,
+    "NOCCode": 94152,
+    "classTitle": "Binding and finishing machine operators"
+  },
+  {
+    "TEERCategory": 4,
+    "NOCCode": 94153,
+    "classTitle": "Photographic and film processors"
+  },
+  {
+    "TEERCategory": 4,
+    "NOCCode": 94200,
+    "classTitle": "Motor vehicle assemblers, inspectors and testers"
+  },
+  {
+    "TEERCategory": 4,
+    "NOCCode": 94201,
+    "classTitle": "Electronics assemblers, fabricators, inspectors and testers"
+  },
+  {
+    "TEERCategory": 4,
+    "NOCCode": 94202,
+    "classTitle": "Assemblers and inspectors, electrical appliance, apparatus and equipment manufacturing"
+  },
+  {
+    "TEERCategory": 4,
+    "NOCCode": 94203,
+    "classTitle": "Assemblers, fabricators and inspectors, industrial electrical motors and transformers"
+  },
+  {
+    "TEERCategory": 4,
+    "NOCCode": 94204,
+    "classTitle": "Mechanical assemblers and inspectors"
+  },
+  {
+    "TEERCategory": 4,
+    "NOCCode": 94205,
+    "classTitle": "Machine operators and inspectors, electrical apparatus manufacturing"
+  },
+  {
+    "TEERCategory": 4,
+    "NOCCode": 94210,
+    "classTitle": "Furniture and fixture assemblers, finishers, refinishers and inspectors"
+  },
+  {
+    "TEERCategory": 4,
+    "NOCCode": 94211,
+    "classTitle": "Assemblers and inspectors of other wood products"
+  },
+  {
+    "TEERCategory": 4,
+    "NOCCode": 94212,
+    "classTitle": "Plastic products assemblers, finishers and inspectors"
+  },
+  {
+    "TEERCategory": 4,
+    "NOCCode": 94213,
+    "classTitle": "Industrial painters, coaters and metal finishing process operators"
+  },
+  {
+    "TEERCategory": 4,
+    "NOCCode": 94219,
+    "classTitle": "Other products assemblers, finishers and inspectors"
+  },
+  {
+    "TEERCategory": 5,
+    "NOCCode": 45100,
+    "classTitle": "Student monitors, crossing guards and related occupations"
+  },
+  {
+    "TEERCategory": 5,
+    "NOCCode": 55109,
+    "classTitle": "Other performers"
+  },
+  {
+    "TEERCategory": 5,
+    "NOCCode": 65100,
+    "classTitle": "Cashiers"
+  },
+  {
+    "TEERCategory": 5,
+    "NOCCode": 65101,
+    "classTitle": "Service station attendants"
+  },
+  {
+    "TEERCategory": 5,
+    "NOCCode": 65102,
+    "classTitle": "Store shelf stockers, clerks and order fillers"
+  },
+  {
+    "TEERCategory": 5,
+    "NOCCode": 65109,
+    "classTitle": "Other sales related occupations"
+  },
+  {
+    "TEERCategory": 5,
+    "NOCCode": 65200,
+    "classTitle": "Food and beverage servers"
+  },
+  {
+    "TEERCategory": 5,
+    "NOCCode": 65201,
+    "classTitle": "Food counter attendants, kitchen helpers and related support occupations"
+  },
+  {
+    "TEERCategory": 5,
+    "NOCCode": 65202,
+    "classTitle": "Meat cutters and fishmongers - retail and wholesale"
+  },
+  {
+    "TEERCategory": 5,
+    "NOCCode": 65210,
+    "classTitle": "Support occupations in accommodation, travel and facilities set-up services"
+  },
+  {
+    "TEERCategory": 5,
+    "NOCCode": 65211,
+    "classTitle": "Operators and attendants in amusement, recreation and sport"
+  },
+  {
+    "TEERCategory": 5,
+    "NOCCode": 65220,
+    "classTitle": "Pet groomers and animal care workers"
+  },
+  {
+    "TEERCategory": 5,
+    "NOCCode": 65229,
+    "classTitle": "Other support occupations in personal services"
+  },
+  {
+    "TEERCategory": 5,
+    "NOCCode": 65310,
+    "classTitle": "Light duty cleaners"
+  },
+  {
+    "TEERCategory": 5,
+    "NOCCode": 65311,
+    "classTitle": "Specialized cleaners"
+  },
+  {
+    "TEERCategory": 5,
+    "NOCCode": 65312,
+    "classTitle": "Janitors, caretakers and heavy-duty cleaners"
+  },
+  {
+    "TEERCategory": 5,
+    "NOCCode": 65320,
+    "classTitle": "Dry cleaning, laundry and related occupations"
+  },
+  {
+    "TEERCategory": 5,
+    "NOCCode": 65329,
+    "classTitle": "Other service support occupations"
+  },
+  {
+    "TEERCategory": 5,
+    "NOCCode": 75100,
+    "classTitle": "Longshore workers"
+  },
+  {
+    "TEERCategory": 5,
+    "NOCCode": 75101,
+    "classTitle": "Material handlers"
+  },
+  {
+    "TEERCategory": 5,
+    "NOCCode": 75110,
+    "classTitle": "Construction trades helpers and labourers"
+  },
+  {
+    "TEERCategory": 5,
+    "NOCCode": 75119,
+    "classTitle": "Other trades helpers and labourers"
+  },
+  {
+    "TEERCategory": 5,
+    "NOCCode": 75200,
+    "classTitle": "Taxi and limousine drivers and chauffeurs"
+  },
+  {
+    "TEERCategory": 5,
+    "NOCCode": 75201,
+    "classTitle": "Delivery service drivers and door-to-door distributors"
+  },
+  {
+    "TEERCategory": 5,
+    "NOCCode": 75210,
+    "classTitle": "Boat and cable ferry operators and related occupations"
+  },
+  {
+    "TEERCategory": 5,
+    "NOCCode": 75211,
+    "classTitle": "Railway and motor transport labourers"
+  },
+  {
+    "TEERCategory": 5,
+    "NOCCode": 75212,
+    "classTitle": "Public works and maintenance labourers"
+  },
+  {
+    "TEERCategory": 5,
+    "NOCCode": 85100,
+    "classTitle": "Livestock labourers"
+  },
+  {
+    "TEERCategory": 5,
+    "NOCCode": 85101,
+    "classTitle": "Harvesting labourers"
+  },
+  {
+    "TEERCategory": 5,
+    "NOCCode": 85102,
+    "classTitle": "Aquaculture and marine harvest labourers"
+  },
+  {
+    "TEERCategory": 5,
+    "NOCCode": 85103,
+    "classTitle": "Nursery and greenhouse labourers"
+  },
+  {
+    "TEERCategory": 5,
+    "NOCCode": 85104,
+    "classTitle": "Trappers and hunters"
+  },
+  {
+    "TEERCategory": 5,
+    "NOCCode": 85110,
+    "classTitle": "Mine labourers"
+  },
+  {
+    "TEERCategory": 5,
+    "NOCCode": 85111,
+    "classTitle": "Oil and gas drilling, servicing and related labourers"
+  },
+  {
+    "TEERCategory": 5,
+    "NOCCode": 85120,
+    "classTitle": "Logging and forestry labourers"
+  },
+  {
+    "TEERCategory": 5,
+    "NOCCode": 85121,
+    "classTitle": "Landscaping and grounds maintenance labourers"
+  },
+  {
+    "TEERCategory": 5,
+    "NOCCode": 95100,
+    "classTitle": "Labourers in mineral and metal processing"
+  },
+  {
+    "TEERCategory": 5,
+    "NOCCode": 95101,
+    "classTitle": "Labourers in metal fabrication"
+  },
+  {
+    "TEERCategory": 5,
+    "NOCCode": 95102,
+    "classTitle": "Labourers in chemical products processing and utilities"
+  },
+  {
+    "TEERCategory": 5,
+    "NOCCode": 95103,
+    "classTitle": "Labourers in wood, pulp and paper processing"
+  },
+  {
+    "TEERCategory": 5,
+    "NOCCode": 95104,
+    "classTitle": "Labourers in rubber and plastic products manufacturing"
+  },
+  {
+    "TEERCategory": 5,
+    "NOCCode": 95105,
+    "classTitle": "Labourers in textile processing and cutting"
+  },
+  {
+    "TEERCategory": 5,
+    "NOCCode": 95106,
+    "classTitle": "Labourers in food and beverage processing"
+  },
+  {
+    "TEERCategory": 5,
+    "NOCCode": 95107,
+    "classTitle": "Labourers in fish and seafood processing"
+  },
+  {
+    "TEERCategory": 5,
+    "NOCCode": 95109,
+    "classTitle": "Other labourers in processing, manufacturing and utilities"
+  }
+]

@@ -1,0 +1,734 @@
+[
+  {
+   "name": "Abbotsford",
+    "value": "Abbotsford"
+  },
+  {
+   "name": "Armstrong",
+    "value": "Armstrong"
+  },
+  {
+   "name": "Burnaby",
+    "value": "Burnaby"
+  },
+  {
+   "name": "Campbell River",
+    "value": "Campbell River"
+  },
+  {
+   "name": "Castlegar",
+    "value": "Castlegar"
+  },
+  {
+   "name": "Chilliwack",
+    "value": "Chilliwack"
+  },
+  {
+   "name": "City of West Kelowna",
+    "value": "City of West Kelowna"
+  },
+  {
+   "name": "Colwood",
+    "value": "Colwood"
+  },
+  {
+   "name": "Coquitlam",
+    "value": "Coquitlam"
+  },
+  {
+   "name": "Courtenay",
+    "value": "Courtenay"
+  },
+  {
+   "name": "Cranbrook",
+    "value": "Cranbrook"
+  },
+  {
+   "name": "Dawson Creek",
+    "value": "Dawson Creek"
+  },
+  {
+   "name": "Delta",
+    "value": "Delta"
+  },
+  {
+   "name": "Duncan",
+    "value": "Duncan"
+  },
+  {
+   "name": "Enderby",
+    "value": "Enderby"
+  },
+  {
+   "name": "Fernie",
+    "value": "Fernie"
+  },
+  {
+   "name": "Fort St. John",
+    "value": "Fort St. John"
+  },
+  {
+   "name": "Grand Forks",
+    "value": "Grand Forks"
+  },
+  {
+   "name": "Greenwood",
+    "value": "Greenwood"
+  },
+  {
+   "name": "Kamloops",
+    "value": "Kamloops"
+  },
+  {
+   "name": "Kelowna",
+    "value": "Kelowna"
+  },
+  {
+   "name": "Kimberley",
+    "value": "Kimberley"
+  },
+  {
+   "name": "Langford",
+    "value": "Langford"
+  },
+  {
+   "name": "Langley",
+    "value": "Langley"
+  },
+  {
+   "name": "Maple Ridge",
+    "value": "Maple Ridge"
+  },
+  {
+   "name": "Merritt",
+    "value": "Merritt"
+  },
+  {
+   "name": "Nanaimo",
+    "value": "Nanaimo"
+  },
+  {
+   "name": "Nelson",
+    "value": "Nelson"
+  },
+  {
+   "name": "New Westminster",
+    "value": "New Westminster"
+  },
+  {
+   "name": "North Vancouver",
+    "value": "North Vancouver"
+  },
+  {
+   "name": "Parksville",
+    "value": "Parksville"
+  },
+  {
+   "name": "Penticton",
+    "value": "Penticton"
+  },
+  {
+   "name": "Pitt Meadows",
+    "value": "Pitt Meadows"
+  },
+  {
+   "name": "Port Alberni",
+    "value": "Port Alberni"
+  },
+  {
+   "name": "Port Coquitlam",
+    "value": "Port Coquitlam"
+  },
+  {
+   "name": "Port Moody",
+    "value": "Port Moody"
+  },
+  {
+   "name": "Powell River",
+    "value": "Powell River"
+  },
+  {
+   "name": "Prince George",
+    "value": "Prince George"
+  },
+  {
+   "name": "Prince Rupert",
+    "value": "Prince Rupert"
+  },
+  {
+   "name": "Quesnel",
+    "value": "Quesnel"
+  },
+  {
+   "name": "Revelstoke",
+    "value": "Revelstoke"
+  },
+  {
+   "name": "Richmond",
+    "value": "Richmond"
+  },
+  {
+   "name": "Rossland",
+    "value": "Rossland"
+  },
+  {
+   "name": "Salmon Arm",
+    "value": "Salmon Arm"
+  },
+  {
+   "name": "Surrey",
+    "value": "Surrey"
+  },
+  {
+   "name": "Terrace",
+    "value": "Terrace"
+  },
+  {
+   "name": "Trail",
+    "value": "Trail"
+  },
+  {
+   "name": "Vancouver",
+    "value": "Vancouver"
+  },
+  {
+   "name": "Vernon",
+    "value": "Vernon"
+  },
+  {
+   "name": "Victoria",
+    "value": "Victoria"
+  },
+  {
+   "name": "White Rock",
+    "value": "White Rock"
+  },
+  {
+   "name": "Williams Lake",
+    "value": "Williams Lake"
+  },
+  {
+   "name": "Airdrie",
+    "value": "Airdrie"
+  },
+  {
+   "name": "Beaumont",
+    "value": "Beaumont"
+  },
+  {
+   "name": "Brooks",
+    "value": "Brooks"
+  },
+  {
+   "name": "Calgary",
+    "value": "Calgary"
+  },
+  {
+   "name": "Camrose",
+    "value": "Camrose"
+  },
+  {
+   "name": "Cold Lake",
+    "value": "Cold Lake"
+  },
+  {
+   "name": "Edmonton",
+    "value": "Edmonton"
+  },
+  {
+   "name": "Fort Saskatchewan",
+    "value": "Fort Saskatchewan"
+  },
+  {
+   "name": "Grande Prairie",
+    "value": "Grande Prairie"
+  },
+  {
+   "name": "Lacombe",
+    "value": "Lacombe"
+  },
+  {
+   "name": "Leduc",
+    "value": "Leduc"
+  },
+  {
+   "name": "Lethbridge",
+    "value": "Lethbridge"
+  },
+  {
+   "name": "Lloydminster",
+    "value": "Lloydminster"
+  },
+  {
+   "name": "Medicine Hat",
+    "value": "Medicine Hat"
+  },
+  {
+   "name": "Red Deer",
+    "value": "Red Deer"
+  },
+  {
+   "name": "Spruce Grove",
+    "value": "Spruce Grove"
+  },
+  {
+   "name": "St. Albert",
+    "value": "St. Albert"
+  },
+  {
+   "name": "Wetaskiwin",
+    "value": "Wetaskiwin"
+  },
+  {
+   "name": "Brandon",
+    "value": "Brandon"
+  },
+  {
+   "name": "Dauphin",
+    "value": "Dauphin"
+  },
+  {
+   "name": "Flin Flon",
+    "value": "Flin Flon"
+  },
+  {
+   "name": "Portage la Prairie",
+    "value": "Portage la Prairie"
+  },
+  {
+   "name": "Selkirk",
+    "value": "Selkirk"
+  },
+  {
+   "name": "Steinbach",
+    "value": "Steinbach"
+  },
+  {
+   "name": "Thompson",
+    "value": "Thompson"
+  },
+  {
+   "name": "Winkler",
+    "value": "Winkler"
+  },
+  {
+   "name": "Winnipeg",
+    "value": "Winnipeg"
+  },
+  {
+   "name": "Bathurst",
+    "value": "Bathurst"
+  },
+  {
+   "name": "Campbellton",
+    "value": "Campbellton"
+  },
+  {
+   "name": "Dieppe",
+    "value": "Dieppe"
+  },
+  {
+   "name": "Edmundston",
+    "value": "Edmundston"
+  },
+  {
+   "name": "Fredericton",
+    "value": "Fredericton"
+  },
+  {
+   "name": "Miramichi",
+    "value": "Miramichi"
+  },
+  {
+   "name": "Moncton",
+    "value": "Moncton"
+  },
+  {
+   "name": "Saint John",
+    "value": "Saint John"
+  },
+  {
+   "name": "St. John",
+    "value": "St. John"
+  },
+  {
+   "name": "Corner Brook ",
+    "value": "Corner Brook "
+  },
+  {
+   "name": "Mount Pearl",
+    "value": "Mount Pearl"
+  },
+  {
+   "name": "Amherst",
+    "value": "Amherst"
+  },
+  {
+   "name": "Annapolis Royal",
+    "value": "Annapolis Royal"
+  },
+  {
+   "name": "Antigonish",
+    "value": "Antigonish"
+  },
+  {
+   "name": "Berwick",
+    "value": "Berwick"
+  },
+  {
+   "name": "Bridgewater",
+    "value": "Bridgewater"
+  },
+  {
+   "name": "Clark's Harbour",
+    "value": "Clark's Harbour"
+  },
+  {
+   "name": "Digby",
+    "value": "Digby"
+  },
+  {
+   "name": "Kentville",
+    "value": "Kentville"
+  },
+  {
+   "name": "Lockeport",
+    "value": "Lockeport"
+  },
+  {
+   "name": "Lunenburg",
+    "value": "Lunenburg"
+  },
+  {
+   "name": "Mahone Bay",
+    "value": "Mahone Bay"
+  },
+  {
+   "name": "Middleton",
+    "value": "Middleton"
+  },
+  {
+   "name": "Mulgrave",
+    "value": "Mulgrave"
+  },
+  {
+   "name": "New Glasgow",
+    "value": "New Glasgow"
+  },
+  {
+   "name": "Oxford",
+    "value": "Oxford"
+  },
+  {
+   "name": "Pictou",
+    "value": "Pictou"
+  },
+  {
+   "name": "Port Hawkesbury",
+    "value": "Port Hawkesbury"
+  },
+  {
+   "name": "Shelburne",
+    "value": "Shelburne"
+  },
+  {
+   "name": "Stellarton",
+    "value": "Stellarton"
+  },
+  {
+   "name": "Stewiacke",
+    "value": "Stewiacke"
+  },
+  {
+   "name": "Trenton",
+    "value": "Trenton"
+  },
+  {
+   "name": "Truro",
+    "value": "Truro"
+  },
+  {
+   "name": "Westville",
+    "value": "Westville"
+  },
+  {
+   "name": "Wolfville",
+    "value": "Wolfville"
+  },
+  {
+   "name": "Yarmouth",
+    "value": "Yarmouth"
+  },
+  {
+   "name": "Barrie",
+    "value": "Barrie"
+  },
+  {
+   "name": "Belleville",
+    "value": "Belleville"
+  },
+  {
+   "name": "Brampton",
+    "value": "Brampton"
+  },
+  {
+   "name": "Brantford",
+    "value": "Brantford"
+  },
+  {
+   "name": "Brockville",
+    "value": "Brockville"
+  },
+  {
+   "name": "Burlington",
+    "value": "Burlington"
+  },
+  {
+   "name": "Cambridge",
+    "value": "Cambridge"
+  },
+  {
+   "name": "Chatham-Kent",
+    "value": "Chatham-Kent"
+  },
+  {
+   "name": "Clarence-Rockland",
+    "value": "Clarence-Rockland"
+  },
+  {
+   "name": "Cornwall",
+    "value": "Cornwall"
+  },
+  {
+   "name": "County of Brant",
+    "value": "County of Brant"
+  },
+  {
+   "name": "Dryden",
+    "value": "Dryden"
+  },
+  {
+   "name": "Elliot Lake",
+    "value": "Elliot Lake"
+  },
+  {
+   "name": "Grand Sudbury",
+    "value": "Grand Sudbury"
+  },
+  {
+   "name": "Greater Sudbury",
+    "value": "Greater Sudbury"
+  },
+  {
+   "name": "Guelph",
+    "value": "Guelph"
+  },
+  {
+   "name": "Hamilton",
+    "value": "Hamilton"
+  },
+  {
+   "name": "Kawartha Lakes",
+    "value": "Kawartha Lakes"
+  },
+  {
+   "name": "Kenora",
+    "value": "Kenora"
+  },
+  {
+   "name": "Kingston",
+    "value": "Kingston"
+  },
+  {
+   "name": "Kitchener",
+    "value": "Kitchener"
+  },
+  {
+   "name": "Lambton Shores",
+    "value": "Lambton Shores"
+  },
+  {
+   "name": "London",
+    "value": "London"
+  },
+  {
+   "name": "Mississauga",
+    "value": "Mississauga"
+  },
+  {
+   "name": "Niagara Falls",
+    "value": "Niagara Falls"
+  },
+  {
+   "name": "North Bay",
+    "value": "North Bay"
+  },
+  {
+   "name": "Orillia",
+    "value": "Orillia"
+  },
+  {
+   "name": "Oshawa",
+    "value": "Oshawa"
+  },
+  {
+   "name": "Ottawa",
+    "value": "Ottawa"
+  },
+  {
+   "name": "Owen Sound",
+    "value": "Owen Sound"
+  },
+  {
+   "name": "Pembroke",
+    "value": "Pembroke"
+  },
+  {
+   "name": "Peterborough",
+    "value": "Peterborough"
+  },
+  {
+   "name": "Port Colborne",
+    "value": "Port Colborne"
+  },
+  {
+   "name": "Prince Edward",
+    "value": "Prince Edward"
+  },
+  {
+   "name": "Quinte West",
+    "value": "Quinte West"
+  },
+  {
+   "name": "Sarnia",
+    "value": "Sarnia"
+  },
+  {
+   "name": "Sault Ste. Marie",
+    "value": "Sault Ste. Marie"
+  },
+  {
+   "name": "St. Catharines",
+    "value": "St. Catharines"
+  },
+  {
+   "name": "St. Thomas",
+    "value": "St. Thomas"
+  },
+  {
+   "name": "Stratford",
+    "value": "Stratford"
+  },
+  {
+   "name": "Temiskaming Shores",
+    "value": "Temiskaming Shores"
+  },
+  {
+   "name": "Thorold",
+    "value": "Thorold"
+  },
+  {
+   "name": "Thunder Bay",
+    "value": "Thunder Bay"
+  },
+  {
+   "name": "Timmins",
+    "value": "Timmins"
+  },
+  {
+   "name": "Toronto",
+    "value": "Toronto"
+  },
+  {
+   "name": "Vaughan",
+    "value": "Vaughan"
+  },
+  {
+   "name": "Waterloo",
+    "value": "Waterloo"
+  },
+  {
+   "name": "Welland",
+    "value": "Welland"
+  },
+  {
+   "name": "Windsor",
+    "value": "Windsor"
+  },
+  {
+   "name": "Woodstock",
+    "value": "Woodstock"
+  },
+  {
+   "name": "Charlottetown",
+    "value": "Charlottetown"
+  },
+  {
+   "name": "Summerside",
+    "value": "Summerside"
+  },
+  {
+   "name": "Estevan",
+    "value": "Estevan"
+  },
+  {
+   "name": "Humboldt",
+    "value": "Humboldt"
+  },
+  {
+   "name": "Lloydminster",
+    "value": "Lloydminster"
+  },
+  {
+   "name": "Martensville",
+    "value": "Martensville"
+  },
+  {
+   "name": "Meadow Lake",
+    "value": "Meadow Lake"
+  },
+  {
+   "name": "Melfort",
+    "value": "Melfort"
+  },
+  {
+   "name": "Melville",
+    "value": "Melville"
+  },
+  {
+   "name": "Moose Jaw",
+    "value": "Moose Jaw"
+  },
+  {
+   "name": "North Battleford",
+    "value": "North Battleford"
+  },
+  {
+   "name": "Prince Albert",
+    "value": "Prince Albert"
+  },
+  {
+   "name": "Regina",
+    "value": "Regina"
+  },
+  {
+   "name": "Saskatoon",
+    "value": "Saskatoon"
+  },
+  {
+   "name": "Swift Current",
+    "value": "Swift Current"
+  },
+  {
+   "name": "Warman",
+    "value": "Warman"
+  },
+  {
+   "name": "Weyburn",
+    "value": "Weyburn"
+  },
+  {
+   "name": "Yorkton",
+    "value": "Yorkton"
+  }
+]

@@ -1,0 +1,3678 @@
+[
+  {
+    "name": "Bachelor of Technology",
+    "value": "Bachelor of Technology"
+  },
+  {
+    "name": "B.Tech - Biochemical Engineering",
+    "value": "B.Tech - Biochemical Engineering"
+  },
+  {
+    "name": "B Tech Textile Engineering",
+    "value": "B Tech Textile Engineering"
+  },
+  {
+    "name": "B.Tech - Ceramic Engineering",
+    "value": "B.Tech - Ceramic Engineering"
+  },
+  {
+    "name": "B.Tech - Instrumentation Engineering",
+    "value": "B.Tech - Instrumentation Engineering"
+  },
+  {
+    "name": "B.Tech - Mechatronics Engineering",
+    "value": "B.Tech - Mechatronics Engineering"
+  },
+  {
+    "name": "B.Tech - Telecommunication Engineering",
+    "value": "B.Tech - Telecommunication Engineering"
+  },
+  {
+    "name": "B.Tech - Automobile Engineering",
+    "value": "B.Tech - Automobile Engineering"
+  },
+  {
+    "name": "B.Tech - Production Engineering",
+    "value": "B.Tech - Production Engineering"
+  },
+  {
+    "name": "B.Tech - Mining Engineering",
+    "value": "B.Tech - Mining Engineering"
+  },
+  {
+    "name": "B.Tech - Genetic Engineering",
+    "value": "B.Tech - Genetic Engineering"
+  },
+  {
+    "name": "Masters of Computer Management",
+    "value": "Masters of Computer Management"
+  },
+  {
+    "name": "Bachelor of Education",
+    "value": "Bachelor of Education"
+  },
+  {
+    "name": "Bachelor of Visual Communication",
+    "value": "Bachelor of Visual Communication"
+  },
+  {
+    "name": "Bachelor of Design",
+    "value": "Bachelor of Design"
+  },
+  {
+    "name": "Bachelor of Financial Markets",
+    "value": "Bachelor of Financial Markets"
+  },
+  {
+    "name": "Bachelor of Science",
+    "value": "Bachelor of Science"
+  },
+  {
+    "name": "B.Sc Actuarial Sciences",
+    "value": "B.Sc Actuarial Sciences"
+  },
+  {
+    "name": "BSc Agriculture",
+    "value": "BSc Agriculture"
+  },
+  {
+    "name": "Acting and Film-making",
+    "value": "Acting and Film-making"
+  },
+  {
+    "name": "BSc in Anthropology",
+    "value": "BSc in Anthropology"
+  },
+  {
+    "name": "B.Sc - Electronics",
+    "value": "B.Sc - Electronics"
+  },
+  {
+    "name": "B.Sc - Geology",
+    "value": "B.Sc - Geology"
+  },
+  {
+    "name": "BSc Horticulture",
+    "value": "BSc Horticulture"
+  },
+  {
+    "name": "BSc in Microbiology",
+    "value": "BSc in Microbiology"
+  },
+  {
+    "name": "BSc in Zoology",
+    "value": "BSc in Zoology"
+  },
+  {
+    "name": "Bachelor of Physical Education",
+    "value": "Bachelor of Physical Education"
+  },
+  {
+    "name": "Bachelor of Audiology & Speech Language Pathology",
+    "value": "Bachelor of Audiology & Speech Language Pathology"
+  },
+  {
+    "name": "Master of Law",
+    "value": "Master of Law"
+  },
+  {
+    "name": "LL.M - Criminal Law",
+    "value": "LL.M - Criminal Law"
+  },
+  {
+    "name": "LL.M - Cyber Law",
+    "value": "LL.M - Cyber Law"
+  },
+  {
+    "name": "LL.M - International Law",
+    "value": "LL.M - International Law"
+  },
+  {
+    "name": "LL.M - Labour Law",
+    "value": "LL.M - Labour Law"
+  },
+  {
+    "name": "Bachelor of Medicine and Bachelor of Surgery",
+    "value": "Bachelor of Medicine and Bachelor of Surgery"
+  },
+  {
+    "name": "Bachelor of Naturopathy and Yogic Sciences",
+    "value": "Bachelor of Naturopathy and Yogic Sciences"
+  },
+  {
+    "name": "Bachelor of Science BSc Optometry",
+    "value": "Bachelor of Science BSc Optometry"
+  },
+  {
+    "name": "Bachelor of Paramedical Technology",
+    "value": "Bachelor of Paramedical Technology"
+  },
+  {
+    "name": "Bachelor of Veterinary Science",
+    "value": "Bachelor of Veterinary Science"
+  },
+  {
+    "name": "MBA",
+    "value": "MBA"
+  },
+  {
+    "name": "Bachelors of Occupational Therapy",
+    "value": "Bachelors of Occupational Therapy"
+  },
+  {
+    "name": "General Nursing and Midwifery",
+    "value": "General Nursing and Midwifery"
+  },
+  {
+    "name": "MBA - Technology Management",
+    "value": "MBA - Technology Management"
+  },
+  {
+    "name": "MBA - Natural Resource Management",
+    "value": "MBA - Natural Resource Management"
+  },
+  {
+    "name": "BSc Forensic Science",
+    "value": "BSc Forensic Science"
+  },
+  {
+    "name": "BSc in Life Sciences",
+    "value": "BSc in Life Sciences"
+  },
+  {
+    "name": "B.Sc - Genetics",
+    "value": "B.Sc - Genetics"
+  },
+  {
+    "name": "MSc Geoinformatics",
+    "value": "MSc Geoinformatics"
+  },
+  {
+    "name": "MBA - Communication Management",
+    "value": "MBA - Communication Management"
+  },
+  {
+    "name": "MBA - Environmental Management",
+    "value": "MBA - Environmental Management"
+  },
+  {
+    "name": "MBA in International Business",
+    "value": "MBA in International Business"
+  },
+  {
+    "name": "MBA - Media Management",
+    "value": "MBA - Media Management"
+  },
+  {
+    "name": "MBA - Systems Management",
+    "value": "MBA - Systems Management"
+  },
+  {
+    "name": "MBA - Rural Development Management",
+    "value": "MBA - Rural Development Management"
+  },
+  {
+    "name": "MBA - Healthcare & Hospital Management",
+    "value": "MBA - Healthcare & Hospital Management"
+  },
+  {
+    "name": "B.Sc - Statistics",
+    "value": "B.Sc - Statistics"
+  },
+  {
+    "name": "BSc Home Science",
+    "value": "BSc Home Science"
+  },
+  {
+    "name": "BSc Computer Science",
+    "value": "BSc Computer Science"
+  },
+  {
+    "name": "Bachelor of Banking & Insurance",
+    "value": "Bachelor of Banking & Insurance"
+  },
+  {
+    "name": "MBA - Retail Management",
+    "value": "MBA - Retail Management"
+  },
+  {
+    "name": "Bachelor of Medical Laboratory Technology",
+    "value": "Bachelor of Medical Laboratory Technology"
+  },
+  {
+    "name": "MBA - Logistics and Supply Chain Management",
+    "value": "MBA - Logistics and Supply Chain Management"
+  },
+  {
+    "name": "Bachelor of Management Studies",
+    "value": "Bachelor of Management Studies"
+  },
+  {
+    "name": "MBA - Sports Management",
+    "value": "MBA - Sports Management"
+  },
+  {
+    "name": "MBA - Sales Management",
+    "value": "MBA - Sales Management"
+  },
+  {
+    "name": "Bachelor of Hotel Management & Catering Technology",
+    "value": "Bachelor of Hotel Management & Catering Technology"
+  },
+  {
+    "name": "Bachelor of Business Administration",
+    "value": "Bachelor of Business Administration"
+  },
+  {
+    "name": "BA LLB",
+    "value": "BA LLB"
+  },
+  {
+    "name": "PGP - Tax Management",
+    "value": "PGP - Tax Management"
+  },
+  {
+    "name": "Bachelor of Elementary Education",
+    "value": "Bachelor of Elementary Education"
+  },
+  {
+    "name": "MBA - Materials Management",
+    "value": "MBA - Materials Management"
+  },
+  {
+    "name": "MBA - Operations Management",
+    "value": "MBA - Operations Management"
+  },
+  {
+    "name": "B.Sc LLB",
+    "value": "B.Sc LLB"
+  },
+  {
+    "name": "Bachelors of Commerce and Bachelor of Legislative Law",
+    "value": "Bachelors of Commerce and Bachelor of Legislative Law"
+  },
+  {
+    "name": "BBA LLB",
+    "value": "BBA LLB"
+  },
+  {
+    "name": "Master of Education",
+    "value": "Master of Education"
+  },
+  {
+    "name": "Bachelor of Fine Arts",
+    "value": "Bachelor of Fine Arts"
+  },
+  {
+    "name": "Bachelor of Multimedia Communication",
+    "value": "Bachelor of Multimedia Communication"
+  },
+  {
+    "name": "B.A. - Public Administration",
+    "value": "B.A. - Public Administration"
+  },
+  {
+    "name": "Bachelor of Mass Communication",
+    "value": "Bachelor of Mass Communication"
+  },
+  {
+    "name": "Bachelor of Mass Media",
+    "value": "Bachelor of Mass Media"
+  },
+  {
+    "name": "Basic Training Certificate",
+    "value": "Basic Training Certificate"
+  },
+  {
+    "name": "Masters in Journalism and Mass Communication",
+    "value": "Masters in Journalism and Mass Communication"
+  },
+  {
+    "name": "Master of Mass Communication",
+    "value": "Master of Mass Communication"
+  },
+  {
+    "name": "M.A. - Public Administration",
+    "value": "M.A. - Public Administration"
+  },
+  {
+    "name": "Radio Jockey",
+    "value": "Radio Jockey"
+  },
+  {
+    "name": "Advertising",
+    "value": "Advertising"
+  },
+  {
+    "name": "MBA Project Management",
+    "value": "MBA Project Management"
+  },
+  {
+    "name": "MBA - Risk Management",
+    "value": "MBA - Risk Management"
+  },
+  {
+    "name": "MBA - Sustainable Management",
+    "value": "MBA - Sustainable Management"
+  },
+  {
+    "name": "Textile Designing",
+    "value": "Textile Designing"
+  },
+  {
+    "name": "MBA - Customer Relationship Management",
+    "value": "MBA - Customer Relationship Management"
+  },
+  {
+    "name": "M.Sc - Oceanography",
+    "value": "M.Sc - Oceanography"
+  },
+  {
+    "name": "Data Management/ Data Analysis",
+    "value": "Data Management/ Data Analysis"
+  },
+  {
+    "name": "M.Sc - Marine Biology",
+    "value": "M.Sc - Marine Biology"
+  },
+  {
+    "name": "B.Sc - Biological Sciences",
+    "value": "B.Sc - Biological Sciences"
+  },
+  {
+    "name": "M.Sc - Astrology",
+    "value": "M.Sc - Astrology"
+  },
+  {
+    "name": "Bachelor of Computer Applications",
+    "value": "Bachelor of Computer Applications"
+  },
+  {
+    "name": "MBA - Industrial Management",
+    "value": "MBA - Industrial Management"
+  },
+  {
+    "name": "MBA - Power Management",
+    "value": "MBA - Power Management"
+  },
+  {
+    "name": "MBA - Business Process Management",
+    "value": "MBA - Business Process Management"
+  },
+  {
+    "name": "B.Sc - Environmental Sciences",
+    "value": "B.Sc - Environmental Sciences"
+  },
+  {
+    "name": "Master of Arts",
+    "value": "Master of Arts"
+  },
+  {
+    "name": "MBA - Consultancy Management",
+    "value": "MBA - Consultancy Management"
+  },
+  {
+    "name": "Master of Science",
+    "value": "Master of Science"
+  },
+  {
+    "name": "Astrophysics",
+    "value": "Astrophysics"
+  },
+  {
+    "name": "Bachelor of Unani Medicine & Surgery",
+    "value": "Bachelor of Unani Medicine & Surgery"
+  },
+  {
+    "name": "B.Des - Industrial Design",
+    "value": "B.Des - Industrial Design"
+  },
+  {
+    "name": "Bachelor of Journalism & Mass Communication",
+    "value": "Bachelor of Journalism & Mass Communication"
+  },
+  {
+    "name": "Bachelor of Ayurveda Medical and Surgery",
+    "value": "Bachelor of Ayurveda Medical and Surgery"
+  },
+  {
+    "name": "Bachelor of Fisheries Science",
+    "value": "Bachelor of Fisheries Science"
+  },
+  {
+    "name": "Bachelor of Homeopathic Medicine & Surgery",
+    "value": "Bachelor of Homeopathic Medicine & Surgery"
+  },
+  {
+    "name": "B Pharma",
+    "value": "B Pharma"
+  },
+  {
+    "name": "BSc in Forestry",
+    "value": "BSc in Forestry"
+  },
+  {
+    "name": "Master of Computer Applications",
+    "value": "Master of Computer Applications"
+  },
+  {
+    "name": "Fashion Photography",
+    "value": "Fashion Photography"
+  },
+  {
+    "name": "MBA - Design Management",
+    "value": "MBA - Design Management"
+  },
+  {
+    "name": "M.Sc - Information Technology",
+    "value": "M.Sc - Information Technology"
+  },
+  {
+    "name": "B.Tech - Civil Engineering",
+    "value": "B.Tech - Civil Engineering"
+  },
+  {
+    "name": "Bachelor of Dental Surgery",
+    "value": "Bachelor of Dental Surgery"
+  },
+  {
+    "name": "Bachelor of Physiotherapy",
+    "value": "Bachelor of Physiotherapy"
+  },
+  {
+    "name": "BSc Radiotherapy",
+    "value": "BSc Radiotherapy"
+  },
+  {
+    "name": "Bachelor of Social Work",
+    "value": "Bachelor of Social Work"
+  },
+  {
+    "name": "B.Sc - Medical Laboratory Technology",
+    "value": "B.Sc - Medical Laboratory Technology"
+  },
+  {
+    "name": "Bachelor of Fashion Technology",
+    "value": "Bachelor of Fashion Technology"
+  },
+  {
+    "name": "Bachelor of Architecture",
+    "value": "Bachelor of Architecture"
+  },
+  {
+    "name": "B.Tech - Mechanical Engineering",
+    "value": "B.Tech - Mechanical Engineering"
+  },
+  {
+    "name": "B.Tech Aeronautical Engineering",
+    "value": "B.Tech Aeronautical Engineering"
+  },
+  {
+    "name": "B.Tech Aerospace Engineering",
+    "value": "B.Tech Aerospace Engineering"
+  },
+  {
+    "name": "Web Designing",
+    "value": "Web Designing"
+  },
+  {
+    "name": "B.Tech - Electrical Engineering",
+    "value": "B.Tech - Electrical Engineering"
+  },
+  {
+    "name": "B.Tech - Marine Engineering",
+    "value": "B.Tech - Marine Engineering"
+  },
+  {
+    "name": "MBA - Hospitality Management",
+    "value": "MBA - Hospitality Management"
+  },
+  {
+    "name": "MBA - Agri Business Management",
+    "value": "MBA - Agri Business Management"
+  },
+  {
+    "name": "Post Graduate Diploma in Management",
+    "value": "Post Graduate Diploma in Management"
+  },
+  {
+    "name": "Master of Technology",
+    "value": "Master of Technology"
+  },
+  {
+    "name": "MBA - Finance Management",
+    "value": "MBA - Finance Management"
+  },
+  {
+    "name": "Interior Designing",
+    "value": "Interior Designing"
+  },
+  {
+    "name": "Company Secretary",
+    "value": "Company Secretary"
+  },
+  {
+    "name": "Chartered Financial Analyst",
+    "value": "Chartered Financial Analyst"
+  },
+  {
+    "name": "Bachelor of Fashion and Apparel Design",
+    "value": "Bachelor of Fashion and Apparel Design"
+  },
+  {
+    "name": "Jewellery Designing",
+    "value": "Jewellery Designing"
+  },
+  {
+    "name": "Graphic Designing",
+    "value": "Graphic Designing"
+  },
+  {
+    "name": "Auxiliary Nursing and Midwifery",
+    "value": "Auxiliary Nursing and Midwifery"
+  },
+  {
+    "name": "Master of Fine Arts",
+    "value": "Master of Fine Arts"
+  },
+  {
+    "name": "Chartered Accountancy",
+    "value": "Chartered Accountancy"
+  },
+  {
+    "name": "Cyber Security & Ethical Hacking",
+    "value": "Cyber Security & Ethical Hacking"
+  },
+  {
+    "name": "Animation",
+    "value": "Animation"
+  },
+  {
+    "name": "Bachelor of Tourism and Management",
+    "value": "Bachelor of Tourism and Management"
+  },
+  {
+    "name": "MBA - Fashion Management",
+    "value": "MBA - Fashion Management"
+  },
+  {
+    "name": "Actuarial Science",
+    "value": "Actuarial Science"
+  },
+  {
+    "name": "B Com Honours",
+    "value": "B Com Honours"
+  },
+  {
+    "name": "Event Management",
+    "value": "Event Management"
+  },
+  {
+    "name": "Bachelor of Law",
+    "value": "Bachelor of Law"
+  },
+  {
+    "name": "Bachelor of Library Science",
+    "value": "Bachelor of Library Science"
+  },
+  {
+    "name": "Aviation",
+    "value": "Aviation"
+  },
+  {
+    "name": "Journalism",
+    "value": "Journalism"
+  },
+  {
+    "name": "Pilot Training",
+    "value": "Pilot Training"
+  },
+  {
+    "name": "Banking Courses",
+    "value": "Banking Courses"
+  },
+  {
+    "name": "MBA in HR",
+    "value": "MBA in HR"
+  },
+  {
+    "name": "Nutrition & Dietetics",
+    "value": "Nutrition & Dietetics"
+  },
+  {
+    "name": "MBA - Investment Management",
+    "value": "MBA - Investment Management"
+  },
+  {
+    "name": "B.Tech - Food Processing Technology",
+    "value": "B.Tech - Food Processing Technology"
+  },
+  {
+    "name": "B.Tech - Software Engineering",
+    "value": "B.Tech - Software Engineering"
+  },
+  {
+    "name": "LL.M - Corporate Law",
+    "value": "LL.M - Corporate Law"
+  },
+  {
+    "name": "Merchant Navy",
+    "value": "Merchant Navy"
+  },
+  {
+    "name": "B.Tech - Petroleum Engineering",
+    "value": "B.Tech - Petroleum Engineering"
+  },
+  {
+    "name": "Bachelor of Hotel Management",
+    "value": "Bachelor of Hotel Management"
+  },
+  {
+    "name": "Archaeology",
+    "value": "Archaeology"
+  },
+  {
+    "name": "B.Tech - Material Science and Metallurgical Engineering",
+    "value": "B.Tech - Material Science and Metallurgical Engineering"
+  },
+  {
+    "name": "Master of Tourism Management",
+    "value": "Master of Tourism Management"
+  },
+  {
+    "name": "Masters of Tourism Administration",
+    "value": "Masters of Tourism Administration"
+  },
+  {
+    "name": "Master of Commerce",
+    "value": "Master of Commerce"
+  },
+  {
+    "name": "Master of Hotel Management",
+    "value": "Master of Hotel Management"
+  },
+  {
+    "name": "Pharm D (Doctor of Pharmacy)",
+    "value": "Pharm D (Doctor of Pharmacy)"
+  },
+  {
+    "name": "Master of Pharmacy",
+    "value": "Master of Pharmacy"
+  },
+  {
+    "name": "Masters of Business Economics",
+    "value": "Masters of Business Economics"
+  },
+  {
+    "name": "Masters of Finance & Control",
+    "value": "Masters of Finance & Control"
+  },
+  {
+    "name": "Master of Business Law",
+    "value": "Master of Business Law"
+  },
+  {
+    "name": "Master of Public Health",
+    "value": "Master of Public Health"
+  },
+  {
+    "name": "Banking Law",
+    "value": "Banking Law"
+  },
+  {
+    "name": "Photography",
+    "value": "Photography"
+  },
+  {
+    "name": "MPhil",
+    "value": "MPhil"
+  },
+  {
+    "name": "AutoCAD",
+    "value": "AutoCAD"
+  },
+  {
+    "name": "Master of Financial Management",
+    "value": "Master of Financial Management"
+  },
+  {
+    "name": "Bachelor of Accounting & Finance",
+    "value": "Bachelor of Accounting & Finance"
+  },
+  {
+    "name": "B.Sc - Biochemistry",
+    "value": "B.Sc - Biochemistry"
+  },
+  {
+    "name": "Air Hostess/ Cabin Crew Courses",
+    "value": "Air Hostess/ Cabin Crew Courses"
+  },
+  {
+    "name": "Beautician & Make-up Courses",
+    "value": "Beautician & Make-up Courses"
+  },
+  {
+    "name": "VFX & Animation Courses",
+    "value": "VFX & Animation Courses"
+  },
+  {
+    "name": "Master of Social Work",
+    "value": "Master of Social Work"
+  },
+  {
+    "name": "Diplomate of National Board",
+    "value": "Diplomate of National Board"
+  },
+  {
+    "name": "Master of Physical Education",
+    "value": "Master of Physical Education"
+  },
+  {
+    "name": "Master of Physiotherapy",
+    "value": "Master of Physiotherapy"
+  },
+  {
+    "name": "Master of Prosthetics & Orthotics",
+    "value": "Master of Prosthetics & Orthotics"
+  },
+  {
+    "name": "Master of Occupational Therapy",
+    "value": "Master of Occupational Therapy"
+  },
+  {
+    "name": "Master of Chirurgiae - Super Speciality Course in Surgery/ Surgical Oncology",
+    "value": "Master of Chirurgiae - Super Speciality Course in Surgery/ Surgical Oncology"
+  },
+  {
+    "name": "Computer Hardware Courses",
+    "value": "Computer Hardware Courses"
+  },
+  {
+    "name": "D Pharma",
+    "value": "D Pharma"
+  },
+  {
+    "name": "Master of Surgery",
+    "value": "Master of Surgery"
+  },
+  {
+    "name": "Bartending Courses",
+    "value": "Bartending Courses"
+  },
+  {
+    "name": "Fashion Styling",
+    "value": "Fashion Styling"
+  },
+  {
+    "name": "Master of Design",
+    "value": "Master of Design"
+  },
+  {
+    "name": "Master of Health/Hospital Administration",
+    "value": "Master of Health/Hospital Administration"
+  },
+  {
+    "name": "Master of Dental Surgery",
+    "value": "Master of Dental Surgery"
+  },
+  {
+    "name": "MBA in Biotechnology",
+    "value": "MBA in Biotechnology"
+  },
+  {
+    "name": "MBA in Pharmaceutical Management",
+    "value": "MBA in Pharmaceutical Management"
+  },
+  {
+    "name": "MBA in Construction Management",
+    "value": "MBA in Construction Management"
+  },
+  {
+    "name": "MBA in Tourism Management",
+    "value": "MBA in Tourism Management"
+  },
+  {
+    "name": "MBA in Foreign Trade",
+    "value": "MBA in Foreign Trade"
+  },
+  {
+    "name": "MBA in Statistics",
+    "value": "MBA in Statistics"
+  },
+  {
+    "name": "MBA in Airline and Airport Management",
+    "value": "MBA in Airline and Airport Management"
+  },
+  {
+    "name": "MBA in Education Management",
+    "value": "MBA in Education Management"
+  },
+  {
+    "name": "MBA in E-Commerce",
+    "value": "MBA in E-Commerce"
+  },
+  {
+    "name": "MBA in Marketing",
+    "value": "MBA in Marketing"
+  },
+  {
+    "name": "MBA in Aviation Management",
+    "value": "MBA in Aviation Management"
+  },
+  {
+    "name": "MBA in Business Analytics",
+    "value": "MBA in Business Analytics"
+  },
+  {
+    "name": "MBA - Information Technology",
+    "value": "MBA - Information Technology"
+  },
+  {
+    "name": "MBA in Entrepreneurship",
+    "value": "MBA in Entrepreneurship"
+  },
+  {
+    "name": "MBA in Computer Science",
+    "value": "MBA in Computer Science"
+  },
+  {
+    "name": "Bachelor of Commerce",
+    "value": "Bachelor of Commerce"
+  },
+  {
+    "name": "Bachelor of Engineering",
+    "value": "Bachelor of Engineering"
+  },
+  {
+    "name": "B.Tech in Computer Science",
+    "value": "B.Tech in Computer Science"
+  },
+  {
+    "name": "Executive MBA",
+    "value": "Executive MBA"
+  },
+  {
+    "name": "Bachelor of Company Law",
+    "value": "Bachelor of Company Law"
+  },
+  {
+    "name": "MSc in Computer Science",
+    "value": "MSc in Computer Science"
+  },
+  {
+    "name": "BSc in Information Technology",
+    "value": "BSc in Information Technology"
+  },
+  {
+    "name": "MA in English",
+    "value": "MA in English"
+  },
+  {
+    "name": "M.A. in Psychology",
+    "value": "M.A. in Psychology"
+  },
+  {
+    "name": "Diploma in Nursery Teacher Training",
+    "value": "Diploma in Nursery Teacher Training"
+  },
+  {
+    "name": "BA in English",
+    "value": "BA in English"
+  },
+  {
+    "name": "Master of Veterinary Science",
+    "value": "Master of Veterinary Science"
+  },
+  {
+    "name": "BSc in Physics",
+    "value": "BSc in Physics"
+  },
+  {
+    "name": "BSc Chemistry",
+    "value": "BSc Chemistry"
+  },
+  {
+    "name": "BSc in Biotechnology",
+    "value": "BSc in Biotechnology"
+  },
+  {
+    "name": "B.A. in Psychology",
+    "value": "B.A. in Psychology"
+  },
+  {
+    "name": "B.Sc in Psychology",
+    "value": "B.Sc in Psychology"
+  },
+  {
+    "name": "Post Basic B.Sc Nursing",
+    "value": "Post Basic B.Sc Nursing"
+  },
+  {
+    "name": "M.Sc in Agriculture",
+    "value": "M.Sc in Agriculture"
+  },
+  {
+    "name": "Bachelor of Library and Information Science",
+    "value": "Bachelor of Library and Information Science"
+  },
+  {
+    "name": "B.V. Sc. in Veterinary Surgery & Radiology",
+    "value": "B.V. Sc. in Veterinary Surgery & Radiology"
+  },
+  {
+    "name": "MA Economics",
+    "value": "MA Economics"
+  },
+  {
+    "name": "MSc Psychology",
+    "value": "MSc Psychology"
+  },
+  {
+    "name": "BBA in Aviation",
+    "value": "BBA in Aviation"
+  },
+  {
+    "name": "Biotechnology Engineering",
+    "value": "Biotechnology Engineering"
+  },
+  {
+    "name": "BV. Sc. in Animal Production & Management",
+    "value": "BV. Sc. in Animal Production & Management"
+  },
+  {
+    "name": "LL.B. Honours",
+    "value": "LL.B. Honours"
+  },
+  {
+    "name": "B.Tech LL.B.",
+    "value": "B.Tech LL.B."
+  },
+  {
+    "name": "LL. M in Human Rights",
+    "value": "LL. M in Human Rights"
+  },
+  {
+    "name": "M.Phil in Law",
+    "value": "M.Phil in Law"
+  },
+  {
+    "name": "Criminal Law",
+    "value": "Criminal Law"
+  },
+  {
+    "name": "Civil Law",
+    "value": "Civil Law"
+  },
+  {
+    "name": "BSc Nursing",
+    "value": "BSc Nursing"
+  },
+  {
+    "name": "MBA in Corporate Social Responsibility",
+    "value": "MBA in Corporate Social Responsibility"
+  },
+  {
+    "name": "B.Plan",
+    "value": "B.Plan"
+  },
+  {
+    "name": "Bachelor of Sidhha Medicine and Surgery",
+    "value": "Bachelor of Sidhha Medicine and Surgery"
+  },
+  {
+    "name": "MBA in Disaster Management",
+    "value": "MBA in Disaster Management"
+  },
+  {
+    "name": "MBA in Operation Management",
+    "value": "MBA in Operation Management"
+  },
+  {
+    "name": "Bachelor of Arts in Visual Communication",
+    "value": "Bachelor of Arts in Visual Communication"
+  },
+  {
+    "name": "Master of Planning",
+    "value": "Master of Planning"
+  },
+  {
+    "name": "Bachelor of Business Studies",
+    "value": "Bachelor of Business Studies"
+  },
+  {
+    "name": "Doctor of Medicine",
+    "value": "Doctor of Medicine"
+  },
+  {
+    "name": "B.Sc. Mathematics",
+    "value": "B.Sc. Mathematics"
+  },
+  {
+    "name": "Master of Optometry",
+    "value": "Master of Optometry"
+  },
+  {
+    "name": "Bachelor of Public Health",
+    "value": "Bachelor of Public Health"
+  },
+  {
+    "name": "Master of Architecture",
+    "value": "Master of Architecture"
+  },
+  {
+    "name": "Bachelor of Foreign Trade",
+    "value": "Bachelor of Foreign Trade"
+  },
+  {
+    "name": "M.S. in Ayurveda",
+    "value": "M.S. in Ayurveda"
+  },
+  {
+    "name": "MBA in Energy and Environment",
+    "value": "MBA in Energy and Environment"
+  },
+  {
+    "name": "M.Sc. Nursing",
+    "value": "M.Sc. Nursing"
+  },
+  {
+    "name": "B.Sc Cardiac Care Technology",
+    "value": "B.Sc Cardiac Care Technology"
+  },
+  {
+    "name": "Doctorate of Medicine",
+    "value": "Doctorate of Medicine"
+  },
+  {
+    "name": "B.Sc Botany",
+    "value": "B.Sc Botany"
+  },
+  {
+    "name": "MD in Anaesthesiology",
+    "value": "MD in Anaesthesiology"
+  },
+  {
+    "name": "BSc Information Technology",
+    "value": "BSc Information Technology"
+  },
+  {
+    "name": "B.Sc Ophthalmic Technology",
+    "value": "B.Sc Ophthalmic Technology"
+  },
+  {
+    "name": "Bachelor of Visual Arts",
+    "value": "Bachelor of Visual Arts"
+  },
+  {
+    "name": "Diploma in Special Education",
+    "value": "Diploma in Special Education"
+  },
+  {
+    "name": "B.Ed in Special Education",
+    "value": "B.Ed in Special Education"
+  },
+  {
+    "name": "Bachelor of Vocational Education",
+    "value": "Bachelor of Vocational Education"
+  },
+  {
+    "name": "Corporate Law",
+    "value": "Corporate Law"
+  },
+  {
+    "name": "Master of Fashion Management",
+    "value": "Master of Fashion Management"
+  },
+  {
+    "name": "BBA+MBA",
+    "value": "BBA+MBA"
+  },
+  {
+    "name": "Master in Fashion Technology",
+    "value": "Master in Fashion Technology"
+  },
+  {
+    "name": "Cyber Law",
+    "value": "Cyber Law"
+  },
+  {
+    "name": "Furniture Design",
+    "value": "Furniture Design"
+  },
+  {
+    "name": "Labour Law",
+    "value": "Labour Law"
+  },
+  {
+    "name": "Master of Finance and Accounting",
+    "value": "Master of Finance and Accounting"
+  },
+  {
+    "name": "Bachelor in Hospital Administration",
+    "value": "Bachelor in Hospital Administration"
+  },
+  {
+    "name": "B.Sc Dialysis Therapy",
+    "value": "B.Sc Dialysis Therapy"
+  },
+  {
+    "name": "Administrative Law",
+    "value": "Administrative Law"
+  },
+  {
+    "name": "Fashion Communication",
+    "value": "Fashion Communication"
+  },
+  {
+    "name": "BBA in Tourism Management",
+    "value": "BBA in Tourism Management"
+  },
+  {
+    "name": "Master of Tourism and Hotel Management",
+    "value": "Master of Tourism and Hotel Management"
+  },
+  {
+    "name": "PG Diploma in Hospital Management",
+    "value": "PG Diploma in Hospital Management"
+  },
+  {
+    "name": "Masters in Engineering",
+    "value": "Masters in Engineering"
+  },
+  {
+    "name": "B.A. B.Ed",
+    "value": "B.A. B.Ed"
+  },
+  {
+    "name": "BSc BEd",
+    "value": "BSc BEd"
+  },
+  {
+    "name": "B.Ed in Commerce",
+    "value": "B.Ed in Commerce"
+  },
+  {
+    "name": "Intellectual Property Law",
+    "value": "Intellectual Property Law"
+  },
+  {
+    "name": "Master of Management Studies",
+    "value": "Master of Management Studies"
+  },
+  {
+    "name": "Tax Law",
+    "value": "Tax Law"
+  },
+  {
+    "name": "Master of Planning",
+    "value": "Master of Planning"
+  },
+  {
+    "name": "Bachelor of Sports Management",
+    "value": "Bachelor of Sports Management"
+  },
+  {
+    "name": "BCA+MCA",
+    "value": "BCA+MCA"
+  },
+  {
+    "name": "B.Pharm + MBA Integrated",
+    "value": "B.Pharm + MBA Integrated"
+  },
+  {
+    "name": "B.Ed in Accountancy",
+    "value": "B.Ed in Accountancy"
+  },
+  {
+    "name": "B.A. Sociology",
+    "value": "B.A. Sociology"
+  },
+  {
+    "name": "B.A. Philosophy",
+    "value": "B.A. Philosophy"
+  },
+  {
+    "name": "B.Ed Biology",
+    "value": "B.Ed Biology"
+  },
+  {
+    "name": "M.Sc Applied Mathematics",
+    "value": "M.Sc Applied Mathematics"
+  },
+  {
+    "name": "BBA in Airport Management",
+    "value": "BBA in Airport Management"
+  },
+  {
+    "name": "B.Tech Information Technology",
+    "value": "B.Tech Information Technology"
+  },
+  {
+    "name": "Masters in Urban and Rural Planning",
+    "value": "Masters in Urban and Rural Planning"
+  },
+  {
+    "name": "BBA in Event Management",
+    "value": "BBA in Event Management"
+  },
+  {
+    "name": "B.Sc Visual Communication",
+    "value": "B.Sc Visual Communication"
+  },
+  {
+    "name": "Diploma in Elementary Education",
+    "value": "Diploma in Elementary Education"
+  },
+  {
+    "name": "B.A. Rural Development",
+    "value": "B.A. Rural Development"
+  },
+  {
+    "name": "M.Sc Horticulture",
+    "value": "M.Sc Horticulture"
+  },
+  {
+    "name": "Visual Merchandising",
+    "value": "Visual Merchandising"
+  },
+  {
+    "name": "MBA - Actuarial Science",
+    "value": "MBA - Actuarial Science"
+  },
+  {
+    "name": "B.Ed Special Education",
+    "value": "B.Ed Special Education"
+  },
+  {
+    "name": "M.A. Rural Development",
+    "value": "M.A. Rural Development"
+  },
+  {
+    "name": "B.Sc Respiratory Therapy",
+    "value": "B.Sc Respiratory Therapy"
+  },
+  {
+    "name": "BBA in Digital Marketing",
+    "value": "BBA in Digital Marketing"
+  },
+  {
+    "name": "Industrial Design",
+    "value": "Industrial Design"
+  },
+  {
+    "name": "B.A. Political Science",
+    "value": "B.A. Political Science"
+  },
+  {
+    "name": "B.Sc Nutrition",
+    "value": "B.Sc Nutrition"
+  },
+  {
+    "name": "M.A. Political Science",
+    "value": "M.A. Political Science"
+  },
+  {
+    "name": "BBA in Media Management",
+    "value": "BBA in Media Management"
+  },
+  {
+    "name": "M.Tech Mining Engineering",
+    "value": "M.Tech Mining Engineering"
+  },
+  {
+    "name": "MSc in Zoology",
+    "value": "MSc in Zoology"
+  },
+  {
+    "name": "B.A. Astrology",
+    "value": "B.A. Astrology"
+  },
+  {
+    "name": "BA in Culinary Arts",
+    "value": "BA in Culinary Arts"
+  },
+  {
+    "name": "M.Tech Computer Science",
+    "value": "M.Tech Computer Science"
+  },
+  {
+    "name": "M.Sc Botany",
+    "value": "M.Sc Botany"
+  },
+  {
+    "name": "Bachelor of Catering Technology & Culinary Arts",
+    "value": "Bachelor of Catering Technology & Culinary Arts"
+  },
+  {
+    "name": "B.Sc. in Occupational Therapy",
+    "value": "B.Sc. in Occupational Therapy"
+  },
+  {
+    "name": "B.A. Ancient History",
+    "value": "B.A. Ancient History"
+  },
+  {
+    "name": "M.Tech Electrical Engineering",
+    "value": "M.Tech Electrical Engineering"
+  },
+  {
+    "name": "MSc in Microbiology",
+    "value": "MSc in Microbiology"
+  },
+  {
+    "name": "MBA in Event Management",
+    "value": "MBA in Event Management"
+  },
+  {
+    "name": "M.Tech in Civil Engineering",
+    "value": "M.Tech in Civil Engineering"
+  },
+  {
+    "name": "B.A. Education",
+    "value": "B.A. Education"
+  },
+  {
+    "name": "MSc Chemistry",
+    "value": "MSc Chemistry"
+  },
+  {
+    "name": "BBA in Marketing",
+    "value": "BBA in Marketing"
+  },
+  {
+    "name": "B.A. Bengali",
+    "value": "B.A. Bengali"
+  },
+  {
+    "name": "M.Tech in Electronics and Communications Engineering",
+    "value": "M.Tech in Electronics and Communications Engineering"
+  },
+  {
+    "name": "BBA in Finance",
+    "value": "BBA in Finance"
+  },
+  {
+    "name": "MSc Physics",
+    "value": "MSc Physics"
+  },
+  {
+    "name": "B.A. Telugu",
+    "value": "B.A. Telugu"
+  },
+  {
+    "name": "B Tech Food Technology",
+    "value": "B Tech Food Technology"
+  },
+  {
+    "name": "BBA Banking and Insurance",
+    "value": "BBA Banking and Insurance"
+  },
+  {
+    "name": "M.Sc Food Technology",
+    "value": "M.Sc Food Technology"
+  },
+  {
+    "name": "B.Sc Fashion Design",
+    "value": "B.Sc Fashion Design"
+  },
+  {
+    "name": "B.Com Taxation",
+    "value": "B.Com Taxation"
+  },
+  {
+    "name": "B.A. Hindi",
+    "value": "B.A. Hindi"
+  },
+  {
+    "name": "B.Tech Electronics and Communications Engineering",
+    "value": "B.Tech Electronics and Communications Engineering"
+  },
+  {
+    "name": "BBA in Foreign Trade",
+    "value": "BBA in Foreign Trade"
+  },
+  {
+    "name": "B.Com in Banking and Insurance",
+    "value": "B.Com in Banking and Insurance"
+  },
+  {
+    "name": "MSc Biotechnology",
+    "value": "MSc Biotechnology"
+  },
+  {
+    "name": "MBA in Data Analytics",
+    "value": "MBA in Data Analytics"
+  },
+  {
+    "name": "B.Sc in Graphic Design",
+    "value": "B.Sc in Graphic Design"
+  },
+  {
+    "name": "B.Com in Bank Management",
+    "value": "B.Com in Bank Management"
+  },
+  {
+    "name": "B.A. Tamil",
+    "value": "B.A. Tamil"
+  },
+  {
+    "name": "B.Tech Plastic Engineering",
+    "value": "B.Tech Plastic Engineering"
+  },
+  {
+    "name": "Gemology",
+    "value": "Gemology"
+  },
+  {
+    "name": "B.Sc. in Neurophysiology Technology",
+    "value": "B.Sc. in Neurophysiology Technology"
+  },
+  {
+    "name": "BBA in Hospital Management",
+    "value": "BBA in Hospital Management"
+  },
+  {
+    "name": "BBA in Retail Management",
+    "value": "BBA in Retail Management"
+  },
+  {
+    "name": "M.Sc Electronics",
+    "value": "M.Sc Electronics"
+  },
+  {
+    "name": "B.Com in Information Technology",
+    "value": "B.Com in Information Technology"
+  },
+  {
+    "name": "Diploma in Gynaecology and Obstetrics",
+    "value": "Diploma in Gynaecology and Obstetrics"
+  },
+  {
+    "name": "Bachelor in Business Economics",
+    "value": "Bachelor in Business Economics"
+  },
+  {
+    "name": "M.A. History",
+    "value": "M.A. History"
+  },
+  {
+    "name": "BBA in International Business",
+    "value": "BBA in International Business"
+  },
+  {
+    "name": "M.Com in Finance",
+    "value": "M.Com in Finance"
+  },
+  {
+    "name": "M.Pharm in Pharmaceutics",
+    "value": "M.Pharm in Pharmaceutics"
+  },
+  {
+    "name": "B.Tech Industrial Engineering",
+    "value": "B.Tech Industrial Engineering"
+  },
+  {
+    "name": "BBA Accounting",
+    "value": "BBA Accounting"
+  },
+  {
+    "name": "B.A. History",
+    "value": "B.A. History"
+  },
+  {
+    "name": "MSc Environmental Science",
+    "value": "MSc Environmental Science"
+  },
+  {
+    "name": "B.Sc Interior Design",
+    "value": "B.Sc Interior Design"
+  },
+  {
+    "name": "B.Tech Chemical Engineering",
+    "value": "B.Tech Chemical Engineering"
+  },
+  {
+    "name": "Diploma in Health Inspector",
+    "value": "Diploma in Health Inspector"
+  },
+  {
+    "name": "BBA in Information Technology",
+    "value": "BBA in Information Technology"
+  },
+  {
+    "name": "B.Com Travel and Tourism Management",
+    "value": "B.Com Travel and Tourism Management"
+  },
+  {
+    "name": "B.A. Malayalam",
+    "value": "B.A. Malayalam"
+  },
+  {
+    "name": "B.Sc Biomedical Science",
+    "value": "B.Sc Biomedical Science"
+  },
+  {
+    "name": "B.Com in Management Studies",
+    "value": "B.Com in Management Studies"
+  },
+  {
+    "name": "B.A. Kannada",
+    "value": "B.A. Kannada"
+  },
+  {
+    "name": "BBA in Business Economics",
+    "value": "BBA in Business Economics"
+  },
+  {
+    "name": "B.Tech Agricultural Engineering",
+    "value": "B.Tech Agricultural Engineering"
+  },
+  {
+    "name": "MBA in Interior Design",
+    "value": "MBA in Interior Design"
+  },
+  {
+    "name": "B.Com in Taxation and Finance",
+    "value": "B.Com in Taxation and Finance"
+  },
+  {
+    "name": "B.Sc Game Designing and Development",
+    "value": "B.Sc Game Designing and Development"
+  },
+  {
+    "name": "M.Tech Chemical Engineering",
+    "value": "M.Tech Chemical Engineering"
+  },
+  {
+    "name": "MBA in Safety Management",
+    "value": "MBA in Safety Management"
+  },
+  {
+    "name": "B.A. French",
+    "value": "B.A. French"
+  },
+  {
+    "name": "Diploma in Physiotherapy",
+    "value": "Diploma in Physiotherapy"
+  },
+  {
+    "name": "B.Tech Biomedical Engineering/ Technology",
+    "value": "B.Tech Biomedical Engineering/ Technology"
+  },
+  {
+    "name": "B.Sc Immunology",
+    "value": "B.Sc Immunology"
+  },
+  {
+    "name": "B.Com Economics",
+    "value": "B.Com Economics"
+  },
+  {
+    "name": "Commercial Law",
+    "value": "Commercial Law"
+  },
+  {
+    "name": "B.Com Co-operation",
+    "value": "B.Com Co-operation"
+  },
+  {
+    "name": "B.Ed in Physical Science",
+    "value": "B.Ed in Physical Science"
+  },
+  {
+    "name": "M.A. International Relations",
+    "value": "M.A. International Relations"
+  },
+  {
+    "name": "MBA in Advertising Management",
+    "value": "MBA in Advertising Management"
+  },
+  {
+    "name": "M.Pharm Pharmaceutical Analysis",
+    "value": "M.Pharm Pharmaceutical Analysis"
+  },
+  {
+    "name": "MMS in Marketing",
+    "value": "MMS in Marketing"
+  },
+  {
+    "name": "MBA in Infrastructure Management",
+    "value": "MBA in Infrastructure Management"
+  },
+  {
+    "name": "M.Sc. in Medical-Surgical Nursing",
+    "value": "M.Sc. in Medical-Surgical Nursing"
+  },
+  {
+    "name": "Ceramic Design",
+    "value": "Ceramic Design"
+  },
+  {
+    "name": "Bachelor of Business Management",
+    "value": "Bachelor of Business Management"
+  },
+  {
+    "name": "M.Sc in Child Health Nursing",
+    "value": "M.Sc in Child Health Nursing"
+  },
+  {
+    "name": "BBA in HR",
+    "value": "BBA in HR"
+  },
+  {
+    "name": "B.Des in Knitwear Design",
+    "value": "B.Des in Knitwear Design"
+  },
+  {
+    "name": "M.Sc in Maternity Nursing",
+    "value": "M.Sc in Maternity Nursing"
+  },
+  {
+    "name": "Post Basic Diploma in Operation Room Nursing",
+    "value": "Post Basic Diploma in Operation Room Nursing"
+  },
+  {
+    "name": "BBA in Sports Management",
+    "value": "BBA in Sports Management"
+  },
+  {
+    "name": "B.Des in Animation",
+    "value": "B.Des in Animation"
+  },
+  {
+    "name": "M.Phil in Nursing",
+    "value": "M.Phil in Nursing"
+  },
+  {
+    "name": "B.Tech Artificial Intelligence",
+    "value": "B.Tech Artificial Intelligence"
+  },
+  {
+    "name": "M.Tech Textile Engineering",
+    "value": "M.Tech Textile Engineering"
+  },
+  {
+    "name": "Diploma in Automobile Engineering",
+    "value": "Diploma in Automobile Engineering"
+  },
+  {
+    "name": "M.Sc in Paediatric Nursing",
+    "value": "M.Sc in Paediatric Nursing"
+  },
+  {
+    "name": "Master of Applied Management",
+    "value": "Master of Applied Management"
+  },
+  {
+    "name": "B.Sc Medical Sociology",
+    "value": "B.Sc Medical Sociology"
+  },
+  {
+    "name": "Diploma in Jewellery Design",
+    "value": "Diploma in Jewellery Design"
+  },
+  {
+    "name": "Diploma in Textile Design",
+    "value": "Diploma in Textile Design"
+  },
+  {
+    "name": "Diploma in Dental Hygienist",
+    "value": "Diploma in Dental Hygienist"
+  },
+  {
+    "name": "Certificate Course in Fashion Design",
+    "value": "Certificate Course in Fashion Design"
+  },
+  {
+    "name": "Certificate Course in Interior Design",
+    "value": "Certificate Course in Interior Design"
+  },
+  {
+    "name": "Diploma in Civil Engineering",
+    "value": "Diploma in Civil Engineering"
+  },
+  {
+    "name": "Diploma in Mechanical Engineering",
+    "value": "Diploma in Mechanical Engineering"
+  },
+  {
+    "name": "B.Tech Data Science",
+    "value": "B.Tech Data Science"
+  },
+  {
+    "name": "Master of Information Management",
+    "value": "Master of Information Management"
+  },
+  {
+    "name": "Master of International Business",
+    "value": "Master of International Business"
+  },
+  {
+    "name": "M.Pharm in Pharmacognosy",
+    "value": "M.Pharm in Pharmacognosy"
+  },
+  {
+    "name": "BA in Graphic Design",
+    "value": "BA in Graphic Design"
+  },
+  {
+    "name": "Diploma in Apparel Merchandising",
+    "value": "Diploma in Apparel Merchandising"
+  },
+  {
+    "name": "MBA in Textile Management",
+    "value": "MBA in Textile Management"
+  },
+  {
+    "name": "Medical Transcription",
+    "value": "Medical Transcription"
+  },
+  {
+    "name": "MBA in Brand Management",
+    "value": "MBA in Brand Management"
+  },
+  {
+    "name": "Diploma in Electrical Engineering",
+    "value": "Diploma in Electrical Engineering"
+  },
+  {
+    "name": "MBA in Dairy Management",
+    "value": "MBA in Dairy Management"
+  },
+  {
+    "name": "Diploma in Computer Science Engineering",
+    "value": "Diploma in Computer Science Engineering"
+  },
+  {
+    "name": "Post Graduate Diploma in Fashion Designing",
+    "value": "Post Graduate Diploma in Fashion Designing"
+  },
+  {
+    "name": "Diploma in Engineering",
+    "value": "Diploma in Engineering"
+  },
+  {
+    "name": "Media Law",
+    "value": "Media Law"
+  },
+  {
+    "name": "B.Pharm Hons.",
+    "value": "B.Pharm Hons."
+  },
+  {
+    "name": "MBA in Telecom Management",
+    "value": "MBA in Telecom Management"
+  },
+  {
+    "name": "Post Graduate Diploma in Interior Designing",
+    "value": "Post Graduate Diploma in Interior Designing"
+  },
+  {
+    "name": "M.A. in Textile Designing",
+    "value": "M.A. in Textile Designing"
+  },
+  {
+    "name": "MBA in Oil and Gas Management",
+    "value": "MBA in Oil and Gas Management"
+  },
+  {
+    "name": "Maritime Law",
+    "value": "Maritime Law"
+  },
+  {
+    "name": "Environmental Law",
+    "value": "Environmental Law"
+  },
+  {
+    "name": "Certificate in CAD",
+    "value": "Certificate in CAD"
+  },
+  {
+    "name": "Diploma in Mining Engineering",
+    "value": "Diploma in Mining Engineering"
+  },
+  {
+    "name": "Diploma in Chemical Engineering",
+    "value": "Diploma in Chemical Engineering"
+  },
+  {
+    "name": "Diploma in Petroleum Engineering",
+    "value": "Diploma in Petroleum Engineering"
+  },
+  {
+    "name": "MBA in Service Management",
+    "value": "MBA in Service Management"
+  },
+  {
+    "name": "B.Com Applied Economics",
+    "value": "B.Com Applied Economics"
+  },
+  {
+    "name": "B.Sc in Fashion Technology",
+    "value": "B.Sc in Fashion Technology"
+  },
+  {
+    "name": "Diploma in Textile Engineering",
+    "value": "Diploma in Textile Engineering"
+  },
+  {
+    "name": "Diploma in Ceramic Engineering",
+    "value": "Diploma in Ceramic Engineering"
+  },
+  {
+    "name": "M.Com International Business",
+    "value": "M.Com International Business"
+  },
+  {
+    "name": "Diploma in Plastic Engineering",
+    "value": "Diploma in Plastic Engineering"
+  },
+  {
+    "name": "Diploma in Metallurgical Engineering",
+    "value": "Diploma in Metallurgical Engineering"
+  },
+  {
+    "name": "Diploma in Agriculture",
+    "value": "Diploma in Agriculture"
+  },
+  {
+    "name": "M.Sc Home Science",
+    "value": "M.Sc Home Science"
+  },
+  {
+    "name": "B.Pharm Unani",
+    "value": "B.Pharm Unani"
+  },
+  {
+    "name": "Competition Law",
+    "value": "Competition Law"
+  },
+  {
+    "name": "B.Com Business Economics",
+    "value": "B.Com Business Economics"
+  },
+  {
+    "name": "M.Com in Business Studies",
+    "value": "M.Com in Business Studies"
+  },
+  {
+    "name": "M.Tech in Food Technology",
+    "value": "M.Tech in Food Technology"
+  },
+  {
+    "name": "MBA in Public Policy Management",
+    "value": "MBA in Public Policy Management"
+  },
+  {
+    "name": "MPT Biomechanics",
+    "value": "MPT Biomechanics"
+  },
+  {
+    "name": "Diploma in Interior Design",
+    "value": "Diploma in Interior Design"
+  },
+  {
+    "name": "Diploma in Animal husbandry",
+    "value": "Diploma in Animal husbandry"
+  },
+  {
+    "name": "BBA in Healthcare Management",
+    "value": "BBA in Healthcare Management"
+  },
+  {
+    "name": "B.Com Foreign Trade Management",
+    "value": "B.Com Foreign Trade Management"
+  },
+  {
+    "name": "B.Sc in Animation",
+    "value": "B.Sc in Animation"
+  },
+  {
+    "name": "ITI Course in Pump Operator cum Mechanic",
+    "value": "ITI Course in Pump Operator cum Mechanic"
+  },
+  {
+    "name": "ITI Course in Diesel Mechanic",
+    "value": "ITI Course in Diesel Mechanic"
+  },
+  {
+    "name": "B.Com E-Commerce",
+    "value": "B.Com E-Commerce"
+  },
+  {
+    "name": "ITI Course/Trade in Fitter",
+    "value": "ITI Course/Trade in Fitter"
+  },
+  {
+    "name": "MBA in Capital Markets",
+    "value": "MBA in Capital Markets"
+  },
+  {
+    "name": "ITI Course/Trade in Mechanic Motor Vehicle",
+    "value": "ITI Course/Trade in Mechanic Motor Vehicle"
+  },
+  {
+    "name": "Fashion Illustration",
+    "value": "Fashion Illustration"
+  },
+  {
+    "name": "ITI Course/Trade in Refrigeration and Air Conditioning",
+    "value": "ITI Course/Trade in Refrigeration and Air Conditioning"
+  },
+  {
+    "name": "ITI Course/Trade in Secretarial Practice",
+    "value": "ITI Course/Trade in Secretarial Practice"
+  },
+  {
+    "name": "MBA in Hospital Administration",
+    "value": "MBA in Hospital Administration"
+  },
+  {
+    "name": "Diploma in Horticulture",
+    "value": "Diploma in Horticulture"
+  },
+  {
+    "name": "M.Pharm Pharmaceutical Biotechnology",
+    "value": "M.Pharm Pharmaceutical Biotechnology"
+  },
+  {
+    "name": "Air and Space Law",
+    "value": "Air and Space Law"
+  },
+  {
+    "name": "Post Graduate Program in Management",
+    "value": "Post Graduate Program in Management"
+  },
+  {
+    "name": "ITI Course/Trade in Turner",
+    "value": "ITI Course/Trade in Turner"
+  },
+  {
+    "name": "Interaction Design",
+    "value": "Interaction Design"
+  },
+  {
+    "name": "MBA in Banking and Insurance",
+    "value": "MBA in Banking and Insurance"
+  },
+  {
+    "name": "Consumer Law",
+    "value": "Consumer Law"
+  },
+  {
+    "name": "MBA in Digital Marketing",
+    "value": "MBA in Digital Marketing"
+  },
+  {
+    "name": "Interior Architecture",
+    "value": "Interior Architecture"
+  },
+  {
+    "name": "B.Com in Sales and Marketing",
+    "value": "B.Com in Sales and Marketing"
+  },
+  {
+    "name": "Integrated M.Sc in Data Science",
+    "value": "Integrated M.Sc in Data Science"
+  },
+  {
+    "name": "Transportation Design",
+    "value": "Transportation Design"
+  },
+  {
+    "name": "Post Graduate Diploma in Hospital and Health Management",
+    "value": "Post Graduate Diploma in Hospital and Health Management"
+  },
+  {
+    "name": "Diploma in Dialysis Technician",
+    "value": "Diploma in Dialysis Technician"
+  },
+  {
+    "name": "B.Com in Advanced Accountancy",
+    "value": "B.Com in Advanced Accountancy"
+  },
+  {
+    "name": "B.Com in Advertising and Brand Management",
+    "value": "B.Com in Advertising and Brand Management"
+  },
+  {
+    "name": "Master of Commerce in Statistics",
+    "value": "Master of Commerce in Statistics"
+  },
+  {
+    "name": "Landscape Design",
+    "value": "Landscape Design"
+  },
+  {
+    "name": "MBA in Business Law",
+    "value": "MBA in Business Law"
+  },
+  {
+    "name": "BA Hons. Economics",
+    "value": "BA Hons. Economics"
+  },
+  {
+    "name": "Toy Design",
+    "value": "Toy Design"
+  },
+  {
+    "name": "Fashion PR",
+    "value": "Fashion PR"
+  },
+  {
+    "name": "BBA in Risk Management",
+    "value": "BBA in Risk Management"
+  },
+  {
+    "name": "Exhibition Design",
+    "value": "Exhibition Design"
+  },
+  {
+    "name": "BBA in Industrial Management",
+    "value": "BBA in Industrial Management"
+  },
+  {
+    "name": "MBA in Accounting",
+    "value": "MBA in Accounting"
+  },
+  {
+    "name": "Diploma in Anaesthesia",
+    "value": "Diploma in Anaesthesia"
+  },
+  {
+    "name": "Fashion Journalism",
+    "value": "Fashion Journalism"
+  },
+  {
+    "name": "M.Pharm in Clinical Practice and Research",
+    "value": "M.Pharm in Clinical Practice and Research"
+  },
+  {
+    "name": "Diploma in Hearing Language and Speech",
+    "value": "Diploma in Hearing Language and Speech"
+  },
+  {
+    "name": "BBA in Information Systems Management",
+    "value": "BBA in Information Systems Management"
+  },
+  {
+    "name": "Diploma in Banking and Finance",
+    "value": "Diploma in Banking and Finance"
+  },
+  {
+    "name": "BBA in Business Analytics",
+    "value": "BBA in Business Analytics"
+  },
+  {
+    "name": "PGD in Culinary Arts",
+    "value": "PGD in Culinary Arts"
+  },
+  {
+    "name": "M.Com in HR",
+    "value": "M.Com in HR"
+  },
+  {
+    "name": "B.Com in HR Management",
+    "value": "B.Com in HR Management"
+  },
+  {
+    "name": "Diploma in Nursing Care Assistant",
+    "value": "Diploma in Nursing Care Assistant"
+  },
+  {
+    "name": "Diploma in Homeopathic Medicine & Surgery",
+    "value": "Diploma in Homeopathic Medicine & Surgery"
+  },
+  {
+    "name": "BBA in E-Commerce",
+    "value": "BBA in E-Commerce"
+  },
+  {
+    "name": "Retail Design",
+    "value": "Retail Design"
+  },
+  {
+    "name": "Diploma in X-Ray Technology",
+    "value": "Diploma in X-Ray Technology"
+  },
+  {
+    "name": "PGD in Travel and Tourism Management",
+    "value": "PGD in Travel and Tourism Management"
+  },
+  {
+    "name": "B. Voc in Hotel Management",
+    "value": "B. Voc in Hotel Management"
+  },
+  {
+    "name": "M.Tech Data Science",
+    "value": "M.Tech Data Science"
+  },
+  {
+    "name": "Garment Technology",
+    "value": "Garment Technology"
+  },
+  {
+    "name": "B.Sc. Nuclear Medicine Technology",
+    "value": "B.Sc. Nuclear Medicine Technology"
+  },
+  {
+    "name": "BBA in Computer Application",
+    "value": "BBA in Computer Application"
+  },
+  {
+    "name": "M.Pharm Industrial Pharmacy",
+    "value": "M.Pharm Industrial Pharmacy"
+  },
+  {
+    "name": "B.Sc Sericulture",
+    "value": "B.Sc Sericulture"
+  },
+  {
+    "name": "MBA in Shipping and Logistics",
+    "value": "MBA in Shipping and Logistics"
+  },
+  {
+    "name": "M.Com Computer Applications",
+    "value": "M.Com Computer Applications"
+  },
+  {
+    "name": "BBA in Logistics and Supply Chain Management",
+    "value": "BBA in Logistics and Supply Chain Management"
+  },
+  {
+    "name": "M.Tech Geoinformatics",
+    "value": "M.Tech Geoinformatics"
+  },
+  {
+    "name": "Diploma in Advanced Accounting",
+    "value": "Diploma in Advanced Accounting"
+  },
+  {
+    "name": "Diploma in Ophthalmic Technology",
+    "value": "Diploma in Ophthalmic Technology"
+  },
+  {
+    "name": "M.Tech Genetic Engineering",
+    "value": "M.Tech Genetic Engineering"
+  },
+  {
+    "name": "PG Diploma in Supply Chain and Logistics Management",
+    "value": "PG Diploma in Supply Chain and Logistics Management"
+  },
+  {
+    "name": "Postgraduate Diploma in Bank Management",
+    "value": "Postgraduate Diploma in Bank Management"
+  },
+  {
+    "name": "Diploma in Computerised Accounting",
+    "value": "Diploma in Computerised Accounting"
+  },
+  {
+    "name": "M.Sc Sericulture",
+    "value": "M.Sc Sericulture"
+  },
+  {
+    "name": "M.Sc Organic Chemistry",
+    "value": "M.Sc Organic Chemistry"
+  },
+  {
+    "name": "BSc in Hospitality and Hotel Administration",
+    "value": "BSc in Hospitality and Hotel Administration"
+  },
+  {
+    "name": "B.Sc Hons Agri-Business Management",
+    "value": "B.Sc Hons Agri-Business Management"
+  },
+  {
+    "name": "M.Tech Computer Science Engineering",
+    "value": "M.Tech Computer Science Engineering"
+  },
+  {
+    "name": "Fashion Marketing",
+    "value": "Fashion Marketing"
+  },
+  {
+    "name": "BSc in Culinary Arts",
+    "value": "BSc in Culinary Arts"
+  },
+  {
+    "name": "B.Sc Hydrology",
+    "value": "B.Sc Hydrology"
+  },
+  {
+    "name": "M.Sc Hydrology",
+    "value": "M.Sc Hydrology"
+  },
+  {
+    "name": "MSc Data Science",
+    "value": "MSc Data Science"
+  },
+  {
+    "name": "Diploma in Naturopathy",
+    "value": "Diploma in Naturopathy"
+  },
+  {
+    "name": "BSc in Airlines & Airport Management",
+    "value": "BSc in Airlines & Airport Management"
+  },
+  {
+    "name": "B.Sc in Travel & Tourism Management",
+    "value": "B.Sc in Travel & Tourism Management"
+  },
+  {
+    "name": "MSc in Tourism and Hospitality Management",
+    "value": "MSc in Tourism and Hospitality Management"
+  },
+  {
+    "name": "B.Sc Analytical Chemistry",
+    "value": "B.Sc Analytical Chemistry"
+  },
+  {
+    "name": "M.Tech in Wireless Communication/ Network",
+    "value": "M.Tech in Wireless Communication/ Network"
+  },
+  {
+    "name": "M.Sc Virology",
+    "value": "M.Sc Virology"
+  },
+  {
+    "name": "Association of Chartered Certified Accountants",
+    "value": "Association of Chartered Certified Accountants"
+  },
+  {
+    "name": "PGD in Hotel Management",
+    "value": "PGD in Hotel Management"
+  },
+  {
+    "name": "PG Diploma in Event Management",
+    "value": "PG Diploma in Event Management"
+  },
+  {
+    "name": "PG Diploma in Accommodation Operation and Management",
+    "value": "PG Diploma in Accommodation Operation and Management"
+  },
+  {
+    "name": "Diploma in Journalism and Mass Communication",
+    "value": "Diploma in Journalism and Mass Communication"
+  },
+  {
+    "name": "MBA in Hotel Management",
+    "value": "MBA in Hotel Management"
+  },
+  {
+    "name": "B.Sc in Yoga",
+    "value": "B.Sc in Yoga"
+  },
+  {
+    "name": "Diploma in Broadcast Journalism",
+    "value": "Diploma in Broadcast Journalism"
+  },
+  {
+    "name": "BBA in Hotel Management",
+    "value": "BBA in Hotel Management"
+  },
+  {
+    "name": "MBA in Business Management",
+    "value": "MBA in Business Management"
+  },
+  {
+    "name": "MBA in Information System Management",
+    "value": "MBA in Information System Management"
+  },
+  {
+    "name": "MBA in Air Travel Management",
+    "value": "MBA in Air Travel Management"
+  },
+  {
+    "name": "Footwear Design",
+    "value": "Footwear Design"
+  },
+  {
+    "name": "MBA in Real Estate Management",
+    "value": "MBA in Real Estate Management"
+  },
+  {
+    "name": "BBA in Real Estate and Urban Infrastructure",
+    "value": "BBA in Real Estate and Urban Infrastructure"
+  },
+  {
+    "name": "B.Com Vocational",
+    "value": "B.Com Vocational"
+  },
+  {
+    "name": "PGD in Taxation",
+    "value": "PGD in Taxation"
+  },
+  {
+    "name": "PG Diploma in Media and Mass Communication",
+    "value": "PG Diploma in Media and Mass Communication"
+  },
+  {
+    "name": "B.Sc in Radiology",
+    "value": "B.Sc in Radiology"
+  },
+  {
+    "name": "Diploma in Rural Health Care",
+    "value": "Diploma in Rural Health Care"
+  },
+  {
+    "name": "Bachelor of Arts in Journalism",
+    "value": "Bachelor of Arts in Journalism"
+  },
+  {
+    "name": "Apparel Production",
+    "value": "Apparel Production"
+  },
+  {
+    "name": "Diploma in Optometry Technology",
+    "value": "Diploma in Optometry Technology"
+  },
+  {
+    "name": "B.Sc in Physician Assistant",
+    "value": "B.Sc in Physician Assistant"
+  },
+  {
+    "name": "B.Voc. Healthcare Management",
+    "value": "B.Voc. Healthcare Management"
+  },
+  {
+    "name": "M.Tech in Structural Engineering",
+    "value": "M.Tech in Structural Engineering"
+  },
+  {
+    "name": "Diploma in Operation Theatre Technology",
+    "value": "Diploma in Operation Theatre Technology"
+  },
+  {
+    "name": "M.Tech in Geo Technical Engineering",
+    "value": "M.Tech in Geo Technical Engineering"
+  },
+  {
+    "name": "PGD in Law",
+    "value": "PGD in Law"
+  },
+  {
+    "name": "Diploma in Clinical Pathology",
+    "value": "Diploma in Clinical Pathology"
+  },
+  {
+    "name": "Executive PGDM",
+    "value": "Executive PGDM"
+  },
+  {
+    "name": "PGD in Financial Management",
+    "value": "PGD in Financial Management"
+  },
+  {
+    "name": "Augmented Reality Design",
+    "value": "Augmented Reality Design"
+  },
+  {
+    "name": "Post Graduate Programme in Human Resource Management",
+    "value": "Post Graduate Programme in Human Resource Management"
+  },
+  {
+    "name": "Energy Law",
+    "value": "Energy Law"
+  },
+  {
+    "name": "PGDM in International Business",
+    "value": "PGDM in International Business"
+  },
+  {
+    "name": "BA Hons Business Economics",
+    "value": "BA Hons Business Economics"
+  },
+  {
+    "name": "PGDM in HRM",
+    "value": "PGDM in HRM"
+  },
+  {
+    "name": "PG Diploma in Business Management",
+    "value": "PG Diploma in Business Management"
+  },
+  {
+    "name": "M.Sc in Animation",
+    "value": "M.Sc in Animation"
+  },
+  {
+    "name": "Post Graduate Diploma in Management in Marketing",
+    "value": "Post Graduate Diploma in Management in Marketing"
+  },
+  {
+    "name": "Bachelor of Textile",
+    "value": "Bachelor of Textile"
+  },
+  {
+    "name": "M.Sc in Medical Laboratory Technology",
+    "value": "M.Sc in Medical Laboratory Technology"
+  },
+  {
+    "name": "PG Diploma in Textile Design",
+    "value": "PG Diploma in Textile Design"
+  },
+  {
+    "name": "BBA in Materials Management",
+    "value": "BBA in Materials Management"
+  },
+  {
+    "name": "MA in Travel and Tourism",
+    "value": "MA in Travel and Tourism"
+  },
+  {
+    "name": "PGDM in Operations Management",
+    "value": "PGDM in Operations Management"
+  },
+  {
+    "name": "Diploma in Graphic Design",
+    "value": "Diploma in Graphic Design"
+  },
+  {
+    "name": "Post Graduate Diploma in Graphic Design",
+    "value": "Post Graduate Diploma in Graphic Design"
+  },
+  {
+    "name": "B.A. Interior Design",
+    "value": "B.A. Interior Design"
+  },
+  {
+    "name": "PGDM in Business Analytics",
+    "value": "PGDM in Business Analytics"
+  },
+  {
+    "name": "B.Sc in Animation and Multimedia",
+    "value": "B.Sc in Animation and Multimedia"
+  },
+  {
+    "name": "Post Graduate Programme in Agri-Business Management",
+    "value": "Post Graduate Programme in Agri-Business Management"
+  },
+  {
+    "name": "M.Sc Textile Design",
+    "value": "M.Sc Textile Design"
+  },
+  {
+    "name": "M.Sc Interior Design",
+    "value": "M.Sc Interior Design"
+  },
+  {
+    "name": "Post Graduate Programme in Enterprise Management",
+    "value": "Post Graduate Programme in Enterprise Management"
+  },
+  {
+    "name": "B.Sc in Physiotherapy",
+    "value": "B.Sc in Physiotherapy"
+  },
+  {
+    "name": "BBM International Business",
+    "value": "BBM International Business"
+  },
+  {
+    "name": "Post Graduate Programme in Business Management",
+    "value": "Post Graduate Programme in Business Management"
+  },
+  {
+    "name": "Post Graduate Diploma in Corporate Law",
+    "value": "Post Graduate Diploma in Corporate Law"
+  },
+  {
+    "name": "BSc in Physiology",
+    "value": "BSc in Physiology"
+  },
+  {
+    "name": "BBM in Human Resource Management",
+    "value": "BBM in Human Resource Management"
+  },
+  {
+    "name": "B.Sc in Critical Care Technology",
+    "value": "B.Sc in Critical Care Technology"
+  },
+  {
+    "name": "PG Diploma in Human Rights Law",
+    "value": "PG Diploma in Human Rights Law"
+  },
+  {
+    "name": "Post Graduate Diploma in Cyber Law",
+    "value": "Post Graduate Diploma in Cyber Law"
+  },
+  {
+    "name": "Diploma in Dietetics",
+    "value": "Diploma in Dietetics"
+  },
+  {
+    "name": "Doctor of Philosophy",
+    "value": "Doctor of Philosophy"
+  },
+  {
+    "name": "Diploma in Architecture",
+    "value": "Diploma in Architecture"
+  },
+  {
+    "name": "Master of Arts in Archaeology",
+    "value": "Master of Arts in Archaeology"
+  },
+  {
+    "name": "Masters of Technology in Biotechnology",
+    "value": "Masters of Technology in Biotechnology"
+  },
+  {
+    "name": "Bachelor of Technology in Railway Engineering",
+    "value": "Bachelor of Technology in Railway Engineering"
+  },
+  {
+    "name": "Fares & Ticketing",
+    "value": "Fares & Ticketing"
+  },
+  {
+    "name": "Masters of Technology in Cyber Security",
+    "value": "Masters of Technology in Cyber Security"
+  },
+  {
+    "name": "Masters of Technology in Information Technology",
+    "value": "Masters of Technology in Information Technology"
+  },
+  {
+    "name": "Masters of Technology Mechanical Engineering",
+    "value": "Masters of Technology Mechanical Engineering"
+  },
+  {
+    "name": "Masters of Technology Environmental Technology",
+    "value": "Masters of Technology Environmental Technology"
+  },
+  {
+    "name": "Bachelor of Technology Thermal Engineering",
+    "value": "Bachelor of Technology Thermal Engineering"
+  },
+  {
+    "name": "Bachelor of Technology Dairy Technology",
+    "value": "Bachelor of Technology Dairy Technology"
+  },
+  {
+    "name": "Mechanical Engineering Courses",
+    "value": "Mechanical Engineering Courses"
+  },
+  {
+    "name": "Computer Science Engineering Courses",
+    "value": "Computer Science Engineering Courses"
+  },
+  {
+    "name": "Electronics and Communication Engineering",
+    "value": "Electronics and Communication Engineering"
+  },
+  {
+    "name": "Architecture Courses",
+    "value": "Architecture Courses"
+  },
+  {
+    "name": "B.Des in Interior Design",
+    "value": "B.Des in Interior Design"
+  },
+  {
+    "name": "Textile Engineering Courses",
+    "value": "Textile Engineering Courses"
+  },
+  {
+    "name": "Aerospace Engineering Courses",
+    "value": "Aerospace Engineering Courses"
+  },
+  {
+    "name": "Agriculture",
+    "value": "Agriculture"
+  },
+  {
+    "name": "Data Science",
+    "value": "Data Science"
+  },
+  {
+    "name": "Automobile Engineering",
+    "value": "Automobile Engineering"
+  },
+  {
+    "name": "Catering Courses",
+    "value": "Catering Courses"
+  },
+  {
+    "name": "Aeronautical Engineering",
+    "value": "Aeronautical Engineering"
+  },
+  {
+    "name": "BBA in Hotel and Tourism Management",
+    "value": "BBA in Hotel and Tourism Management"
+  },
+  {
+    "name": "Bachelor of Science in Fashion and Apparel Design",
+    "value": "Bachelor of Science in Fashion and Apparel Design"
+  },
+  {
+    "name": "Marine Engineering",
+    "value": "Marine Engineering"
+  },
+  {
+    "name": "Bachelor of Tourism and Travel Management",
+    "value": "Bachelor of Tourism and Travel Management"
+  },
+  {
+    "name": "Ceramic Engineering",
+    "value": "Ceramic Engineering"
+  },
+  {
+    "name": "Telecommunication Engineering Courses",
+    "value": "Telecommunication Engineering Courses"
+  },
+  {
+    "name": "Company Law",
+    "value": "Company Law"
+  },
+  {
+    "name": "Bachelor of Design in Communication Design",
+    "value": "Bachelor of Design in Communication Design"
+  },
+  {
+    "name": "Planning Courses",
+    "value": "Planning Courses"
+  },
+  {
+    "name": "Bachelors in Media Animation & Design",
+    "value": "Bachelors in Media Animation & Design"
+  },
+  {
+    "name": "Diploma in Architectural Assistantship",
+    "value": "Diploma in Architectural Assistantship"
+  },
+  {
+    "name": "Bachelor of Hospitality Management",
+    "value": "Bachelor of Hospitality Management"
+  },
+  {
+    "name": "M.Sc Fashion Technology",
+    "value": "M.Sc Fashion Technology"
+  },
+  {
+    "name": "Culinary Arts Courses",
+    "value": "Culinary Arts Courses"
+  },
+  {
+    "name": "M.Sc Fashion Design",
+    "value": "M.Sc Fashion Design"
+  },
+  {
+    "name": "BHM in Culinary Arts",
+    "value": "BHM in Culinary Arts"
+  },
+  {
+    "name": "B.Des in Fashion Communication",
+    "value": "B.Des in Fashion Communication"
+  },
+  {
+    "name": "Travel and Tourism Management Courses",
+    "value": "Travel and Tourism Management Courses"
+  },
+  {
+    "name": "Food and Beverage Services Courses",
+    "value": "Food and Beverage Services Courses"
+  },
+  {
+    "name": "B.Sc in Anaesthesia Technology",
+    "value": "B.Sc in Anaesthesia Technology"
+  },
+  {
+    "name": "BSW LLB",
+    "value": "BSW LLB"
+  },
+  {
+    "name": "Game Designing and Development Courses",
+    "value": "Game Designing and Development Courses"
+  },
+  {
+    "name": "BFA Textile Design",
+    "value": "BFA Textile Design"
+  },
+  {
+    "name": "Diploma in Medical Laboratory Technology",
+    "value": "Diploma in Medical Laboratory Technology"
+  },
+  {
+    "name": "BFA Graphics",
+    "value": "BFA Graphics"
+  },
+  {
+    "name": "BSc Food Technology",
+    "value": "BSc Food Technology"
+  },
+  {
+    "name": "Airport Management Courses",
+    "value": "Airport Management Courses"
+  },
+  {
+    "name": "PG Diploma in Hospitality Management",
+    "value": "PG Diploma in Hospitality Management"
+  },
+  {
+    "name": "M.Des in Graphic Design",
+    "value": "M.Des in Graphic Design"
+  },
+  {
+    "name": "M.A. Geography",
+    "value": "M.A. Geography"
+  },
+  {
+    "name": "Master of Arts in Education",
+    "value": "Master of Arts in Education"
+  },
+  {
+    "name": "B.A. Economics",
+    "value": "B.A. Economics"
+  },
+  {
+    "name": "Master of Science in Applied Geology",
+    "value": "Master of Science in Applied Geology"
+  },
+  {
+    "name": "BA Convergent Journalism",
+    "value": "BA Convergent Journalism"
+  },
+  {
+    "name": "Master of Arts in Convergent Journalism",
+    "value": "Master of Arts in Convergent Journalism"
+  },
+  {
+    "name": "B.Sc (Hons) in Community Science",
+    "value": "B.Sc (Hons) in Community Science"
+  },
+  {
+    "name": "Master of Science in Atmospheric Sciences",
+    "value": "Master of Science in Atmospheric Sciences"
+  },
+  {
+    "name": "ITI Course in Draughtsman (Mechanical)",
+    "value": "ITI Course in Draughtsman (Mechanical)"
+  },
+  {
+    "name": "B.Des Product Design",
+    "value": "B.Des Product Design"
+  },
+  {
+    "name": "Master of Science in Mathematics",
+    "value": "Master of Science in Mathematics"
+  },
+  {
+    "name": "Master of Science in Life Sciences",
+    "value": "Master of Science in Life Sciences"
+  },
+  {
+    "name": "B.Des in Graphic Design",
+    "value": "B.Des in Graphic Design"
+  },
+  {
+    "name": "Master of Science in Astronomy",
+    "value": "Master of Science in Astronomy"
+  },
+  {
+    "name": "ITI Course in Draughtsman (Civil)",
+    "value": "ITI Course in Draughtsman (Civil)"
+  },
+  {
+    "name": "ITI Course in Footwear Maker",
+    "value": "ITI Course in Footwear Maker"
+  },
+  {
+    "name": "ITI Course in Dress Making",
+    "value": "ITI Course in Dress Making"
+  },
+  {
+    "name": "Master of Science in Analytical Chemistry",
+    "value": "Master of Science in Analytical Chemistry"
+  },
+  {
+    "name": "ITI Course in Information Technology",
+    "value": "ITI Course in Information Technology"
+  },
+  {
+    "name": "MA Hindi",
+    "value": "MA Hindi"
+  },
+  {
+    "name": "ITI Course in Tool and Die Maker",
+    "value": "ITI Course in Tool and Die Maker"
+  },
+  {
+    "name": "ITI Course in Machinist",
+    "value": "ITI Course in Machinist"
+  },
+  {
+    "name": "M.A. Public Policy",
+    "value": "M.A. Public Policy"
+  },
+  {
+    "name": "Bachelor of Arts",
+    "value": "Bachelor of Arts"
+  },
+  {
+    "name": "Master of Science in Forensic Science",
+    "value": "Master of Science in Forensic Science"
+  },
+  {
+    "name": "ITI Course in Hair and Skin Care",
+    "value": "ITI Course in Hair and Skin Care"
+  },
+  {
+    "name": "ITI Course in Fruit and Vegetable Processor",
+    "value": "ITI Course in Fruit and Vegetable Processor"
+  },
+  {
+    "name": "M.Des in Fashion Designing",
+    "value": "M.Des in Fashion Designing"
+  },
+  {
+    "name": "ITI Course in Bleaching Dyeing and Calico Printing",
+    "value": "ITI Course in Bleaching Dyeing and Calico Printing"
+  },
+  {
+    "name": "ITI Course in Electrician",
+    "value": "ITI Course in Electrician"
+  },
+  {
+    "name": "M.A. Marathi",
+    "value": "M.A. Marathi"
+  },
+  {
+    "name": "M. Des in Interior Designing",
+    "value": "M. Des in Interior Designing"
+  },
+  {
+    "name": "ITI Course in Leather Goods Maker",
+    "value": "ITI Course in Leather Goods Maker"
+  },
+  {
+    "name": "ITI Course in Hand Compositor",
+    "value": "ITI Course in Hand Compositor"
+  },
+  {
+    "name": "ITI Course in Instrument Mechanic",
+    "value": "ITI Course in Instrument Mechanic"
+  },
+  {
+    "name": "BA Geography",
+    "value": "BA Geography"
+  },
+  {
+    "name": "M.Des in Communication Design",
+    "value": "M.Des in Communication Design"
+  },
+  {
+    "name": "M. Des in Industrial Designing",
+    "value": "M. Des in Industrial Designing"
+  },
+  {
+    "name": "ITI Course in Electronic Mechanic",
+    "value": "ITI Course in Electronic Mechanic"
+  },
+  {
+    "name": "PGD in Rural Development",
+    "value": "PGD in Rural Development"
+  },
+  {
+    "name": "ITI Course in Surveyor",
+    "value": "ITI Course in Surveyor"
+  },
+  {
+    "name": "BSc (Hons) in Physics",
+    "value": "BSc (Hons) in Physics"
+  },
+  {
+    "name": "MDes in Textile Design",
+    "value": "MDes in Textile Design"
+  },
+  {
+    "name": "BSc (Hons.) Zoology",
+    "value": "BSc (Hons.) Zoology"
+  },
+  {
+    "name": "BSc in Nautical Science",
+    "value": "BSc in Nautical Science"
+  },
+  {
+    "name": "BSc Hons. in Computer Science",
+    "value": "BSc Hons. in Computer Science"
+  },
+  {
+    "name": "BSc Geography",
+    "value": "BSc Geography"
+  },
+  {
+    "name": "Computer Science",
+    "value": "Computer Science"
+  },
+  {
+    "name": "Cosmetology",
+    "value": "Cosmetology"
+  },
+  {
+    "name": "PhD Food Technology",
+    "value": "PhD Food Technology"
+  },
+  {
+    "name": "Teacher Training",
+    "value": "Teacher Training"
+  },
+  {
+    "name": "Nursing",
+    "value": "Nursing"
+  },
+  {
+    "name": "PG Diploma in Food Technology",
+    "value": "PG Diploma in Food Technology"
+  },
+  {
+    "name": "Diploma Courses",
+    "value": "Diploma Courses"
+  },
+  {
+    "name": "PGDCA Course",
+    "value": "PGDCA Course"
+  },
+  {
+    "name": "Pharmacy Courses",
+    "value": "Pharmacy Courses"
+  },
+  {
+    "name": "Diploma in Fashion Designing",
+    "value": "Diploma in Fashion Designing"
+  },
+  {
+    "name": "Software Engineering",
+    "value": "Software Engineering"
+  },
+  {
+    "name": "Designing Course",
+    "value": "Designing Course"
+  },
+  {
+    "name": "Bachelor of Engineering in Computer Science",
+    "value": "Bachelor of Engineering in Computer Science"
+  },
+  {
+    "name": "Bachelor of Engineering BE Computer Engineering",
+    "value": "Bachelor of Engineering BE Computer Engineering"
+  },
+  {
+    "name": "Diploma in Computer Application",
+    "value": "Diploma in Computer Application"
+  },
+  {
+    "name": "Medical Laboratory Technology",
+    "value": "Medical Laboratory Technology"
+  },
+  {
+    "name": "Vocational Courses",
+    "value": "Vocational Courses"
+  },
+  {
+    "name": "Radiology Courses",
+    "value": "Radiology Courses"
+  },
+  {
+    "name": "BSc Hons",
+    "value": "BSc Hons"
+  },
+  {
+    "name": "Digital Marketing Course",
+    "value": "Digital Marketing Course"
+  },
+  {
+    "name": "Diploma in Education",
+    "value": "Diploma in Education"
+  },
+  {
+    "name": "Paramedical Courses",
+    "value": "Paramedical Courses"
+  },
+  {
+    "name": "Computer Courses",
+    "value": "Computer Courses"
+  },
+  {
+    "name": "CFP Certified Financial Planner",
+    "value": "CFP Certified Financial Planner"
+  },
+  {
+    "name": "Law",
+    "value": "Law"
+  },
+  {
+    "name": "Tally Course",
+    "value": "Tally Course"
+  },
+  {
+    "name": "Hotel Management Course",
+    "value": "Hotel Management Course"
+  },
+  {
+    "name": "IT Courses",
+    "value": "IT Courses"
+  },
+  {
+    "name": "Hospital Management",
+    "value": "Hospital Management"
+  },
+  {
+    "name": "Certified Public Accounting",
+    "value": "Certified Public Accounting"
+  },
+  {
+    "name": "Civil Engineering",
+    "value": "Civil Engineering"
+  },
+  {
+    "name": "Aerospace Engineering",
+    "value": "Aerospace Engineering"
+  },
+  {
+    "name": "Electronics Engineering Course",
+    "value": "Electronics Engineering Course"
+  },
+  {
+    "name": "Electrical Engineering",
+    "value": "Electrical Engineering"
+  },
+  {
+    "name": "Cardiology",
+    "value": "Cardiology"
+  },
+  {
+    "name": "Biomedical Engineering",
+    "value": "Biomedical Engineering"
+  },
+  {
+    "name": "Diploma in Nursing",
+    "value": "Diploma in Nursing"
+  },
+  {
+    "name": "Physiotherapy",
+    "value": "Physiotherapy"
+  },
+  {
+    "name": "Clinical Research",
+    "value": "Clinical Research"
+  },
+  {
+    "name": "Occupational Therapy",
+    "value": "Occupational Therapy"
+  },
+  {
+    "name": "Audiology",
+    "value": "Audiology"
+  },
+  {
+    "name": "MD Paediatrics",
+    "value": "MD Paediatrics"
+  },
+  {
+    "name": "Dermatology",
+    "value": "Dermatology"
+  },
+  {
+    "name": "Microbiology",
+    "value": "Microbiology"
+  },
+  {
+    "name": "Computer Engineering",
+    "value": "Computer Engineering"
+  },
+  {
+    "name": "DM Neurology",
+    "value": "DM Neurology"
+  },
+  {
+    "name": "Pathology",
+    "value": "Pathology"
+  },
+  {
+    "name": "MD General Medicine",
+    "value": "MD General Medicine"
+  },
+  {
+    "name": "MS Orthopaedics",
+    "value": "MS Orthopaedics"
+  },
+  {
+    "name": "Homeopathy",
+    "value": "Homeopathy"
+  },
+  {
+    "name": "MD Pathology",
+    "value": "MD Pathology"
+  },
+  {
+    "name": "Petroleum Engineering",
+    "value": "Petroleum Engineering"
+  },
+  {
+    "name": "Genetic Engineering",
+    "value": "Genetic Engineering"
+  },
+  {
+    "name": "Emergency Medical Technician",
+    "value": "Emergency Medical Technician"
+  },
+  {
+    "name": "Environmental Engineering",
+    "value": "Environmental Engineering"
+  },
+  {
+    "name": "Industrial Engineering",
+    "value": "Industrial Engineering"
+  },
+  {
+    "name": "MD Radiology",
+    "value": "MD Radiology"
+  },
+  {
+    "name": "Instrumentation Engineering",
+    "value": "Instrumentation Engineering"
+  },
+  {
+    "name": "MD Psychiatry",
+    "value": "MD Psychiatry"
+  },
+  {
+    "name": "Structural Engineering",
+    "value": "Structural Engineering"
+  },
+  {
+    "name": "MSc Medical Microbiology",
+    "value": "MSc Medical Microbiology"
+  },
+  {
+    "name": "Metallurgical Engineering",
+    "value": "Metallurgical Engineering"
+  },
+  {
+    "name": "Alternative Medicine",
+    "value": "Alternative Medicine"
+  },
+  {
+    "name": "Electrical and Electronics Engineering",
+    "value": "Electrical and Electronics Engineering"
+  },
+  {
+    "name": "BSc Operation Theatre Technology",
+    "value": "BSc Operation Theatre Technology"
+  },
+  {
+    "name": "MCh",
+    "value": "MCh"
+  },
+  {
+    "name": "MD Pharmacology",
+    "value": "MD Pharmacology"
+  },
+  {
+    "name": "Agricultural Engineering",
+    "value": "Agricultural Engineering"
+  },
+  {
+    "name": "MD Homoeopathy",
+    "value": "MD Homoeopathy"
+  },
+  {
+    "name": "BSc Cardiac Technology",
+    "value": "BSc Cardiac Technology"
+  },
+  {
+    "name": "Production Engineering",
+    "value": "Production Engineering"
+  },
+  {
+    "name": "MD Dermatology",
+    "value": "MD Dermatology"
+  },
+  {
+    "name": "BSc Pathology",
+    "value": "BSc Pathology"
+  },
+  {
+    "name": "MD Ayurveda",
+    "value": "MD Ayurveda"
+  },
+  {
+    "name": "BSc Radiography",
+    "value": "BSc Radiography"
+  },
+  {
+    "name": "Instrumentation and Control Engineering",
+    "value": "Instrumentation and Control Engineering"
+  },
+  {
+    "name": "Electronics and Telecommunication Engineering",
+    "value": "Electronics and Telecommunication Engineering"
+  },
+  {
+    "name": "DM Cardiology",
+    "value": "DM Cardiology"
+  },
+  {
+    "name": "MSc Anatomy",
+    "value": "MSc Anatomy"
+  },
+  {
+    "name": "Architecture Engineering",
+    "value": "Architecture Engineering"
+  },
+  {
+    "name": "Psychiatrist",
+    "value": "Psychiatrist"
+  },
+  {
+    "name": "MS Ophthalmology",
+    "value": "MS Ophthalmology"
+  },
+  {
+    "name": "BSc Perfusion Technology",
+    "value": "BSc Perfusion Technology"
+  },
+  {
+    "name": "DM Gastroenterology",
+    "value": "DM Gastroenterology"
+  },
+  {
+    "name": "BSc Medical Imaging Technology",
+    "value": "BSc Medical Imaging Technology"
+  },
+  {
+    "name": "Manufacturing Engineering",
+    "value": "Manufacturing Engineering"
+  },
+  {
+    "name": "MCh Urology",
+    "value": "MCh Urology"
+  },
+  {
+    "name": "Paediatrics",
+    "value": "Paediatrics"
+  },
+  {
+    "name": "Pharmacology",
+    "value": "Pharmacology"
+  },
+  {
+    "name": "Ophthalmology",
+    "value": "Ophthalmology"
+  },
+  {
+    "name": "PhD Physiotherapy",
+    "value": "PhD Physiotherapy"
+  },
+  {
+    "name": "Orthopaedics",
+    "value": "Orthopaedics"
+  },
+  {
+    "name": "DNB Cardiology",
+    "value": "DNB Cardiology"
+  },
+  {
+    "name": "MD Radiodiagnosis",
+    "value": "MD Radiodiagnosis"
+  },
+  {
+    "name": "MD Microbiology",
+    "value": "MD Microbiology"
+  },
+  {
+    "name": "MS ENT",
+    "value": "MS ENT"
+  },
+  {
+    "name": "Neurology",
+    "value": "Neurology"
+  },
+  {
+    "name": "Infrastructure Engineering",
+    "value": "Infrastructure Engineering"
+  },
+  {
+    "name": "Energy Engineering",
+    "value": "Energy Engineering"
+  },
+  {
+    "name": "Food Engineering",
+    "value": "Food Engineering"
+  },
+  {
+    "name": "Avionics Engineering",
+    "value": "Avionics Engineering"
+  },
+  {
+    "name": "Industrial and Production Engineering",
+    "value": "Industrial and Production Engineering"
+  },
+  {
+    "name": "Polymer Engineering",
+    "value": "Polymer Engineering"
+  },
+  {
+    "name": "Design Engineering",
+    "value": "Design Engineering"
+  },
+  {
+    "name": "Water Resources Engineering",
+    "value": "Water Resources Engineering"
+  },
+  {
+    "name": "MBA in Artificial Intelligence",
+    "value": "MBA in Artificial Intelligence"
+  },
+  {
+    "name": "MBA in Financial Technology",
+    "value": "MBA in Financial Technology"
+  },
+  {
+    "name": "BA Music",
+    "value": "BA Music"
+  },
+  {
+    "name": "M.Pharm Pharmacology",
+    "value": "M.Pharm Pharmacology"
+  },
+  {
+    "name": "Bachelor in Performing Arts",
+    "value": "Bachelor in Performing Arts"
+  },
+  {
+    "name": "BA Film, Television and OTT Production",
+    "value": "BA Film, Television and OTT Production"
+  },
+  {
+    "name": "BA (Hons) Political Science",
+    "value": "BA (Hons) Political Science"
+  },
+  {
+    "name": "BA Marathi",
+    "value": "BA Marathi"
+  },
+  {
+    "name": "B.Com in Finance",
+    "value": "B.Com in Finance"
+  },
+  {
+    "name": "BBA Honors",
+    "value": "BBA Honors"
+  },
+  {
+    "name": "Diploma in Information Technology",
+    "value": "Diploma in Information Technology"
+  },
+  {
+    "name": "BE Electrical and Electronics Engineering",
+    "value": "BE Electrical and Electronics Engineering"
+  },
+  {
+    "name": "Robotics Engineering",
+    "value": "Robotics Engineering"
+  },
+  {
+    "name": "BTech Cyber Security",
+    "value": "BTech Cyber Security"
+  },
+  {
+    "name": "BSc Data Science",
+    "value": "BSc Data Science"
+  },
+  {
+    "name": "BA Computer Applications",
+    "value": "BA Computer Applications"
+  },
+  {
+    "name": "Information Science & Engineering",
+    "value": "Information Science & Engineering"
+  },
+  {
+    "name": "Diploma in Electronics and Communication Engineering",
+    "value": "Diploma in Electronics and Communication Engineering"
+  },
+  {
+    "name": "MA Sociology",
+    "value": "MA Sociology"
+  },
+  {
+    "name": "BA (Hons) Sanskrit",
+    "value": "BA (Hons) Sanskrit"
+  },
+  {
+    "name": "Diploma in Electronics and Communication Engineering",
+    "value": "Diploma in Electronics and Communication Engineering"
+  },
+  {
+    "name": "Advanced Diploma in Computer Applications",
+    "value": "Advanced Diploma in Computer Applications"
+  },
+  {
+    "name": "BSc Non Medical",
+    "value": "BSc Non Medical"
+  },
+  {
+    "name": "Diploma in Mechatronics",
+    "value": "Diploma in Mechatronics"
+  },
+  {
+    "name": "BSc (Hons) Mathematics",
+    "value": "BSc (Hons) Mathematics"
+  },
+  {
+    "name": "B Com Computer Applications",
+    "value": "B Com Computer Applications"
+  },
+  {
+    "name": "Chemical Engineering",
+    "value": "Chemical Engineering"
+  },
+  {
+    "name": "BSc Hons Agriculture",
+    "value": "BSc Hons Agriculture"
+  },
+  {
+    "name": "MSc Nutrition and Dietetics",
+    "value": "MSc Nutrition and Dietetics"
+  },
+  {
+    "name": "MA Sanskrit",
+    "value": "MA Sanskrit"
+  },
+  {
+    "name": "BA Bengali Hons",
+    "value": "BA Bengali Hons"
+  },
+  {
+    "name": "BSc Hons Botany",
+    "value": "BSc Hons Botany"
+  },
+  {
+    "name": "BA Bengali Hons",
+    "value": "BA Bengali Hons"
+  },
+  {
+    "name": "PhD Computer Science",
+    "value": "PhD Computer Science"
+  },
+  {
+    "name": "BSc Bioinformatics",
+    "value": "BSc Bioinformatics"
+  },
+  {
+    "name": "BA Sanskrit",
+    "value": "BA Sanskrit"
+  },
+  {
+    "name": "BA Functional English",
+    "value": "BA Functional English"
+  },
+  {
+    "name": "MSc Food Science and Technology",
+    "value": "MSc Food Science and Technology"
+  },
+  {
+    "name": "BSc Computer Application",
+    "value": "BSc Computer Application"
+  },
+  {
+    "name": "BSc Computer Application",
+    "value": "BSc Computer Application"
+  },
+  {
+    "name": "Data Entry Operator Course",
+    "value": "Data Entry Operator Course"
+  },
+  {
+    "name": "Mobile Repairing Course",
+    "value": "Mobile Repairing Course"
+  },
+  {
+    "name": "Diploma in Cooperative Management",
+    "value": "Diploma in Cooperative Management"
+  },
+  {
+    "name": "PhD Mathematics",
+    "value": "PhD Mathematics"
+  },
+  {
+    "name": "Diploma in Multimedia",
+    "value": "Diploma in Multimedia"
+  },
+  {
+    "name": "BBA in Fintech",
+    "value": "BBA in Fintech"
+  },
+  {
+    "name": "B.Tech Cloud Computing",
+    "value": "B.Tech Cloud Computing"
+  },
+  {
+    "name": "B.Des in Game Design & Animation",
+    "value": "B.Des in Game Design & Animation"
+  },
+  {
+    "name": "BCA in Cyber Security",
+    "value": "BCA in Cyber Security"
+  },
+  {
+    "name": "BCA in Animation & Gaming",
+    "value": "BCA in Animation & Gaming"
+  },
+  {
+    "name": "BBA in New Age Sales and Marketing",
+    "value": "BBA in New Age Sales and Marketing"
+  },
+  {
+    "name": "MCA in Full Stack Development",
+    "value": "MCA in Full Stack Development"
+  },
+  {
+    "name": "BCA in Data Science",
+    "value": "BCA in Data Science"
+  },
+  {
+    "name": "BBA in Applied HR",
+    "value": "BBA in Applied HR"
+  },
+  {
+    "name": "B.Tech in Full Stack Development",
+    "value": "B.Tech in Full Stack Development"
+  },
+  {
+    "name": "B.Com Investment Banking",
+    "value": "B.Com Investment Banking"
+  },
+  {
+    "name": "B.Tech in Blockchain Technology",
+    "value": "B.Tech in Blockchain Technology"
+  },
+  {
+    "name": "BCA Full Stack Development",
+    "value": "BCA Full Stack Development"
+  },
+  {
+    "name": "B.Com Fintech",
+    "value": "B.Com Fintech"
+  },
+  {
+    "name": "BCA in Cloud Computing",
+    "value": "BCA in Cloud Computing"
+  },
+  {
+    "name": "B.Des in UX/UI Course",
+    "value": "B.Des in UX/UI Course"
+  },
+  {
+    "name": "B.Com Banking & Finance",
+    "value": "B.Com Banking & Finance"
+  },
+  {
+    "name": "BSc Animation VFX",
+    "value": "BSc Animation VFX"
+  },
+  {
+    "name": "B.Des in UX/ UI Interaction Design Course",
+    "value": "B.Des in UX/ UI Interaction Design Course"
+  },
+  {
+    "name": "B.Com International Business & Finance",
+    "value": "B.Com International Business & Finance"
+  },
+  {
+    "name": "Digital Journalism",
+    "value": "Digital Journalism"
+  },
+  {
+    "name": "BBA in Insurance and Investment Management",
+    "value": "BBA in Insurance and Investment Management"
+  },
+  {
+    "name": "BBA in Investment Banking",
+    "value": "BBA in Investment Banking"
+  },
+  {
+    "name": "MBA in New Age Sales and Marketing",
+    "value": "MBA in New Age Sales and Marketing"
+  },
+  {
+    "name": "MBA in Applied HR",
+    "value": "MBA in Applied HR"
+  },
+  {
+    "name": "B.Des in Visual Communication Course",
+    "value": "B.Des in Visual Communication Course"
+  },
+  {
+    "name": "B.Des in Animation & Visual Effects Course",
+    "value": "B.Des in Animation & Visual Effects Course"
+  },
+  {
+    "name": "M.Des in UX/UI Course",
+    "value": "M.Des in UX/UI Course"
+  },
+  {
+    "name": "MBA in Global Financial Operations",
+    "value": "MBA in Global Financial Operations"
+  },
+  {
+    "name": "BA in Restaurant Management Course",
+    "value": "BA in Restaurant Management Course"
+  },
+  {
+    "name": "MBA in Investment Banking",
+    "value": "MBA in Investment Banking"
+  },
+  {
+    "name": "Artificial Intelligence and Machine Learning Course",
+    "value": "Artificial Intelligence and Machine Learning Course"
+  },
+  {
+    "name": "Doctor of Business Administration",
+    "value": "Doctor of Business Administration"
+  },
+  {
+    "name": "Investment Banking",
+    "value": "Investment Banking"
+  }
+]
