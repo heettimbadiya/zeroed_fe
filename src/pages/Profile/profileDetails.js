@@ -442,13 +442,25 @@ function ProfileDetails({ data }) {
               {/* Video */}
               <div className="flex lg:w-[30%] w-full lg:max-h-[calc(100vh-106px)] h-auto bg-grayLight lg:mt-0 mt-4">
                 <div className="relative w-full h-full">
+                  <div className="text-2xl font-bold my-5">Primary Video</div>
                   <video
-                    controls
-                    className="w-full lg:max-h-[calc(100vh-106px)] h-auto rounded-lg flex items-start"
+                      controls
+                      className="w-full lg:max-h-[calc(100vh-106px)] h-auto rounded-lg flex items-start"
                   >
                     <source
-                      src={`${process.env.REACT_APP_FILE_URL}/${data?.basicDetails?.video}`}
-                      type="video/mp4"
+                        src={`${process.env.REACT_APP_FILE_URL}/${data?.basicDetails?.video}`}
+                        type="video/mp4"
+                    />
+                    Your browser does not support the video tag.
+                  </video>
+                  <div className="text-2xl font-bold my-5">Secondary Video</div>
+                  <video
+                      controls
+                      className="w-full lg:max-h-[calc(100vh-106px)] h-auto rounded-lg flex items-start"
+                  >
+                    <source
+                        src={`${process.env.REACT_APP_FILE_URL}/${data?.basicDetails?.secondary_video}`}
+                        type="video/mp4"
                     />
                     Your browser does not support the video tag.
                   </video>

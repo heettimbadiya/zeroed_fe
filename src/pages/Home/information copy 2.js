@@ -284,6 +284,9 @@ function Information({ data }) {
     if (values.video) {
       formData.append('basicDetails[video]', values.video)
     }
+ if (values.secondary_video) {
+      formData.append('basicDetails[secondary_video]', values.secondary_video)
+    }
 
     // Append international education
     formData.append(
@@ -513,6 +516,7 @@ function Information({ data }) {
               data?.workExperience?.experience_end_date || null,
 
             video: data?.basicDetails?.video || '',
+            secondary_video: data?.basicDetails?.secondary_video || '',
 
             career_industry: data?.careerGoal?.career_industry || '',
             career_field: data?.careerGoal?.career_field || '',
@@ -1193,6 +1197,8 @@ function Information({ data }) {
                     <VideoUploader
                       defaultVideo={data?.basicDetails?.video}
                       onVideoUpload={(url) => setFieldValue(`video`, url)}
+                      defaultSecondaryVideo={data?.basicDetails?.secondary_video}
+                      onSecondaryVideoUpload={(url) => setFieldValue(`secondary_video`, url)}
                     />
                     <ErrorMessage
                       name={'video'}

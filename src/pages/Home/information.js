@@ -374,6 +374,9 @@ function Information({data}) {
         if (values.video) {
             formData.append('video', values.video)
         }
+        if (values.secondary_video) {
+            formData.append('secondary_video', values.secondary_video)
+        }
 
         // Append international education
         formData.append(
@@ -535,6 +538,7 @@ function Information({data}) {
 
         // Append career goal
         formData.append('careerGoal[career_industry]', values.career_industry)
+        formData.append('careerGoal[career_role]', values.career_role)
         formData.append('careerGoal[career_field]', values.career_field)
         formData.append('careerGoal[noc_number]', values.noc_number)
         formData.append('careerGoal[noc]', values.noc)
@@ -731,8 +735,10 @@ function Information({data}) {
                 email: data?.workExperience?.email || '',
 
                 video: data?.basicDetails?.video || '',
+                secondary_video: data?.basicDetails?.secondary_video || '',
 
                 career_industry: data?.careerGoal?.career_industry || '',
+                career_role: data?.careerGoal?.career_role || '',
                 career_field: data?.careerGoal?.career_field || '',
                 noc_number: data?.careerGoal?.noc_number || '',
                 noc: data?.careerGoal?.noc || '',
@@ -794,6 +800,7 @@ function Information({data}) {
                                                                     'Invalid file type. Please select a jpeg, JPG or PNG file.',
                                                                 )
                                                             }
+
                                                         }
                                                     }}
                                                 />
@@ -1644,6 +1651,8 @@ function Information({data}) {
                                         <VideoUploader
                                             defaultVideo={data?.basicDetails?.video}
                                             onVideoUpload={(url) => setFieldValue(`video`, url)}
+                                            defaultSecondaryVideo={data?.basicDetails?.secondary_video}
+                                            onSecondaryVideoUpload={(url) => setFieldValue(`secondary_video`, url)}
                                         />
                                         <ErrorMessage
                                             name={'video'}
@@ -1674,31 +1683,43 @@ function Information({data}) {
                                 <TextField
                                     type="text"
                                     label="Role"
-                                    name="career_industry"
+                                    name="career_role"
                                     placeholder="Enter career role"
+                                    onChange={(e) =>
+                                        setFieldValue('career_role', e.target.value)
+                                    }
+                                />
+                                <DropDownInput
+                                    label="Industry"
+                                    name="career_industry"
+                                    options={industriesData.map((industry) => ({
+                                        value: industry.name,
+                                        name: industry.name,
+                                    }))}
+                                    value={data?.careerGoal?.career_industry || ''}
                                     onChange={(e) =>
                                         setFieldValue('career_industry', e.target.value)
                                     }
                                 />
-                                {/* <DropDownInput
-                  label="Industry"
-                  name="career_field"
-                  options={fieldOfStudy}
-                  value={data?.careerGoal?.career_field || ''}
-                  onChange={(e) =>
-                    setFieldValue('career_field', e.target.value)
-                  }
-                /> */}
-
-                                <TextField
-                                    type="text"
-                                    label="industry"
+                                <DropDownInput
+                                    label="Fields"
                                     name="career_field"
-                                    placeholder="Enter career industry"
+                                    options={industriesData.find((industry) => industry.name === values.career_industry)?.subsector || []}
+                                    value={data?.careerGoal?.career_industry || ''}
                                     onChange={(e) =>
                                         setFieldValue('career_field', e.target.value)
                                     }
                                 />
+
+                                {/*<TextField*/}
+                                {/*    type="text"*/}
+                                {/*    label="industry"*/}
+                                {/*    name="career_field"*/}
+                                {/*    placeholder="Enter career industry"*/}
+                                {/*    onChange={(e) =>*/}
+                                {/*        setFieldValue('career_field', e.target.value)*/}
+                                {/*    }*/}
+                                {/*/>*/}
 
                                 <DropDownInput
                                     label="NOC Number"
