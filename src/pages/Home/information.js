@@ -45,7 +45,6 @@ import {ExperienceDateFormat} from '../../utils/dateFormat'
 import FormInfo from '../../common/Information/formInfo'
 import Label from '../../component/InputField/label'
 import CertificatePreview from './certificatePreivew'
-// import VideoSampleModal from "./videoSampleModal";
 
 // Function to extract the domain from an email address
 const getDomainFromEmail = (email) => {
@@ -92,6 +91,14 @@ function Information({data}) {
         value: country.name,
         name: country.name,
     }))
+    const referenceOption = [{
+        value: "HR",
+        name: "HR"
+    }, {
+        value: "Reporting Manager",
+        name: "Reporting Manager"
+    }
+    ]
 
     const countryDataBasic = Country.getAllCountries().map((country) => ({
         value: country.isoCode,
@@ -192,6 +199,7 @@ function Information({data}) {
     const initialWorkExperience = {
         isValidation: true,
         emailError: '',
+        referenceEmailError: '',
         work_experience_industry: '',
         work_experience_sub_industry: '',
         work_experience_country: '',
@@ -208,6 +216,7 @@ function Information({data}) {
             accomplishment_4: '',
         },
         email: '',
+        reference: ''
     }
     const [workExperiences, setWorkExperiences] = useState([
         initialWorkExperience,
@@ -329,6 +338,7 @@ function Information({data}) {
                     accomplishment_4: '',
                 },
                 email: '',
+                reference: '',
             },
         ])
     }
@@ -346,7 +356,7 @@ function Information({data}) {
         setWorkExperiences(updatedExperiences)
 
         // Trigger email and website validation if either of these fields change
-        if (field === 'email' || field === 'work_experience_company_website') {
+        if (field === 'email' || field === 'reference_email' || field === 'work_experience_company_website') {
             validateEmailAndWebsite(index, updatedExperiences[index])
         }
     }
@@ -392,6 +402,26 @@ function Information({data}) {
         formData.append(
             'internationalEducation[year_of_graduation]',
             values.year_of_graduation,
+        )
+        formData.append(
+            'internationalEducation[college_name]',
+            values.college_name,
+        )
+        formData.append(
+            'internationalEducation[global_gpa]',
+            values.global_gpa,
+        )
+        formData.append(
+            'internationalEducation[credential_no]',
+            values.credential_no,
+        )
+        formData.append(
+            'internationalEducation[credential_assesed]',
+            values.credential_assesed,
+        )
+        formData.append(
+            'internationalEducation[credential_institute_name]',
+            values.credential_institute_name,
         )
 
         // Append Canadian education
@@ -439,6 +469,12 @@ function Information({data}) {
                     formData.append(
                         `certificate_core_${coreIndex}_sub_${subIndex}`,
                         subSkill.certificate,
+                    )
+                }
+                if (subSkill.link) {
+                    formData.append(
+                        `link_core_${coreIndex}_sub_${subIndex}`,
+                        subSkill.link,
                     )
                 }
             })
@@ -501,6 +537,14 @@ function Information({data}) {
             formData.append(
                 `workExperience[${index}][isCurrentlyWorking]`,
                 experience.isCurrentlyWorking,
+            )
+            formData.append(
+                `workExperience[${index}][reference_email]`,
+                experience.reference_email,
+            )
+            formData.append(
+                `workExperience[${index}][reference]`,
+                experience.reference,
             )
             formData.append(
                 `workExperience[${index}][accomplishments]`,
@@ -578,6 +622,7 @@ function Information({data}) {
             experience.work_experience_company_website,
         )
         const emailDomain = getDomainFromEmail(experience.email)
+        const referenceEmailDomain = getDomainFromEmail(experience.reference_email)
 
         // Compare the website domain and email domain
         if (websiteDomain && emailDomain && websiteDomain !== emailDomain) {
@@ -588,10 +633,26 @@ function Information({data}) {
                 return updatedWorkExperiences
             })
             setDisabledButton(true)
+        }  else {
+            setWorkExperiences((prevWorkExperiences) => {
+                const updatedWorkExperiences = [...prevWorkExperiences]
+                updatedWorkExperiences[index].emailError = ''
+                return updatedWorkExperiences
+            })
+            setDisabledButton(false)
+        }
+        if (websiteDomain && referenceEmailDomain && websiteDomain !== referenceEmailDomain) {
+            const errorMessage = 'Reference email domain must match the company website domain.'
+            setWorkExperiences((prevWorkExperiences) => {
+                const updatedWorkExperiences = [...prevWorkExperiences]
+                updatedWorkExperiences[index].referenceEmailError = errorMessage
+                return updatedWorkExperiences
+            })
+            setDisabledButton(true)
         } else {
             setWorkExperiences((prevWorkExperiences) => {
                 const updatedWorkExperiences = [...prevWorkExperiences]
-                updatedWorkExperiences[index].emailError = '' // Clear error message
+                updatedWorkExperiences[index].referenceEmailError = ''
                 return updatedWorkExperiences
             })
             setDisabledButton(false)
@@ -622,7 +683,16 @@ function Information({data}) {
                 field_of_study: data?.internationalEducation?.field_of_study || '',
                 year_of_graduation:
                     data?.internationalEducation?.year_of_graduation || '',
-
+                college_name:
+                    data?.internationalEducation?.college_name || '',
+                global_gpa:
+                    data?.internationalEducation?.global_gpa || '',
+                credential_no:
+                    data?.internationalEducation?.credential_no || '',
+                credential_institute_name:
+                    data?.internationalEducation?.credential_institute_name || '',
+                credential_assesed:
+                    data?.internationalEducation?.credential_assesed || false,
                 isCanadianEducation:
                     data?.canadianEducation?.isCanadianEducation || false,
                 university: data?.canadianEducation?.university || '',
@@ -644,7 +714,8 @@ function Information({data}) {
                                     const _id = data?._id || null
                                     const subSkill = data.sub_skills || ''
                                     const certificate = data.certificate || ''
-                                    return {_id, subSkill, certificate}
+                                    const link = data.link || ''
+                                    return {_id, subSkill, certificate, link}
                                 })
                                 : [],
                     },
@@ -657,7 +728,8 @@ function Information({data}) {
                                     const _id = data?._id || null
                                     const subSkill = data.sub_skills || ''
                                     const certificate = data.certificate || ''
-                                    return {_id, subSkill, certificate}
+                                    const link = data.link || ''
+                                    return {_id, subSkill, certificate, link}
                                 })
                                 : [],
                     },
@@ -670,7 +742,8 @@ function Information({data}) {
                                     const _id = data?._id || null
                                     const subSkill = data.sub_skills || ''
                                     const certificate = data.certificate || ''
-                                    return {_id, subSkill, certificate}
+                                    const link = data.link || ''
+                                    return {_id, subSkill, certificate, link}
                                 })
                                 : [],
                     },
@@ -698,6 +771,8 @@ function Information({data}) {
                 // experience_end_date: data?.workExperience?.experience_end_date || null,
                 isCurrentlyWorking: data?.workExperience?.isCurrentlyWorking || false,
                 email: data?.workExperience?.email || '',
+                reference: data?.workExperience?.reference || '',
+                reference_email: data?.workExperience?.reference_email || '',
 
                 video: data?.basicDetails?.video || '',
                 secondary_video: data?.basicDetails?.secondary_video || '',
@@ -717,6 +792,14 @@ function Information({data}) {
                         {/* ------------------Personal Information--------------- */}
                         <FormInfo title="Personal Information" icon={<UserInfo/>}>
                             <div className="grid xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2 gap-x-5 py-6 px-4">
+                                {/*<DropDownInput1*/}
+                                {/*    label={"Hello"}*/}
+                                {/*    name={"hello"}*/}
+                                {/*    value={values.hello}*/}
+                                {/*    onChange={(e) => setFieldValue('hello', e.target.value)}*/}
+                                {/*    placeholder="Type and press Enter"*/}
+
+                                {/*/>*/}
                                 <TextField
                                     type="text"
                                     label="firstname"
@@ -923,6 +1006,45 @@ function Information({data}) {
                                         setFieldValue('year_of_graduation', e.target.value)
                                     }
                                 />
+                                <TextField
+                                    type="text"
+                                    label="college Name"
+                                    name="college_name"
+                                    placeholder="Enter college name"
+                                    onChange={(e) => setFieldValue('college_name', e.target.value)}
+                                />
+                                <TextField
+                                    type="text"
+                                    label="GPA"
+                                    name="global_gpa"
+                                    placeholder="Enter GPA"
+                                    onChange={(e) => setFieldValue('global_gpa', e.target.value)}
+                                />
+                                <TextField
+                                    type="text"
+                                    label="Credential No"
+                                    name="credential_no"
+                                    placeholder="Enter Credential No"
+                                    onChange={(e) => setFieldValue('credential_no', e.target.value)}
+                                />
+                                <DropDownInput
+                                    label="Credential institute name"
+                                    name="credential_institute_name"
+                                    options={years}
+                                    value={data?.internationalEducation?.credential_institute_name || ''}
+                                    onChange={(e) =>
+                                        setFieldValue('credential_institute_name', e.target.value)
+                                    }
+                                />
+                                <div className='d-flex justify-center items-center mt-9'>
+                                    <ToggleButton
+                                        label="Credential assesed"
+                                        name="credential_assesed"
+                                        onChange={(e) =>
+                                            setFieldValue('credential_assesed', e.target.checked)
+                                        }
+                                    />
+                                </div>
                             </div>
                         </FormInfo>
 
@@ -1240,6 +1362,17 @@ function Information({data}) {
                                                                                                         subSkill={subSkill}
                                                                                                     />
 
+                                                                                                    <div
+                                                                                                        className='mt-3'>
+                                                                                                        <TextField
+                                                                                                            type="text"
+                                                                                                            label="assesment result link"
+                                                                                                            name={`coreSkills[${coreIndex}].subSkills[${subIndex}].link`}
+                                                                                                            placeholder="Enter assesment result link"
+                                                                                                            onChange={(e) => setFieldValue(`coreSkills[${coreIndex}].subSkills[${subIndex}].link`, e.target.value)}
+                                                                                                        />
+                                                                                                    </div>
+
                                                                                                     {/* Display error message if validation fails */}
                                                                                                     <ErrorMessage
                                                                                                         name={`coreSkills[${coreIndex}].subSkills[${subIndex}].certificate`}
@@ -1421,13 +1554,13 @@ function Information({data}) {
                                                         )
                                                     }
                                                 />
+                                                {experience.emailError && (
+                                                    <div className="text-red-500 text-sm -mt-3">
+                                                        {experience.emailError}
+                                                    </div>
+                                                )}
                                             </div>
 
-                                            {experience.emailError && (
-                                                <div className="text-red-500 text-sm -mt-3">
-                                                    {experience.emailError}
-                                                </div>
-                                            )}
                                         </div>
                                         {/* ---------Start Date------------- */}
                                         <div>
@@ -1539,9 +1672,44 @@ function Information({data}) {
                                                 )
                                             }
                                         />
+                                        <DropDownInput
+                                            label="referance"
+                                            name={`reference`}
+                                            value={experience.reference}
+                                            options={referenceOption}
+                                            onChange={(e) =>
+                                                handleChangeExperience(
+                                                    index,
+                                                    'reference',
+                                                    e.target.value,
+                                                )
+                                            }
+                                        />
+                                        <div className="w-full">
+                                            <TextFieldValue
+                                                type="text"
+                                                label="Reference Email"
+                                                name={`email_${index}`}
+                                                value={experience.reference_email || ''}
+                                                placeholder="Enter reference email"
+                                                onChange={(e) =>
+                                                    handleChangeExperience(
+                                                        index,
+                                                        'reference_email',
+                                                        e.target.value,
+                                                    )
+                                                }
+                                            />
+                                        {experience.referenceEmailError && (
+                                            <div className="text-red-500 text-sm -mt-3">
+                                                {experience.referenceEmailError}
+                                            </div>
+                                        )}
+                                        </div>
                                     </div>
                                 </div>
                             ))}
+
                             <div
                                 className="ml-4 bg-primary px-4 py-2 text-white rounded w-[160px] cursor-pointer text-nowrap"
                                 onClick={handleAddExperience}
