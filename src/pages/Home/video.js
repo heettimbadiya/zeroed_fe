@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 import { useDropzone } from "react-dropzone";
 import Dialog from "../../component/Dialog";
 
-const VideoUploader = ({ defaultVideo, onVideoUpload, defaultSecondaryVideo, onSecondaryVideoUpload }) => {
+const VideoUploader = ({ defaultVideo, onVideoUpload, defaultSecondaryVideo, onSecondaryVideoUpload,data }) => {
   const [recordedVideo, setRecordedVideo] = useState(null);
   const [secondaryVideo, setSecondaryVideo] = useState(null);
   const [videoError, setVideoError] = useState("");
@@ -111,12 +111,12 @@ const VideoUploader = ({ defaultVideo, onVideoUpload, defaultSecondaryVideo, onS
           >
             Record Video
           </div>
-          <div
+          {data && <div
               onClick={openSecondaryDialog}
               className="border border-text-border border-b-4 focus:border-b-4 focus:border-primary outline-none rounded-lg px-4 py-3 w-1/2 text-center cursor-pointer"
           >
             Secondary Video
-          </div>
+          </div>}
         </div>
 
         {/* Primary Video Dialog */}
