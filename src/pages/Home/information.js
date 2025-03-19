@@ -90,6 +90,14 @@ function Information({data}) {
         value: country.name,
         name: country.name,
     }))
+    const referenceOption = [{
+        value: "HR",
+        name: "HR"
+    }, {
+        value: "Reporting Manager",
+        name: "Reporting Manager"
+    }
+    ]
 
     const countryDataBasic = Country.getAllCountries().map((country) => ({
         value: country.isoCode,
@@ -190,6 +198,7 @@ function Information({data}) {
     const initialWorkExperience = {
         isValidation: true,
         emailError: '',
+        referenceEmailError: '',
         work_experience_industry: '',
         work_experience_sub_industry: '',
         work_experience_country: '',
@@ -206,6 +215,7 @@ function Information({data}) {
             accomplishment_4: '',
         },
         email: '',
+        reference: ''
     }
     const [workExperiences, setWorkExperiences] = useState([
         initialWorkExperience,
@@ -327,6 +337,7 @@ function Information({data}) {
                     accomplishment_4: '',
                 },
                 email: '',
+                reference: '',
             },
         ])
     }
@@ -344,7 +355,7 @@ function Information({data}) {
         setWorkExperiences(updatedExperiences)
 
         // Trigger email and website validation if either of these fields change
-        if (field === 'email' || field === 'work_experience_company_website') {
+        if (field === 'email' || field === 'reference_email' || field === 'work_experience_company_website') {
             validateEmailAndWebsite(index, updatedExperiences[index])
         }
     }
@@ -461,7 +472,7 @@ function Information({data}) {
                 }
                 if (subSkill.link) {
                     formData.append(
-                        `certificate_core_${coreIndex}_sub_${subIndex}`,
+                        `link_core_${coreIndex}_sub_${subIndex}`,
                         subSkill.link,
                     )
                 }
@@ -525,6 +536,14 @@ function Information({data}) {
             formData.append(
                 `workExperience[${index}][isCurrentlyWorking]`,
                 experience.isCurrentlyWorking,
+            )
+            formData.append(
+                `workExperience[${index}][reference_email]`,
+                experience.reference_email,
+            )
+            formData.append(
+                `workExperience[${index}][reference]`,
+                experience.reference,
             )
             formData.append(
                 `workExperience[${index}][accomplishments]`,
@@ -601,6 +620,7 @@ function Information({data}) {
             experience.work_experience_company_website,
         )
         const emailDomain = getDomainFromEmail(experience.email)
+        const referenceEmailDomain = getDomainFromEmail(experience.reference_email)
 
         // Compare the website domain and email domain
         if (websiteDomain && emailDomain && websiteDomain !== emailDomain) {
@@ -611,10 +631,26 @@ function Information({data}) {
                 return updatedWorkExperiences
             })
             setDisabledButton(true)
+        }  else {
+            setWorkExperiences((prevWorkExperiences) => {
+                const updatedWorkExperiences = [...prevWorkExperiences]
+                updatedWorkExperiences[index].emailError = ''
+                return updatedWorkExperiences
+            })
+            setDisabledButton(false)
+        }
+        if (websiteDomain && referenceEmailDomain && websiteDomain !== referenceEmailDomain) {
+            const errorMessage = 'Reference email domain must match the company website domain.'
+            setWorkExperiences((prevWorkExperiences) => {
+                const updatedWorkExperiences = [...prevWorkExperiences]
+                updatedWorkExperiences[index].referenceEmailError = errorMessage
+                return updatedWorkExperiences
+            })
+            setDisabledButton(true)
         } else {
             setWorkExperiences((prevWorkExperiences) => {
                 const updatedWorkExperiences = [...prevWorkExperiences]
-                updatedWorkExperiences[index].emailError = '' // Clear error message
+                updatedWorkExperiences[index].referenceEmailError = ''
                 return updatedWorkExperiences
             })
             setDisabledButton(false)
@@ -677,7 +713,7 @@ function Information({data}) {
                                     const subSkill = data.sub_skills || ''
                                     const certificate = data.certificate || ''
                                     const link = data.link || ''
-                                    return {_id, subSkill, certificate,link}
+                                    return {_id, subSkill, certificate, link}
                                 })
                                 : [],
                     },
@@ -691,7 +727,7 @@ function Information({data}) {
                                     const subSkill = data.sub_skills || ''
                                     const certificate = data.certificate || ''
                                     const link = data.link || ''
-                                    return {_id, subSkill, certificate,link}
+                                    return {_id, subSkill, certificate, link}
                                 })
                                 : [],
                     },
@@ -705,7 +741,7 @@ function Information({data}) {
                                     const subSkill = data.sub_skills || ''
                                     const certificate = data.certificate || ''
                                     const link = data.link || ''
-                                    return {_id, subSkill, certificate,link}
+                                    return {_id, subSkill, certificate, link}
                                 })
                                 : [],
                     },
@@ -733,6 +769,8 @@ function Information({data}) {
                 // experience_end_date: data?.workExperience?.experience_end_date || null,
                 isCurrentlyWorking: data?.workExperience?.isCurrentlyWorking || false,
                 email: data?.workExperience?.email || '',
+                reference: data?.workExperience?.reference || '',
+                reference_email: data?.workExperience?.reference_email || '',
 
                 video: data?.basicDetails?.video || '',
                 secondary_video: data?.basicDetails?.secondary_video || '',
@@ -984,7 +1022,7 @@ function Information({data}) {
                                     type="text"
                                     label="Credential No"
                                     name="credential_no"
-                                    placeholder="Enter GCredential No"
+                                    placeholder="Enter Credential No"
                                     onChange={(e) => setFieldValue('credential_no', e.target.value)}
                                 />
                                 <DropDownInput
@@ -1322,7 +1360,8 @@ function Information({data}) {
                                                                                                         subSkill={subSkill}
                                                                                                     />
 
-                                                                                                    <div className='mt-3'>
+                                                                                                    <div
+                                                                                                        className='mt-3'>
                                                                                                         <TextField
                                                                                                             type="text"
                                                                                                             label="assesment result link"
@@ -1513,13 +1552,13 @@ function Information({data}) {
                                                         )
                                                     }
                                                 />
+                                                {experience.emailError && (
+                                                    <div className="text-red-500 text-sm -mt-3">
+                                                        {experience.emailError}
+                                                    </div>
+                                                )}
                                             </div>
 
-                                            {experience.emailError && (
-                                                <div className="text-red-500 text-sm -mt-3">
-                                                    {experience.emailError}
-                                                </div>
-                                            )}
                                         </div>
                                         {/* ---------Start Date------------- */}
                                         <div>
@@ -1631,9 +1670,44 @@ function Information({data}) {
                                                 )
                                             }
                                         />
+                                        <DropDownInput
+                                            label="referance"
+                                            name={`reference`}
+                                            value={experience.reference}
+                                            options={referenceOption}
+                                            onChange={(e) =>
+                                                handleChangeExperience(
+                                                    index,
+                                                    'reference',
+                                                    e.target.value,
+                                                )
+                                            }
+                                        />
+                                        <div className="w-full">
+                                            <TextFieldValue
+                                                type="text"
+                                                label="Reference Email"
+                                                name={`email_${index}`}
+                                                value={experience.reference_email || ''}
+                                                placeholder="Enter reference email"
+                                                onChange={(e) =>
+                                                    handleChangeExperience(
+                                                        index,
+                                                        'reference_email',
+                                                        e.target.value,
+                                                    )
+                                                }
+                                            />
+                                        {experience.referenceEmailError && (
+                                            <div className="text-red-500 text-sm -mt-3">
+                                                {experience.referenceEmailError}
+                                            </div>
+                                        )}
+                                        </div>
                                     </div>
                                 </div>
                             ))}
+
                             <div
                                 className="ml-4 bg-primary px-4 py-2 text-white rounded w-[160px] cursor-pointer text-nowrap"
                                 onClick={handleAddExperience}
@@ -1662,6 +1736,50 @@ function Information({data}) {
                                     </div>
 
                                 </div>
+                            </div>
+                        </FormInfo>
+
+                        <FormInfo title="Career Goals" icon={<CareerGoal/>}>
+                            <div className="grid lg:grid-cols-3 sm:grid-cols-2 gap-x-5 py-6 px-4">
+                                <TextField
+                                    type="text"
+                                    label="Role"
+                                    name="career_role"
+                                    placeholder="Enter career role"
+                                    onChange={(e) =>
+                                        setFieldValue('career_role', e.target.value)
+                                    }
+                                />
+                                <DropDownInput
+                                    label="Industry"
+                                    name="career_industry"
+                                    options={industriesData.map((industry) => ({
+                                        value: industry.name,
+                                        name: industry.name,
+                                    }))}
+                                    value={data?.careerGoal?.career_industry || ''}
+                                    onChange={(e) =>
+                                        setFieldValue('career_industry', e.target.value)
+                                    }
+                                />
+                                <DropDownInput
+                                    label="Fields"
+                                    name="career_field"
+                                    options={industriesData.find((industry) => industry.name === values.career_industry)?.subsector || []}
+                                    value={data?.careerGoal?.career_industry || ''}
+                                    onChange={(e) =>
+                                        setFieldValue('career_field', e.target.value)
+                                    }
+                                />
+
+
+                                <DropDownInput
+                                    label="NOC Number"
+                                    name="noc_number"
+                                    value={data?.careerGoal?.noc_number || ''}
+                                    options={nocNumber}
+                                    onChange={(e) => setFieldValue('noc_number', e.target.value)}
+                                />
                             </div>
                         </FormInfo>
 
@@ -1745,7 +1863,7 @@ function Information({data}) {
                             </button>
                             <button
                                 // disabled={disabledButton || isSubmitting || imgError === '' ? false : true}
-                                disabled={disabledButton || isSubmitting || !imgError}
+                                // disabled={disabledButton || isSubmitting || !imgError}
                                 type="submit"
                                 className={`flex gap-x-2 justify-end items-center rounded w-auto py-2 px-10 mt-10 bg-primary`}
                             >

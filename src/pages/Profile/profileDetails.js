@@ -313,21 +313,27 @@ function ProfileDetails({ data }) {
                                   </div>
                                 </div>
                                 <div className="flex flex-wrap gap-x-4 justify-between items-center">
-                                  <div className="xl:text-base text-xs" onClick={(e) => {
-                                    if (ex?.work_experience_company_website) {
-                                      window.open(ex?.work_experience_company_website, '_blank');
-                                      e.stopPropagation();
-                                    }
-                                  }}>
+                                  <a
+                                      href={ex?.work_experience_company_website || '#'}
+                                      className="xl:text-base text-xs hover:underline"
+                                      target="_blank"
+                                      // rel="noopener noreferrer"
+                                      // onClick={(e) => {
+                                      //   if (!ex?.work_experience_company_website) {
+                                      //     e.preventDefault();
+                                      //   }
+                                      //   e.stopPropagation();
+                                      // }}
+                                  >
                                     {ex?.work_experience_company_website}
-                                  </div>
+                                  </a>
                                 </div>
 
                                 <div>
                                   {ex.accomplishments_id?.accomplishment_1 && (
-                                    <div className="xl:text-base text-xs flex items-center capitalize">
-                                      <DotIcon />
-                                      {ex.accomplishments_id?.accomplishment_1}
+                                      <div className="xl:text-base text-xs flex items-center capitalize">
+                                        <DotIcon/>
+                                        {ex.accomplishments_id?.accomplishment_1}
                                     </div>
                                   )}
                                   {ex.accomplishments_id?.accomplishment_2 && (
