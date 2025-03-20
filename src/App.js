@@ -10,6 +10,7 @@ import Profile from './pages/Profile'
 import ForgotPassword from './pages/Auth/ForgotPassword'
 import OTPVerify from './pages/Auth/ForgotPassword/OTPVerify'
 import ResetPassword from './pages/Auth/ForgotPassword/ResetPassword'
+import ChatPopup from "./pages/ChatPopup/ChatPopup";
 
 function App() {
     const Home = lazy(() => import('./pages/Home'))
@@ -94,6 +95,7 @@ function App() {
                     />
                 </Routes>
             </Suspense>
+            <ChatPopup />
         </div>
     )
 }
