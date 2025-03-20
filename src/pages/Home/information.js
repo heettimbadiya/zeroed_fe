@@ -45,6 +45,7 @@ import {ExperienceDateFormat} from '../../utils/dateFormat'
 import FormInfo from '../../common/Information/formInfo'
 import Label from '../../component/InputField/label'
 import CertificatePreview from './certificatePreivew'
+import VideoSampleModal from "./videoSampleModal";
 
 // Function to extract the domain from an email address
 const getDomainFromEmail = (email) => {
@@ -1734,13 +1735,13 @@ const verifyEmail = (payload) => {
                                     <div className="lg:w-1/5 sm:w-1/2">
                                         <div className="flex items-center gap-4">
                                             <Label label="Video"/>
-                                            {/*<button*/}
-                                            {/*    onClick={() => setIsSampleModalOpen(true)}*/}
-                                            {/*    className="text-primary underline text-sm"*/}
-                                            {/*>*/}
-                                            {/*    View Sample*/}
-                                            {/*</button>*/}
-                                            {/*<VideoSampleModal isOpen={isSampleModalOpen} onClose={() => setIsSampleModalOpen(false)} />*/}
+                                            <div
+                                                onClick={() => setIsSampleModalOpen(true)}
+                                                className="text-primary underline text-sm cursor-pointer"
+                                            >
+                                                View Sample
+                                            </div>
+                                            <VideoSampleModal isOpen={isSampleModalOpen} onClose={() => setIsSampleModalOpen(false)} />
                                         </div>
                                         <VideoUploader
                                             data={data}
