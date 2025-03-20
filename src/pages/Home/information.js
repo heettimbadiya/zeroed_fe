@@ -80,8 +80,13 @@ const getDomainFromUrl = (url) => {
 function Information({data}) {
     let navigate = useNavigate()
     const token = localStorage.getItem('token')
-
+    const initialProjects = {
+        project_title: "",
+        project_description: "",
+        project_url: ""
+    }
     const [stateOptions, setStateOptions] = useState([])
+    const [projects, setProjects] = useState([initialProjects])
     const [cityOptions, setCityOptions] = useState([])
     const [experienceError, setExperienceError] = useState('')
     const [imgError, setImgError] = useState('')
@@ -217,7 +222,8 @@ function Information({data}) {
             accomplishment_4: '',
         },
         email: '',
-        reference: ''
+        reference: '',
+        reference_check: false
     }
     const [workExperiences, setWorkExperiences] = useState([
         initialWorkExperience,
@@ -253,6 +259,34 @@ function Information({data}) {
             setWorkExperiences(updatedExperiences.filter((_, i) => i !== index))
         }
     }
+    const handleDeleteProject = (index) => {
+        if (!data) {
+            setProjects((prev) => prev.filter((_, i) => i !== index))
+        } else {
+            const updatedProject = [...projects]
+            const userId = data.user_id
+            if (userId) {
+                setDeletedExperienceIds((prev) => [...prev, userId])
+                try {
+                    const response = axios.delete(
+                        API_ROUTES.DELETE_WORK_EXPERIENCE + userId,
+                        {
+                            headers: {
+                                'Content-Type': 'multipart/form-data',
+                                Authorization: `${token}`,
+                            },
+                        },
+                    )
+                    if (response.data.status === 204) {
+                        console.log('experience delete!')
+                    }
+                } catch (error) {
+                    console.log('Something went wrong', error)
+                }
+            }
+            setProjects(updatedProject.filter((_, i) => i !== index))
+        }
+    }
 
     useEffect(() => {
         if (data) {
@@ -262,7 +296,8 @@ function Information({data}) {
                     ...experience, // Override with fetched values
                 }))
                 : [initialWorkExperience] // If no data, reset to default
-
+const projects = data?.projectDetails
+            setProjects(projects)
             setWorkExperiences(updatedExperiences)
         }
     }, [data])
@@ -318,10 +353,28 @@ function Information({data}) {
             return updatedOptions
         })
     }
-const verifyEmail = (payload) => {
-       const res = axios.post(`${process.env.REACT_APP_FILE_URL}/`,payload)
-    console.log(res)
-}
+    const verifyEmail = (payload) => {
+        const payloads = {
+            referenceEmail: payload.reference_email,
+            candidateName: payload.candidateName,
+            companyName: payload.work_experience_company_name,
+            jobTitle: payload.work_experience_job_title,
+            accomplishment_1: payload.accomplishments_id.accomplishment_1,
+            accomplishment_2: payload.accomplishments_id.accomplishment_2,
+            accomplishment_3: payload.accomplishments_id.accomplishment_3,
+            accomplishment_4: payload.accomplishments_id.accomplishment_4,
+            startDate: payload.experience_start_date,
+            endDate: payload.experience_end_date,
+            userId: data.basicDetails?.user_id
+        }
+        try {
+            const res = axios.post(`${process.env.REACT_APP_AUTH_URL}/work-experience/verify`, payloads)
+            console.log(res)
+
+        } catch (e) {
+            console.log(e)
+        }
+    }
     const handleAddExperience = () => {
         setWorkExperiences([
             ...workExperiences,
@@ -343,10 +396,19 @@ const verifyEmail = (payload) => {
                 },
                 email: '',
                 reference: '',
+                reference_check: false,
             },
         ])
     }
+    const handleAddProject = () => {
+        setProjects([...projects,initialProjects])
+    }
+const handleChangeProject = (field,index, value) => {
+        const updatedProject = [...projects]
+    updatedProject[index][field] = value
+    setProjects(updatedProject)
 
+}
     const handleChangeExperience = (index, field, value) => {
         const updatedExperiences = [...workExperiences]
 
@@ -485,6 +547,20 @@ const verifyEmail = (payload) => {
         })
 
         // Append work experience
+         projects.map((project,index) =>{
+             formData.append(
+                 `projectDetails[${index}][project_title]`,
+                 project.project_title,
+             )
+             formData.append(
+                 `projectDetails[${index}][project_description]`,
+                 project.project_description,
+             )
+             formData.append(
+                 `projectDetails[${index}][project_url]`,
+                 project.project_url,
+             )
+         })
         workExperiences.forEach((experience, index) => {
             // Accomplishments fields
             formData.append(
@@ -549,6 +625,10 @@ const verifyEmail = (payload) => {
             formData.append(
                 `workExperience[${index}][reference]`,
                 experience.reference,
+            )
+            formData.append(
+                `workExperience[${index}][reference_check]`,
+                experience.reference_check,
             )
             formData.append(
                 `workExperience[${index}][accomplishments]`,
@@ -637,7 +717,7 @@ const verifyEmail = (payload) => {
                 return updatedWorkExperiences
             })
             setDisabledButton(true)
-        }  else {
+        } else {
             setWorkExperiences((prevWorkExperiences) => {
                 const updatedWorkExperiences = [...prevWorkExperiences]
                 updatedWorkExperiences[index].emailError = ''
@@ -707,6 +787,9 @@ const verifyEmail = (payload) => {
                     data?.canadianEducation?.field_of_study_canadian || '',
                 year_of_completion: data?.canadianEducation?.year_of_completion || '',
                 gpa: data?.canadianEducation?.gpa || '',
+                project_title: data?.canadianEducation?.project_title || '',
+                project_description: data?.canadianEducation?.project_description || '',
+                project_url: data?.canadianEducation?.project_url || '',
 
                 coreSkills: [
                     {
@@ -775,6 +858,7 @@ const verifyEmail = (payload) => {
                 // experience_end_date: data?.workExperience?.experience_end_date || null,
                 isCurrentlyWorking: data?.workExperience?.isCurrentlyWorking || false,
                 email: data?.workExperience?.email || '',
+                reference_check: data?.workExperience?.reference_check || false,
                 reference: data?.workExperience?.reference || '',
                 reference_email: data?.workExperience?.reference_email || '',
 
@@ -1676,55 +1760,87 @@ const verifyEmail = (payload) => {
                                                 )
                                             }
                                         />
-                                        <DropDownInput
-                                            label="referance"
-                                            name={`reference`}
-                                            value={experience.reference}
-                                            options={referenceOption}
-                                            onChange={(e) =>
-                                                handleChangeExperience(
-                                                    index,
-                                                    'reference',
-                                                    e.target.value,
-                                                )
-                                            }
-                                        />
-                                        <div className="w-full">
-                                            <TextFieldValue
-                                                type="text"
-                                                label="Reference Email"
-                                                name={`email_${index}`}
-                                                value={experience.reference_email || ''}
-                                                placeholder="Enter reference email"
-                                                onChange={(e) =>
+                                    </div>
+
+                                    <div>
+                                        <div className='flex justify-between items-center mt-2 bg-gray-100 py-4 px-4'>
+                                            <div className='text-[20px] font-bold'>Reference Check :</div>
+                                            <ToggleButton
+                                                label=""
+                                                value={experience.reference_check}
+                                                name={`reference_check_${index}`}
+                                                onChange={(e) => {
                                                     handleChangeExperience(
                                                         index,
-                                                        'reference_email',
-                                                        e.target.value,
+                                                        'reference_check',
+                                                        e.target.checked,
                                                     )
+                                                    setFieldValue(`reference_check_${index}`, e.target.checked)
+
+                                                }
                                                 }
                                             />
-                                            {experience.referenceEmailError && (
-                                                <div className="text-red-500 text-sm -mt-3">
-                                                    {experience.referenceEmailError}
-                                                </div>
-                                            )}
                                         </div>
-                                            <button
-                                                className="mt-7 bg-primary px-4 py-2 text-white rounded w-[160px] h-10 cursor-pointer text-nowrap"
-                                                onClick={() => verifyEmail(experience)}
-                                            >
-                                                Verify Email
-                                            </button>
+                                        {
+                                            experience.reference_check && (
+                                                <div
+                                                    className='grid xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2 gap-x-5 py-3 px-4'>
+                                                    <DropDownInput
+                                                        label="reference"
+                                                        name={`reference_${index}`}
+                                                        value={experience.reference}
+                                                        options={referenceOption}
+                                                        onChange={(e) =>
+                                                            handleChangeExperience(
+                                                                index,
+                                                                'reference',
+                                                                e.target.value,
+                                                            )
+                                                        }
+                                                    />
+                                                    <div className="w-full">
+                                                    <TextFieldValue
+                                                        type="text"
+                                                        label="Reference Email"
+                                                        name={`reference_email_${index}`}
+                                                        value={experience.reference_email || ''}
+                                                        placeholder="Enter reference email"
+                                                        onChange={(e) =>
+                                                            handleChangeExperience(
+                                                                index,
+                                                                'reference_email',
+                                                                e.target.value,
+                                                            )
+                                                        }
+                                                    />
+                                                    {experience.referenceEmailError && (
+                                                        <div className="text-red-500 text-sm -mt-3">
+                                                            {experience.referenceEmailError}
+                                                        </div>
+                                                    )}
+                                                    </div>
+                                                    {(data && !experience.referenceEmailError) && <div
+                                                        className="text-center mt-7 bg-primary px-4 py-2 text-white rounded w-[160px] h-10 cursor-pointer text-nowrap"
+                                                        onClick={() => verifyEmail({
+                                                            ...experience,
+                                                            candidateName: `${values.firstname} ${values.lastname}`
+                                                        })}
+                                                    >
+                                                        Send
+                                                    </div>}
+                                                </div>
+                                            )
+                                        }
                                     </div>
+
                                 </div>
                             ))}
 
                             <div
-                                className="ml-4 bg-primary px-4 py-2 text-white rounded w-[160px] cursor-pointer text-nowrap"
+                                className="ml-4 bg-primary px-4 py-2 text-white rounded w-[160px] cursor-pointer text-nowrap mt-3"
                                 onClick={handleAddExperience}
                             >
-                            + Add Experience
+                                + Add Experience
                             </div>
                             <div className="text-xs text-red-500 ml-4 mt-4 mb-4">
                                 {experienceError}
@@ -1741,7 +1857,8 @@ const verifyEmail = (payload) => {
                                             >
                                                 View Sample
                                             </div>
-                                            <VideoSampleModal isOpen={isSampleModalOpen} onClose={() => setIsSampleModalOpen(false)} />
+                                            <VideoSampleModal isOpen={isSampleModalOpen}
+                                                              onClose={() => setIsSampleModalOpen(false)}/>
                                         </div>
                                         <VideoUploader
                                             data={data}
@@ -1759,23 +1876,76 @@ const verifyEmail = (payload) => {
 
                                 </div>
                             </div>
+
                         </FormInfo>
 
                         {/* -------------Career Goals------------- */}
+                        <FormInfo title="Projects" icon={<CareerGoal/>}>
+                            {projects.map((item, index) => (
+                                <div key={index}>
+                                    <div className="gap-x-3 bg-primary-100 p-3 w-full">
+                                        <div className="flex items-center gap-x-2">
+                                            <div className="text-lg font-semibold capitalize text-primary text-nowrap">
+                                                {index + 1}.{' '}
+                                                {item.project_title ||
+                                                    'New Project'}
+                                            </div>
+                                            {projects.length > 1 && (
+                                                <div
+                                                    onClick={() => handleDeleteProject(index)}
+                                                    className="cursor-pointer font-black"
+                                                >
+                                                    <DeleteIcon/>
+                                                </div>
+                                            )}
+                                        </div>
+                                    </div>
+                                    <div className="grid lg:grid-cols-3 sm:grid-cols-2 gap-x-5 py-6 px-4">
+
+                                        <TextField
+                                            type="text"
+                                            label="Title"
+                                            name={`project_title_${index}`}
+                                            value={item.project_title}
+                                            placeholder="Enter project title"
+                                            onChange={(e) =>
+                                                handleChangeProject('project_title', index,e.target.value)
+                                            }
+                                        />
+                                        <TextArea
+                                            name={`project_description_${index}`}
+                                            label="Description"
+                                            value={item.project_description}
+                                            onChange={(e) =>
+                                                handleChangeProject('project_description', index,e.target.value)
+                                            }
+                                        />
+                                        <TextField
+                                            type="text"
+                                            label="URL"
+                                            value={item.project_url}
+                                            name={`project_url_${index}`}
+                                            placeholder="Enter project url"
+                                            onChange={(e) =>
+                                                handleChangeProject('project_url',index,e.target.value)
+                                            }
+                                        />
+
+                                    </div>
+                                </div>
+                            ))}
+                            <div className='pb-4'>
+                                <div
+                                    className="ml-4 bg-primary px-4 py-2 text-white rounded w-[160px] text-center cursor-pointer"
+                                    onClick={handleAddProject}
+                                >
+                                    + Add Project
+                                </div>
+                            </div>
+                        </FormInfo>
                         <FormInfo title="Career Goals" icon={<CareerGoal/>}>
                             <div className="grid lg:grid-cols-3 sm:grid-cols-2 gap-x-5 py-6 px-4">
-                                {/* <DropDownInput
-                  label="Role"
-                  name="career_industry"
-                  value={data?.careerGoal?.career_industry || ''}
-                  options={industriesData.map((industry) => ({
-                    value: industry.name,
-                    name: industry.name,
-                  }))}
-                  onChange={(e) =>
-                    setFieldValue('career_industry', e.target.value)
-                  }
-                /> */}
+
                                 <TextField
                                     type="text"
                                     label="Role"
