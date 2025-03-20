@@ -317,7 +317,10 @@ function Information({data}) {
             return updatedOptions
         })
     }
-
+const verifyEmail = (payload) => {
+       const res = axios.post(`${process.env.REACT_APP_FILE_URL}/`,payload)
+    console.log(res)
+}
     const handleAddExperience = () => {
         setWorkExperiences([
             ...workExperiences,
@@ -1600,7 +1603,7 @@ function Information({data}) {
                                                     component={ExperienceDateFormat}
                                                     defaultValue={
                                                         experience.experience_end_date === 'NaN/NaN/NaN'
-                                                            ? ''
+                                                            ? null
                                                             : experience.experience_end_date
                                                     }
                                                     disabled={experience.isCurrentlyWorking} // Disable if currently working
@@ -1700,12 +1703,18 @@ function Information({data}) {
                                                     )
                                                 }
                                             />
-                                        {experience.referenceEmailError && (
-                                            <div className="text-red-500 text-sm -mt-3">
-                                                {experience.referenceEmailError}
-                                            </div>
-                                        )}
+                                            {experience.referenceEmailError && (
+                                                <div className="text-red-500 text-sm -mt-3">
+                                                    {experience.referenceEmailError}
+                                                </div>
+                                            )}
                                         </div>
+                                            <button
+                                                className="mt-7 bg-primary px-4 py-2 text-white rounded w-[160px] h-10 cursor-pointer text-nowrap"
+                                                onClick={() => verifyEmail(experience)}
+                                            >
+                                                Verify Email
+                                            </button>
                                     </div>
                                 </div>
                             ))}
@@ -1714,7 +1723,7 @@ function Information({data}) {
                                 className="ml-4 bg-primary px-4 py-2 text-white rounded w-[160px] cursor-pointer text-nowrap"
                                 onClick={handleAddExperience}
                             >
-                                + Add Experience
+                            + Add Experience
                             </div>
                             <div className="text-xs text-red-500 ml-4 mt-4 mb-4">
                                 {experienceError}
