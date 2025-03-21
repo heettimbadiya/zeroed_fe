@@ -9,6 +9,7 @@ const ROUTES_URL = {
   INITIAL: `/`,
   HOME: `/home`,
   PROFILE: `/profile`,
+  DASHBOARD: `/dashboard`,
 };
 
 export default ROUTES_URL;

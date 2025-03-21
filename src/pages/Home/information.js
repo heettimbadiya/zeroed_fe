@@ -229,8 +229,6 @@ function Information({data}) {
         initialWorkExperience,
     ])
 
-    const [deletedExperienceIds, setDeletedExperienceIds] = useState([])
-
     const handleDeleteExperience = (index) => {
         if (!data) {
             setWorkExperiences((prev) => prev.filter((_, i) => i !== index))
@@ -238,7 +236,6 @@ function Information({data}) {
             const updatedExperiences = [...workExperiences]
             const userId = updatedExperiences[index]?.user_id
             if (userId) {
-                setDeletedExperienceIds((prev) => [...prev, userId])
                 try {
                     const response = axios.delete(
                         API_ROUTES.DELETE_WORK_EXPERIENCE + userId,
@@ -264,12 +261,12 @@ function Information({data}) {
             setProjects((prev) => prev.filter((_, i) => i !== index))
         } else {
             const updatedProject = [...projects]
-            const userId = data.user_id
+            const userId = updatedProject[index]?.user_id
+            console.log(userId,"kkkkkkkkkkkk")
             if (userId) {
-                setDeletedExperienceIds((prev) => [...prev, userId])
                 try {
                     const response = axios.delete(
-                        API_ROUTES.DELETE_WORK_EXPERIENCE + userId,
+                        API_ROUTES.DELETE_PROJECT + userId,
                         {
                             headers: {
                                 'Content-Type': 'multipart/form-data',
@@ -292,10 +289,10 @@ function Information({data}) {
         if (data) {
             const updatedExperiences = data?.workExperience?.length
                 ? data.workExperience.map((experience) => ({
-                    ...initialWorkExperience, // Spread initial values
-                    ...experience, // Override with fetched values
+                    ...initialWorkExperience,
+                    ...experience,
                 }))
-                : [initialWorkExperience] // If no data, reset to default
+                : [initialWorkExperience]
 const projects = data?.projectDetails
             setProjects(projects)
             setWorkExperiences(updatedExperiences)
@@ -559,6 +556,10 @@ const handleChangeProject = (field,index, value) => {
              formData.append(
                  `projectDetails[${index}][project_url]`,
                  project.project_url,
+             )
+             formData.append(
+                 `projectDetails[${index}][_id]`,
+                 data ? project?._id : null,
              )
          })
         workExperiences.forEach((experience, index) => {

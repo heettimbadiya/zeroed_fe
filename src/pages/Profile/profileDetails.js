@@ -11,7 +11,7 @@ import {
     LocationIcon,
     PhoneIcon,
     SuccessIcon, Up,
-    UserIcon,
+    UserIcon, Verify,
 } from '../../common/Icons'
 import logo from '../../assets/logo.png'
 import ProfileInfo, {Information} from '../../common/Information/profileInfo'
@@ -365,6 +365,9 @@ function ProfileDetails({data}) {
                                                                             className="xl:text-base text-xs flex items-center capitalize">
                                                                             <DotIcon/>
                                                                             {ex.accomplishments_id?.accomplishment_1}
+                                                                            <div className={'ml-1'}>
+                                                                            <Verify />
+                                                                            </div>
                                                                         </div>
                                                                     )}
                                                                     {ex.accomplishments_id?.accomplishment_2 && (
@@ -372,6 +375,9 @@ function ProfileDetails({data}) {
                                                                             className="xl:text-base text-xs flex items-center capitalize">
                                                                             <DotIcon/>
                                                                             {ex.accomplishments_id?.accomplishment_2}
+                                                                            <div className={'ml-1'}>
+                                                                                <Verify/>
+                                                                            </div>
                                                                         </div>
                                                                     )}
                                                                     {ex.accomplishments_id?.accomplishment_3 && (
@@ -379,6 +385,9 @@ function ProfileDetails({data}) {
                                                                             className="xl:text-base text-xs flex items-center capitalize">
                                                                             <DotIcon/>
                                                                             {ex.accomplishments_id?.accomplishment_3}
+                                                                            <div className={'ml-1'}>
+                                                                                <Verify/>
+                                                                            </div>
                                                                         </div>
                                                                     )}
                                                                     {ex.accomplishments_id?.accomplishment_4 && (
@@ -386,6 +395,9 @@ function ProfileDetails({data}) {
                                                                             className="xl:text-base text-xs flex items-center capitalize">
                                                                             <DotIcon/>
                                                                             {ex.accomplishments_id?.accomplishment_4}
+                                                                            <div className={'ml-1'}>
+                                                                                <Verify/>
+                                                                            </div>
                                                                         </div>
                                                                     )}
                                                                 </div>
@@ -410,11 +422,32 @@ function ProfileDetails({data}) {
                                         </div>
                                     </ProfileInfo>
 
+                                    <ProfileInfo title="Projects" open={true}>
+                                        <div >
+
+                                            {data.projectDetails.map((project,i) => (
+                                                <div key={i} className="w-full flex gap-x-1">
+                                            <div className="flex flex-col justify-center items-center">
+                                                <div className="rounded-full w-4 h-4 bg-black"></div>
+                                                <div className="h-full w-[2px] bg-[#D7D9DE]"></div>
+                                            </div>
+                                                 <div className="pb-4 pt-2 w-full mt-2">
+                                                    <div>
+                                                        <div>{project.project_title}</div>
+                                                        <div>{project.project_description}</div>
+                                                        <div><a target={'_blank'} className={'underline text-sky-500'} href={project.project_url}>{project.project_url}</a></div>
+                                                    </div>
+                                                 </div>
+                                                </div>
+                                            ))}
+                                        </div>
+
+                                    </ProfileInfo>
                                     {/* Global Education */}
                                     <div>
                                         <ProfileInfo title="Global Education" open={true}>
                                             <div className="flex justify-between items-center">
-                                                <div className="xl:text-base text-xs  capitalize">
+                                            <div className="xl:text-base text-xs  capitalize">
                                                     {data?.internationalEducation?.level_of_education}
                                                 </div>
                                                 <div className="xl:text-base text-xs capitalize mt-[2px]">

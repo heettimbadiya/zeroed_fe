@@ -11,6 +11,7 @@ import ForgotPassword from './pages/Auth/ForgotPassword'
 import OTPVerify from './pages/Auth/ForgotPassword/OTPVerify'
 import ResetPassword from './pages/Auth/ForgotPassword/ResetPassword'
 import ChatPopup from "./pages/ChatPopup/ChatPopup";
+import Dashboard from "./pages/Dashboard/Dashboard";
 
 function App() {
     const Home = lazy(() => import('./pages/Home'))
@@ -82,6 +83,14 @@ function App() {
                         element={
                             <ProtectedRoute>
                                 <Home/>
+                            </ProtectedRoute>
+                        }
+                    />
+                    <Route
+                        path={ROUTES_URL.DASHBOARD}
+                        element={
+                            <ProtectedRoute>
+                                <Dashboard/>
                             </ProtectedRoute>
                         }
                     />
