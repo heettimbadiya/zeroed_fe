@@ -22,7 +22,7 @@ function Messaging() {
                 },
                 {
                     id: 2,
-                    sender: 'Heet Timbadiya',
+                    sender: 'You',
                     content: 'How Are You',
                     time: '4:31 PM',
                     isUser: true
@@ -103,7 +103,7 @@ function Messaging() {
             <div className="container">
                 <div className="flex lg:flex-row flex-col justify-center gap-x-6">
                     {/* Left Sidebar */}
-                    <div className="w-full lg:w-[30%] bg-white border-r">
+                    <div className="w-full h-[80VH] overflow-auto lg:w-[30%] bg-white border-r">
                         <div className="p-4 border-b">
                             <h1 className="text-xl font-semibold">Chats</h1>
                         </div>
@@ -148,7 +148,7 @@ function Messaging() {
                     </div>
 
                     {/* Right Chat Area */}
-                    <div className="flex-1 flex flex-col hidden lg:flex">
+                    <div className="flex-1 flex h-[80VH] overflow-auto flex-col hidden lg:flex">
                         {selectedChat !== null ? (
                             <>
                                 <div className="p-4 border-b bg-white flex items-center">
@@ -202,7 +202,7 @@ function Messaging() {
                                         />
                                         <button
                                             onClick={handleSendMessage}
-                                            className="bg-blue text-white px-4 py-2 rounded-lg hover:bg-blue-600"
+                                            className="bg-[#00C5FF] text-white px-4 py-2 rounded-lg hover:bg-blue-600"
                                         >
                                             Send
                                         </button>

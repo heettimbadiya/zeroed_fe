@@ -140,13 +140,13 @@ body {
 .category2 .category2-next {
   position: absolute;
   cursor: pointer;
-  bottom: 32px;
+  bottom: 70px;
   right: -70px;
 }
 .category2 .category2-prev {
   cursor: pointer;
   position: absolute;
-  bottom: 90px;
+  bottom: 130px;
   right: -70px;
 }
 
