@@ -170,7 +170,7 @@ function ProfileDetails({data}) {
                                                 </div>
                                                 {open && (
                                                     <div
-                                                        className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 backdrop-blur-md p-4">
+                                                        className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 backdrop-blur-md p-4 z-auto">
                                                         <div
                                                             className="bg-white rounded-lg shadow-lg w-full max-w-md p-5 relative">
                                                             {/* Header */}
