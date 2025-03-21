@@ -6,7 +6,6 @@ const VideoUploader = ({defaultVideo, onVideoUpload, defaultSecondaryVideo, onSe
     const [recordedVideo, setRecordedVideo] = useState(null);
     const [secondaryVideo, setSecondaryVideo] = useState(null);
     const [videoError, setVideoError] = useState("");
-    const [isRecording, setIsRecording] = useState(false);
 
     const [showInstruction, setShowInstruction] = useState(false);
     const [instructionType, setInstructionType] = useState("");
@@ -14,9 +13,6 @@ const VideoUploader = ({defaultVideo, onVideoUpload, defaultSecondaryVideo, onSe
     const [isOpen, setIsOpen] = useState(false);
     const [isSecondaryOpen, setIsSecondaryOpen] = useState(false);
 
-    const mediaRecorderRef = useRef(null);
-    const videoRef = useRef(null);
-    const streamRef = useRef(null);
 
     useEffect(() => {
         if (defaultVideo) {
@@ -49,8 +45,7 @@ const VideoUploader = ({defaultVideo, onVideoUpload, defaultSecondaryVideo, onSe
     const closePrimaryDialog = () => setIsOpen(false);
     const closeSecondaryDialog = () => setIsSecondaryOpen(false);
 
-    const onDrop = (acceptedFiles, type) => {
-        const file = acceptedFiles[0];
+    const handleFileUpload = (file, type) => {
         const validTypes = ["video/mp4", "video/avi", "video/mov", "video/webm"];
 
         if (!validTypes.includes(file.type)) {
@@ -71,19 +66,28 @@ const VideoUploader = ({defaultVideo, onVideoUpload, defaultSecondaryVideo, onSe
         closeSecondaryDialog();
     };
 
-    const {getRootProps: getPrimaryProps, getInputProps: getPrimaryInput} = useDropzone({
-        accept: "video/*",
-        onDrop: (files) => onDrop(files, "recorded"),
-    });
+    const handleSelectVideo = async (e,type) => {
+        try {
+            const [fileHandle] = await window.showOpenFilePicker({
+                types: [
+                    {
+                        description: "Videos",
+                        accept: {
+                            "video/*": [".mp4", ".mov", ".avi", ".mkv"]
+                        }
+                    }
+                ],
+                multiple: false
+            });
 
-    const {getRootProps: getSecondaryProps, getInputProps: getSecondaryInput} = useDropzone({
-        accept: "video/*",
-        onDrop: (files) => onDrop(files, "secondary"),
-    });
-
+            const file = await fileHandle.getFile();
+            handleFileUpload(file,type);
+        } catch (error) {
+            console.log("File selection canceled or not supported", error);
+        }
+    };
     return (
         <div className="w-full">
-            {/* Video Upload & Recording Buttons */}
             <div className="flex justify-between items-center gap-4 mt-2">
                 <div
                     onClick={() => openInstructionDialog("primary")}
@@ -191,13 +195,15 @@ const VideoUploader = ({defaultVideo, onVideoUpload, defaultSecondaryVideo, onSe
                 </div>
             </Dialog>
 
-
-            {/* Primary Video Dialog */}
-            <Dialog isOpen={isOpen} onClose={closePrimaryDialog} title="Upload or Record Primary Video">
+            <Dialog isOpen={isOpen} onClose={closePrimaryDialog} title="Upload Primary Video">
                 <div className="flex gap-x-2 justify-between items-center">
-                    <div {...getPrimaryProps()} className="bg-primary px-4 py-2 text-white rounded cursor-pointer">
-                        <input {...getPrimaryInput()} name="primary-video"/>
-                        <div>Select Primary Video</div>
+                    <div className="bg-primary px-4 py-2 text-white rounded cursor-pointer">
+                        <div
+                            className="bg-primary px-4 py-2 text-white rounded cursor-pointer"
+                            onClick={(e) => handleSelectVideo(e,'recorded')}
+                        >
+                            Select Primary Video
+                        </div>
                     </div>
                 </div>
                 {videoError && <div className="text-xs text-red-500 mt-1">{videoError}</div>}
@@ -205,9 +211,8 @@ const VideoUploader = ({defaultVideo, onVideoUpload, defaultSecondaryVideo, onSe
 
             {/* Secondary Video Dialog */}
             <Dialog isOpen={isSecondaryOpen} onClose={closeSecondaryDialog} title="Upload Secondary Video">
-                <div {...getSecondaryProps()} className="bg-primary px-4 py-2 text-white rounded cursor-pointer">
-                    <input {...getSecondaryInput()} name="secondary-video"/>
-                    <div>Select Secondary Video</div>
+                <div className="bg-primary px-4 py-2 text-white rounded cursor-pointer" onClick={(e) => handleSelectVideo(e,'secondary_video')}>
+                    Select Secondary Video
                 </div>
             </Dialog>
 

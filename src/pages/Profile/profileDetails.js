@@ -14,7 +14,7 @@ import {
 } from '../../common/Icons'
 import logo from '../../assets/logo.png'
 import ProfileInfo, {Information} from '../../common/Information/profileInfo'
-import {useNavigate, useParams} from 'react-router-dom'
+import {Link, useNavigate, useParams} from 'react-router-dom'
 import default_user from '../../assets/user.png'
 import ROUTES_URL from '../../constant/routes'
 import CertificatePreview from './certificatePreview'
@@ -22,7 +22,7 @@ import CertificatePreview from './certificatePreview'
 function ProfileDetails({data}) {
     const [countryOptions, setCountryOptions] = useState([])
     const [stateOptions, setStateOptions] = useState([])
-    const [open, setIsOpen] = useState(false)
+    const [open, setOpen] = useState(false)
 
     useEffect(() => {
         const countryData = Country.getAllCountries().map((country) => ({
@@ -148,6 +148,64 @@ function ProfileDetails({data}) {
                                                         className='mt-[2px]'><LocationIcon/></span> {data?.basicDetails?.current_city},{" "}
                                                     {state?.name}, {current_country?.name}
                                                 </div>
+                                                <div
+                                                    className="text-white underline text-sm cursor-pointer"
+                                                    onClick={() => setOpen(true)}
+                                                >
+                                                    Contact Info
+                                                </div>
+                                                {open && (
+                                                    <div
+                                                        className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 backdrop-blur-md p-4">
+                                                        <div
+                                                            className="bg-white rounded-lg shadow-lg w-full max-w-md p-5 relative">
+                                                            {/* Header */}
+                                                            <div
+                                                                className="flex justify-between items-center border-b pb-3">
+                                                                <h2 className="text-lg font-semibold">
+                                                                    {data?.basicDetails?.firstname} {data?.basicDetails?.lastname || "User Name"}
+                                                                </h2>
+                                                                <button
+                                                                    onClick={() => setOpen(false)}
+                                                                    className="text-gray-500 hover:text-gray-800 text-xl"
+                                                                >
+                                                                    ✕
+                                                                </button>
+                                                            </div>
+
+                                                            {/* Contact Details */}
+                                                            <div className="mt-4">
+                                                                <div className="space-y-3">
+                                                                    <div className="flex items-center space-x-2">
+                                                                        <span className="text-gray-500">🔗</span>
+                                                                        <a
+                                                                            href={data?.basicDetails?.slug || "#"}
+                                                                            target="_blank"
+                                                                            rel="noopener noreferrer"
+                                                                            className="text-blue-600 hover:underline"
+                                                                        >
+                                                                            {data?.basicDetails?.slug || "No Profile URL"}
+                                                                        </a>
+                                                                    </div>
+                                                                    <div className="flex items-center space-x-2">
+                                                                    <span className="text-gray-500">📞</span>
+                                                                        <p className="text-gray-700">{data?.basicDetails?.contact_no || "Not Available"}</p>
+                                                                    </div>
+                                                                    <div className="flex items-center space-x-2">
+                                                                        <span className="text-gray-500">📍</span>
+                                                                        <p className="text-gray-700">
+                                                                            {data?.basicDetails?.current_city}, {state?.name}, {current_country?.name || "No Address Provided"}
+                                                                        </p>
+                                                                    </div>
+                                                                    <div className="flex items-center space-x-2">
+                                                                        <span className="text-gray-500">✉</span>
+                                                                        <p className="text-gray-700">{data?.basicDetails?.contact_email_id || "No Email Available"}</p>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                )}
                                             </div>
                                         </div>
                                         <div>
