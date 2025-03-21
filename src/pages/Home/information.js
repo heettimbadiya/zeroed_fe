@@ -557,10 +557,12 @@ const handleChangeProject = (field,index, value) => {
                  `projectDetails[${index}][project_url]`,
                  project.project_url,
              )
+             if(project?._id){
              formData.append(
                  `projectDetails[${index}][_id]`,
                  data ? project?._id : null,
              )
+             }
          })
         workExperiences.forEach((experience, index) => {
             // Accomplishments fields
