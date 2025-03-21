@@ -10,6 +10,7 @@ const ROUTES_URL = {
   HOME: `/home`,
   PROFILE: `/profile`,
   DASHBOARD: `/dashboard`,
+  MESSAGING: `/messaging`,
 };
 
 export default ROUTES_URL;

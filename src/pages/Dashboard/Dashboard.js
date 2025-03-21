@@ -58,7 +58,6 @@ function Dashboard(props) {
                             <div className='font-semibold text-[18px]'>Overviews</div>
                             <div className="my-10 flex justify-center">
                                 <div className="relative w-40 h-40">
-                                    {/* Donut chart */}
                                     <div
                                         className="w-full h-full rounded-full"
                                         style={{
@@ -68,7 +67,6 @@ function Dashboard(props) {
                                         }}
                                     ></div>
 
-                                    {/* Centered text */}
                                     <div className="absolute inset-0 flex items-center justify-center">
                                         <span className="text-xl font-bold text-gray-800">50%</span>
                                     </div>
