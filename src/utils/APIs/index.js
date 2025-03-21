@@ -14,5 +14,6 @@ export const API_ROUTES = {
   GET_PROFILE_INFO: `${URL}/user/get-data`,
   UPDATE_PROFILE: `${URL}/user/update-profile/`,
   DELETE_WORK_EXPERIENCE: `${URL}/work-experience/delete/`,
-   
+  DELETE_PROJECT: `${URL}/project/delete/`,
+
 }

@@ -3,14 +3,15 @@ import React, {useEffect, useState} from 'react'
 import {PageLoading} from '../../common/Icons/Loading/pageLoading'
 import {Country, State} from 'country-state-city'
 import {ViewDateFormat} from '../../utils/dateFormat'
+import {Navigation} from "swiper/modules";
 import {
     ArrowDown,
-    DotIcon,
+    DotIcon, Down,
     EmailIcon,
     LocationIcon,
     PhoneIcon,
-    SuccessIcon,
-    UserIcon,
+    SuccessIcon, Up,
+    UserIcon, Verify,
 } from '../../common/Icons'
 import logo from '../../assets/logo.png'
 import ProfileInfo, {Information} from '../../common/Information/profileInfo'
@@ -18,11 +19,14 @@ import {Link, useNavigate, useParams} from 'react-router-dom'
 import default_user from '../../assets/user.png'
 import ROUTES_URL from '../../constant/routes'
 import CertificatePreview from './certificatePreview'
-
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
+import 'swiper/css/pagination';
 function ProfileDetails({data}) {
     const [countryOptions, setCountryOptions] = useState([])
     const [stateOptions, setStateOptions] = useState([])
     const [open, setOpen] = useState(false)
+    const [skill, setSkill] = useState([] || data.skills)
 
     useEffect(() => {
         const countryData = Country.getAllCountries().map((country) => ({
@@ -67,7 +71,17 @@ function ProfileDetails({data}) {
             setValidUser(false)
         }
     }, [convertToStringify?.id, id])
-
+    useEffect(() => {
+        const mergedData = Object.values(data.skills.reduce((acc, item) => {
+            if (!acc[item.core_skill]) {
+                acc[item.core_skill] = {...item, subSkill: [...item.subSkill]};
+            } else {
+                acc[item.core_skill].subSkill.push(...item.subSkill);
+            }
+            return acc;
+        }, {}));
+        setSkill(mergedData)
+    }, [data.skills]);
     return (
         <div className="">
             {data ? (
@@ -258,7 +272,7 @@ function ProfileDetails({data}) {
 
                                     {/* Skills */}
                                     <ProfileInfo title="Skills" open={true}>
-                                        {data?.skills?.map((data, i) => {
+                                        {skill?.map((data, i) => {
                                             return (
                                                 <div key={i} className="mt-2">
                                                     <div>
@@ -376,57 +390,75 @@ function ProfileDetails({data}) {
                                                                     </div>
                                                                 </div>
 
-                                <div className="flex flex-wrap gap-x-4 justify-between items-center">
-                                  <div className="xl:text-base text-xs capitalize">
-                                    {ex?.work_experience_industry}
-                                  </div>
-                                  <div className="xl:text-base text-xs capitalize">
-                                    {ex?.work_experience_sub_industry}
-                                  </div>
-                                </div>
-                                <div className="flex flex-wrap gap-x-4 justify-between items-center">
-                                  <a
-                                      href={ex?.work_experience_company_website || '#'}
-                                      className="xl:text-base text-xs hover:underline"
-                                      target="_blank"
-                                      // rel="noopener noreferrer"
-                                      // onClick={(e) => {
-                                      //   if (!ex?.work_experience_company_website) {
-                                      //     e.preventDefault();
-                                      //   }
-                                      //   e.stopPropagation();
-                                      // }}
-                                  >
-                                    {ex?.work_experience_company_website}
-                                  </a>
-                                </div>
+                                                                <div
+                                                                    className="flex flex-wrap gap-x-4 justify-between items-center">
+                                                                    <div className="xl:text-base text-xs capitalize">
+                                                                        {ex?.work_experience_industry}
+                                                                    </div>
+                                                                    <div className="xl:text-base text-xs capitalize">
+                                                                        {ex?.work_experience_sub_industry}
+                                                                    </div>
+                                                                </div>
+                                                                <div
+                                                                    className="flex flex-wrap gap-x-4 justify-between items-center">
+                                                                    <a
+                                                                        href={ex?.work_experience_company_website || '#'}
+                                                                        className="xl:text-base text-xs hover:underline"
+                                                                        target="_blank"
+                                                                        // rel="noopener noreferrer"
+                                                                        // onClick={(e) => {
+                                                                        //   if (!ex?.work_experience_company_website) {
+                                                                        //     e.preventDefault();
+                                                                        //   }
+                                                                        //   e.stopPropagation();
+                                                                        // }}
+                                                                    >
+                                                                        {ex?.work_experience_company_website}
+                                                                    </a>
+                                                                </div>
 
-                                <div>
-                                  {ex.accomplishments_id?.accomplishment_1 && (
-                                      <div className="xl:text-base text-xs flex items-center capitalize">
-                                        <DotIcon/>
-                                        {ex.accomplishments_id?.accomplishment_1}
-                                    </div>
-                                  )}
-                                  {ex.accomplishments_id?.accomplishment_2 && (
-                                    <div className="xl:text-base text-xs flex items-center capitalize">
-                                      <DotIcon />
-                                      {ex.accomplishments_id?.accomplishment_2}
-                                    </div>
-                                  )}
-                                  {ex.accomplishments_id?.accomplishment_3 && (
-                                    <div className="xl:text-base text-xs flex items-center capitalize">
-                                      <DotIcon />
-                                      {ex.accomplishments_id?.accomplishment_3}
-                                    </div>
-                                  )}
-                                  {ex.accomplishments_id?.accomplishment_4 && (
-                                    <div className="xl:text-base text-xs flex items-center capitalize">
-                                      <DotIcon />
-                                      {ex.accomplishments_id?.accomplishment_4}
-                                    </div>
-                                  )}
-                                </div>
+                                                                <div>
+                                                                    {ex.accomplishments_id?.accomplishment_1 && (
+                                                                        <div
+                                                                            className="xl:text-base text-xs flex items-center capitalize">
+                                                                            <DotIcon/>
+                                                                            {ex.accomplishments_id?.accomplishment_1}
+                                                                            <div className={'ml-1'}>
+                                                                            <Verify />
+                                                                            </div>
+                                                                        </div>
+                                                                    )}
+                                                                    {ex.accomplishments_id?.accomplishment_2 && (
+                                                                        <div
+                                                                            className="xl:text-base text-xs flex items-center capitalize">
+                                                                            <DotIcon/>
+                                                                            {ex.accomplishments_id?.accomplishment_2}
+                                                                            <div className={'ml-1'}>
+                                                                                <Verify/>
+                                                                            </div>
+                                                                        </div>
+                                                                    )}
+                                                                    {ex.accomplishments_id?.accomplishment_3 && (
+                                                                        <div
+                                                                            className="xl:text-base text-xs flex items-center capitalize">
+                                                                            <DotIcon/>
+                                                                            {ex.accomplishments_id?.accomplishment_3}
+                                                                            <div className={'ml-1'}>
+                                                                                <Verify/>
+                                                                            </div>
+                                                                        </div>
+                                                                    )}
+                                                                    {ex.accomplishments_id?.accomplishment_4 && (
+                                                                        <div
+                                                                            className="xl:text-base text-xs flex items-center capitalize">
+                                                                            <DotIcon/>
+                                                                            {ex.accomplishments_id?.accomplishment_4}
+                                                                            <div className={'ml-1'}>
+                                                                                <Verify/>
+                                                                            </div>
+                                                                        </div>
+                                                                    )}
+                                                                </div>
 
                                                                 {ex.verificationFeedback && (
                                                                     <div className="mt-1">
@@ -448,11 +480,32 @@ function ProfileDetails({data}) {
                                         </div>
                                     </ProfileInfo>
 
+                                    <ProfileInfo title="Projects" open={true}>
+                                        <div >
+
+                                            {data.projectDetails.map((project,i) => (
+                                                <div key={i} className="w-full flex gap-x-1">
+                                            <div className="flex flex-col justify-center items-center">
+                                                <div className="rounded-full w-4 h-4 bg-black"></div>
+                                                <div className="h-full w-[2px] bg-[#D7D9DE]"></div>
+                                            </div>
+                                                 <div className="pb-4 pt-2 w-full mt-2">
+                                                    <div>
+                                                        <div>{project.project_title}</div>
+                                                        <div>{project.project_description}</div>
+                                                        <div><a target={'_blank'} className={'underline text-sky-500'} href={project.project_url}>{project.project_url}</a></div>
+                                                    </div>
+                                                 </div>
+                                                </div>
+                                            ))}
+                                        </div>
+
+                                    </ProfileInfo>
                                     {/* Global Education */}
                                     <div>
                                         <ProfileInfo title="Global Education" open={true}>
                                             <div className="flex justify-between items-center">
-                                                <div className="xl:text-base text-xs  capitalize">
+                                            <div className="xl:text-base text-xs  capitalize">
                                                     {data?.internationalEducation?.level_of_education}
                                                 </div>
                                                 <div className="xl:text-base text-xs capitalize mt-[2px]">
@@ -521,36 +574,107 @@ function ProfileDetails({data}) {
 
                             {/* Video */}
                             <div
-                                className="flex lg:w-[30%] w-full lg:max-h-[calc(100vh-106px)] h-auto bg-grayLight lg:mt-0 mt-4">
-                                <div className="relative w-full h-full">
-                                    <div className="text-2xl font-bold my-5">Primary Video</div>
-                                    <video
-                                        controls
-                                        className="w-full lg:max-h-[calc(100vh-106px)] h-auto rounded-lg flex items-start"
-                                    >
-                                        <source
-                                            src={`${process.env.REACT_APP_FILE_URL}/${data?.basicDetails?.video}`}
-                                            type="video/mp4"
-                                        />
-                                        Your browser does not support the video tag.
-                                    </video>
-                                    {data?.basicDetails?.secondary_video && (
-                                        <>
-                                            <div className="text-2xl font-bold my-5">Secondary Video</div>
+                                className="flex lg:w-[25%] w-full lg:max-h-[calc(100vh-106px)] category2 h-auto bg-grayLight lg:mt-0 mt-4">
+                                {/*    <div className="relative w-full h-full">*/}
+                                {/*        <video*/}
+                                {/*            controls*/}
+                                {/*            className="w-full lg:max-h-[calc(100vh-106px)] rounded-lg flex items-start"*/}
+                                {/*                style={{height:"90vh"}}*/}
+                                {/*        >*/}
+                                {/*            <source*/}
+                                {/*                src={`${process.env.REACT_APP_FILE_URL}/${data?.basicDetails?.video}`}*/}
+                                {/*                type="video/mp4"*/}
+                                {/*                className={'h-[500px]'}*/}
+                                {/*            />*/}
+                                {/*            Your browser does not support the video tag.*/}
+                                {/*        </video>*/}
+                                {/*        {data?.basicDetails?.secondary_video && (*/}
+                                {/*            <>*/}
+                                {/*                <div className="text-2xl font-bold my-5">Secondary Video</div>*/}
+                                {/*                <video*/}
+                                {/*                    controls*/}
+                                {/*                    className="w-full lg:max-h-[calc(100vh-106px)] h-auto rounded-lg flex items-start"*/}
+                                {/*                    style={{height:"90vh"}}*/}
+                                {/*                >*/}
+                                {/*                    <source*/}
+                                {/*                        src={`${process.env.REACT_APP_FILE_URL}/${data?.basicDetails?.secondary_video}`}*/}
+                                {/*                        type="video/mp4"*/}
+                                {/*                    />*/}
+                                {/*                    Your browser does not support the video tag.*/}
+                                {/*                </video>*/}
+                                {/*            </>*/}
+                                {/*        )*/}
+                                {/*        }*/}
+                                {/*    </div>*/}
+                                <Swiper
+                                    direction={'vertical'}
+                                    navigation={{
+                                        nextEl: `.category2-next`,
+                                        prevEl: `.category2-prev`,
+                                    }}
+                                    modules={[Navigation]}
+                                    // pagination={{
+                                    //     clickable: true,
+                                    // }}
+                                    spaceBetween={10}
+                                    // style={{paddingBlock:20}}
+                                    // modules={[Pagination]}
+                                    className="mySwiper"
+                                >
+                                    <div className='my-3'>
+                                        <SwiperSlide>
+                                            <div className="text-2xl font-bold my-5">Primary Video</div>
                                             <video
                                                 controls
-                                                className="w-full lg:max-h-[calc(100vh-106px)] h-auto rounded-lg flex items-start"
+                                                className="w-full lg:max-h-[calc(100vh-106px)] rounded-lg flex items-start"
+                                                style={{height: "80vh"}}
                                             >
                                                 <source
-                                                    src={`${process.env.REACT_APP_FILE_URL}/${data?.basicDetails?.secondary_video}`}
+                                                    src={`${process.env.REACT_APP_FILE_URL}/${data?.basicDetails?.video}`}
                                                     type="video/mp4"
+                                                    className={'h-[500px]'}
                                                 />
                                                 Your browser does not support the video tag.
                                             </video>
-                                        </>
-                                    )
-                                    }
-                                </div>
+                                        </SwiperSlide>
+                                        {data?.basicDetails?.secondary_video && (
+                                            <>
+                                                <SwiperSlide>
+                                                    <div className="text-2xl font-bold my-5">Secondary Video</div>
+                                                    <video
+                                                        controls
+                                                        className="w-full lg:max-h-[calc(100vh-106px)] h-auto rounded-lg flex items-start"
+                                                        style={{height: "80vh"}}
+                                                    >
+                                                        <source
+                                                            src={`${process.env.REACT_APP_FILE_URL}/${data?.basicDetails?.secondary_video}`}
+                                                            type="video/mp4"
+                                                        />
+                                                        Your browser does not support the video tag.
+                                                    </video>
+                                                </SwiperSlide>
+                                            </>
+                                        )
+                                        }
+                                    </div>
+
+                                </Swiper>
+                                <button
+                                    className="category2-prev border border-black md:block hidden"
+                                    style={{
+                                        padding: "10px",
+                                    }}
+                                >
+                                    <Up />
+                                </button>
+                                <button
+                                    className="category2-next border border-black md:block hidden"
+                                    style={{
+                                        padding: "10px",
+                                    }}
+                                >
+                                    <Down/>
+                                </button>
                             </div>
                         </div>
                     </div>
