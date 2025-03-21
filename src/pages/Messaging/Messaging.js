@@ -7,7 +7,7 @@ function Messaging() {
         {
             id: 0,
             name: "Kunj Kapadiya",
-            message: "tamare kam jotu hoy to 5000 deposite bharvi Jose",
+            message: "Please Replay",
             time: "4:40 PM",
             image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcREWaLmZv1-4kxBlI3FqOf25N0V2H7ok_FoZ2Y-q_P5058voU8as-N833jG90N6GpBMdtk&usqp=CAU',
             unread: true,
@@ -16,14 +16,14 @@ function Messaging() {
                 {
                     id: 1,
                     sender: 'Kunj Kapadiya',
-                    content: 'remote work jotu hoy to kejo',
+                    content: 'Hello sir,',
                     time: '4:30 PM',
                     isUser: false,
                 },
                 {
                     id: 2,
                     sender: 'Heet Timbadiya',
-                    content: 'mari pase pisa j etla che tare company khoilvi hoy to keje',
+                    content: 'How Are You',
                     time: '4:31 PM',
                     isUser: true
                 },
@@ -99,7 +99,7 @@ function Messaging() {
     };
 
     return (
-        <div className="flex h-screen bg-gray-100 justify-center items-center">
+        <div className="flex h-[90VH] bg-gray-100 justify-center items-center">
             <div className="container">
                 <div className="flex lg:flex-row flex-col justify-center gap-x-6">
                     {/* Left Sidebar */}
@@ -175,7 +175,7 @@ function Messaging() {
                                         >
                                             <div
                                                 className={`max-w-[70%] rounded-lg p-3 ${
-                                                    msg.isUser ? 'bg-blue-500 text-white' : 'bg-white'
+                                                    msg.isUser ? 'bg-blue-500 bg-white' : 'bg-white'
                                                 }`}
                                             >
                                                 <div className="flex items-center gap-2 mb-1">
