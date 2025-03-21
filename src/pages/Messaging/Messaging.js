@@ -108,7 +108,7 @@ function Messaging() {
                             <h1 className="text-xl font-semibold">Chats</h1>
                         </div>
 
-                        <div className="overflow-y-auto h-[calc(100vh-4rem)]">
+                        <div className="overflow-y-auto h-[calc(80vh-4rem)]">
                             {messenger.map((item) => (
                                 <div
                                     key={item.id}

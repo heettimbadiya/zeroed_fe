@@ -86,55 +86,55 @@ function ProfileDetails({data}) {
         <div className="">
             {data ? (
                 <div>
-                    <div className="bg-white md:px-10 px-2 flex justify-between items-center py-5">
-                        <div className="flex justify-between items-center">
-                            <div>
-                                <img
-                                    src={logo}
-                                    alt="zeroed"
-                                    className="h-[1.875rem] w-[6.25rem]"
-                                />
-                            </div>
-                        </div>
-                        {isValidUser && (
-                            <div className="relative cursor-pointer">
-                                <div onClick={toggleMenu}>
-                                    <div
-                                        className="flex justify-center items-center gap-x-4 border border-text-border py-1 px-2 rounded-lg">
-                                        <img
-                                            src={profile ? profile : default_user}
-                                            alt="profile"
-                                            className="bg-gray-400 rounded-full border h-6 w-6 flex items-center justify-center cursor-pointer"
-                                        />
-                                        <ArrowDown/>
-                                    </div>
-                                </div>
-                                {isMenuOpen && (
-                                    <div className="absolute right-0 mt-2 bg-white shadow-lg rounded-md z-10">
-                                        <div className="p-2">
-                                            {profile !== null && (
-                                                <button
-                                                    onClick={() => {
-                                                        toggleMenu()
-                                                        navigate(`${ROUTES_URL.HOME}`)
-                                                    }}
-                                                >
-                                                    <div className="flex justify-between items-center gap-x-3">
-                                                        <div className="w-5">
-                                                            <UserIcon/>
-                                                        </div>
-                                                        <span className="text-sm whitespace-nowrap">
-                              Edit Profile
-                            </span>
-                                                    </div>
-                                                </button>
-                                            )}
-                                        </div>
-                                    </div>
-                                )}
-                            </div>
-                        )}
-                    </div>
+                    {/*<div className="bg-white md:px-10 px-2 flex justify-between items-center py-5">*/}
+                    {/*    <div className="flex justify-between items-center">*/}
+                    {/*        <div>*/}
+                    {/*            <img*/}
+                    {/*                src={logo}*/}
+                    {/*                alt="zeroed"*/}
+                    {/*                className="h-[1.875rem] w-[6.25rem]"*/}
+                    {/*            />*/}
+                    {/*        </div>*/}
+                    {/*    </div>*/}
+                    {/*    {isValidUser && (*/}
+                    {/*        <div className="relative cursor-pointer">*/}
+                    {/*            <div onClick={toggleMenu}>*/}
+                    {/*                <div*/}
+                    {/*                    className="flex justify-center items-center gap-x-4 border border-text-border py-1 px-2 rounded-lg">*/}
+                    {/*                    <img*/}
+                    {/*                        src={profile ? profile : default_user}*/}
+                    {/*                        alt="profile"*/}
+                    {/*                        className="bg-gray-400 rounded-full border h-6 w-6 flex items-center justify-center cursor-pointer"*/}
+                    {/*                    />*/}
+                    {/*                    <ArrowDown/>*/}
+                    {/*                </div>*/}
+                    {/*            </div>*/}
+                    {/*            {isMenuOpen && (*/}
+                    {/*                <div className="absolute right-0 mt-2 bg-white shadow-lg rounded-md z-10">*/}
+                    {/*                    <div className="p-2">*/}
+                    {/*                        {profile !== null && (*/}
+                    {/*                            <button*/}
+                    {/*                                onClick={() => {*/}
+                    {/*                                    toggleMenu()*/}
+                    {/*                                    navigate(`${ROUTES_URL.HOME}`)*/}
+                    {/*                                }}*/}
+                    {/*                            >*/}
+                    {/*                                <div className="flex justify-between items-center gap-x-3">*/}
+                    {/*                                    <div className="w-5">*/}
+                    {/*                                        <UserIcon/>*/}
+                    {/*                                    </div>*/}
+                    {/*                                    <span className="text-sm whitespace-nowrap">*/}
+                    {/*          Edit Profile*/}
+                    {/*        </span>*/}
+                    {/*                                </div>*/}
+                    {/*                            </button>*/}
+                    {/*                        )}*/}
+                    {/*                    </div>*/}
+                    {/*                </div>*/}
+                    {/*            )}*/}
+                    {/*        </div>*/}
+                    {/*    )}*/}
+                    {/*</div>*/}
                     {/* #287996 */}
                     <div className="bg-grayLight md:px-10 px-2 py-4">
                         <div className="flex lg:flex-row flex-col gap-x-6">

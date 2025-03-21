@@ -34,10 +34,10 @@ function Home() {
 
   return (
     <Fragment>
-      <Header
-        profile={data?.basicDetails ? data?.basicDetails?.profile_pic : null}
-        userId={user?.id}
-      />
+      {/*<Header*/}
+      {/*  profile={data?.basicDetails ? data?.basicDetails?.profile_pic : null}*/}
+      {/*  userId={user?.id}*/}
+      {/*/>*/}
 
       <div className="bg-grayLight min-h-screen md:px-10 px-2">
         {loading ? (

@@ -37,7 +37,7 @@ function Dashboard(props) {
             <div className="bg-grayLight md:px-10 px-2 py-4 flex justify-center items-center">
                 <div className={'container'}>
                     <div className="flex lg:flex-row flex-col justify-center gap-x-6 ">
-                        <div className="lg:w-[40%] w-full lg:h-[calc(100vh-50px)] bg-white overflow-y-auto">
+                        <div className="lg:w-[40%] w-full lg:h-[calc(100vh-120px)] bg-white overflow-y-auto">
                             <div className='font-semibold text-[18px] mb-5 p-3'>Feeds</div>
                             {data.map((feed, index) => (
                                 <div>
@@ -54,7 +54,7 @@ function Dashboard(props) {
 
                         </div>
                         <div
-                            className="lg:w-[30%] w-full lg:max-h-[calc(100vh-50px)] category2 h-auto bg-white lg:mt-0 mt-4 p-3">
+                            className="lg:w-[30%] w-full lg:max-h-[calc(100vh-120px)] category2 h-auto bg-white lg:mt-0 mt-4 p-3">
                             <div className='font-semibold text-[18px]'>Overviews</div>
                             <div className="my-10 flex justify-center">
                                 <div className="relative w-40 h-40">

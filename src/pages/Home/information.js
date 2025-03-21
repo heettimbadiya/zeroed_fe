@@ -262,7 +262,6 @@ function Information({data}) {
         } else {
             const updatedProject = [...projects]
             const userId = updatedProject[index]?.user_id
-            console.log(userId,"kkkkkkkkkkkk")
             if (userId) {
                 try {
                     const response = axios.delete(
