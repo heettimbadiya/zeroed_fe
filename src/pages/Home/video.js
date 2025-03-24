@@ -93,7 +93,7 @@ const VideoUploader = ({defaultVideo, onVideoUpload, defaultSecondaryVideo, onSe
                     onClick={() => openInstructionDialog("primary")}
                     className="border border-text-border border-b-4 focus:border-b-4 focus:border-primary outline-none rounded-lg px-4 py-3 w-1/2 text-center cursor-pointer"
                 >
-                    Record Video
+                    Primary Video
                 </div>
                 {data && (
                     <div

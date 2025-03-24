@@ -12,7 +12,6 @@ function Profile() {
   const location = useLocation()
   const pathname = location.pathname
 
-  useEffect(() => {
     async function fetchData() {
       try {
         const response = await axios.get(
@@ -25,6 +24,7 @@ function Profile() {
         setError(true)
       }
     }
+  useEffect(() => {
     fetchData()
   }, [pathname])
 

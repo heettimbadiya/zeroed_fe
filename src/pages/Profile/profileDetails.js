@@ -19,14 +19,21 @@ import {Link, useNavigate, useParams} from 'react-router-dom'
 import default_user from '../../assets/user.png'
 import ROUTES_URL from '../../constant/routes'
 import CertificatePreview from './certificatePreview'
-import { Swiper, SwiperSlide } from 'swiper/react';
+import {Swiper, SwiperSlide} from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/pagination';
+import axios from "axios";
+import {API_ROUTES} from "../../utils/APIs";
+
 function ProfileDetails({data}) {
     const [countryOptions, setCountryOptions] = useState([])
     const [stateOptions, setStateOptions] = useState([])
     const [open, setOpen] = useState(false)
     const [skill, setSkill] = useState([] || data.skills)
+    const [open2, setOpen2] = useState(false);
+    const [videoURL, setVideoURL] = useState(null);
+    const [videoFile, setVideoFile] = useState(null);
+    const params = useParams();
 
     useEffect(() => {
         const countryData = Country.getAllCountries().map((country) => ({
@@ -57,6 +64,11 @@ function ProfileDetails({data}) {
     const toggleMenu = () => {
         setIsMenuOpen((prev) => !prev)
     }
+    const handleClose = () => {
+        setOpen2(false);
+        setVideoFile(null);
+        setVideoURL(null);
+    };
 
     const profile = `${process.env.REACT_APP_FILE_URL}/${data?.basicDetails?.profile_pic}`
     const {id} = useParams()
@@ -64,6 +76,41 @@ function ProfileDetails({data}) {
     const convertToStringify = JSON.parse(localStorageData)
     const [isValidUser, setValidUser] = useState(false)
 
+    const token = localStorage.getItem('token');
+    const user = JSON.parse(localStorage.getItem('user'));
+    const handleSubmitVideo = async () => {
+        if (videoFile) {
+            const formData = new FormData();
+            formData.append('secondary_video', videoFile)
+            try {
+                const response = await axios.put(
+                    API_ROUTES.UPDATE_SECONDARY_VIDEO + user.id,
+                    formData,
+                    {
+                        headers: {
+                            'Content-Type': 'multipart/form-data',
+                            Authorization: `${token}`,
+                        },
+                    },
+                )
+                if (response) {
+                    handleClose();
+                    window.location.reload();
+                }
+            } catch (error) {
+                alert('Something went wrong')
+            }
+        }
+        setOpen2(false)
+        setVideoFile(null)
+    };
+    const handleFileChange = (event) => {
+        const file = event.target.files[0];
+        if (file) {
+            setVideoFile(file);
+            setVideoURL(URL.createObjectURL(file));
+        }
+    };
     useEffect(() => {
         if (id === convertToStringify?.id) {
             setValidUser(true)
@@ -202,7 +249,7 @@ function ProfileDetails({data}) {
                                                                         </a>
                                                                     </div>
                                                                     <div className="flex items-center space-x-2">
-                                                                    <span className="text-gray-500">📞</span>
+                                                                        <span className="text-gray-500">📞</span>
                                                                         <p className="text-gray-700">{data?.basicDetails?.contact_no || "Not Available"}</p>
                                                                     </div>
                                                                     <div className="flex items-center space-x-2">
@@ -424,7 +471,7 @@ function ProfileDetails({data}) {
                                                                             <DotIcon/>
                                                                             {ex.accomplishments_id?.accomplishment_1}
                                                                             <div className={'ml-1'}>
-                                                                            <Verify />
+                                                                                <Verify/>
                                                                             </div>
                                                                         </div>
                                                                     )}
@@ -481,21 +528,24 @@ function ProfileDetails({data}) {
                                     </ProfileInfo>
 
                                     <ProfileInfo title="Projects" open={true}>
-                                        <div >
+                                        <div>
 
-                                            {data.projectDetails.map((project,i) => (
+                                            {data.projectDetails.map((project, i) => (
                                                 <div key={i} className="w-full flex gap-x-1">
-                                            <div className="flex flex-col justify-center items-center">
-                                                <div className="rounded-full w-4 h-4 bg-black"></div>
-                                                <div className="h-full w-[2px] bg-[#D7D9DE]"></div>
-                                            </div>
-                                                 <div className="pb-4 pt-2 w-full mt-2">
-                                                    <div>
-                                                        <div>{project.project_title}</div>
-                                                        <div>{project.project_description}</div>
-                                                        <div><a target={'_blank'} className={'underline text-sky-500'} href={project.project_url}>{project.project_url}</a></div>
+                                                    <div className="flex flex-col justify-center items-center">
+                                                        <div className="rounded-full w-4 h-4 bg-black"></div>
+                                                        <div className="h-full w-[2px] bg-[#D7D9DE]"></div>
                                                     </div>
-                                                 </div>
+                                                    <div className="pb-4 pt-2 w-full mt-2">
+                                                        <div>
+                                                            <div>{project.project_title}</div>
+                                                            <div>{project.project_description}</div>
+                                                            <div><a target={'_blank'}
+                                                                    className={'underline text-sky-500'}
+                                                                    href={project.project_url}>{project.project_url}</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             ))}
                                         </div>
@@ -505,7 +555,7 @@ function ProfileDetails({data}) {
                                     <div>
                                         <ProfileInfo title="Global Education" open={true}>
                                             <div className="flex justify-between items-center">
-                                            <div className="xl:text-base text-xs  capitalize">
+                                                <div className="xl:text-base text-xs  capitalize">
                                                     {data?.internationalEducation?.level_of_education}
                                                 </div>
                                                 <div className="xl:text-base text-xs capitalize mt-[2px]">
@@ -623,7 +673,18 @@ function ProfileDetails({data}) {
                                 >
                                     <div className='my-3'>
                                         <SwiperSlide>
-                                            <div className="text-2xl font-bold my-5">Primary Video</div>
+                                            <div className="flex justify-between items-center">
+                                                <div className="text-2xl font-bold my-5">Primary Video</div>
+                                                {params.id === user.id && (
+                                                <>
+                                                    <div
+                                                        className="ml-4 bg-primary px-4 py-2 text-white rounded cursor-pointer text-nowrap mt-3"
+                                                        onClick={() => setOpen2(true)}>
+                                                        {data?.basicDetails?.secondary_video ? 'Change Secondary Video' : '+ Add Secondary Video' }
+                                                    </div>
+                                                </>
+                                                )}
+                                            </div>
                                             <video
                                                 controls
                                                 className="w-full lg:max-h-[calc(100vh-106px)] rounded-lg flex items-start"
@@ -665,7 +726,7 @@ function ProfileDetails({data}) {
                                         padding: "10px",
                                     }}
                                 >
-                                    <Up />
+                                    <Up/>
                                 </button>
                                 <button
                                     className="category2-next border border-black md:block hidden"
@@ -681,6 +742,52 @@ function ProfileDetails({data}) {
                 </div>
             ) : (
                 <PageLoading/>
+            )}
+            {open2 && (
+                <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50"
+                     onClick={handleClose}>
+                    <div className="bg-white p-6 rounded-lg shadow-lg w-96" onClick={(e) => e.stopPropagation()}>
+                        <h2 className="text-xl font-semibold mb-4">Select Video File</h2>
+                        <label
+                            className="block w-full border border-dashed border-gray-400 rounded-lg p-4 text-center cursor-pointer hover:border-blue-500 transition">
+              <span className="text-gray-600 text-sm font-medium">
+                {videoFile ? videoFile.name : "Click to choose a secondary video"}
+              </span>
+                            <input
+                                type="file"
+                                accept="video/*"
+                                className="hidden"
+                                onChange={handleFileChange}
+                            />
+                        </label>
+                        {videoURL && (
+                            <div className="mt-4">
+                                <video controls className="w-full rounded">
+                                    <source src={videoURL} type="video/mp4"/>
+                                    Your browser does not support the video tag.
+                                </video>
+                            </div>
+                        )}
+
+                        <div className="flex justify-end space-x-3 mt-4">
+                            <button
+                                onClick={handleClose}
+                                className="px-4 py-2 bg-gray-400 text-white rounded hover:bg-gray-500 transition"
+                            >
+                                Cancel
+                            </button>
+                            <button
+                                onClick={handleSubmitVideo}
+                                className={`px-4 py-2 rounded text-white transition ${
+                                    videoFile ? "bg-primary px-4 py-2 text-white rounded " : "bg-gray-300 cursor-not-allowed"
+                                }`}
+                                disabled={!videoFile}
+                            >
+                                Submit
+                            </button>
+                        </div>
+                    </div>
+                </div>
             )}
         </div>
     )
