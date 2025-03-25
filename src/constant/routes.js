@@ -7,6 +7,7 @@ const ROUTES_URL = {
   VERIFY_FORGOT_PASSWORD_OTP: `/otp-verify`,
   RESET_PASSWORD: `/reset-password`,
   INITIAL: `/`,
+  VIEW: `/view`,
   HOME: `/home`,
   PROFILE: `/profile`,
   DASHBOARD: `/dashboard`,

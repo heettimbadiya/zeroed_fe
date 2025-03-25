@@ -1,8 +1,6 @@
 import React, {useEffect, useState} from 'react'
-
 import {PageLoading} from '../../common/Icons/Loading/pageLoading'
 import {Country, State} from 'country-state-city'
-import {ViewDateFormat} from '../../utils/dateFormat'
 import {Navigation} from "swiper/modules";
 import {
     ArrowDown,
@@ -13,24 +11,22 @@ import {
     SuccessIcon, Up,
     UserIcon, Verify,
 } from '../../common/Icons'
-import logo from '../../assets/logo.png'
 import ProfileInfo, {Information} from '../../common/Information/profileInfo'
 import {Link, useNavigate, useParams} from 'react-router-dom'
-import default_user from '../../assets/user.png'
-import ROUTES_URL from '../../constant/routes'
-import CertificatePreview from './certificatePreview'
 import {Swiper, SwiperSlide} from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import axios from "axios";
 import {API_ROUTES} from "../../utils/APIs";
+import CertificatePreview from "./certificatePreview";
+import logo from "../../assets/logo.png";
 
-function ProfileDetails({data}) {
+function ViewProfileDetails({data}) {
     const [countryOptions, setCountryOptions] = useState([])
     const [stateOptions, setStateOptions] = useState([])
     const [open, setOpen] = useState(false)
     const [skill, setSkill] = useState([] || data.skills)
-    // const [open2, setOpen2] = useState(false);
+    const [open2, setOpen2] = useState(false);
     const [videoURL, setVideoURL] = useState(null);
     const [videoFile, setVideoFile] = useState(null);
     const params = useParams();
@@ -65,7 +61,7 @@ function ProfileDetails({data}) {
         setIsMenuOpen((prev) => !prev)
     }
     const handleClose = () => {
-        // setOpen2(false);
+        setOpen2(false);
         setVideoFile(null);
         setVideoURL(null);
     };
@@ -101,7 +97,7 @@ function ProfileDetails({data}) {
                 alert('Something went wrong')
             }
         }
-        // setOpen2(false)
+        setOpen2(false)
         setVideoFile(null)
     };
     const handleFileChange = (event) => {
@@ -131,6 +127,12 @@ function ProfileDetails({data}) {
     }, [data.skills]);
     return (
         <div className="">
+            <div className={'p-5 bg-white'}>
+                <div>
+                    <img src={logo} onClick={() => navigate('/home')} alt="zeroed"
+                         className="h-[1.875rem] w-[6.25rem] cursor-pointer"/>
+                </div>
+            </div>
             {data ? (
                 <div>
                     {/*<div className="bg-white md:px-10 px-2 flex justify-between items-center py-5">*/}
@@ -240,7 +242,7 @@ function ProfileDetails({data}) {
                                                                     <div className="flex items-center space-x-2">
                                                                         <span className="text-gray-500">🔗</span>
                                                                         <a
-                                                                            href={`/view/${data?.basicDetails?.slug}` || "#"}
+                                                                            href={data?.basicDetails?.slug || "#"}
                                                                             target="_blank"
                                                                             rel="noopener noreferrer"
                                                                             className="text-blue-600 hover:underline"
@@ -318,7 +320,7 @@ function ProfileDetails({data}) {
                   </ProfileInfo> */}
 
                                     {/* Skills */}
-                                    <ProfileInfo title="Skills" open={true} edit={true}>
+                                    <ProfileInfo title="Skills" open={true}>
                                         {skill?.map((data, i) => {
                                             return (
                                                 <div key={i} className="mt-2">
@@ -357,7 +359,7 @@ function ProfileDetails({data}) {
                                     </ProfileInfo>
 
                                     {/* Work Experience */}
-                                    <ProfileInfo title="Work Experience" open={true} edit={true}>
+                                    <ProfileInfo title="Work Experience" open={true}>
                                         <div>
                                             <div>
                                                 {data?.workExperience.map((ex, i) => {
@@ -527,7 +529,7 @@ function ProfileDetails({data}) {
                                         </div>
                                     </ProfileInfo>
 
-                                    <ProfileInfo title="Projects" open={true} edit={true}>
+                                    <ProfileInfo title="Projects" open={true}>
                                         <div>
 
                                             {data.projectDetails.map((project, i) => (
@@ -553,7 +555,7 @@ function ProfileDetails({data}) {
                                     </ProfileInfo>
                                     {/* Global Education */}
                                     <div>
-                                        <ProfileInfo title="Global Education" open={true} edit={true}>
+                                        <ProfileInfo title="Global Education" open={true}>
                                             <div className="flex justify-between items-center">
                                                 <div className="xl:text-base text-xs  capitalize">
                                                     {data?.internationalEducation?.level_of_education}
@@ -570,7 +572,7 @@ function ProfileDetails({data}) {
                                     {data?.canadianEducation?.isCanadianEducation && (
                                         <div>
                                             {/* Canadian Education */}
-                                            <ProfileInfo title="Canadian Education" open={true} edit={true}>
+                                            <ProfileInfo title="Canadian Education" open={true}>
                                                 <div className="flex flex-wrap justify-between items-center gap-x-4">
                                                     <div className="xl:text-base text-xs capitalize">
                                                         {data?.canadianEducation?.field_of_study_canadian}
@@ -671,20 +673,20 @@ function ProfileDetails({data}) {
                                     // modules={[Pagination]}
                                     className="mySwiper"
                                 >
-                                    <div className='my-3 relative z-[-5]'>
+                                    <div className='my-3'>
                                         <SwiperSlide>
-                                            <div className="flex justify-between items-center">
-                                                <div className="text-2xl font-bold my-5">Primary Video</div>
-                                                {params.id === user.id && (
-                                                <>
-                                                    <div
-                                                        className="ml-4 bg-primary px-4 py-2 text-white rounded cursor-pointer text-nowrap mt-3"
-                                                        onClick={() => navigate('/home')}>
-                                                        {data?.basicDetails?.secondary_video ? 'Change Secondary Video' : '+ Add Secondary Video' }
-                                                    </div>
-                                                </>
-                                                )}
-                                            </div>
+                                            {/*<div className="flex justify-between items-center">*/}
+                                            {/*    <div className="text-2xl font-bold my-5">Primary Video</div>*/}
+                                            {/*    {params.id === user.id && (*/}
+                                            {/*    <>*/}
+                                            {/*        <div*/}
+                                            {/*            className="ml-4 bg-primary px-4 py-2 text-white rounded cursor-pointer text-nowrap mt-3"*/}
+                                            {/*            onClick={() => setOpen2(true)}>*/}
+                                            {/*            {data?.basicDetails?.secondary_video ? 'Change Secondary Video' : '+ Add Secondary Video' }*/}
+                                            {/*        </div>*/}
+                                            {/*    </>*/}
+                                            {/*    )}*/}
+                                            {/*</div>*/}
                                             <video
                                                 controls
                                                 className="w-full lg:max-h-[calc(100vh-106px)] rounded-lg flex items-start"
@@ -743,54 +745,54 @@ function ProfileDetails({data}) {
             ) : (
                 <PageLoading/>
             )}
-            {/*{open2 && (*/}
-            {/*    <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50"*/}
-            {/*         onClick={handleClose}>*/}
-            {/*        <div className="bg-white p-6 rounded-lg shadow-lg w-96" onClick={(e) => e.stopPropagation()}>*/}
-            {/*            <h2 className="text-xl font-semibold mb-4">Select Video File</h2>*/}
-            {/*            <label*/}
-            {/*                className="block w-full border border-dashed border-gray-400 rounded-lg p-4 text-center cursor-pointer hover:border-blue-500 transition">*/}
-            {/*  <span className="text-gray-600 text-sm font-medium">*/}
-            {/*    {videoFile ? videoFile.name : "Click to choose a secondary video"}*/}
-            {/*  </span>*/}
-            {/*                <input*/}
-            {/*                    type="file"*/}
-            {/*                    accept="video/*"*/}
-            {/*                    className="hidden"*/}
-            {/*                    onChange={handleFileChange}*/}
-            {/*                />*/}
-            {/*            </label>*/}
-            {/*            {videoURL && (*/}
-            {/*                <div className="mt-4">*/}
-            {/*                    <video controls className="w-full rounded">*/}
-            {/*                        <source src={videoURL} type="video/mp4"/>*/}
-            {/*                        Your browser does not support the video tag.*/}
-            {/*                    </video>*/}
-            {/*                </div>*/}
-            {/*            )}*/}
+            {open2 && (
+                <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50"
+                     onClick={handleClose}>
+                    <div className="bg-white p-6 rounded-lg shadow-lg w-96" onClick={(e) => e.stopPropagation()}>
+                        <h2 className="text-xl font-semibold mb-4">Select Video File</h2>
+                        <label
+                            className="block w-full border border-dashed border-gray-400 rounded-lg p-4 text-center cursor-pointer hover:border-blue-500 transition">
+              <span className="text-gray-600 text-sm font-medium">
+                {videoFile ? videoFile.name : "Click to choose a secondary video"}
+              </span>
+                            <input
+                                type="file"
+                                accept="video/*"
+                                className="hidden"
+                                onChange={handleFileChange}
+                            />
+                        </label>
+                        {videoURL && (
+                            <div className="mt-4">
+                                <video controls className="w-full rounded">
+                                    <source src={videoURL} type="video/mp4"/>
+                                    Your browser does not support the video tag.
+                                </video>
+                            </div>
+                        )}
 
-            {/*            <div className="flex justify-end space-x-3 mt-4">*/}
-            {/*                <button*/}
-            {/*                    onClick={handleClose}*/}
-            {/*                    className="px-4 py-2 bg-gray-400 text-white rounded hover:bg-gray-500 transition"*/}
-            {/*                >*/}
-            {/*                    Cancel*/}
-            {/*                </button>*/}
-            {/*                <button*/}
-            {/*                    onClick={handleSubmitVideo}*/}
-            {/*                    className={`px-4 py-2 rounded text-white transition ${*/}
-            {/*                        videoFile ? "bg-primary px-4 py-2 text-white rounded " : "bg-gray-300 cursor-not-allowed"*/}
-            {/*                    }`}*/}
-            {/*                    disabled={!videoFile}*/}
-            {/*                >*/}
-            {/*                    Submit*/}
-            {/*                </button>*/}
-            {/*            </div>*/}
-            {/*        </div>*/}
-            {/*    </div>*/}
-            {/*)}*/}
+                        <div className="flex justify-end space-x-3 mt-4">
+                            <button
+                                onClick={handleClose}
+                                className="px-4 py-2 bg-gray-400 text-white rounded hover:bg-gray-500 transition"
+                            >
+                                Cancel
+                            </button>
+                            <button
+                                onClick={handleSubmitVideo}
+                                className={`px-4 py-2 rounded text-white transition ${
+                                    videoFile ? "bg-primary px-4 py-2 text-white rounded " : "bg-gray-300 cursor-not-allowed"
+                                }`}
+                                disabled={!videoFile}
+                            >
+                                Submit
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            )}
         </div>
     )
 }
 
-export default ProfileDetails
+export default ViewProfileDetails

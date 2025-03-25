@@ -1944,6 +1944,9 @@ const handleChangeProject = (field,index, value) => {
                                             <VideoSampleModal isOpen={isSampleModalOpen}
                                                               onClose={() => setIsSampleModalOpen(false)}/>
                                         </div>
+                                    </div>
+
+                                </div>
                                         <VideoUploader
                                             data={data}
                                             defaultVideo={data?.basicDetails?.video}
@@ -1956,9 +1959,6 @@ const handleChangeProject = (field,index, value) => {
                                             component="div"
                                             className="text-xs text-red-500 ml-1 mt-1"
                                         />
-                                    </div>
-
-                                </div>
                             </div>
 
                         </FormInfo>
