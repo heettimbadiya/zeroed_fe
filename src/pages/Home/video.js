@@ -26,10 +26,6 @@ const VideoUploader = ({defaultVideo, onVideoUpload, defaultSecondaryVideo, onSe
         }
     }, [defaultSecondaryVideo]);
 
-    const openInstructionDialog = (type) => {
-        setInstructionType(type);
-        setShowInstruction(true);
-    };
 
     const closeInstructionDialog = () => setShowInstruction(false);
 
@@ -40,6 +36,10 @@ const VideoUploader = ({defaultVideo, onVideoUpload, defaultSecondaryVideo, onSe
         } else {
             setIsSecondaryOpen(true);
         }
+    };
+    const openInstructionDialog = (type) => {
+        setInstructionType(type);
+        proceedWithUpload()
     };
 
     const closePrimaryDialog = () => setIsOpen(false);

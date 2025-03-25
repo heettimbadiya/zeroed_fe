@@ -54,11 +54,11 @@ const Header = ({ profile, userId }) => {
                               navigate(`${ROUTES_URL.PROFILE}/${userId}`)
                             }}
                         >
-                          <div className="flex justify-between items-center gap-x-3">
+                          <div className="flex justify-between items-center gap-x-2">
                             <div className="w-10">
                               <UserIcon/>
                             </div>
-                            <span>Publish</span>
+                            <span>Profile</span>
                           </div>
                         </button>
                     )}
@@ -68,7 +68,7 @@ const Header = ({ profile, userId }) => {
                           handleLogout()
                         }}
                     >
-                      <div className="flex justify-center items-center gap-x-3">
+                      <div className="flex justify-center items-center gap-x-2">
                         <div className="w-10">
                           <LogoutIcon/>
                         </div>

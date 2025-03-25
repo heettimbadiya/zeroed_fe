@@ -43,10 +43,6 @@ function App() {
     return (
         <div>
             <Suspense fallback={<PageLoading/>}>
-                <Header
-                    profile={data?.basicDetails ? data?.basicDetails?.profile_pic : null}
-                    userId={user?.id}
-                />
                 <Routes>
                     <Route
                         path={ROUTES_URL.SIGN_IN}
@@ -102,6 +98,10 @@ function App() {
                         path={ROUTES_URL.INITIAL}
                         element={
                             <ProtectedRoute>
+                                <Header
+                                    profile={data?.basicDetails ? data?.basicDetails?.profile_pic : null}
+                                    userId={user?.id}
+                                />
                                 <Home/>
                             </ProtectedRoute>
                         }
@@ -110,6 +110,10 @@ function App() {
                         path={ROUTES_URL.HOME}
                         element={
                             <ProtectedRoute>
+                                <Header
+                                    profile={data?.basicDetails ? data?.basicDetails?.profile_pic : null}
+                                    userId={user?.id}
+                                />
                                 <Home/>
                             </ProtectedRoute>
                         }
@@ -118,6 +122,10 @@ function App() {
                         path={ROUTES_URL.DASHBOARD}
                         element={
                             <ProtectedRoute>
+                                <Header
+                                    profile={data?.basicDetails ? data?.basicDetails?.profile_pic : null}
+                                    userId={user?.id}
+                                />
                                 <Dashboard/>
                             </ProtectedRoute>
                         }
@@ -126,6 +134,10 @@ function App() {
                         path={ROUTES_URL.MESSAGING}
                         element={
                             <ProtectedRoute>
+                                <Header
+                                    profile={data?.basicDetails ? data?.basicDetails?.profile_pic : null}
+                                    userId={user?.id}
+                                />
                                 <Messaging />
                             </ProtectedRoute>
                         }
@@ -133,9 +145,13 @@ function App() {
                     <Route
                         path={`${ROUTES_URL.PROFILE}/:id`}
                         element={
-                            // <ProtectedRoute>
+                            <>
+                            <Header
+                                profile={data?.basicDetails ? data?.basicDetails?.profile_pic : null}
+                                userId={user?.id}
+                            />
                             <Profile/>
-                            // </ProtectedRoute>
+                            </>
                         }
                     />
                 </Routes>
