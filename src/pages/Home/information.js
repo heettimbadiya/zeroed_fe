@@ -954,7 +954,7 @@ const handleChangeProject = (field,index, value) => {
                           </span>{' '}
                                                     {data
                                                         ? values?.profile_pic?.name ||
-                                                        data?.basicDetails?.profile_pic.split('/').pop()
+                                                        data?.basicDetails?.profile_pic?.split('/').pop()
                                                         : values?.profile_pic?.name || 'No file chosen'}
                                                 </label>
                                                 {/* Displaying error message */}
@@ -2018,7 +2018,7 @@ const handleChangeProject = (field,index, value) => {
                                     </div>
                                 </div>
                             ))}
-                            <div className='pb-4'>
+                            <div className='py-4'>
                                 <div
                                     className="ml-4 bg-primary px-4 py-2 text-white rounded w-[160px] text-center cursor-pointer"
                                     onClick={handleAddProject}

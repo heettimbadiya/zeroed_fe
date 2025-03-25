@@ -491,7 +491,7 @@ function Information({ data }) {
 
             // core_skills: data?.skills?.core_skills[0].split(',') || [],
             core_skill_one: '',
-            sub_skills_one: data?.skills?.sub_skills[0].split(',') || [],
+            sub_skills_one: data?.skills?.sub_skills[0]?.split(',') || [],
 
             desc: data?.workExperience?.desc || '',
             email: data?.workExperience?.email || '',
