@@ -66,6 +66,7 @@ function Information({data}) {
     const [visibleFields, setVisibleFields] = useState(data?.workExperience?.length ? 4 : 1);
     const [showInstruction, setShowInstruction] = useState(false);
     let navigate = useNavigate()
+    const [wordCounts, setWordCounts] = useState({});
     const token = localStorage.getItem('token')
     const initialProjects = {
         project_title: "", project_description: "", project_url: ""
@@ -87,7 +88,7 @@ function Information({data}) {
     const [experienceError, setExperienceError] = useState('')
     const [imgError, setImgError] = useState('')
     const [isSampleModalOpen, setIsSampleModalOpen] = useState(false);
-
+    const isAnyDescriptionTooLong = Object.values(wordCounts).some(count => count > 25);
     // Get countries for the country dropdown
     const countryData = Country.getAllCountries().map((country) => ({
         value: country.name, name: country.name,
@@ -347,14 +348,14 @@ function Information({data}) {
         setInternationalEducation([...internationalEducation, initialInterNationalEducation])
     }
     const handleAddProject = () => {
-        setProjects([...projects, initialProjects])
+        setProjects([...projects,initialProjects])
     }
-    const handleChangeProject = (field, index, value) => {
+const handleChangeProject = (field,index, value) => {
         const updatedProject = [...projects]
-        updatedProject[index][field] = value
-        setProjects(updatedProject)
+    updatedProject[index][field] = value
+    setProjects(updatedProject)
 
-    }
+}
     const handleChangeExperience = (index, field, value) => {
         const updatedExperiences = [...workExperiences]
 
@@ -371,13 +372,6 @@ function Information({data}) {
         if (field === 'email' || field === 'reference_email' || field === 'work_experience_company_website') {
             validateEmailAndWebsite(index, updatedExperiences[index])
         }
-    }
-    const handleChangeInternationalEducation = (index, field, value) => {
-        console.log(index, value, field, "nnnnn")
-        const updatedExperiences = [...internationalEducation]
-        updatedExperiences[index][field] = value
-
-        setWorkExperiences(updatedExperiences)
     }
 
     const handleSubmit = async (values) => {
@@ -481,11 +475,10 @@ function Information({data}) {
         })
 
         // Append career goal
-        formData.append('careerGoal[career_industry]', values.career_industry)
+        // formData.append('careerGoal[career_industry]', values.career_industry)
         formData.append('careerGoal[career_role]', values.career_role)
-        formData.append('careerGoal[career_field]', values.career_field)
-        formData.append('careerGoal[noc_number]', values.noc_number)
-        formData.append('careerGoal[noc]', values.noc)
+        // formData.append('careerGoal[career_field]', values.career_field)
+        // formData.append('careerGoal[noc_number]', values.noc_number)
 
         const experience = workExperiences[0]
         const isEmpty = Object.values(experience).every((value) => value === '' || value === null,)
@@ -552,13 +545,13 @@ function Information({data}) {
             setDisabledButton(false)
         }
         if (websiteDomain && referenceEmailDomain && websiteDomain !== referenceEmailDomain) {
-            const errorMessage = 'Reference email domain must match the company website domain.'
-            setWorkExperiences((prevWorkExperiences) => {
-                const updatedWorkExperiences = [...prevWorkExperiences]
-                updatedWorkExperiences[index].referenceEmailError = errorMessage
-                return updatedWorkExperiences
-            })
-            setDisabledButton(true)
+            // const errorMessage = 'Reference email domain must match the company website domain.'
+            // setWorkExperiences((prevWorkExperiences) => {
+            //     const updatedWorkExperiences = [...prevWorkExperiences]
+            //     updatedWorkExperiences[index].referenceEmailError = errorMessage
+            //     return updatedWorkExperiences
+            // })
+            // setDisabledButton(true)
         } else {
             setWorkExperiences((prevWorkExperiences) => {
                 const updatedWorkExperiences = [...prevWorkExperiences]
@@ -606,37 +599,50 @@ function Information({data}) {
             project_description: data?.canadianEducation?.project_description || '',
             project_url: data?.canadianEducation?.project_url || '',
 
-            coreSkills: [{
-                _id: data?.skills[0]?._id || null,
-                coreSkill: data?.skills[0]?.core_skill || '',
-                subSkills: data?.skills[0]?.subSkill?.length > 0 ? data?.skills[0]?.subSkill?.map((data) => {
-                    const _id = data?._id || null
-                    const subSkill = data.sub_skills || ''
-                    const certificate = data.certificate || ''
-                    const link = data.link || ''
-                    return {_id, subSkill, certificate, link}
-                }) : [],
-            }, {
-                _id: data?.skills[1]?._id || null,
-                coreSkill: data?.skills[1]?.core_skill || '',
-                subSkills: data?.skills[1]?.subSkill?.length > 0 ? data?.skills[1]?.subSkill?.map((data) => {
-                    const _id = data?._id || null
-                    const subSkill = data.sub_skills || ''
-                    const certificate = data.certificate || ''
-                    const link = data.link || ''
-                    return {_id, subSkill, certificate, link}
-                }) : [],
-            }, {
-                _id: data?.skills[2]?._id || null,
-                coreSkill: data?.skills[2]?.core_skill || '',
-                subSkills: data?.skills[2]?.subSkill?.length > 0 ? data?.skills[2]?.subSkill?.map((data) => {
-                    const _id = data?._id || null
-                    const subSkill = data.sub_skills || ''
-                    const certificate = data.certificate || ''
-                    const link = data.link || ''
-                    return {_id, subSkill, certificate, link}
-                }) : [],
-            },],
+                coreSkills: [
+                    {
+                        _id: data?.skills[0]?._id || null,
+                        coreSkill: data?.skills[0]?.core_skill || '',
+                        subSkills:
+                            data?.skills[0]?.subSkill?.length > 0
+                                ? data?.skills[0]?.subSkill?.map((data) => {
+                                    const _id = data?._id || null
+                                    const subSkill = data.sub_skills || ''
+                                    const certificate = data.certificate || ''
+                                    const link = data.link || ''
+                                    return {_id, subSkill, certificate, link}
+                                })
+                                : [],
+                    },
+                    // {
+                    //     _id: data?.skills[1]?._id || null,
+                    //     coreSkill: data?.skills[1]?.core_skill || '',
+                    //     subSkills:
+                    //         data?.skills[1]?.subSkill?.length > 0
+                    //             ? data?.skills[1]?.subSkill?.map((data) => {
+                    //                 const _id = data?._id || null
+                    //                 const subSkill = data.sub_skills || ''
+                    //                 const certificate = data.certificate || ''
+                    //                 const link = data.link || ''
+                    //                 return {_id, subSkill, certificate, link}
+                    //             })
+                    //             : [],
+                    // },
+                    // {
+                    //     _id: data?.skills[2]?._id || null,
+                    //     coreSkill: data?.skills[2]?.core_skill || '',
+                    //     subSkills:
+                    //         data?.skills[2]?.subSkill?.length > 0
+                    //             ? data?.skills[2]?.subSkill?.map((data) => {
+                    //                 const _id = data?._id || null
+                    //                 const subSkill = data.sub_skills || ''
+                    //                 const certificate = data.certificate || ''
+                    //                 const link = data.link || ''
+                    //                 return {_id, subSkill, certificate, link}
+                    //             })
+                    //             : [],
+                    // },
+                ],
 
             accomplishment_1: data?.workExperience?.accomplishment_1 || '',
             accomplishment_2: data?.workExperience?.accomplishment_2 || '',
@@ -660,41 +666,42 @@ function Information({data}) {
             video: data?.basicDetails?.video || '',
             secondary_video: data?.basicDetails?.secondary_video || '',
 
-            career_industry: data?.careerGoal?.career_industry || '',
-            career_role: data?.careerGoal?.career_role || '',
-            career_field: data?.careerGoal?.career_field || '',
-            noc_number: data?.careerGoal?.noc_number || '',
-            noc: data?.careerGoal?.noc || '',
-        }}
-        validationSchema={jobFormValidation}
-        onSubmit={handleSubmit}
-    >
-        {({handleReset, isSubmitting, setFieldValue, values, errors}) => {
-            return (<Form>
-                {/* ------------------Personal Information--------------- */}
-                <FormInfo title="Personal Information" icon={<UserInfo/>}>
-                    <div className="grid xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2 gap-x-5 py-6 px-4">
-                        {/*<DropDownInput1*/}
-                        {/*    label={"Hello"}*/}
-                        {/*    name={"hello"}*/}
-                        {/*    value={values.hello}*/}
-                        {/*    onChange={(e) => setFieldValue('hello', e.target.value)}*/}
-                        {/*    placeholder="Type and press Enter"*/}
-                        {/*/>*/}
-                        <TextField
-                            type="text"
-                            label="firstname"
-                            name="firstname"
-                            placeholder="Enter first name"
-                            onChange={(e) => setFieldValue('firstname', e.target.value)}
-                        />
-                        <TextField
-                            type="text"
-                            label="lastname"
-                            name="lastname"
-                            placeholder="Enter last name"
-                            onChange={(e) => setFieldValue('lastname', e.target.value)}
-                        />
+                // career_industry: data?.careerGoal?.career_industry || '',
+                career_role: data?.careerGoal?.career_role || '',
+                // career_field: data?.careerGoal?.career_field || '',
+                // noc_number: data?.careerGoal?.noc_number || '',
+            }}
+            validationSchema={jobFormValidation}
+            onSubmit={handleSubmit}
+        >
+            {({handleReset, isSubmitting, setFieldValue, values, errors}) => {
+                return (
+                    <Form>
+                        {/* ------------------Personal Information--------------- */}
+                        <FormInfo title="Personal Information" icon={<UserInfo/>}>
+                            <div className="grid xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2 gap-x-5 py-6 px-4">
+                                {/*<DropDownInput1*/}
+                                {/*    label={"Hello"}*/}
+                                {/*    name={"hello"}*/}
+                                {/*    value={values.hello}*/}
+                                {/*    onChange={(e) => setFieldValue('hello', e.target.value)}*/}
+                                {/*    placeholder="Type and press Enter"*/}
+
+                                {/*/>*/}
+                                <TextField
+                                    type="text"
+                                    label="firstname"
+                                    name="firstname"
+                                    placeholder="Enter first name"
+                                    onChange={(e) => setFieldValue('firstname', e.target.value)}
+                                />
+                                <TextField
+                                    type="text"
+                                    label="lastname"
+                                    name="lastname"
+                                    placeholder="Enter last name"
+                                    onChange={(e) => setFieldValue('lastname', e.target.value)}
+                                />
 
                         <div className="mb-4">
                             <Label label="Profile"/>
@@ -1023,192 +1030,203 @@ function Information({data}) {
                     </div>
                 </FormInfo>
 
-                {/* -------------Skills------------- */}
-                <FormInfo title="Skills" icon={<Skills/>}>
-                    <div className="py-6 px-4">
-                        <FieldArray name="coreSkills">
-                            {({push, remove}) => (<div>
-                                {values.coreSkills.map((coreSkill, coreIndex) => (
-                                    <div key={coreIndex} className="mt-5">
-                                        {/* Core Skill Dropdown */}
-                                        <div className="w-full lg:w-1/2 2xl:w-1/3">
-                                            <DropDown
-                                                label="Core Skills"
-                                                name={`coreSkills[${coreIndex}].coreSkill`}
-                                                value={coreSkill.coreSkill || ''}
-                                                options={skillData?.map((skill) => ({
-                                                    name: skill.core_skills, value: skill.core_skills,
-                                                }))}
-                                                onChange={(e) => {
-                                                    const selectedSkill = e.target.value
-                                                    setFieldValue(`coreSkills[${coreIndex}].coreSkill`, selectedSkill,)
-                                                    setFieldValue(`coreSkills[${coreIndex}].subSkills`, [],)
-                                                }}
-                                            />
-                                        </div>
-
-                                        {/* Display Subskills for the selected Core Skill */}
-                                        {coreSkill.coreSkill && (<div>
-                                            {/* Find the selected core skill object from skillData */}
-                                            {skillData
-                                                ?.filter((skill) => skill.core_skills === coreSkill.coreSkill,)
-                                                .map((filteredSkill) => (
-                                                    <div key={filteredSkill.core_skills}>
-                                                        {/* Render each subskill for the selected core skill */}
-                                                        <div className="w-full">
-                                                            <Label label="Sub Skills"/>
-                                                            {/* Multiselect for Subskills */}
-                                                            <Multiselect
-                                                                options={filteredSkill.sub_skills.map((sub) => ({
-                                                                    name: sub.sub_skill,
-                                                                    id: sub.sub_skill,
-                                                                }),)}
-                                                                selectedValues={coreSkill.subSkills?.map((skill) => ({
-                                                                    name: skill.subSkill,
-                                                                    id: skill.subSkill,
-                                                                }),)}
-                                                                onSelect={(selectedList) => {
-                                                                    // Store selected subskills as array of objects, preserving existing certificates
-                                                                    const updatedSubSkills = selectedList.map((item) => {
-                                                                        const existingSubSkill = coreSkill.subSkills.find((sub) => sub.subSkill === item.name,)
-                                                                        return {
-                                                                            subSkill: item.name,
-                                                                            certificate: existingSubSkill ? existingSubSkill.certificate : null, // Keep the existing certificate, if any
-                                                                        }
-                                                                    },)
-
-                                                                    setFieldValue(`coreSkills[${coreIndex}].subSkills`, updatedSubSkills,)
+                        {/* -------------Skills------------- */}
+                        <FormInfo title="Skills" icon={<Skills/>}>
+                            <div className="py-6 px-4">
+                                <FieldArray name="coreSkills">
+                                    {({ push, remove }) => (
+                                        <div className="space-y-6">
+                                            {/* Render all core skills */}
+                                            {values.coreSkills.map((coreSkill, coreIndex) => (
+                                                <div
+                                                    key={coreIndex}
+                                                    className={coreIndex > 0 ? "pt-5 border-t border-gray-200" : "mt-5"}
+                                                >
+                                                    <div className="flex justify-between items-start">
+                                                        {/* Core Skill Dropdown */}
+                                                        <div className="w-full lg:w-1/2 2xl:w-1/3">
+                                                            <DropDown
+                                                                label={coreIndex === 0 ? "Core Skills" : `Core Skill ${coreIndex + 1}`}
+                                                                name={`coreSkills[${coreIndex}].coreSkill`}
+                                                                value={coreSkill.coreSkill || ''}
+                                                                options={skillData?.map((skill) => ({
+                                                                    name: skill.core_skills,
+                                                                    value: skill.core_skills,
+                                                                }))}
+                                                                onChange={(e) => {
+                                                                    setFieldValue(`coreSkills[${coreIndex}].coreSkill`, e.target.value);
+                                                                    setFieldValue(`coreSkills[${coreIndex}].subSkills`, []);
                                                                 }}
-                                                                onRemove={(selectedList) => {
-                                                                    // Create a new array that includes only the subskills that are not in the selectedList
-                                                                    const updatedSubSkills = coreSkill.subSkills.filter((subSkill) => {
-                                                                        // If the subSkill's name is in selectedList, remove it, otherwise keep it
-                                                                        return selectedList.some((item) => item.name === subSkill.subSkill,)
-                                                                    },)
-                                                                    // Update Formik's state with the modified subSkills array
-                                                                    setFieldValue(`coreSkills[${coreIndex}].subSkills`, updatedSubSkills,)
-                                                                }}
-                                                                displayValue="name"
-                                                                name={`coreSkills[${coreIndex}].subSkills`}
-                                                            />
-                                                            <span className="text-xs text-green-700">
-                                        * If your skill is not listed, please
-                                        email skill and subskill @
-                                        team@zeroed.ca
-                                      </span>
-                                                            <ErrorMessage
-                                                                name={`coreSkills[${coreIndex}].subSkills`}
-                                                                component="div"
-                                                                className="text-xs text-red-500 ml-1 mt-1"
                                                             />
                                                         </div>
 
-                                                        {/* File Upload for Subskill Certificate */}
-                                                        <div
-                                                            className="grid xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-1">
-                                                            {coreSkill.subSkills?.map((subSkill, subIndex) => (
-                                                                <div key={subIndex}
-                                                                     className="mt-3">
-                                                                    {filteredSkill.sub_skills
-                                                                        ?.filter((sub) => sub.sub_skill === subSkill.subSkill,)
-                                                                        .map((sub) => (<div
-                                                                            key={sub.sub_skill}>
-                                                                            {/* File input */}
-                                                                            <div>
-                                                                                <Label
-                                                                                    label={`Upload Certificate for ${sub.sub_skill}`}
-                                                                                />
-                                                                                <Field
-                                                                                    name={`coreSkills[${coreIndex}].subSkills[${subIndex}].certificate`}
-                                                                                >
-                                                                                    {({field}) => (
-                                                                                        <div
-                                                                                            className="flex flex-col">
-                                                                                            <input
-                                                                                                type="file"
-                                                                                                id={`coreSkills[${coreIndex}].subSkills[${subIndex}].certificate`}
-                                                                                                name={`coreSkills[${coreIndex}].subSkills[${subIndex}].certificate`}
-                                                                                                className="hidden"
-                                                                                                onChange={(event,) => {
-                                                                                                    const file = event.currentTarget.files[0]
-                                                                                                    if (file) {
-                                                                                                        const validTypes = ['image/jpeg', 'image/png', 'image/jpg', 'application/pdf',]
-                                                                                                        if (validTypes.includes(file.type,)) {
-                                                                                                            const updatedSubSkills = [...coreSkill.subSkills,]
-                                                                                                            updatedSubSkills[subIndex] = {
-                                                                                                                ...updatedSubSkills[subIndex],
-                                                                                                                certificate: file,
+                                                        {/* Remove button (only show for additional skills) */}
+                                                        {coreIndex > 0 && (
+                                                            <button
+                                                                type="button"
+                                                                onClick={() => remove(coreIndex)}
+                                                                className="text-red-500 hover:text-red-700 text-sm ml-2"
+                                                            >
+                                                                Remove
+                                                            </button>
+                                                        )}
+                                                    </div>
+
+                                                    {/* Subskills Section (only show if core skill is selected) */}
+                                                    {coreSkill.coreSkill && (
+                                                        <div className="mt-4">
+                                                            {skillData
+                                                                ?.filter((skill) => skill.core_skills === coreSkill.coreSkill)
+                                                                .map((filteredSkill) => (
+                                                                    <div key={filteredSkill.core_skills}>
+                                                                        {/* Subskills Multiselect */}
+                                                                        <div className="w-full mt-3">
+                                                                            <Label label="Sub Skills" />
+                                                                            <Multiselect
+                                                                                options={filteredSkill.sub_skills.map((sub) => ({
+                                                                                    name: sub.sub_skill,
+                                                                                    id: sub.sub_skill,
+                                                                                }))}
+                                                                                selectedValues={coreSkill.subSkills?.map((skill) => ({
+                                                                                    name: skill.subSkill,
+                                                                                    id: skill.subSkill,
+                                                                                }))}
+                                                                                onSelect={(selectedList) => {
+                                                                                    const updatedSubSkills = selectedList.map((item) => ({
+                                                                                        subSkill: item.name,
+                                                                                        certificate: null,
+                                                                                    }));
+                                                                                    setFieldValue(`coreSkills[${coreIndex}].subSkills`, updatedSubSkills);
+                                                                                }}
+                                                                                displayValue="name"
+                                                                            />
+                                                                            {coreIndex === 0 && (
+                                                                                <span className="text-xs text-green-700">
+                          * If your skill is not listed, please email team@zeroed.ca
+                        </span>
+                                                                            )}
+                                                                        </div>
+
+                                                                        {/* Certificate Uploads */}
+                                                                        <div className="grid xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-3 mt-4">
+                                                                            {coreSkill.subSkills?.map((subSkill, subIndex) => (
+                                                                                <div key={subIndex} className="mt-3">
+                                                                                    <Field name={`coreSkills[${coreIndex}].subSkills[${subIndex}].certificate`}>
+                                                                                        {({ field }) => (
+                                                                                            <div className="flex flex-col">
+                                                                                                <Label label={`Upload Certificate for ${subSkill.subSkill}`} />
+                                                                                                <input
+                                                                                                    type="file"
+                                                                                                    id={`cert-${coreIndex}-${subIndex}`}
+                                                                                                    className="hidden"
+                                                                                                    accept="image/jpeg,image/png,image/jpg,application/pdf"
+                                                                                                    onChange={(event) => {
+                                                                                                        const file = event.currentTarget.files[0];
+                                                                                                        if (file) {
+                                                                                                            const validTypes = [
+                                                                                                                'image/jpeg',
+                                                                                                                'image/png',
+                                                                                                                'image/jpg',
+                                                                                                                'application/pdf',
+                                                                                                            ];
+                                                                                                            if (validTypes.includes(file.type)) {
+                                                                                                                const updatedSubSkills = [...coreSkill.subSkills];
+                                                                                                                updatedSubSkills[subIndex] = {
+                                                                                                                    ...updatedSubSkills[subIndex],
+                                                                                                                    certificate: file,
+                                                                                                                };
+                                                                                                                setFieldValue(`coreSkills[${coreIndex}].subSkills`, updatedSubSkills);
+                                                                                                                setImgError(null);
+                                                                                                            } else {
+                                                                                                                setImgError('Please upload a valid file type (JPEG, PNG, JPG, PDF)');
                                                                                                             }
-                                                                                                            setFieldValue(`coreSkills[${coreIndex}].subSkills`, updatedSubSkills,)
                                                                                                         }
-                                                                                                    }
-                                                                                                }}
-                                                                                            />
-                                                                                            <label
-                                                                                                htmlFor={`coreSkills[${coreIndex}].subSkills[${subIndex}].certificate`}
-                                                                                                className="flex flex-wrap items-center gap-1 border border-text-border border-b-4 focus:border-b-4 focus:border-primary outline-none rounded-lg mt-1 px-2 py-1 pr-10 w-full cursor-pointer whitespace-nowrap"
-                                                                                            >
-                                                            <span
-                                                                className="px-2 py-1 border border-primary rounded bg-primary-100">
-                                                              Choose file
-                                                            </span>
-                                                                                                {subSkill.certificate ? (
-                                                                                                    <div
-                                                                                                        className="inline-block w-full whitespace-nowrap overflow-hidden text-ellipsis">
-                                                                                                        {subSkill.certificate instanceof File ? subSkill.certificate.name : subSkill.certificate
-                                                                                                            .split('/',)
-                                                                                                            .pop()}
-                                                                                                    </div>) : ('No file chosen')}
-                                                                                            </label>
+                                                                                                    }}
+                                                                                                />
+                                                                                                <label
+                                                                                                    htmlFor={`cert-${coreIndex}-${subIndex}`}
+                                                                                                    className="flex items-center gap-2 border border-gray-300 rounded-lg mt-1 px-3 py-2 cursor-pointer"
+                                                                                                >
+                                  <span className="px-2 py-1 bg-blue-100 text-blue-700 rounded">
+                                    Choose file
+                                  </span>
+                                                                                                    {subSkill.certificate ? (
+                                                                                                        <span className="truncate">
+                                      {subSkill.certificate instanceof File
+                                          ? subSkill.certificate.name
+                                          : subSkill.certificate.split('/').pop()}
+                                    </span>
+                                                                                                    ) : (
+                                                                                                        'No file chosen'
+                                                                                                    )}
+                                                                                                </label>
+                                                                                                {imgError && (
+                                                                                                    <div className="text-xs text-red-500 mt-1">{imgError}</div>
+                                                                                                )}
+                                                                                            </div>
+                                                                                        )}
+                                                                                    </Field>
 
-                                                                                            {/* Displaying error message */}
-                                                                                            {imgError && (
-                                                                                                <div
-                                                                                                    className="text-xs text-red-500 ml-1 mt-1">
-                                                                                                    {imgError}
-                                                                                                </div>)}
-                                                                                            {imgError === '' && (
-                                                                                                <ErrorMessage
-                                                                                                    name={`coreSkills[${coreIndex}].subSkills[${subIndex}].certificate`}
-                                                                                                    component="div"
-                                                                                                    className="text-xs text-red-500 ml-1 mt-1"
-                                                                                                />)}
-                                                                                        </div>)}
-                                                                                </Field>
-                                                                            </div>
+                                                                                    {/* Certificate Preview */}
+                                                                                    {subSkill.certificate && (
+                                                                                        <div className="mt-2">
+                                                                                            {subSkill.certificate instanceof File ? (
+                                                                                                <div className="text-sm text-gray-600">
+                                                                                                    File ready for upload: {subSkill.certificate.name}
+                                                                                                </div>
+                                                                                            ) : (
+                                                                                                <a
+                                                                                                    href={subSkill.certificate}
+                                                                                                    target="_blank"
+                                                                                                    rel="noopener noreferrer"
+                                                                                                    className="text-blue-600 hover:underline text-sm"
+                                                                                                >
+                                                                                                    View uploaded certificate
+                                                                                                </a>
+                                                                                            )}
+                                                                                        </div>
+                                                                                    )}
 
-                                                                            {/* Display uploaded certificate preview */}
-                                                                            <CertificatePreview
-                                                                                subSkill={subSkill}
-                                                                            />
-
-                                                                            <div
-                                                                                className='mt-3'>
-                                                                                <TextField
-                                                                                    type="text"
-                                                                                    label="assesment result link"
-                                                                                    name={`coreSkills[${coreIndex}].subSkills[${subIndex}].link`}
-                                                                                    placeholder="Enter assesment result link"
-                                                                                    onChange={(e) => setFieldValue(`coreSkills[${coreIndex}].subSkills[${subIndex}].link`, e.target.value)}
-                                                                                />
-                                                                            </div>
-
-                                                                            {/* Display error message if validation fails */}
-                                                                            <ErrorMessage
-                                                                                name={`coreSkills[${coreIndex}].subSkills[${subIndex}].certificate`}
-                                                                                component="div"
-                                                                                style={{color: 'red'}}
-                                                                            />
-                                                                        </div>))}
-                                                                </div>),)}
+                                                                                    {/* Assessment Link */}
+                                                                                    <div className="mt-3">
+                                                                                        <TextField
+                                                                                            type="text"
+                                                                                            label="Assessment result link"
+                                                                                            name={`coreSkills[${coreIndex}].subSkills[${subIndex}].link`}
+                                                                                            placeholder="Enter assessment result link"
+                                                                                            onChange={(e) =>
+                                                                                                setFieldValue(
+                                                                                                    `coreSkills[${coreIndex}].subSkills[${subIndex}].link`,
+                                                                                                    e.target.value
+                                                                                                )
+                                                                                            }
+                                                                                        />
+                                                                                    </div>
+                                                                                </div>
+                                                                            ))}
+                                                                        </div>
+                                                                    </div>
+                                                                ))}
                                                         </div>
-                                                    </div>))}
-                                        </div>)}
-                                    </div>))}
-                            </div>)}
-                        </FieldArray>
-                    </div>
-                </FormInfo>
+                                                    )}
+                                                </div>
+                                            ))}
+
+                                            {/* ADD SKILL BUTTON (only show if less than 3 skills) */}
+                                            {values.coreSkills.length < 3 && (
+                                                <button
+                                                    type="button"
+                                                    onClick={() => push({ coreSkill: '', subSkills: [] })}
+                                                    className="bg-primary px-4 py-2 text-white rounded"
+                                                >
+                                                    + Add Another Skill
+                                                </button>
+                                            )}
+                                        </div>
+                                    )}
+                                </FieldArray>
+                            </div>
+                        </FormInfo>
 
                 {/* -------------Work Experience------------- */}
                 <FormInfo title="Work Experience" icon={<WorkExperience/>}>
@@ -1445,25 +1463,25 @@ function Information({data}) {
                                                         }
                                                     />
                                                     <div className="w-full">
-                                                    <TextFieldValue
-                                                        type="text"
-                                                        label="Reference Email"
-                                                        name={`reference_email_${index}`}
-                                                        value={experience.reference_email || ''}
-                                                        placeholder="Enter reference email"
-                                                        onChange={(e) =>
-                                                            handleChangeExperience(
-                                                                index,
-                                                                'reference_email',
-                                                                e.target.value,
-                                                            )
-                                                        }
-                                                    />
-                                                    {experience.referenceEmailError && (
-                                                        <div className="text-red-500 text-sm -mt-3">
-                                                            {experience.referenceEmailError}
-                                                        </div>
-                                                    )}
+                                                        <TextFieldValue
+                                                            type="text"
+                                                            label="Reference Email"
+                                                            name={`reference_email_${index}`}
+                                                            value={experience.reference_email || ''}
+                                                            placeholder="Enter reference email"
+                                                            onChange={(e) =>
+                                                                handleChangeExperience(
+                                                                    index,
+                                                                    'reference_email',
+                                                                    e.target.value,
+                                                                )
+                                                            }
+                                                        />
+                                                        {experience.referenceEmailError && (
+                                                            <div className="text-red-500 text-sm -mt-3">
+                                                                {experience.referenceEmailError}
+                                                            </div>
+                                                        )}
                                                     </div>
                                                     {(data && !experience.referenceEmailError) && <div
                                                         className="text-center mt-7 bg-primary px-4 py-2 text-white rounded w-[160px] h-10 cursor-pointer text-nowrap"
@@ -1676,28 +1694,41 @@ function Information({data}) {
                         </div>
                         <div className="grid lg:grid-cols-3 sm:grid-cols-2 gap-x-5 py-6 px-4">
 
-                            <TextField
-                                type="text"
-                                label="Title"
-                                name={`project_title_${index}`}
-                                value={item.project_title}
-                                placeholder="Enter project title"
-                                onChange={(e) => handleChangeProject('project_title', index, e.target.value)}
-                            />
-                            <TextArea
-                                name={`project_description_${index}`}
-                                label="Description"
-                                value={item.project_description}
-                                onChange={(e) => handleChangeProject('project_description', index, e.target.value)}
-                            />
-                            <TextField
-                                type="text"
-                                label="URL"
-                                value={item.project_url}
-                                name={`project_url_${index}`}
-                                placeholder="Enter project url"
-                                onChange={(e) => handleChangeProject('project_url', index, e.target.value)}
-                            />
+                                        <TextField
+                                            type="text"
+                                            label="Title"
+                                            name={`project_title_${index}`}
+                                            value={item.project_title}
+                                            placeholder="Enter project title"
+                                            onChange={(e) =>
+                                                handleChangeProject('project_title', index, e.target.value)
+                                            }
+                                        />
+                                        <div style={{position: 'relative'}}>
+                                            <TextArea
+                                                name={`project_description_${index}`}
+                                                label="Description"
+                                                value={item.project_description}
+                                                onChange={(e) => {
+                                                    const words = e.target.value.split(/\s+/).filter(Boolean);
+                                                        handleChangeProject('project_description', index, e.target.value);
+                                                        setWordCounts((prev) => ({...prev, [index]: words.length}));
+                                                }}
+                                            />
+                                            <span style={{color: wordCounts[index] > 25 ? 'red' : 'grey',position: 'absolute',right: 10,bottom: 25,fontSize: '14px'}}>
+                                                {wordCounts[index] || 0} / 25
+                                            </span>
+                                        </div>
+                                        <TextField
+                                            type="text"
+                                            label="URL"
+                                            value={item.project_url}
+                                            name={`project_url_${index}`}
+                                            placeholder="Enter project url"
+                                            onChange={(e) =>
+                                                handleChangeProject('project_url', index, e.target.value)
+                                            }
+                                        />
 
                         </div>
                     </div>))}
@@ -1713,68 +1744,65 @@ function Information({data}) {
                 <FormInfo title="Career Goals" icon={<CareerGoal/>}>
                     <div className="grid lg:grid-cols-3 sm:grid-cols-2 gap-x-5 py-6 px-4">
 
-                        <TextField
-                            type="text"
-                            label="Role"
-                            name="career_role"
-                            placeholder="Enter career role"
-                            onChange={(e) => setFieldValue('career_role', e.target.value)}
-                        />
-                        <DropDownInput
-                            label="Industry"
-                            name="career_industry"
-                            options={industriesData.map((industry) => ({
-                                value: industry.name, name: industry.name,
-                            }))}
-                            value={data?.careerGoal?.career_industry || ''}
-                            onChange={(e) => setFieldValue('career_industry', e.target.value)}
-                        />
-                        <DropDownInput
-                            label="Fields"
-                            name="career_field"
-                            options={industriesData.find((industry) => industry.name === values.career_industry)?.subsector || []}
-                            value={data?.careerGoal?.career_industry || ''}
-                            onChange={(e) => setFieldValue('career_field', e.target.value)}
-                        />
+                                <TextField
+                                    type="text"
+                                    label="Role"
+                                    name="career_role"
+                                    placeholder="Enter career role"
+                                    onChange={(e) =>
+                                        setFieldValue('career_role', e.target.value)
+                                    }
+                                />
+                                {/*<DropDownInput*/}
+                                {/*    label="Industry"*/}
+                                {/*    name="career_industry"*/}
+                                {/*    options={industriesData.map((industry) => ({*/}
+                                {/*        value: industry.name,*/}
+                                {/*        name: industry.name,*/}
+                                {/*    }))}*/}
+                                {/*    value={data?.careerGoal?.career_industry || ''}*/}
+                                {/*    onChange={(e) =>*/}
+                                {/*        setFieldValue('career_industry', e.target.value)*/}
+                                {/*    }*/}
+                                {/*/>*/}
+                                {/*<DropDownInput*/}
+                                {/*    label="Fields"*/}
+                                {/*    name="career_field"*/}
+                                {/*    options={industriesData.find((industry) => industry.name === values.career_industry)?.subsector || []}*/}
+                                {/*    value={data?.careerGoal?.career_industry || ''}*/}
+                                {/*    onChange={(e) =>*/}
+                                {/*        setFieldValue('career_field', e.target.value)*/}
+                                {/*    }*/}
+                                {/*/>*/}
 
-                        {/*<TextField*/}
-                        {/*    type="text"*/}
-                        {/*    label="industry"*/}
-                        {/*    name="career_field"*/}
-                        {/*    placeholder="Enter career industry"*/}
-                        {/*    onChange={(e) =>*/}
-                        {/*        setFieldValue('career_field', e.target.value)*/}
-                        {/*    }*/}
-                        {/*/>*/}
+                                {/*<DropDownInput*/}
+                                {/*    label="NOC Number"*/}
+                                {/*    name="noc_number"*/}
+                                {/*    value={data?.careerGoal?.noc_number || ''}*/}
+                                {/*    options={nocNumber}*/}
+                                {/*    onChange={(e) => setFieldValue('noc_number', e.target.value)}*/}
+                                {/*/>*/}
+                            </div>
+                        </FormInfo>
 
-                        <DropDownInput
-                            label="NOC Number"
-                            name="noc_number"
-                            value={data?.careerGoal?.noc_number || ''}
-                            options={nocNumber}
-                            onChange={(e) => setFieldValue('noc_number', e.target.value)}
-                        />
-                    </div>
-                </FormInfo>
-
-                {/* --------------Submit button------------------- */}
-                <div className="flex justify-end gap-x-5 pb-6">
-                    <button
-                        type="reset"
-                        onClick={() => {
-                            handleReset()
-                            resetWorkExperiences()
-                        }}
-                        className={`flex gap-x-2 justify-end items-center rounded w-auto py-2 px-10 mt-10 bg-gray-400`}
-                    >
-                        <span className="text-white text-base font-bold">Reset</span>
-                    </button>
-                    <button
-                        // disabled={disabledButton || isSubmitting || imgError === '' ? false : true}
-                        disabled={disabledButton || isSubmitting}
-                        type="submit"
-                        className={`flex gap-x-2 justify-end items-center rounded w-auto py-2 px-10 mt-10 bg-primary`}
-                    >
+                        {/* --------------Submit button------------------- */}
+                        <div className="flex justify-end gap-x-5 pb-6">
+                            <button
+                                type="reset"
+                                onClick={() => {
+                                    handleReset()
+                                    resetWorkExperiences()
+                                }}
+                                className={`flex gap-x-2 justify-end items-center rounded w-auto py-2 px-10 mt-10 bg-gray-400`}
+                            >
+                                <span className="text-white text-base font-bold">Reset</span>
+                            </button>
+                            <button
+                                // disabled={disabledButton || isSubmitting || imgError === '' ? false : true}
+                                disabled={disabledButton || isSubmitting || isAnyDescriptionTooLong}
+                                type="submit"
+                                className={`flex gap-x-2 justify-end items-center rounded w-auto py-2 px-10 mt-10 bg-primary`}
+                            >
                 <span className="text-white text-base font-bold">
                   {isSubmitting ? <Loader/> : data ? 'Update' : 'Submit'}
                 </span>
