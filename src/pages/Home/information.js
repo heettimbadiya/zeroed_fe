@@ -82,6 +82,7 @@ function Information({data}) {
     const [visibleFields, setVisibleFields] = useState(data?.workExperience?.length ? 4 : 1);
     const [showInstruction, setShowInstruction] = useState(false);
     let navigate = useNavigate()
+    const [wordCounts, setWordCounts] = useState({});
     const token = localStorage.getItem('token')
     const initialProjects = {
         project_title: "",
@@ -94,7 +95,7 @@ function Information({data}) {
     const [experienceError, setExperienceError] = useState('')
     const [imgError, setImgError] = useState('')
     const [isSampleModalOpen, setIsSampleModalOpen] = useState(false);
-
+    const isAnyDescriptionTooLong = Object.values(wordCounts).some(count => count > 25);
     // Get countries for the country dropdown
     const countryData = Country.getAllCountries().map((country) => ({
         value: country.name,
@@ -303,7 +304,7 @@ function Information({data}) {
                     ...experience,
                 }))
                 : [initialWorkExperience]
-const projects = data?.projectDetails
+            const projects = data?.projectDetails
             setProjects(projects)
             setWorkExperiences(updatedExperiences)
         }
@@ -408,14 +409,14 @@ const projects = data?.projectDetails
         ])
     }
     const handleAddProject = () => {
-        setProjects([...projects,initialProjects])
+        setProjects([...projects, initialProjects])
     }
-const handleChangeProject = (field,index, value) => {
+    const handleChangeProject = (field, index, value) => {
         const updatedProject = [...projects]
-    updatedProject[index][field] = value
-    setProjects(updatedProject)
+        updatedProject[index][field] = value
+        setProjects(updatedProject)
 
-}
+    }
     const handleChangeExperience = (index, field, value) => {
         const updatedExperiences = [...workExperiences]
 
@@ -554,26 +555,26 @@ const handleChangeProject = (field,index, value) => {
         })
 
         // Append work experience
-         projects.map((project,index) =>{
-             formData.append(
-                 `projectDetails[${index}][project_title]`,
-                 project.project_title,
-             )
-             formData.append(
-                 `projectDetails[${index}][project_description]`,
-                 project.project_description,
-             )
-             formData.append(
-                 `projectDetails[${index}][project_url]`,
-                 project.project_url,
-             )
-             if(project?._id){
-             formData.append(
-                 `projectDetails[${index}][_id]`,
-                 data ? project?._id : null,
-             )
-             }
-         })
+        projects.map((project, index) => {
+            formData.append(
+                `projectDetails[${index}][project_title]`,
+                project.project_title,
+            )
+            formData.append(
+                `projectDetails[${index}][project_description]`,
+                project.project_description,
+            )
+            formData.append(
+                `projectDetails[${index}][project_url]`,
+                project.project_url,
+            )
+            if (project?._id) {
+                formData.append(
+                    `projectDetails[${index}][_id]`,
+                    data ? project?._id : null,
+                )
+            }
+        })
         workExperiences.forEach((experience, index) => {
             // Accomplishments fields
             formData.append(
@@ -738,13 +739,13 @@ const handleChangeProject = (field,index, value) => {
             setDisabledButton(false)
         }
         if (websiteDomain && referenceEmailDomain && websiteDomain !== referenceEmailDomain) {
-            const errorMessage = 'Reference email domain must match the company website domain.'
-            setWorkExperiences((prevWorkExperiences) => {
-                const updatedWorkExperiences = [...prevWorkExperiences]
-                updatedWorkExperiences[index].referenceEmailError = errorMessage
-                return updatedWorkExperiences
-            })
-            setDisabledButton(true)
+            // const errorMessage = 'Reference email domain must match the company website domain.'
+            // setWorkExperiences((prevWorkExperiences) => {
+            //     const updatedWorkExperiences = [...prevWorkExperiences]
+            //     updatedWorkExperiences[index].referenceEmailError = errorMessage
+            //     return updatedWorkExperiences
+            // })
+            // setDisabledButton(true)
         } else {
             setWorkExperiences((prevWorkExperiences) => {
                 const updatedWorkExperiences = [...prevWorkExperiences]
@@ -818,34 +819,34 @@ const handleChangeProject = (field,index, value) => {
                                 })
                                 : [],
                     },
-                    {
-                        _id: data?.skills[1]?._id || null,
-                        coreSkill: data?.skills[1]?.core_skill || '',
-                        subSkills:
-                            data?.skills[1]?.subSkill?.length > 0
-                                ? data?.skills[1]?.subSkill?.map((data) => {
-                                    const _id = data?._id || null
-                                    const subSkill = data.sub_skills || ''
-                                    const certificate = data.certificate || ''
-                                    const link = data.link || ''
-                                    return {_id, subSkill, certificate, link}
-                                })
-                                : [],
-                    },
-                    {
-                        _id: data?.skills[2]?._id || null,
-                        coreSkill: data?.skills[2]?.core_skill || '',
-                        subSkills:
-                            data?.skills[2]?.subSkill?.length > 0
-                                ? data?.skills[2]?.subSkill?.map((data) => {
-                                    const _id = data?._id || null
-                                    const subSkill = data.sub_skills || ''
-                                    const certificate = data.certificate || ''
-                                    const link = data.link || ''
-                                    return {_id, subSkill, certificate, link}
-                                })
-                                : [],
-                    },
+                    // {
+                    //     _id: data?.skills[1]?._id || null,
+                    //     coreSkill: data?.skills[1]?.core_skill || '',
+                    //     subSkills:
+                    //         data?.skills[1]?.subSkill?.length > 0
+                    //             ? data?.skills[1]?.subSkill?.map((data) => {
+                    //                 const _id = data?._id || null
+                    //                 const subSkill = data.sub_skills || ''
+                    //                 const certificate = data.certificate || ''
+                    //                 const link = data.link || ''
+                    //                 return {_id, subSkill, certificate, link}
+                    //             })
+                    //             : [],
+                    // },
+                    // {
+                    //     _id: data?.skills[2]?._id || null,
+                    //     coreSkill: data?.skills[2]?.core_skill || '',
+                    //     subSkills:
+                    //         data?.skills[2]?.subSkill?.length > 0
+                    //             ? data?.skills[2]?.subSkill?.map((data) => {
+                    //                 const _id = data?._id || null
+                    //                 const subSkill = data.sub_skills || ''
+                    //                 const certificate = data.certificate || ''
+                    //                 const link = data.link || ''
+                    //                 return {_id, subSkill, certificate, link}
+                    //             })
+                    //             : [],
+                    // },
                 ],
 
                 accomplishment_1: data?.workExperience?.accomplishment_1 || '',
@@ -1229,260 +1230,176 @@ const handleChangeProject = (field,index, value) => {
                         <FormInfo title="Skills" icon={<Skills/>}>
                             <div className="py-6 px-4">
                                 <FieldArray name="coreSkills">
-                                    {({push, remove}) => (
-                                        <div>
+                                    {({ push, remove }) => (
+                                        <div className="space-y-6">
+                                            {/* Render all core skills */}
                                             {values.coreSkills.map((coreSkill, coreIndex) => (
-                                                <div key={coreIndex} className="mt-5">
-                                                    {/* Core Skill Dropdown */}
-                                                    <div className="w-full lg:w-1/2 2xl:w-1/3">
-                                                        <DropDown
-                                                            label="Core Skills"
-                                                            name={`coreSkills[${coreIndex}].coreSkill`}
-                                                            value={coreSkill.coreSkill || ''}
-                                                            options={skillData?.map((skill) => ({
-                                                                name: skill.core_skills,
-                                                                value: skill.core_skills,
-                                                            }))}
-                                                            onChange={(e) => {
-                                                                const selectedSkill = e.target.value
-                                                                setFieldValue(
-                                                                    `coreSkills[${coreIndex}].coreSkill`,
-                                                                    selectedSkill,
-                                                                )
-                                                                setFieldValue(
-                                                                    `coreSkills[${coreIndex}].subSkills`,
-                                                                    [],
-                                                                )
-                                                            }}
-                                                        />
+                                                <div
+                                                    key={coreIndex}
+                                                    className={coreIndex > 0 ? "pt-5 border-t border-gray-200" : "mt-5"}
+                                                >
+                                                    <div className="flex justify-between items-start">
+                                                        {/* Core Skill Dropdown */}
+                                                        <div className="w-full lg:w-1/2 2xl:w-1/3">
+                                                            <DropDown
+                                                                label={coreIndex === 0 ? "Core Skills" : `Core Skill ${coreIndex + 1}`}
+                                                                name={`coreSkills[${coreIndex}].coreSkill`}
+                                                                value={coreSkill.coreSkill || ''}
+                                                                options={skillData?.map((skill) => ({
+                                                                    name: skill.core_skills,
+                                                                    value: skill.core_skills,
+                                                                }))}
+                                                                onChange={(e) => {
+                                                                    setFieldValue(`coreSkills[${coreIndex}].coreSkill`, e.target.value);
+                                                                    setFieldValue(`coreSkills[${coreIndex}].subSkills`, []);
+                                                                }}
+                                                            />
+                                                        </div>
+
+                                                        {/* Remove button (only show for additional skills) */}
+                                                        {coreIndex > 0 && (
+                                                            <button
+                                                                type="button"
+                                                                onClick={() => remove(coreIndex)}
+                                                                className="text-red-500 hover:text-red-700 text-sm ml-2"
+                                                            >
+                                                                Remove
+                                                            </button>
+                                                        )}
                                                     </div>
 
-                                                    {/* Display Subskills for the selected Core Skill */}
+                                                    {/* Subskills Section (only show if core skill is selected) */}
                                                     {coreSkill.coreSkill && (
-                                                        <div>
-                                                            {/* Find the selected core skill object from skillData */}
+                                                        <div className="mt-4">
                                                             {skillData
-                                                                ?.filter(
-                                                                    (skill) =>
-                                                                        skill.core_skills === coreSkill.coreSkill,
-                                                                )
+                                                                ?.filter((skill) => skill.core_skills === coreSkill.coreSkill)
                                                                 .map((filteredSkill) => (
                                                                     <div key={filteredSkill.core_skills}>
-                                                                        {/* Render each subskill for the selected core skill */}
-                                                                        <div className="w-full">
-                                                                            <Label label="Sub Skills"/>
-                                                                            {/* Multiselect for Subskills */}
+                                                                        {/* Subskills Multiselect */}
+                                                                        <div className="w-full mt-3">
+                                                                            <Label label="Sub Skills" />
                                                                             <Multiselect
-                                                                                options={filteredSkill.sub_skills.map(
-                                                                                    (sub) => ({
-                                                                                        name: sub.sub_skill,
-                                                                                        id: sub.sub_skill,
-                                                                                    }),
-                                                                                )}
-                                                                                selectedValues={coreSkill.subSkills?.map(
-                                                                                    (skill) => ({
-                                                                                        name: skill.subSkill,
-                                                                                        id: skill.subSkill,
-                                                                                    }),
-                                                                                )}
+                                                                                options={filteredSkill.sub_skills.map((sub) => ({
+                                                                                    name: sub.sub_skill,
+                                                                                    id: sub.sub_skill,
+                                                                                }))}
+                                                                                selectedValues={coreSkill.subSkills?.map((skill) => ({
+                                                                                    name: skill.subSkill,
+                                                                                    id: skill.subSkill,
+                                                                                }))}
                                                                                 onSelect={(selectedList) => {
-                                                                                    // Store selected subskills as array of objects, preserving existing certificates
-                                                                                    const updatedSubSkills = selectedList.map(
-                                                                                        (item) => {
-                                                                                            const existingSubSkill = coreSkill.subSkills.find(
-                                                                                                (sub) =>
-                                                                                                    sub.subSkill === item.name,
-                                                                                            )
-                                                                                            return {
-                                                                                                subSkill: item.name,
-                                                                                                certificate: existingSubSkill
-                                                                                                    ? existingSubSkill.certificate
-                                                                                                    : null, // Keep the existing certificate, if any
-                                                                                            }
-                                                                                        },
-                                                                                    )
-
-                                                                                    setFieldValue(
-                                                                                        `coreSkills[${coreIndex}].subSkills`,
-                                                                                        updatedSubSkills,
-                                                                                    )
-                                                                                }}
-                                                                                onRemove={(selectedList) => {
-                                                                                    // Create a new array that includes only the subskills that are not in the selectedList
-                                                                                    const updatedSubSkills = coreSkill.subSkills.filter(
-                                                                                        (subSkill) => {
-                                                                                            // If the subSkill's name is in selectedList, remove it, otherwise keep it
-                                                                                            return selectedList.some(
-                                                                                                (item) =>
-                                                                                                    item.name ===
-                                                                                                    subSkill.subSkill,
-                                                                                            )
-                                                                                        },
-                                                                                    )
-                                                                                    // Update Formik's state with the modified subSkills array
-                                                                                    setFieldValue(
-                                                                                        `coreSkills[${coreIndex}].subSkills`,
-                                                                                        updatedSubSkills,
-                                                                                    )
+                                                                                    const updatedSubSkills = selectedList.map((item) => ({
+                                                                                        subSkill: item.name,
+                                                                                        certificate: null,
+                                                                                    }));
+                                                                                    setFieldValue(`coreSkills[${coreIndex}].subSkills`, updatedSubSkills);
                                                                                 }}
                                                                                 displayValue="name"
-                                                                                name={`coreSkills[${coreIndex}].subSkills`}
                                                                             />
-                                                                            <span className="text-xs text-green-700">
-                                        * If your skill is not listed, please
-                                        email skill and subskill @
-                                        team@zeroed.ca
-                                      </span>
-                                                                            <ErrorMessage
-                                                                                name={`coreSkills[${coreIndex}].subSkills`}
-                                                                                component="div"
-                                                                                className="text-xs text-red-500 ml-1 mt-1"
-                                                                            />
+                                                                            {coreIndex === 0 && (
+                                                                                <span className="text-xs text-green-700">
+                          * If your skill is not listed, please email team@zeroed.ca
+                        </span>
+                                                                            )}
                                                                         </div>
 
-                                                                        {/* File Upload for Subskill Certificate */}
-                                                                        <div
-                                                                            className="grid xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-1">
-                                                                            {coreSkill.subSkills?.map(
-                                                                                (subSkill, subIndex) => (
-                                                                                    <div key={subIndex}
-                                                                                         className="mt-3">
-                                                                                        {filteredSkill.sub_skills
-                                                                                            ?.filter(
-                                                                                                (sub) =>
-                                                                                                    sub.sub_skill ===
-                                                                                                    subSkill.subSkill,
-                                                                                            )
-                                                                                            .map((sub) => (
-                                                                                                <div
-                                                                                                    key={sub.sub_skill}>
-                                                                                                    {/* File input */}
-                                                                                                    <div>
-                                                                                                        <Label
-                                                                                                            label={`Upload Certificate for ${sub.sub_skill}`}
-                                                                                                        />
-                                                                                                        <Field
-                                                                                                            name={`coreSkills[${coreIndex}].subSkills[${subIndex}].certificate`}
-                                                                                                        >
-                                                                                                            {({field}) => (
-                                                                                                                <div
-                                                                                                                    className="flex flex-col">
-                                                                                                                    <input
-                                                                                                                        type="file"
-                                                                                                                        id={`coreSkills[${coreIndex}].subSkills[${subIndex}].certificate`}
-                                                                                                                        name={`coreSkills[${coreIndex}].subSkills[${subIndex}].certificate`}
-                                                                                                                        className="hidden"
-                                                                                                                        onChange={(
-                                                                                                                            event,
-                                                                                                                        ) => {
-                                                                                                                            const file =
-                                                                                                                                event
-                                                                                                                                    .currentTarget
-                                                                                                                                    .files[0]
-                                                                                                                            if (file) {
-                                                                                                                                const validTypes = [
-                                                                                                                                    'image/jpeg',
-                                                                                                                                    'image/png',
-                                                                                                                                    'image/jpg',
-                                                                                                                                    'application/pdf',
-                                                                                                                                ]
-                                                                                                                                if (
-                                                                                                                                    validTypes.includes(
-                                                                                                                                        file.type,
-                                                                                                                                    )
-                                                                                                                                ) {
-                                                                                                                                    const updatedSubSkills = [
-                                                                                                                                        ...coreSkill.subSkills,
-                                                                                                                                    ]
-                                                                                                                                    updatedSubSkills[
-                                                                                                                                        subIndex
-                                                                                                                                        ] = {
-                                                                                                                                        ...updatedSubSkills[
-                                                                                                                                            subIndex
-                                                                                                                                            ],
-                                                                                                                                        certificate: file,
-                                                                                                                                    }
-                                                                                                                                    setFieldValue(
-                                                                                                                                        `coreSkills[${coreIndex}].subSkills`,
-                                                                                                                                        updatedSubSkills,
-                                                                                                                                    )
-                                                                                                                                }
-                                                                                                                            }
-                                                                                                                        }}
-                                                                                                                    />
-                                                                                                                    <label
-                                                                                                                        htmlFor={`coreSkills[${coreIndex}].subSkills[${subIndex}].certificate`}
-                                                                                                                        className="flex flex-wrap items-center gap-1 border border-text-border border-b-4 focus:border-b-4 focus:border-primary outline-none rounded-lg mt-1 px-2 py-1 pr-10 w-full cursor-pointer whitespace-nowrap"
-                                                                                                                    >
-                                                            <span
-                                                                className="px-2 py-1 border border-primary rounded bg-primary-100">
-                                                              Choose file
-                                                            </span>
-                                                                                                                        {subSkill.certificate ? (
-                                                                                                                            <div
-                                                                                                                                className="inline-block w-full whitespace-nowrap overflow-hidden text-ellipsis">
-                                                                                                                                {subSkill.certificate instanceof
-                                                                                                                                File
-                                                                                                                                    ? subSkill
-                                                                                                                                        .certificate
-                                                                                                                                        .name
-                                                                                                                                    : subSkill.certificate
-                                                                                                                                        .split(
-                                                                                                                                            '/',
-                                                                                                                                        )
-                                                                                                                                        .pop()}
-                                                                                                                            </div>
-                                                                                                                        ) : (
-                                                                                                                            'No file chosen'
-                                                                                                                        )}
-                                                                                                                    </label>
+                                                                        {/* Certificate Uploads */}
+                                                                        <div className="grid xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-3 mt-4">
+                                                                            {coreSkill.subSkills?.map((subSkill, subIndex) => (
+                                                                                <div key={subIndex} className="mt-3">
+                                                                                    <Field name={`coreSkills[${coreIndex}].subSkills[${subIndex}].certificate`}>
+                                                                                        {({ field }) => (
+                                                                                            <div className="flex flex-col">
+                                                                                                <Label label={`Upload Certificate for ${subSkill.subSkill}`} />
+                                                                                                <input
+                                                                                                    type="file"
+                                                                                                    id={`cert-${coreIndex}-${subIndex}`}
+                                                                                                    className="hidden"
+                                                                                                    accept="image/jpeg,image/png,image/jpg,application/pdf"
+                                                                                                    onChange={(event) => {
+                                                                                                        const file = event.currentTarget.files[0];
+                                                                                                        if (file) {
+                                                                                                            const validTypes = [
+                                                                                                                'image/jpeg',
+                                                                                                                'image/png',
+                                                                                                                'image/jpg',
+                                                                                                                'application/pdf',
+                                                                                                            ];
+                                                                                                            if (validTypes.includes(file.type)) {
+                                                                                                                const updatedSubSkills = [...coreSkill.subSkills];
+                                                                                                                updatedSubSkills[subIndex] = {
+                                                                                                                    ...updatedSubSkills[subIndex],
+                                                                                                                    certificate: file,
+                                                                                                                };
+                                                                                                                setFieldValue(`coreSkills[${coreIndex}].subSkills`, updatedSubSkills);
+                                                                                                                setImgError(null);
+                                                                                                            } else {
+                                                                                                                setImgError('Please upload a valid file type (JPEG, PNG, JPG, PDF)');
+                                                                                                            }
+                                                                                                        }
+                                                                                                    }}
+                                                                                                />
+                                                                                                <label
+                                                                                                    htmlFor={`cert-${coreIndex}-${subIndex}`}
+                                                                                                    className="flex items-center gap-2 border border-gray-300 rounded-lg mt-1 px-3 py-2 cursor-pointer"
+                                                                                                >
+                                  <span className="px-2 py-1 bg-blue-100 text-blue-700 rounded">
+                                    Choose file
+                                  </span>
+                                                                                                    {subSkill.certificate ? (
+                                                                                                        <span className="truncate">
+                                      {subSkill.certificate instanceof File
+                                          ? subSkill.certificate.name
+                                          : subSkill.certificate.split('/').pop()}
+                                    </span>
+                                                                                                    ) : (
+                                                                                                        'No file chosen'
+                                                                                                    )}
+                                                                                                </label>
+                                                                                                {imgError && (
+                                                                                                    <div className="text-xs text-red-500 mt-1">{imgError}</div>
+                                                                                                )}
+                                                                                            </div>
+                                                                                        )}
+                                                                                    </Field>
 
-                                                                                                                    {/* Displaying error message */}
-                                                                                                                    {imgError && (
-                                                                                                                        <div
-                                                                                                                            className="text-xs text-red-500 ml-1 mt-1">
-                                                                                                                            {imgError}
-                                                                                                                        </div>
-                                                                                                                    )}
-                                                                                                                    {imgError === '' && (
-                                                                                                                        <ErrorMessage
-                                                                                                                            name={`coreSkills[${coreIndex}].subSkills[${subIndex}].certificate`}
-                                                                                                                            component="div"
-                                                                                                                            className="text-xs text-red-500 ml-1 mt-1"
-                                                                                                                        />
-                                                                                                                    )}
-                                                                                                                </div>
-                                                                                                            )}
-                                                                                                        </Field>
-                                                                                                    </div>
-
-                                                                                                    {/* Display uploaded certificate preview */}
-                                                                                                    <CertificatePreview
-                                                                                                        subSkill={subSkill}
-                                                                                                    />
-
-                                                                                                    <div
-                                                                                                        className='mt-3'>
-                                                                                                        <TextField
-                                                                                                            type="text"
-                                                                                                            label="assesment result link"
-                                                                                                            name={`coreSkills[${coreIndex}].subSkills[${subIndex}].link`}
-                                                                                                            placeholder="Enter assesment result link"
-                                                                                                            onChange={(e) => setFieldValue(`coreSkills[${coreIndex}].subSkills[${subIndex}].link`, e.target.value)}
-                                                                                                        />
-                                                                                                    </div>
-
-                                                                                                    {/* Display error message if validation fails */}
-                                                                                                    <ErrorMessage
-                                                                                                        name={`coreSkills[${coreIndex}].subSkills[${subIndex}].certificate`}
-                                                                                                        component="div"
-                                                                                                        style={{color: 'red'}}
-                                                                                                    />
+                                                                                    {/* Certificate Preview */}
+                                                                                    {subSkill.certificate && (
+                                                                                        <div className="mt-2">
+                                                                                            {subSkill.certificate instanceof File ? (
+                                                                                                <div className="text-sm text-gray-600">
+                                                                                                    File ready for upload: {subSkill.certificate.name}
                                                                                                 </div>
-                                                                                            ))}
+                                                                                            ) : (
+                                                                                                <a
+                                                                                                    href={subSkill.certificate}
+                                                                                                    target="_blank"
+                                                                                                    rel="noopener noreferrer"
+                                                                                                    className="text-blue-600 hover:underline text-sm"
+                                                                                                >
+                                                                                                    View uploaded certificate
+                                                                                                </a>
+                                                                                            )}
+                                                                                        </div>
+                                                                                    )}
+
+                                                                                    {/* Assessment Link */}
+                                                                                    <div className="mt-3">
+                                                                                        <TextField
+                                                                                            type="text"
+                                                                                            label="Assessment result link"
+                                                                                            name={`coreSkills[${coreIndex}].subSkills[${subIndex}].link`}
+                                                                                            placeholder="Enter assessment result link"
+                                                                                            onChange={(e) =>
+                                                                                                setFieldValue(
+                                                                                                    `coreSkills[${coreIndex}].subSkills[${subIndex}].link`,
+                                                                                                    e.target.value
+                                                                                                )
+                                                                                            }
+                                                                                        />
                                                                                     </div>
-                                                                                ),
-                                                                            )}
+                                                                                </div>
+                                                                            ))}
                                                                         </div>
                                                                     </div>
                                                                 ))}
@@ -1490,6 +1407,17 @@ const handleChangeProject = (field,index, value) => {
                                                     )}
                                                 </div>
                                             ))}
+
+                                            {/* ADD SKILL BUTTON (only show if less than 3 skills) */}
+                                            {values.coreSkills.length < 3 && (
+                                                <button
+                                                    type="button"
+                                                    onClick={() => push({ coreSkill: '', subSkills: [] })}
+                                                    className="bg-primary px-4 py-2 text-white rounded"
+                                                >
+                                                    + Add Another Skill
+                                                </button>
+                                            )}
                                         </div>
                                     )}
                                 </FieldArray>
@@ -1594,7 +1522,7 @@ const handleChangeProject = (field,index, value) => {
                                         <TextFieldValue
                                             required
                                             type="text"
-                                            label="Title"
+                                            label="Role"
                                             name={`work_experience_job_title_${index}`}
                                             value={experience.work_experience_job_title}
                                             placeholder="Software Engineer"
@@ -1786,25 +1714,25 @@ const handleChangeProject = (field,index, value) => {
                                                         }
                                                     />
                                                     <div className="w-full">
-                                                    <TextFieldValue
-                                                        type="text"
-                                                        label="Reference Email"
-                                                        name={`reference_email_${index}`}
-                                                        value={experience.reference_email || ''}
-                                                        placeholder="Enter reference email"
-                                                        onChange={(e) =>
-                                                            handleChangeExperience(
-                                                                index,
-                                                                'reference_email',
-                                                                e.target.value,
-                                                            )
-                                                        }
-                                                    />
-                                                    {experience.referenceEmailError && (
-                                                        <div className="text-red-500 text-sm -mt-3">
-                                                            {experience.referenceEmailError}
-                                                        </div>
-                                                    )}
+                                                        <TextFieldValue
+                                                            type="text"
+                                                            label="Reference Email"
+                                                            name={`reference_email_${index}`}
+                                                            value={experience.reference_email || ''}
+                                                            placeholder="Enter reference email"
+                                                            onChange={(e) =>
+                                                                handleChangeExperience(
+                                                                    index,
+                                                                    'reference_email',
+                                                                    e.target.value,
+                                                                )
+                                                            }
+                                                        />
+                                                        {experience.referenceEmailError && (
+                                                            <div className="text-red-500 text-sm -mt-3">
+                                                                {experience.referenceEmailError}
+                                                            </div>
+                                                        )}
                                                     </div>
                                                     {(data && !experience.referenceEmailError) && <div
                                                         className="text-center mt-7 bg-primary px-4 py-2 text-white rounded w-[160px] h-10 cursor-pointer text-nowrap"
@@ -1850,91 +1778,128 @@ const handleChangeProject = (field,index, value) => {
                                             >
                                                 View Instructions
                                             </div>
-                                            <Dialog isOpen={showInstruction} onClose={closeInstructionDialog} title="Instructions" hideCloseButton={true}>
+                                            <Dialog isOpen={showInstruction} onClose={closeInstructionDialog}
+                                                    title="Instructions" hideCloseButton={true}>
                                                 <p className="text-sm">
-                                                    <strong>Hi, here are a few things to keep in mind while recording your video:</strong>
+                                                    <strong>Hi, here are a few things to keep in mind while recording
+                                                        your video:</strong>
                                                 </p>
                                                 <ul className="text-sm space-y-2">
-                                                    <li>📷 <strong>Use a good quality camera:</strong> A smartphone or webcam with at least HD (720p)
+                                                    <li>📷 <strong>Use a good quality camera:</strong> A smartphone or
+                                                        webcam with at least HD (720p)
                                                         resolution ensures sharp, professional-looking video.
                                                     </li>
-                                                    <li>💡 <strong>Lighting is key:</strong> Natural light is great, but soft artificial lighting works
+                                                    <li>💡 <strong>Lighting is key:</strong> Natural light is great, but
+                                                        soft artificial lighting works
                                                         too. Avoid backlighting to prevent shadows.
                                                     </li>
-                                                    <li>🖼️ <strong>Keep your background clean:</strong> A neutral or professional setup looks best.
+                                                    <li>🖼️ <strong>Keep your background clean:</strong> A neutral or
+                                                        professional setup looks best.
                                                         Avoid clutter and distractions.
                                                     </li>
-                                                    <li>📹 <strong>Use a stable setup:</strong> Place your camera on a steady surface or tripod for
+                                                    <li>📹 <strong>Use a stable setup:</strong> Place your camera on a
+                                                        steady surface or tripod for
                                                         smooth, professional framing.
                                                     </li>
-                                                    <li>👔 <strong>Dress appropriately:</strong> Wear attire that aligns with your industry, whether
+                                                    <li>👔 <strong>Dress appropriately:</strong> Wear attire that aligns
+                                                        with your industry, whether
                                                         business casual or formal.
                                                     </li>
-                                                    <li>🎯 <strong>Position yourself properly:</strong> Keep the camera at eye level, maintain good
+                                                    <li>🎯 <strong>Position yourself properly:</strong> Keep the camera
+                                                        at eye level, maintain good
                                                         posture, and make direct eye contact.
                                                     </li>
-                                                    <li>🎙️ <strong>Ensure clear audio:</strong> Record in a quiet space and use an external microphone
+                                                    <li>🎙️ <strong>Ensure clear audio:</strong> Record in a quiet space
+                                                        and use an external microphone
                                                         if available to minimize background noise.
                                                     </li>
                                                     <li>📜 <strong>Practice makes perfect:</strong>
                                                         <ul className="list-disc pl-5">
-                                                            <li>Rehearse a few times before recording to feel comfortable.</li>
-                                                            <li>Use notes instead of a full script to sound natural.</li>
-                                                            <li>Record a test clip and adjust lighting, audio, and positioning as needed.</li>
+                                                            <li>Rehearse a few times before recording to feel
+                                                                comfortable.
+                                                            </li>
+                                                            <li>Use notes instead of a full script to sound natural.
+                                                            </li>
+                                                            <li>Record a test clip and adjust lighting, audio, and
+                                                                positioning as needed.
+                                                            </li>
                                                         </ul>
                                                     </li>
-                                                    <li>😊 <strong>Show confidence:</strong> Smile, maintain positive body language, and be engaging.
+                                                    <li>😊 <strong>Show confidence:</strong> Smile, maintain positive
+                                                        body language, and be engaging.
                                                     </li>
-                                                    <li>⏳ <strong>Keep it concise:</strong> Aim for 1-2 minutes to deliver a strong, impactful message.
+                                                    <li>⏳ <strong>Keep it concise:</strong> Aim for 1-2 minutes to
+                                                        deliver a strong, impactful message.
                                                     </li>
                                                 </ul>
 
-                                                <p className="mt-4 text-sm"><strong>Let’s structure your video for a great first impression:</strong>
+                                                <p className="mt-4 text-sm"><strong>Let’s structure your video for a
+                                                    great first impression:</strong>
                                                 </p>
 
                                                 <div className="mt-2 space-y-4">
                                                     <div>
-                                                        <h3 className="font-semibold">👋 Introduction (10-15 seconds)</h3>
-                                                        <p>🗣️ Start with a warm introduction and introduce yourself confidently.</p>
-                                                        <p><strong>Example:</strong> "Hi, my name is [Your Name], and I’m a [Your Profession/Industry]."
+                                                        <h3 className="font-semibold">👋 Introduction (10-15
+                                                            seconds)</h3>
+                                                        <p>🗣️ Start with a warm introduction and introduce yourself
+                                                            confidently.</p>
+                                                        <p><strong>Example:</strong> "Hi, my name is [Your Name], and
+                                                            I’m a [Your Profession/Industry]."
                                                         </p>
-                                                        <p>🗣️ Mention key experience or education to highlight your relevance.</p>
-                                                        <p><strong>Example:</strong> "I have [X years] of experience in [Industry/Field]."</p>
+                                                        <p>🗣️ Mention key experience or education to highlight your
+                                                            relevance.</p>
+                                                        <p><strong>Example:</strong> "I have [X years] of experience in
+                                                            [Industry/Field]."</p>
                                                         <p>"I recently graduated with a [Degree] from [University]."</p>
                                                     </div>
 
                                                     <div>
-                                                        <h3 className="font-semibold">🚀 Key Highlights (30-45 seconds)</h3>
-                                                        <p>🗣️ Showcase key skills and accomplishments that make you stand out.</p>
+                                                        <h3 className="font-semibold">🚀 Key Highlights (30-45
+                                                            seconds)</h3>
+                                                        <p>🗣️ Showcase key skills and accomplishments that make you
+                                                            stand out.</p>
                                                         <p><strong>Example:</strong></p>
                                                         <ul className="list-disc pl-5">
                                                             <li>"I specialize in [Skill 1, Skill 2, Skill 3]."</li>
                                                             <li>"At [Company], I successfully [Achievement]."</li>
-                                                            <li>"I recently completed [Course/Certification] and worked on [Project]."</li>
+                                                            <li>"I recently completed [Course/Certification] and worked
+                                                                on [Project]."
+                                                            </li>
                                                         </ul>
                                                     </div>
 
                                                     <div>
-                                                        <h3 className="font-semibold">🎯 Closing & Call to Action (15-20 seconds)</h3>
+                                                        <h3 className="font-semibold">🎯 Closing & Call to Action (15-20
+                                                            seconds)</h3>
                                                         <p>🗣️ Wrap up with enthusiasm and invite engagement.</p>
                                                         <p><strong>Example:</strong></p>
                                                         <ul className="list-disc pl-5">
-                                                            <li>"I’m excited about roles in [Industry/Field] and eager to contribute my skills."</li>
-                                                            <li>"I’d love to connect and discuss how I can add value to your team."</li>
-                                                            <li>"Thank you for your time, and I look forward to connecting!"</li>
+                                                            <li>"I’m excited about roles in [Industry/Field] and eager
+                                                                to contribute my skills."
+                                                            </li>
+                                                            <li>"I’d love to connect and discuss how I can add value to
+                                                                your team."
+                                                            </li>
+                                                            <li>"Thank you for your time, and I look forward to
+                                                                connecting!"
+                                                            </li>
                                                         </ul>
                                                     </div>
                                                 </div>
 
                                                 <p className="mt-4 text-sm"><strong>🎬 Final Tips:</strong></p>
                                                 <ul className="text-sm list-disc pl-5 space-y-2">
-                                                    <li>✔️ Practice a few times before recording to build confidence.</li>
+                                                    <li>✔️ Practice a few times before recording to build confidence.
+                                                    </li>
                                                     <li>✔️ Keep your tone friendly, professional, and engaging.</li>
-                                                    <li>✔️ Most importantly, be yourself! Authenticity helps you stand out.</li>
+                                                    <li>✔️ Most importantly, be yourself! Authenticity helps you stand
+                                                        out.
+                                                    </li>
                                                 </ul>
 
                                                 <div className="flex justify-end gap-2 mt-4">
-                                                    <button className="bg-primary text-white px-4 py-2 rounded" onClick={closeInstructionDialog}>
+                                                    <button className="bg-primary text-white px-4 py-2 rounded"
+                                                            onClick={closeInstructionDialog}>
                                                         Ok
                                                     </button>
                                                 </div>
@@ -1945,18 +1910,18 @@ const handleChangeProject = (field,index, value) => {
                                     </div>
 
                                 </div>
-                                        <VideoUploader
-                                            data={data}
-                                            defaultVideo={data?.basicDetails?.video}
-                                            onVideoUpload={(url) => setFieldValue(`video`, url)}
-                                            defaultSecondaryVideo={data?.basicDetails?.secondary_video}
-                                            onSecondaryVideoUpload={(url) => setFieldValue(`secondary_video`, url)}
-                                        />
-                                        <ErrorMessage
-                                            name={'video'}
-                                            component="div"
-                                            className="text-xs text-red-500 ml-1 mt-1"
-                                        />
+                                <VideoUploader
+                                    data={data}
+                                    defaultVideo={data?.basicDetails?.video}
+                                    onVideoUpload={(url) => setFieldValue(`video`, url)}
+                                    defaultSecondaryVideo={data?.basicDetails?.secondary_video}
+                                    onSecondaryVideoUpload={(url) => setFieldValue(`secondary_video`, url)}
+                                />
+                                <ErrorMessage
+                                    name={'video'}
+                                    component="div"
+                                    className="text-xs text-red-500 ml-1 mt-1"
+                                />
                             </div>
 
                         </FormInfo>
@@ -1991,17 +1956,24 @@ const handleChangeProject = (field,index, value) => {
                                             value={item.project_title}
                                             placeholder="Enter project title"
                                             onChange={(e) =>
-                                                handleChangeProject('project_title', index,e.target.value)
+                                                handleChangeProject('project_title', index, e.target.value)
                                             }
                                         />
-                                        <TextArea
-                                            name={`project_description_${index}`}
-                                            label="Description"
-                                            value={item.project_description}
-                                            onChange={(e) =>
-                                                handleChangeProject('project_description', index,e.target.value)
-                                            }
-                                        />
+                                        <div style={{position: 'relative'}}>
+                                            <TextArea
+                                                name={`project_description_${index}`}
+                                                label="Description"
+                                                value={item.project_description}
+                                                onChange={(e) => {
+                                                    const words = e.target.value.split(/\s+/).filter(Boolean);
+                                                        handleChangeProject('project_description', index, e.target.value);
+                                                        setWordCounts((prev) => ({...prev, [index]: words.length}));
+                                                }}
+                                            />
+                                            <span style={{color: wordCounts[index] > 25 ? 'red' : 'grey',position: 'absolute',right: 10,bottom: 25,fontSize: '14px'}}>
+                                                {wordCounts[index] || 0} / 25
+                                            </span>
+                                        </div>
                                         <TextField
                                             type="text"
                                             label="URL"
@@ -2009,7 +1981,7 @@ const handleChangeProject = (field,index, value) => {
                                             name={`project_url_${index}`}
                                             placeholder="Enter project url"
                                             onChange={(e) =>
-                                                handleChangeProject('project_url',index,e.target.value)
+                                                handleChangeProject('project_url', index, e.target.value)
                                             }
                                         />
 
@@ -2083,7 +2055,7 @@ const handleChangeProject = (field,index, value) => {
                             </button>
                             <button
                                 // disabled={disabledButton || isSubmitting || imgError === '' ? false : true}
-                                disabled={disabledButton || isSubmitting}
+                                disabled={disabledButton || isSubmitting || isAnyDescriptionTooLong}
                                 type="submit"
                                 className={`flex gap-x-2 justify-end items-center rounded w-auto py-2 px-10 mt-10 bg-primary`}
                             >
