@@ -46,6 +46,7 @@ import FormInfo from '../../common/Information/formInfo'
 import Label from '../../component/InputField/label'
 import CertificatePreview from './certificatePreivew'
 import VideoSampleModal from "./videoSampleModal";
+import Dialog from "../../component/Dialog";
 
 // Function to extract the domain from an email address
 const getDomainFromEmail = (email) => {
@@ -78,6 +79,8 @@ const getDomainFromUrl = (url) => {
 }
 
 function Information({data}) {
+    const [visibleFields, setVisibleFields] = useState(data?.workExperience?.length ? 4 : 1);
+    const [showInstruction, setShowInstruction] = useState(false);
     let navigate = useNavigate()
     const token = localStorage.getItem('token')
     const initialProjects = {
@@ -105,6 +108,14 @@ function Information({data}) {
         name: "Reporting Manager"
     }
     ]
+
+    const addField = () => {
+        if (visibleFields < 4) {
+            setVisibleFields((prev) => prev + 1);
+        }
+    };
+
+    const closeInstructionDialog = () => setShowInstruction(false);
 
     const countryDataBasic = Country.getAllCountries().map((country) => ({
         value: country.isoCode,
@@ -1583,7 +1594,7 @@ const handleChangeProject = (field,index, value) => {
                                         <TextFieldValue
                                             required
                                             type="text"
-                                            label="Job Title"
+                                            label="Title"
                                             name={`work_experience_job_title_${index}`}
                                             value={experience.work_experience_job_title}
                                             placeholder="Software Engineer"
@@ -1612,7 +1623,7 @@ const handleChangeProject = (field,index, value) => {
                                         />
                                         <TextFieldValue
                                             type="text"
-                                            label="Company Website link"
+                                            label="Website link"
                                             name={`work_experience_company_website_${index}`}
                                             value={experience.work_experience_company_website}
                                             placeholder="Company website link"
@@ -1626,30 +1637,30 @@ const handleChangeProject = (field,index, value) => {
                                         />
 
                                         {/* Email Id For verification */}
-                                        <div className="flex flex-col items-center justify-between gap-x-2 relative">
-                                            <div className="w-full">
-                                                <TextFieldValue
-                                                    type="text"
-                                                    label="Email"
-                                                    name={`email_${index}`}
-                                                    value={experience.email || ''}
-                                                    placeholder="Enter email"
-                                                    onChange={(e) =>
-                                                        handleChangeExperience(
-                                                            index,
-                                                            'email',
-                                                            e.target.value,
-                                                        )
-                                                    }
-                                                />
-                                                {experience.emailError && (
-                                                    <div className="text-red-500 text-sm -mt-3">
-                                                        {experience.emailError}
-                                                    </div>
-                                                )}
-                                            </div>
+                                        {/*<div className="flex flex-col items-center justify-between gap-x-2 relative">*/}
+                                        {/*    <div className="w-full">*/}
+                                        {/*        <TextFieldValue*/}
+                                        {/*            type="text"*/}
+                                        {/*            label="Email"*/}
+                                        {/*            name={`email_${index}`}*/}
+                                        {/*            value={experience.email || ''}*/}
+                                        {/*            placeholder="Enter email"*/}
+                                        {/*            onChange={(e) =>*/}
+                                        {/*                handleChangeExperience(*/}
+                                        {/*                    index,*/}
+                                        {/*                    'email',*/}
+                                        {/*                    e.target.value,*/}
+                                        {/*                )*/}
+                                        {/*            }*/}
+                                        {/*        />*/}
+                                        {/*        {experience.emailError && (*/}
+                                        {/*            <div className="text-red-500 text-sm -mt-3">*/}
+                                        {/*                {experience.emailError}*/}
+                                        {/*            </div>*/}
+                                        {/*        )}*/}
+                                        {/*    </div>*/}
 
-                                        </div>
+                                        {/*</div>*/}
                                         {/* ---------Start Date------------- */}
                                         <div>
                                             <Label label="Start Date"/>
@@ -1711,55 +1722,31 @@ const handleChangeProject = (field,index, value) => {
                                             />
                                         </div>
 
-                                        {/* Accomplishments */}
-                                        <TextArea
-                                            name={`accomplishment_1_${index}`}
-                                            label="Accomplishments"
-                                            value={experience.accomplishments_id?.accomplishment_1}
-                                            onChange={(e) =>
-                                                handleChangeExperience(
-                                                    index,
-                                                    'accomplishments_id.accomplishment_1',
-                                                    e.target.value,
-                                                )
-                                            }
-                                        />
-                                        <TextArea
-                                            name={`accomplishment_2_${index}`}
-                                            label="Accomplishments"
-                                            value={experience.accomplishments_id?.accomplishment_2}
-                                            onChange={(e) =>
-                                                handleChangeExperience(
-                                                    index,
-                                                    'accomplishments_id.accomplishment_2',
-                                                    e.target.value,
-                                                )
-                                            }
-                                        />
-                                        <TextArea
-                                            name={`accomplishment_3_${index}`}
-                                            label="Accomplishments"
-                                            value={experience.accomplishments_id?.accomplishment_3}
-                                            onChange={(e) =>
-                                                handleChangeExperience(
-                                                    index,
-                                                    'accomplishments_id.accomplishment_3',
-                                                    e.target.value,
-                                                )
-                                            }
-                                        />
-                                        <TextArea
-                                            name={`accomplishment_4_${index}`}
-                                            label="Accomplishments"
-                                            value={experience.accomplishments_id?.accomplishment_4}
-                                            onChange={(e) =>
-                                                handleChangeExperience(
-                                                    index,
-                                                    'accomplishments_id.accomplishment_4',
-                                                    e.target.value,
-                                                )
-                                            }
-                                        />
+                                        {[...Array(visibleFields)].map((_, i) => (
+                                            <TextArea
+                                                key={i}
+                                                name={`accomplishment_${i + 1}_${index}`}
+                                                label="Accomplishments"
+                                                value={experience.accomplishments_id?.[`accomplishment_${i + 1}`]}
+                                                onChange={(e) =>
+                                                    handleChangeExperience(
+                                                        index,
+                                                        `accomplishments_id.accomplishment_${i + 1}`,
+                                                        e.target.value,
+                                                    )
+                                                }
+                                            />
+                                        ))}
+                                        {visibleFields < 4 && (
+                                            <div className={'flex items-center'}>
+                                                <div
+                                                    className="ml-4 bg-primary px-4 py-2 text-white rounded text-center w-[100px] cursor-pointer text-nowrap mt-3"
+                                                    onClick={addField}
+                                                >
+                                                    + Add
+                                                </div>
+                                            </div>
+                                        )}
                                     </div>
 
                                     <div>
@@ -1857,9 +1844,107 @@ const handleChangeProject = (field,index, value) => {
                                             >
                                                 View Sample
                                             </div>
+                                            <div
+                                                onClick={() => setShowInstruction(true)}
+                                                className="text-primary underline text-sm cursor-pointer"
+                                            >
+                                                View Instructions
+                                            </div>
+                                            <Dialog isOpen={showInstruction} onClose={closeInstructionDialog} title="Instructions" hideCloseButton={true}>
+                                                <p className="text-sm">
+                                                    <strong>Hi, here are a few things to keep in mind while recording your video:</strong>
+                                                </p>
+                                                <ul className="text-sm space-y-2">
+                                                    <li>📷 <strong>Use a good quality camera:</strong> A smartphone or webcam with at least HD (720p)
+                                                        resolution ensures sharp, professional-looking video.
+                                                    </li>
+                                                    <li>💡 <strong>Lighting is key:</strong> Natural light is great, but soft artificial lighting works
+                                                        too. Avoid backlighting to prevent shadows.
+                                                    </li>
+                                                    <li>🖼️ <strong>Keep your background clean:</strong> A neutral or professional setup looks best.
+                                                        Avoid clutter and distractions.
+                                                    </li>
+                                                    <li>📹 <strong>Use a stable setup:</strong> Place your camera on a steady surface or tripod for
+                                                        smooth, professional framing.
+                                                    </li>
+                                                    <li>👔 <strong>Dress appropriately:</strong> Wear attire that aligns with your industry, whether
+                                                        business casual or formal.
+                                                    </li>
+                                                    <li>🎯 <strong>Position yourself properly:</strong> Keep the camera at eye level, maintain good
+                                                        posture, and make direct eye contact.
+                                                    </li>
+                                                    <li>🎙️ <strong>Ensure clear audio:</strong> Record in a quiet space and use an external microphone
+                                                        if available to minimize background noise.
+                                                    </li>
+                                                    <li>📜 <strong>Practice makes perfect:</strong>
+                                                        <ul className="list-disc pl-5">
+                                                            <li>Rehearse a few times before recording to feel comfortable.</li>
+                                                            <li>Use notes instead of a full script to sound natural.</li>
+                                                            <li>Record a test clip and adjust lighting, audio, and positioning as needed.</li>
+                                                        </ul>
+                                                    </li>
+                                                    <li>😊 <strong>Show confidence:</strong> Smile, maintain positive body language, and be engaging.
+                                                    </li>
+                                                    <li>⏳ <strong>Keep it concise:</strong> Aim for 1-2 minutes to deliver a strong, impactful message.
+                                                    </li>
+                                                </ul>
+
+                                                <p className="mt-4 text-sm"><strong>Let’s structure your video for a great first impression:</strong>
+                                                </p>
+
+                                                <div className="mt-2 space-y-4">
+                                                    <div>
+                                                        <h3 className="font-semibold">👋 Introduction (10-15 seconds)</h3>
+                                                        <p>🗣️ Start with a warm introduction and introduce yourself confidently.</p>
+                                                        <p><strong>Example:</strong> "Hi, my name is [Your Name], and I’m a [Your Profession/Industry]."
+                                                        </p>
+                                                        <p>🗣️ Mention key experience or education to highlight your relevance.</p>
+                                                        <p><strong>Example:</strong> "I have [X years] of experience in [Industry/Field]."</p>
+                                                        <p>"I recently graduated with a [Degree] from [University]."</p>
+                                                    </div>
+
+                                                    <div>
+                                                        <h3 className="font-semibold">🚀 Key Highlights (30-45 seconds)</h3>
+                                                        <p>🗣️ Showcase key skills and accomplishments that make you stand out.</p>
+                                                        <p><strong>Example:</strong></p>
+                                                        <ul className="list-disc pl-5">
+                                                            <li>"I specialize in [Skill 1, Skill 2, Skill 3]."</li>
+                                                            <li>"At [Company], I successfully [Achievement]."</li>
+                                                            <li>"I recently completed [Course/Certification] and worked on [Project]."</li>
+                                                        </ul>
+                                                    </div>
+
+                                                    <div>
+                                                        <h3 className="font-semibold">🎯 Closing & Call to Action (15-20 seconds)</h3>
+                                                        <p>🗣️ Wrap up with enthusiasm and invite engagement.</p>
+                                                        <p><strong>Example:</strong></p>
+                                                        <ul className="list-disc pl-5">
+                                                            <li>"I’m excited about roles in [Industry/Field] and eager to contribute my skills."</li>
+                                                            <li>"I’d love to connect and discuss how I can add value to your team."</li>
+                                                            <li>"Thank you for your time, and I look forward to connecting!"</li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+
+                                                <p className="mt-4 text-sm"><strong>🎬 Final Tips:</strong></p>
+                                                <ul className="text-sm list-disc pl-5 space-y-2">
+                                                    <li>✔️ Practice a few times before recording to build confidence.</li>
+                                                    <li>✔️ Keep your tone friendly, professional, and engaging.</li>
+                                                    <li>✔️ Most importantly, be yourself! Authenticity helps you stand out.</li>
+                                                </ul>
+
+                                                <div className="flex justify-end gap-2 mt-4">
+                                                    <button className="bg-primary text-white px-4 py-2 rounded" onClick={closeInstructionDialog}>
+                                                        Ok
+                                                    </button>
+                                                </div>
+                                            </Dialog>
                                             <VideoSampleModal isOpen={isSampleModalOpen}
                                                               onClose={() => setIsSampleModalOpen(false)}/>
                                         </div>
+                                    </div>
+
+                                </div>
                                         <VideoUploader
                                             data={data}
                                             defaultVideo={data?.basicDetails?.video}
@@ -1872,9 +1957,6 @@ const handleChangeProject = (field,index, value) => {
                                             component="div"
                                             className="text-xs text-red-500 ml-1 mt-1"
                                         />
-                                    </div>
-
-                                </div>
                             </div>
 
                         </FormInfo>

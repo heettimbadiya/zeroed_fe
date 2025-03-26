@@ -1,15 +1,33 @@
 import React, { useState } from 'react';
-
+import logo from '../../assets/logo.png'
 function Messaging() {
     const [selectedChat, setSelectedChat] = useState(0);
     const [newMessage, setNewMessage] = useState('');
     const [messenger, setMessenger] = useState([
         {
             id: 0,
+            name: "Zeroed",
+            message: "Hello everyone...",
+            time: "Mar 18",
+            // image: 'https://static.vecteezy.com/system/resources/previews/041/642/170/non_2x/ai-generated-portrait-of-handsome-smiling-young-man-with-folded-arms-isolated-free-png.png',
+            image: logo,
+            sponsored: true,
+            messages: [
+                {
+                    id: 1,
+                    sender: 'Zeroed',
+                    content: 'Hello everyone',
+                    time: 'Mar 18',
+                    isUser: false
+                }
+            ]
+        },
+        {
+            id: 1,
             name: "Kunj Kapadiya",
             message: "Please Replay",
             time: "4:40 PM",
-            image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcREWaLmZv1-4kxBlI3FqOf25N0V2H7ok_FoZ2Y-q_P5058voU8as-N833jG90N6GpBMdtk&usqp=CAU',
+            image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTPGdrwSMxlAx_TZ9fEua6Rdykf0kfANNx8mA&s',
             unread: true,
             active: true,
             messages: [
@@ -37,11 +55,11 @@ function Messaging() {
             ]
         },
         {
-            id: 1,
+            id: 2,
             name: "Pratik Kapasi",
             message: "Sponsored Your unique experience...",
             time: "Mar 18",
-            image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcREWaLmZv1-4kxBlI3FqOf25N0V2H7ok_FoZ2Y-q_P5058voU8as-N833jG90N6GpBMdtk&usqp=CAU',
+            image: 'https://png.pngtree.com/png-vector/20240528/ourmid/pngtree-front-view-of-a-smiling-business-woman-png-image_12509704.png',
             sponsored: true,
             messages: [
                 {
@@ -54,10 +72,10 @@ function Messaging() {
             ]
         },
         {
-            id: 2,
+            id: 3,
             name: "Gagandeep Singh",
             message: "Gagandeep: Okay",
-            image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcREWaLmZv1-4kxBlI3FqOf25N0V2H7ok_FoZ2Y-q_P5058voU8as-N833jG90N6GpBMdtk&usqp=CAU',
+            image: 'https://thumbs.dreamstime.com/b/beautiful-smiling-businesswoman-arms-folded-standing-black-suit-brown-jacket-isolated-white-background-also-105189427.jpg',
             time: "Mar 10",
             messages: [
                 {

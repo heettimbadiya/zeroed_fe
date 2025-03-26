@@ -26,10 +26,6 @@ const VideoUploader = ({defaultVideo, onVideoUpload, defaultSecondaryVideo, onSe
         }
     }, [defaultSecondaryVideo]);
 
-    const openInstructionDialog = (type) => {
-        setInstructionType(type);
-        setShowInstruction(true);
-    };
 
     const closeInstructionDialog = () => setShowInstruction(false);
 
@@ -40,6 +36,10 @@ const VideoUploader = ({defaultVideo, onVideoUpload, defaultSecondaryVideo, onSe
         } else {
             setIsSecondaryOpen(true);
         }
+    };
+    const openInstructionDialog = (type) => {
+        setInstructionType(type);
+        proceedWithUpload()
     };
 
     const closePrimaryDialog = () => setIsOpen(false);
@@ -66,7 +66,7 @@ const VideoUploader = ({defaultVideo, onVideoUpload, defaultSecondaryVideo, onSe
         closeSecondaryDialog();
     };
 
-    const handleSelectVideo = async (e,type) => {
+    const handleSelectVideo = async (e, type) => {
         try {
             const [fileHandle] = await window.showOpenFilePicker({
                 types: [
@@ -81,23 +81,23 @@ const VideoUploader = ({defaultVideo, onVideoUpload, defaultSecondaryVideo, onSe
             });
 
             const file = await fileHandle.getFile();
-            handleFileUpload(file,type);
+            handleFileUpload(file, type);
         } catch (error) {
             console.log("File selection canceled or not supported", error);
         }
     };
     return (
-        <div className="w-full">
+        <div className="lg:w-1/3 sm:w-1/2 pt-2">
             <div className="flex justify-between items-center gap-4 mt-2">
                 <div
-                    onClick={() => openInstructionDialog("primary")}
+                    onClick={(e) => handleSelectVideo(e, 'recorded')}
                     className="border border-text-border border-b-4 focus:border-b-4 focus:border-primary outline-none rounded-lg px-4 py-3 w-1/2 text-center cursor-pointer"
                 >
                     Primary Video
                 </div>
                 {data && (
                     <div
-                        onClick={() => openInstructionDialog("secondary")}
+                        onClick={(e) => handleSelectVideo(e, 'secondary_video')}
                         className="border border-text-border border-b-4 focus:border-b-4 focus:border-primary outline-none rounded-lg px-4 py-3 w-1/2 text-center cursor-pointer"
                     >
                         Secondary Video
@@ -105,7 +105,8 @@ const VideoUploader = ({defaultVideo, onVideoUpload, defaultSecondaryVideo, onSe
                 )}
             </div>
 
-            <Dialog isOpen={showInstruction} onClose={closeInstructionDialog} title="Instructions" hideCloseButton={true}>
+            <Dialog isOpen={showInstruction} onClose={closeInstructionDialog} title="Instructions"
+                    hideCloseButton={true}>
                 <p className="text-sm">
                     <strong>Hi, here are a few things to keep in mind while recording your video:</strong>
                 </p>
@@ -200,7 +201,7 @@ const VideoUploader = ({defaultVideo, onVideoUpload, defaultSecondaryVideo, onSe
                     <div className="bg-primary px-4 py-2 text-white rounded cursor-pointer">
                         <div
                             className="bg-primary px-4 py-2 text-white rounded cursor-pointer"
-                            onClick={(e) => handleSelectVideo(e,'recorded')}
+                            onClick={(e) => handleSelectVideo(e, 'recorded')}
                         >
                             Select Primary Video
                         </div>
@@ -211,7 +212,8 @@ const VideoUploader = ({defaultVideo, onVideoUpload, defaultSecondaryVideo, onSe
 
             {/* Secondary Video Dialog */}
             <Dialog isOpen={isSecondaryOpen} onClose={closeSecondaryDialog} title="Upload Secondary Video">
-                <div className="bg-primary px-4 py-2 text-white rounded cursor-pointer" onClick={(e) => handleSelectVideo(e,'secondary_video')}>
+                <div className="bg-primary px-4 py-2 text-white rounded cursor-pointer"
+                     onClick={(e) => handleSelectVideo(e, 'secondary_video')}>
                     Select Secondary Video
                 </div>
             </Dialog>
@@ -220,7 +222,7 @@ const VideoUploader = ({defaultVideo, onVideoUpload, defaultSecondaryVideo, onSe
             <div className="mt-4 flex gap-4">
                 {recordedVideo && (
                     <div className="w-1/2">
-                        <h3 className="text-lg font-semibold">Recorded Video</h3>
+                        <h3 className="text-lg font-semibold">Primary Video</h3>
                         <video controls src={recordedVideo} className="w-full rounded-md shadow-md"/>
                     </div>
                 )}

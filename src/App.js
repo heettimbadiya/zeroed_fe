@@ -16,6 +16,7 @@ import Messaging from "./pages/Messaging/Messaging";
 import Header from "./pages/Header";
 import axios from "axios";
 import {API_ROUTES} from "./utils/APIs";
+import View from "./pages/View";
 
 function App() {
     const Home = lazy(() => import('./pages/Home'))
@@ -25,11 +26,10 @@ function App() {
     const [loading, setLoading] = useState(false)
     useEffect(() => {
         setLoading(true)
+
         async function fetchData() {
             try {
-                const response = await axios.get(
-                    API_ROUTES.GET_PROFILE_INFO + '/' + user?.id,
-                )
+                const response = await axios.get(API_ROUTES.GET_PROFILE_INFO + '/' + user?.id,)
                 if (response?.data?.success) {
                     setData(response?.data?.data)
                     setLoading(false)
@@ -38,111 +38,110 @@ function App() {
                 setLoading(false)
             }
         }
+
         fetchData()
     }, [user?.id])
-    return (
-        <div>
-            <Suspense fallback={<PageLoading/>}>
-                <Header
-                    profile={data?.basicDetails ? data?.basicDetails?.profile_pic : null}
-                    userId={user?.id}
+    return (<div>
+        <Suspense fallback={<PageLoading/>}>
+            <Routes>
+                <Route
+                    path={ROUTES_URL.SIGN_IN}
+                    element={<ProtectedRoute>
+                        <SignIn/>
+                    </ProtectedRoute>}
                 />
-                <Routes>
-                    <Route
-                        path={ROUTES_URL.SIGN_IN}
-                        element={
-                            <ProtectedRoute>
-                                <SignIn/>
-                            </ProtectedRoute>
-                        }
-                    />
-                    <Route
-                        path={ROUTES_URL.SIGN_UP}
-                        element={
-                            <ProtectedRoute>
-                                <SignUp/>
-                            </ProtectedRoute>
-                        }
-                    />
-                    {/* --------Signup OTP Verify---------- */}
-                    <Route
-                        path={ROUTES_URL.VERIFY}
-                        element={
-                            <ProtectedRoute>
-                                <Verify/>
-                            </ProtectedRoute>
-                        }
-                    />
-                    <Route
-                        path={ROUTES_URL.FORGOT_PASSWORD}
-                        element={
-                            <ProtectedRoute>
-                                <ForgotPassword/>
-                            </ProtectedRoute>
-                        }
-                    />
-                    {/* -----------OTP Verify----------- */}
-                    <Route
-                        path={ROUTES_URL.VERIFY_FORGOT_PASSWORD_OTP}
-                        element={
-                            <ProtectedRoute>
-                                <OTPVerify/>
-                            </ProtectedRoute>
-                        }
-                    />
-                    <Route
-                        path={ROUTES_URL.RESET_PASSWORD}
-                        element={
-                            <ProtectedRoute>
-                                <ResetPassword/>
-                            </ProtectedRoute>
-                        }
-                    />
-                    <Route
-                        path={ROUTES_URL.INITIAL}
-                        element={
-                            <ProtectedRoute>
-                                <Home/>
-                            </ProtectedRoute>
-                        }
-                    />
-                    <Route
-                        path={ROUTES_URL.HOME}
-                        element={
-                            <ProtectedRoute>
-                                <Home/>
-                            </ProtectedRoute>
-                        }
-                    />
-                    <Route
-                        path={ROUTES_URL.DASHBOARD}
-                        element={
-                            <ProtectedRoute>
-                                <Dashboard/>
-                            </ProtectedRoute>
-                        }
-                    />
-                    <Route
-                        path={ROUTES_URL.MESSAGING}
-                        element={
-                            <ProtectedRoute>
-                                <Messaging />
-                            </ProtectedRoute>
-                        }
-                    />
-                    <Route
-                        path={`${ROUTES_URL.PROFILE}/:id`}
-                        element={
-                            // <ProtectedRoute>
-                            <Profile/>
-                            // </ProtectedRoute>
-                        }
-                    />
-                </Routes>
-            </Suspense>
-            <ChatPopup />
-        </div>
-    )
+                <Route
+                    path={ROUTES_URL.SIGN_UP}
+                    element={<ProtectedRoute>
+                        <SignUp/>
+                    </ProtectedRoute>}
+                />
+                {/* --------Signup OTP Verify---------- */}
+                <Route
+                    path={ROUTES_URL.VERIFY}
+                    element={<ProtectedRoute>
+                        <Verify/>
+                    </ProtectedRoute>}
+                />
+                <Route
+                    path={ROUTES_URL.FORGOT_PASSWORD}
+                    element={<ProtectedRoute>
+                        <ForgotPassword/>
+                    </ProtectedRoute>}
+                />
+                {/* -----------OTP Verify----------- */}
+                <Route
+                    path={ROUTES_URL.VERIFY_FORGOT_PASSWORD_OTP}
+                    element={<ProtectedRoute>
+                        <OTPVerify/>
+                    </ProtectedRoute>}
+                />
+                <Route
+                    path={ROUTES_URL.RESET_PASSWORD}
+                    element={<ProtectedRoute>
+                        <ResetPassword/>
+                    </ProtectedRoute>}
+                />
+                <Route
+                    path={ROUTES_URL.INITIAL}
+                    element={<ProtectedRoute>
+                        <Header
+                            profile={data?.basicDetails ? data?.basicDetails?.profile_pic : null}
+                            userId={user?.id}
+                        />
+                        <Home/>
+                    </ProtectedRoute>}
+                />
+                <Route
+                    path={ROUTES_URL.HOME}
+                    element={<ProtectedRoute>
+                        <Header
+                            profile={data?.basicDetails ? data?.basicDetails?.profile_pic : null}
+                            userId={user?.id}
+                        />
+                        <Home/>
+                    </ProtectedRoute>}
+                />
+                <Route
+                    path={ROUTES_URL.DASHBOARD}
+                    element={<ProtectedRoute>
+                        <Header
+                            profile={data?.basicDetails ? data?.basicDetails?.profile_pic : null}
+                            userId={user?.id}
+                        />
+                        <Dashboard/>
+                    </ProtectedRoute>}
+                />
+                <Route
+                    path={ROUTES_URL.MESSAGING}
+                    element={<ProtectedRoute>
+                        <Header
+                            profile={data?.basicDetails ? data?.basicDetails?.profile_pic : null}
+                            userId={user?.id}
+                        />
+                        <Messaging/>
+                    </ProtectedRoute>}
+                />
+                <Route
+                    path={`${ROUTES_URL.PROFILE}/:id`}
+                    element={<>
+                        <Header
+                            profile={data?.basicDetails ? data?.basicDetails?.profile_pic : null}
+                            userId={user?.id}
+                        />
+                        <Profile/>
+                    </>}
+                />
+                <Route
+                    path={`${ROUTES_URL.VIEW}/:id`}
+                    element={<>
+                        <View />
+                    </>}
+                />
+            </Routes>
+        </Suspense>
+        <ChatPopup/>
+    </div>)
 }
 
 export default App

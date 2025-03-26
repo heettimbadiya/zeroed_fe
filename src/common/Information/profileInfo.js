@@ -1,6 +1,8 @@
-import { CloseFAQ, OpenFAQ } from '../Icons'
+import {CloseFAQ, Edit, OpenFAQ} from '../Icons'
+import {useNavigate} from "react-router-dom";
 
-const ProfileInfo = ({ title, icon, open, onClick, children }) => {
+const ProfileInfo = ({ title, icon, open, onClick, children,edit }) => {
+    const navigate = useNavigate()
   return (
     <div className="mt-4">
       <div className="bg-primary-100 rounded-t-lg bg-[ProfileInfo] py-[6px] px-3">
@@ -21,6 +23,7 @@ const ProfileInfo = ({ title, icon, open, onClick, children }) => {
           ) : (
             ''
           )}
+            {edit && <span className='cursor-pointer' onClick={() => navigate('/home')}><Edit /></span>}
         </div>
       </div>
       {open && <div className="bg-white rounded-b-lg p-4">{children}</div>}

@@ -16,6 +16,7 @@ const ProtectedRoute = ({ children }) => {
         ROUTES_URL.SIGN_IN,
         ROUTES_URL.SIGN_UP,
         ROUTES_URL.VERIFY,
+        ROUTES_URL.VIEW,
         ROUTES_URL.FORGOT_PASSWORD,
         ROUTES_URL.VERIFY_FORGOT_PASSWORD_OTP,
         ROUTES_URL.RESET_PASSWORD,
