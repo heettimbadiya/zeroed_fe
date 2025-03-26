@@ -137,10 +137,10 @@ export const jobFormValidation = yup.object({
     .of(yup.string().required('Sub skill is required'))
     .min(1, 'At least one sub skill must be selected'),
 
-  career_industry: yup.string().required('Career industry is required'),
-  // career_role: yup.string().required('Career role is required'),
+  // career_industry: yup.string().required('Career industry is required'),
+  career_role: yup.string().required('Career role is required'),
   // career_field: yup.string().required('Career field is required'),
-  noc_number: yup.string().required('NOC number is required'),
+  // noc_number: yup.string().required('NOC number is required'),
   video: yup.mixed().nullable().required('Video is required'),
     college_name: yup.string().required('Field of study is required'),
     global_gpa: yup.string().required('Field of study is required'),

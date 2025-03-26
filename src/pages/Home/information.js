@@ -643,11 +643,10 @@ const handleChangeProject = (field,index, value) => {
         })
 
         // Append career goal
-        formData.append('careerGoal[career_industry]', values.career_industry)
+        // formData.append('careerGoal[career_industry]', values.career_industry)
         formData.append('careerGoal[career_role]', values.career_role)
-        formData.append('careerGoal[career_field]', values.career_field)
-        formData.append('careerGoal[noc_number]', values.noc_number)
-        formData.append('careerGoal[noc]', values.noc)
+        // formData.append('careerGoal[career_field]', values.career_field)
+        // formData.append('careerGoal[noc_number]', values.noc_number)
 
         const experience = workExperiences[0]
         const isEmpty = Object.values(experience).every(
@@ -867,11 +866,10 @@ const handleChangeProject = (field,index, value) => {
                 video: data?.basicDetails?.video || '',
                 secondary_video: data?.basicDetails?.secondary_video || '',
 
-                career_industry: data?.careerGoal?.career_industry || '',
+                // career_industry: data?.careerGoal?.career_industry || '',
                 career_role: data?.careerGoal?.career_role || '',
-                career_field: data?.careerGoal?.career_field || '',
-                noc_number: data?.careerGoal?.noc_number || '',
-                noc: data?.careerGoal?.noc || '',
+                // career_field: data?.careerGoal?.career_field || '',
+                // noc_number: data?.careerGoal?.noc_number || '',
             }}
             validationSchema={jobFormValidation}
             onSubmit={handleSubmit}
@@ -1957,45 +1955,35 @@ const handleChangeProject = (field,index, value) => {
                                         setFieldValue('career_role', e.target.value)
                                     }
                                 />
-                                <DropDownInput
-                                    label="Industry"
-                                    name="career_industry"
-                                    options={industriesData.map((industry) => ({
-                                        value: industry.name,
-                                        name: industry.name,
-                                    }))}
-                                    value={data?.careerGoal?.career_industry || ''}
-                                    onChange={(e) =>
-                                        setFieldValue('career_industry', e.target.value)
-                                    }
-                                />
-                                <DropDownInput
-                                    label="Fields"
-                                    name="career_field"
-                                    options={industriesData.find((industry) => industry.name === values.career_industry)?.subsector || []}
-                                    value={data?.careerGoal?.career_industry || ''}
-                                    onChange={(e) =>
-                                        setFieldValue('career_field', e.target.value)
-                                    }
-                                />
-
-                                {/*<TextField*/}
-                                {/*    type="text"*/}
-                                {/*    label="industry"*/}
+                                {/*<DropDownInput*/}
+                                {/*    label="Industry"*/}
+                                {/*    name="career_industry"*/}
+                                {/*    options={industriesData.map((industry) => ({*/}
+                                {/*        value: industry.name,*/}
+                                {/*        name: industry.name,*/}
+                                {/*    }))}*/}
+                                {/*    value={data?.careerGoal?.career_industry || ''}*/}
+                                {/*    onChange={(e) =>*/}
+                                {/*        setFieldValue('career_industry', e.target.value)*/}
+                                {/*    }*/}
+                                {/*/>*/}
+                                {/*<DropDownInput*/}
+                                {/*    label="Fields"*/}
                                 {/*    name="career_field"*/}
-                                {/*    placeholder="Enter career industry"*/}
+                                {/*    options={industriesData.find((industry) => industry.name === values.career_industry)?.subsector || []}*/}
+                                {/*    value={data?.careerGoal?.career_industry || ''}*/}
                                 {/*    onChange={(e) =>*/}
                                 {/*        setFieldValue('career_field', e.target.value)*/}
                                 {/*    }*/}
                                 {/*/>*/}
 
-                                <DropDownInput
-                                    label="NOC Number"
-                                    name="noc_number"
-                                    value={data?.careerGoal?.noc_number || ''}
-                                    options={nocNumber}
-                                    onChange={(e) => setFieldValue('noc_number', e.target.value)}
-                                />
+                                {/*<DropDownInput*/}
+                                {/*    label="NOC Number"*/}
+                                {/*    name="noc_number"*/}
+                                {/*    value={data?.careerGoal?.noc_number || ''}*/}
+                                {/*    options={nocNumber}*/}
+                                {/*    onChange={(e) => setFieldValue('noc_number', e.target.value)}*/}
+                                {/*/>*/}
                             </div>
                         </FormInfo>
 
