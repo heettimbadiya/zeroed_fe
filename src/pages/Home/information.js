@@ -915,7 +915,7 @@ function Information({data}) {
                                   name="isInternationalEducation"
                                   onChange={(e) => setFieldValue('isInternationalEducation', e.target.checked)}
                               />}>
-                        {internationalEducation?.map((intEducation, index) => (<div key={index}>
+                        {internationalEducation?.length > 0 && internationalEducation?.map((intEducation, index) => (<div key={index}>
                             <div
                                 className="flex flex-wrap justify-between items-center gap-x-3 bg-primary-100 p-3 w-full">
                                 <div className="flex items-center gap-x-2">
