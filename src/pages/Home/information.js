@@ -81,7 +81,7 @@ function Information({data}) {
         field_of_study: '',
         level_of_education: '',
     }
-    const [internationalEducation, setInternationalEducation] = useState([initialInterNationalEducation])
+    const [internationalEducation, setInternationalEducation] = useState([initialInterNationalEducation] || [])
     const [stateOptions, setStateOptions] = useState([])
     const [projects, setProjects] = useState([initialProjects])
     const [cityOptions, setCityOptions] = useState([])
@@ -307,7 +307,7 @@ function Information({data}) {
                     ...data, accomplish
                 }
             })
-            setInternationalEducation(data.internationalEducation)
+            setInternationalEducation(data.internationalEducation || [])
             setWorkExperiences(p)
         }
     }, [data])
@@ -915,7 +915,7 @@ function Information({data}) {
                                   name="isInternationalEducation"
                                   onChange={(e) => setFieldValue('isInternationalEducation', e.target.checked)}
                               />}>
-                        {internationalEducation.map((intEducation, index) => (<div key={index}>
+                        {internationalEducation?.map((intEducation, index) => (<div key={index}>
                             <div
                                 className="flex flex-wrap justify-between items-center gap-x-3 bg-primary-100 p-3 w-full">
                                 <div className="flex items-center gap-x-2">
