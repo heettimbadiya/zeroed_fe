@@ -24,6 +24,7 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 import axios from "axios";
 import {API_ROUTES} from "../../utils/APIs";
+import LinkPreview from "../../component/LinkPreview/linkPreview";
 
 function ProfileDetails({data}) {
     const [countryOptions, setCountryOptions] = useState([])
@@ -540,10 +541,7 @@ function ProfileDetails({data}) {
                                                         <div>
                                                             <div>{project.project_title}</div>
                                                             <div>{project.project_description}</div>
-                                                            <div><a target={'_blank'}
-                                                                    className={'underline text-sky-500'}
-                                                                    href={project.project_url}>{project.project_url}</a>
-                                                            </div>
+                                                            <LinkPreview url={project.project_url} />
                                                         </div>
                                                     </div>
                                                 </div>
