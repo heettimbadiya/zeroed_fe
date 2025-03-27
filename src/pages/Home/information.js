@@ -199,11 +199,20 @@ function Information({data}) {
         accomplishments_id: {
             accomplishment_1: '', accomplishment_2: '', accomplishment_3: '', accomplishment_4: '',
         },
+        accomplish: {
+            accomplish1: 0,
+            accomplish2: 0,
+            accomplish3: 0,
+            accomplish4: 0,
+        },
         email: '',
         reference: '',
         reference_check: false
     }
     const [workExperiences, setWorkExperiences] = useState([initialWorkExperience,])
+    const isGreaterThan17 = workExperiences.some(item =>
+        Object.values(item.accomplish || {}).some(value => value > 14)
+    );
 
     const handleDeleteExperience = (index) => {
         if (!data) {
@@ -252,6 +261,30 @@ function Information({data}) {
         }
     }
 
+    const handleDeleteInternationalEducation = (index) => {
+        if (!data) {
+            setInternationalEducation((prev) => prev.filter((_, i) => i !== index))
+        } else {
+            const updatedProject = [...internationalEducation]
+            const userId = updatedProject[index]?.user_id
+            if (userId) {
+                try {
+                    const response = axios.delete(API_ROUTES.DELETE_INTERNATIONAL_EDUCATION + userId, {
+                        headers: {
+                            'Content-Type': 'multipart/form-data', Authorization: `${token}`,
+                        },
+                    },)
+                    if (response.data.status === 204) {
+                        console.log('International Education delete!')
+                    }
+                } catch (error) {
+                    console.log('Something went wrong', error)
+                }
+            }
+            setInternationalEducation(updatedProject.filter((_, i) => i !== index))
+        }
+    }
+
     useEffect(() => {
         if (data) {
             const updatedExperiences = data?.workExperience?.length ? data.workExperience.map((experience) => ({
@@ -259,7 +292,23 @@ function Information({data}) {
             })) : [initialWorkExperience]
             const projects = data?.projectDetails
             setProjects(projects)
-            setWorkExperiences(updatedExperiences)
+            const p = updatedExperiences.map((data) => {
+                const words1 = data.accomplishments_id?.[`accomplishment_1`].split(/\s+/).filter(Boolean);
+                const words2 = data.accomplishments_id?.[`accomplishment_2`].split(/\s+/).filter(Boolean);
+                const words3 = data.accomplishments_id?.[`accomplishment_3`].split(/\s+/).filter(Boolean);
+                const words4 = data.accomplishments_id?.[`accomplishment_4`].split(/\s+/).filter(Boolean);
+                const accomplish = {
+                    accomplish1: words1.length,
+                    accomplish2: words2.length,
+                    accomplish3: words3.length,
+                    accomplish4: words4.length,
+                }
+                return {
+                    ...data, accomplish
+                }
+            })
+            setInternationalEducation(data.internationalEducation)
+            setWorkExperiences(p)
         }
     }, [data])
 
@@ -339,6 +388,12 @@ function Information({data}) {
             accomplishments_id: {
                 accomplishment_1: '', accomplishment_2: '', accomplishment_3: '', accomplishment_4: '',
             },
+            accomplish: {
+                accomplish1: 0,
+                accomplish2: 0,
+                accomplish3: 0,
+                accomplish4: 0,
+            },
             email: '',
             reference: '',
             reference_check: false,
@@ -348,14 +403,14 @@ function Information({data}) {
         setInternationalEducation([...internationalEducation, initialInterNationalEducation])
     }
     const handleAddProject = () => {
-        setProjects([...projects,initialProjects])
+        setProjects([...projects, initialProjects])
     }
-const handleChangeProject = (field,index, value) => {
+    const handleChangeProject = (field, index, value) => {
         const updatedProject = [...projects]
-    updatedProject[index][field] = value
-    setProjects(updatedProject)
+        updatedProject[index][field] = value
+        setProjects(updatedProject)
 
-}
+    }
     const handleChangeExperience = (index, field, value) => {
         const updatedExperiences = [...workExperiences]
 
@@ -379,6 +434,7 @@ const handleChangeProject = (field,index, value) => {
         // Append basic details
         formData.append('basicDetails[user_id]', user.id)
         formData.append('basicDetails[firstname]', values.firstname)
+        formData.append(`isInternationalEducation`, values.isInternationalEducation,)
         formData.append('basicDetails[lastname]', values.lastname)
         if (values.profile_pic) {
             // formData.append('basicDetails[profile_pic]', values.profile_pic)
@@ -401,15 +457,20 @@ const handleChangeProject = (field,index, value) => {
         }
 
         // Append international education
-        formData.append('internationalEducation[level_of_education]', values.level_of_education,)
-        formData.append('internationalEducation[field_of_study]', values.field_of_study,)
-        formData.append('internationalEducation[year_of_graduation]', values.year_of_graduation,)
-        formData.append('internationalEducation[college_name]', values.college_name,)
-        formData.append('internationalEducation[global_gpa]', values.global_gpa,)
-        formData.append('internationalEducation[credential_no]', values.credential_no,)
-        formData.append('internationalEducation[credential_assesed]', values.credential_assesed,)
-        formData.append('internationalEducation[credential_institute_name]', values.credential_institute_name,)
-        formData.append('internationalEducation[isInternationalEducation]', values.isInternationalEducation,)
+        internationalEducation.map((item, index) => {
+
+            formData.append(`internationalEducation[${index}][level_of_education]`, item.level_of_education,)
+            formData.append(`internationalEducation[${index}][field_of_study]`, item.field_of_study,)
+            formData.append(`internationalEducation[${index}][year_of_graduation]`, item.year_of_graduation,)
+            formData.append(`internationalEducation[${index}][college_name]`, item.college_name,)
+            formData.append(`internationalEducation[${index}][global_gpa]`, item.global_gpa,)
+            formData.append(`internationalEducation[${index}][credential_no]`, item.credential_no,)
+            formData.append(`internationalEducation[${index}][credential_assesed]`, item.credential_assesed,)
+            formData.append(`internationalEducation[${index}][credential_institute_name]`, item.credential_institute_name,)
+            if (item?._id) {
+                formData.append(`internationalEducation[${index}][_id]`, data ? item?._id : null,)
+            }
+        })
 
         // Append Canadian education
         formData.append('canadianEducation[isCanadianEducation]', values.isCanadianEducation,)
@@ -449,6 +510,7 @@ const handleChangeProject = (field,index, value) => {
                 formData.append(`projectDetails[${index}][_id]`, data ? project?._id : null,)
             }
         })
+        console.log(workExperiences, "tyyyyyyyyy")
         workExperiences.forEach((experience, index) => {
             // Accomplishments fields
             formData.append(`workExperience[${index}][accomplishment_1]`, experience.accomplishments_id.accomplishment_1,)
@@ -515,6 +577,12 @@ const handleChangeProject = (field,index, value) => {
                 }
             }
         }
+    }
+    const handleChangeInternationalEducation = (index, field, value) => {
+        const updatedExperiences = [...internationalEducation]
+        updatedExperiences[index][field] = value
+
+        setInternationalEducation(updatedExperiences)
     }
 
     const resetWorkExperiences = () => {
@@ -584,7 +652,7 @@ const handleChangeProject = (field,index, value) => {
             year_of_graduation: data?.internationalEducation?.year_of_graduation || '',
             college_name: data?.internationalEducation?.college_name || '',
             global_gpa: data?.internationalEducation?.global_gpa || '',
-            isInternationalEducation: data?.internationalEducation?.isInternationalEducation || '',
+            isInternationalEducation: internationalEducation.length > 0 ? true : false,
             credential_no: data?.internationalEducation?.credential_no || '',
             credential_institute_name: data?.internationalEducation?.credential_institute_name || '',
             credential_assesed: data?.internationalEducation?.credential_assesed || false,
@@ -599,50 +667,50 @@ const handleChangeProject = (field,index, value) => {
             project_description: data?.canadianEducation?.project_description || '',
             project_url: data?.canadianEducation?.project_url || '',
 
-                coreSkills: [
-                    {
-                        _id: data?.skills[0]?._id || null,
-                        coreSkill: data?.skills[0]?.core_skill || '',
-                        subSkills:
-                            data?.skills[0]?.subSkill?.length > 0
-                                ? data?.skills[0]?.subSkill?.map((data) => {
-                                    const _id = data?._id || null
-                                    const subSkill = data.sub_skills || ''
-                                    const certificate = data.certificate || ''
-                                    const link = data.link || ''
-                                    return {_id, subSkill, certificate, link}
-                                })
-                                : [],
-                    },
-                    // {
-                    //     _id: data?.skills[1]?._id || null,
-                    //     coreSkill: data?.skills[1]?.core_skill || '',
-                    //     subSkills:
-                    //         data?.skills[1]?.subSkill?.length > 0
-                    //             ? data?.skills[1]?.subSkill?.map((data) => {
-                    //                 const _id = data?._id || null
-                    //                 const subSkill = data.sub_skills || ''
-                    //                 const certificate = data.certificate || ''
-                    //                 const link = data.link || ''
-                    //                 return {_id, subSkill, certificate, link}
-                    //             })
-                    //             : [],
-                    // },
-                    // {
-                    //     _id: data?.skills[2]?._id || null,
-                    //     coreSkill: data?.skills[2]?.core_skill || '',
-                    //     subSkills:
-                    //         data?.skills[2]?.subSkill?.length > 0
-                    //             ? data?.skills[2]?.subSkill?.map((data) => {
-                    //                 const _id = data?._id || null
-                    //                 const subSkill = data.sub_skills || ''
-                    //                 const certificate = data.certificate || ''
-                    //                 const link = data.link || ''
-                    //                 return {_id, subSkill, certificate, link}
-                    //             })
-                    //             : [],
-                    // },
-                ],
+            coreSkills: [
+                {
+                    _id: data?.skills[0]?._id || null,
+                    coreSkill: data?.skills[0]?.core_skill || '',
+                    subSkills:
+                        data?.skills[0]?.subSkill?.length > 0
+                            ? data?.skills[0]?.subSkill?.map((data) => {
+                                const _id = data?._id || null
+                                const subSkill = data.sub_skills || ''
+                                const certificate = data.certificate || ''
+                                const link = data.link || ''
+                                return {_id, subSkill, certificate, link}
+                            })
+                            : [],
+                },
+                // {
+                //     _id: data?.skills[1]?._id || null,
+                //     coreSkill: data?.skills[1]?.core_skill || '',
+                //     subSkills:
+                //         data?.skills[1]?.subSkill?.length > 0
+                //             ? data?.skills[1]?.subSkill?.map((data) => {
+                //                 const _id = data?._id || null
+                //                 const subSkill = data.sub_skills || ''
+                //                 const certificate = data.certificate || ''
+                //                 const link = data.link || ''
+                //                 return {_id, subSkill, certificate, link}
+                //             })
+                //             : [],
+                // },
+                // {
+                //     _id: data?.skills[2]?._id || null,
+                //     coreSkill: data?.skills[2]?.core_skill || '',
+                //     subSkills:
+                //         data?.skills[2]?.subSkill?.length > 0
+                //             ? data?.skills[2]?.subSkill?.map((data) => {
+                //                 const _id = data?._id || null
+                //                 const subSkill = data.sub_skills || ''
+                //                 const certificate = data.certificate || ''
+                //                 const link = data.link || ''
+                //                 return {_id, subSkill, certificate, link}
+                //             })
+                //             : [],
+                // },
+            ],
 
             accomplishment_1: data?.workExperience?.accomplishment_1 || '',
             accomplishment_2: data?.workExperience?.accomplishment_2 || '',
@@ -666,169 +734,169 @@ const handleChangeProject = (field,index, value) => {
             video: data?.basicDetails?.video || '',
             secondary_video: data?.basicDetails?.secondary_video || '',
 
-                // career_industry: data?.careerGoal?.career_industry || '',
-                career_role: data?.careerGoal?.career_role || '',
-                // career_field: data?.careerGoal?.career_field || '',
-                // noc_number: data?.careerGoal?.noc_number || '',
-            }}
-            validationSchema={jobFormValidation}
-            onSubmit={handleSubmit}
-        >
-            {({handleReset, isSubmitting, setFieldValue, values, errors}) => {
-                return (
-                    <Form>
-                        {/* ------------------Personal Information--------------- */}
-                        <FormInfo title="Personal Information" icon={<UserInfo/>}>
-                            <div className="grid xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2 gap-x-5 py-6 px-4">
-                                {/*<DropDownInput1*/}
-                                {/*    label={"Hello"}*/}
-                                {/*    name={"hello"}*/}
-                                {/*    value={values.hello}*/}
-                                {/*    onChange={(e) => setFieldValue('hello', e.target.value)}*/}
-                                {/*    placeholder="Type and press Enter"*/}
+            // career_industry: data?.careerGoal?.career_industry || '',
+            career_role: data?.careerGoal?.career_role || '',
+            // career_field: data?.careerGoal?.career_field || '',
+            // noc_number: data?.careerGoal?.noc_number || '',
+        }}
+        validationSchema={jobFormValidation}
+        onSubmit={handleSubmit}
+    >
+        {({handleReset, isSubmitting, setFieldValue, values, errors}) => {
+            return (
+                <Form>
+                    {/* ------------------Personal Information--------------- */}
+                    <FormInfo title="Personal Information" icon={<UserInfo/>}>
+                        <div className="grid xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2 gap-x-5 py-6 px-4">
+                            {/*<DropDownInput1*/}
+                            {/*    label={"Hello"}*/}
+                            {/*    name={"hello"}*/}
+                            {/*    value={values.hello}*/}
+                            {/*    onChange={(e) => setFieldValue('hello', e.target.value)}*/}
+                            {/*    placeholder="Type and press Enter"*/}
 
-                                {/*/>*/}
-                                <TextField
-                                    type="text"
-                                    label="firstname"
-                                    name="firstname"
-                                    placeholder="Enter first name"
-                                    onChange={(e) => setFieldValue('firstname', e.target.value)}
-                                />
-                                <TextField
-                                    type="text"
-                                    label="lastname"
-                                    name="lastname"
-                                    placeholder="Enter last name"
-                                    onChange={(e) => setFieldValue('lastname', e.target.value)}
-                                />
+                            {/*/>*/}
+                            <TextField
+                                type="text"
+                                label="firstname"
+                                name="firstname"
+                                placeholder="Enter first name"
+                                onChange={(e) => setFieldValue('firstname', e.target.value)}
+                            />
+                            <TextField
+                                type="text"
+                                label="lastname"
+                                name="lastname"
+                                placeholder="Enter last name"
+                                onChange={(e) => setFieldValue('lastname', e.target.value)}
+                            />
 
-                        <div className="mb-4">
-                            <Label label="Profile"/>
-                            <Field name="profile_pic">
-                                {({field}) => (<div className="flex flex-col">
-                                    <input
-                                        type="file"
-                                        id="profile_pic"
-                                        className="hidden"
-                                        onChange={(event) => {
-                                            const file = event.currentTarget.files[0]
-                                            if (file) {
-                                                const validTypes = ['image/jpeg', 'image/png', 'image/jpg',]
-                                                if (validTypes.includes(file.type)) {
-                                                    setFieldValue('profile_pic', file)
-                                                    setImgError('') // Clear error
-                                                } else {
-                                                    setImgError('Invalid file type. Please select a jpeg, JPG or PNG file.',)
+                            <div className="mb-4">
+                                <Label label="Profile"/>
+                                <Field name="profile_pic">
+                                    {({field}) => (<div className="flex flex-col">
+                                        <input
+                                            type="file"
+                                            id="profile_pic"
+                                            className="hidden"
+                                            onChange={(event) => {
+                                                const file = event.currentTarget.files[0]
+                                                if (file) {
+                                                    const validTypes = ['image/jpeg', 'image/png', 'image/jpg',]
+                                                    if (validTypes.includes(file.type)) {
+                                                        setFieldValue('profile_pic', file)
+                                                        setImgError('') // Clear error
+                                                    } else {
+                                                        setImgError('Invalid file type. Please select a jpeg, JPG or PNG file.',)
+                                                    }
+
                                                 }
-
-                                            }
-                                        }}
-                                    />
-                                    <label
-                                        htmlFor="profile_pic"
-                                        className="border border-text-border border-b-4 focus:border-b-4 focus:border-primary outline-none rounded-lg mt-1 px-2 py-3 pr-10 w-full cursor-pointer"
-                                    >
+                                            }}
+                                        />
+                                        <label
+                                            htmlFor="profile_pic"
+                                            className="border border-text-border border-b-4 focus:border-b-4 focus:border-primary outline-none rounded-lg mt-1 px-2 py-3 pr-10 w-full cursor-pointer"
+                                        >
                           <span className="px-2 py-1 border border-primary rounded bg-primary-100">
                             Choose file
                           </span>{' '}
-                                        {data ? values?.profile_pic?.name || data?.basicDetails?.profile_pic?.split('/').pop() : values?.profile_pic?.name || 'No file chosen'}
-                                    </label>
-                                    {/* Displaying error message */}
-                                    {imgError && (<div className="text-xs text-red-500 ml-1 mt-1">
-                                        {imgError}
+                                            {data ? values?.profile_pic?.name || data?.basicDetails?.profile_pic?.split('/').pop() : values?.profile_pic?.name || 'No file chosen'}
+                                        </label>
+                                        {/* Displaying error message */}
+                                        {imgError && (<div className="text-xs text-red-500 ml-1 mt-1">
+                                            {imgError}
+                                        </div>)}
+                                        {imgError === '' && (<ErrorMessage
+                                            name="profile_pic"
+                                            component="div"
+                                            className="text-xs text-red-500 ml-1 mt-1"
+                                        />)}
                                     </div>)}
-                                    {imgError === '' && (<ErrorMessage
-                                        name="profile_pic"
-                                        component="div"
-                                        className="text-xs text-red-500 ml-1 mt-1"
-                                    />)}
-                                </div>)}
-                            </Field>
-                        </div>
+                                </Field>
+                            </div>
 
-                        <DateField
-                            label="Date of Birth"
-                            name="dob"
-                            icon={<Calender/>}
-                        />
+                            <DateField
+                                label="Date of Birth"
+                                name="dob"
+                                icon={<Calender/>}
+                            />
 
-                        <RadioGroup
-                            name="gender"
-                            label="Gender"
-                            options={[{value: 'male', label: 'Male'}, {
-                                value: 'female',
-                                label: 'Female'
-                            }, {value: 'other', label: 'Other'},]}
-                        />
+                            <RadioGroup
+                                name="gender"
+                                label="Gender"
+                                options={[{value: 'male', label: 'Male'}, {
+                                    value: 'female',
+                                    label: 'Female'
+                                }, {value: 'other', label: 'Other'},]}
+                            />
 
-                        <DropDown
-                            label="Nationality"
-                            name="nationality"
-                            options={countryData}
-                            value={data?.basicDetails?.nationality || 'Canada'}
-                            onChange={(e) => setFieldValue('nationality', e.target.value)}
-                        />
+                            <DropDown
+                                label="Nationality"
+                                name="nationality"
+                                options={countryData}
+                                value={data?.basicDetails?.nationality || 'Canada'}
+                                onChange={(e) => setFieldValue('nationality', e.target.value)}
+                            />
 
-                        <DropDown
-                            label="Country"
-                            name="current_country"
-                            options={countryDataBasic}
-                            value={getCountryNameByValue(defaultCurrentCountry)} // Show name
-                            onChange={(e) => handleChangeCountry(e, setFieldValue)}
-                        />
+                            <DropDown
+                                label="Country"
+                                name="current_country"
+                                options={countryDataBasic}
+                                value={getCountryNameByValue(defaultCurrentCountry)} // Show name
+                                onChange={(e) => handleChangeCountry(e, setFieldValue)}
+                            />
 
-                        <DropDown
-                            label="Current State/Province"
-                            name="current_state"
-                            options={stateOptions}
-                            value={getStateNameByValue(data?.basicDetails?.current_state || '',)}
-                            onChange={(e) => handleChangeState(e, setFieldValue, values)}
-                        />
+                            <DropDown
+                                label="Current State/Province"
+                                name="current_state"
+                                options={stateOptions}
+                                value={getStateNameByValue(data?.basicDetails?.current_state || '',)}
+                                onChange={(e) => handleChangeState(e, setFieldValue, values)}
+                            />
 
-                        <DropDownInput
-                            label="Current City"
-                            name="current_city"
-                            options={cityOptions}
-                            value={data?.basicDetails?.current_city || ''} // Assuming city names are used
-                            onChange={(e) => setFieldValue('current_city', e.target.value, values)}
-                        />
+                            <DropDownInput
+                                label="Current City"
+                                name="current_city"
+                                options={cityOptions}
+                                value={data?.basicDetails?.current_city || ''} // Assuming city names are used
+                                onChange={(e) => setFieldValue('current_city', e.target.value, values)}
+                            />
 
-                        <div className="mb-4">
-                            <Label label="Contact No"/>
-                            <div className="mt-1">
-                                <PhoneInput
-                                    name="contact_no"
-                                    value={values.contact_no}
-                                    onChange={(value) => setFieldValue('contact_no', value)}
-                                    placeholder="+1 250-555-0199"
+                            <div className="mb-4">
+                                <Label label="Contact No"/>
+                                <div className="mt-1">
+                                    <PhoneInput
+                                        name="contact_no"
+                                        value={values.contact_no}
+                                        onChange={(value) => setFieldValue('contact_no', value)}
+                                        placeholder="+1 250-555-0199"
+                                    />
+                                </div>
+                                <ErrorMessage
+                                    name={'contact_no'}
+                                    component="div"
+                                    className="text-xs text-red-500 ml-1 mt-1"
                                 />
                             </div>
-                            <ErrorMessage
-                                name={'contact_no'}
-                                component="div"
-                                className="text-xs text-red-500 ml-1 mt-1"
+
+                            <TextField
+                                type="text"
+                                label="Contact email Id"
+                                name="contact_email_id"
+                                placeholder="Enter contact email Id"
+                                onChange={(e) => setFieldValue('contact_email_id', e.target.value)}
                             />
-                        </div>
 
-                        <TextField
-                            type="text"
-                            label="Contact email Id"
-                            name="contact_email_id"
-                            placeholder="Enter contact email Id"
-                            onChange={(e) => setFieldValue('contact_email_id', e.target.value)}
-                        />
+                            <DropDownInput
+                                label="Job preferred location"
+                                name="job_preferred_location"
+                                options={provinceData}
+                                value={data?.basicDetails?.job_preferred_location}
+                                onChange={(e) => setFieldValue('job_preferred_location', e.target.value)}
+                                allowCustom={true}
+                            />
 
-                        <DropDownInput
-                            label="Job preferred location"
-                            name="job_preferred_location"
-                            options={provinceData}
-                            value={data?.basicDetails?.job_preferred_location}
-                            onChange={(e) => setFieldValue('job_preferred_location', e.target.value)}
-                            allowCustom={true}
-                        />
-
-                        {/* <DropDownInput
+                            {/* <DropDownInput
                   label="Job preferred location"
                   name="job_preferred_location"
                   options={provinceData}
@@ -837,978 +905,1026 @@ const handleChangeProject = (field,index, value) => {
                     setFieldValue('job_preferred_location', e.target.value)
                   }
                 /> */}
-                    </div>
-                </FormInfo>
+                        </div>
+                    </FormInfo>
 
-                {/* ------------------International Education--------------- */}
-                <FormInfo title="Global Education" icon={<GlobalEducation/>} renderRight={true}
-                          renderRightContent={<ToggleButton
-                              label=""
-                              name="isInternationalEducation"
-                              onChange={(e) => setFieldValue('isInternationalEducation', e.target.checked)}
-                          />}>
-                    {internationalEducation.map((intEducation, index) => (<div key={index}>
-                        <div
-                            className="flex flex-wrap justify-between items-center gap-x-3 bg-primary-100 p-3 w-full">
-                            <div className="flex items-center gap-x-2">
-                                <div className="text-lg font-semibold capitalize text-primary text-nowrap">
-                                    {index + 1}.{' '}
-                                    {intEducation.college_name || 'New Education'}
+                    {/* ------------------International Education--------------- */}
+                    <FormInfo title="Global Education" icon={<GlobalEducation/>} renderRight={true}
+                              renderRightContent={<ToggleButton
+                                  label=""
+                                  name="isInternationalEducation"
+                                  onChange={(e) => setFieldValue('isInternationalEducation', e.target.checked)}
+                              />}>
+                        {internationalEducation.map((intEducation, index) => (<div key={index}>
+                            <div
+                                className="flex flex-wrap justify-between items-center gap-x-3 bg-primary-100 p-3 w-full">
+                                <div className="flex items-center gap-x-2">
+                                    <div className="text-lg font-semibold capitalize text-primary text-nowrap">
+                                        {index + 1}.{' '}
+                                        {intEducation.college_name || 'New Education'}
+                                    </div>
+                                    {internationalEducation.length > 1 && (<div
+                                        onClick={() => handleDeleteInternationalEducation(index)}
+                                        className="cursor-pointer font-black"
+                                    >
+                                        <DeleteIcon/>
+                                    </div>)}
                                 </div>
-                                {internationalEducation.length > 1 && (<div
-                                    onClick={() => handleDeleteExperience(index)}
-                                    className="cursor-pointer font-black"
-                                >
-                                    <DeleteIcon/>
-                                </div>)}
+
                             </div>
 
-                        </div>
-
-                        <div
-                            className="grid xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2 gap-x-5 py-6 px-4">
-                            <>
-                                <DropDownInput
-                                    label="Level of Education"
-                                    name={`level_of_education_${index}`}
-                                    options={levelOfEducation}
-                                    disabled={!values.isInternationalEducation}
-                                    value={intEducation?.level_of_education || ''}
-                                    onChange={(e) => {
-                                        handleChangeInternationalEducation(index, 'level_of_education', e.target.value,)
-                                    }}
-                                />
-                                <DropDownInput
-                                    label="Field of Study"
-                                    name={`field_of_study_${index}`}
-                                    options={fieldOfStudy}
-                                    disabled={!values.isInternationalEducation}
-                                    value={intEducation?.field_of_study || ''}
-                                    onChange={(e) => {
-                                        handleChangeInternationalEducation(index, 'field_of_study', e.target.value,)
-                                    }}
-                                />
-                                <DropDownInput
-                                    label="Year of Graduation"
-                                    name={`year_of_graduation_${index}`}
-                                    options={years}
-                                    disabled={!values.isInternationalEducation}
-                                    value={intEducation?.year_of_graduation || ''}
-                                    onChange={(e) => {
-                                        handleChangeInternationalEducation(index, 'year_of_graduation', e.target.value,)
-                                    }}
-                                />
-                                <TextFieldValue
-                                    type="text"
-                                    label="college Name"
-                                    value={intEducation?.college_name || ''}
-                                    name={`college_name_${index}`}
-                                    placeholder="Enter college name"
-                                    disabled={!values.isInternationalEducation}
-                                    onChange={(e) => {
-                                        handleChangeInternationalEducation(index, 'college_name', e.target.value,)
-                                    }}
-                                />
-                                <TextFieldValue
-                                    type="text"
-                                    label="GPA / Percentage "
-                                    value={intEducation?.global_gpa || ''}
-                                    name={`global_gpa_${index}`}
-                                    placeholder="Enter GPA"
-                                    disabled={!values.isInternationalEducation}
-                                    onChange={(e) => {
-                                        handleChangeInternationalEducation(index, 'global_gpa', e.target.value,)
-                                    }}
-                                />
-                                <TextFieldValue
-                                    type="text"
-                                    label="Credential No"
-                                    value={intEducation?.credential_no || ''}
-                                    name={`credential_no_${index}`}
-                                    placeholder="Enter Credential No"
-                                    disabled={!values.isInternationalEducation}
-                                    onChange={(e) => {
-                                        handleChangeInternationalEducation(index, 'credential_no', e.target.value,)
-                                    }}
-                                />
-                                <DropDownInput
-                                    label="Credential institute name"
-                                    name={`credential_institute_name_${index}`}
-                                    options={[{name: 'IQAS'}, {name: 'WES'}, {name: 'ICAS'}]}
-                                    disabled={!values.isInternationalEducation}
-                                    value={intEducation?.credential_institute_name || ''}
-                                    onChange={(e) => {
-                                        handleChangeInternationalEducation(index, 'credential_institute_name', e.target.value,)
-                                    }}
-                                />
-                                <div className='d-flex justify-center items-center mt-9'>
-                                    <ToggleButton
-                                        label="Credential assessed"
-                                        name={`credential_assesed_${index}`}
-                                        checked={intEducation?.credential_assesed}
+                            <div
+                                className="grid xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2 gap-x-5 py-6 px-4">
+                                <>
+                                    <DropDownInput
+                                        label="Level of Education"
+                                        name={`level_of_education_${index}`}
+                                        options={levelOfEducation}
                                         disabled={!values.isInternationalEducation}
+                                        value={intEducation?.level_of_education || ''}
                                         onChange={(e) => {
-                                            handleChangeInternationalEducation(index, 'credential_assesed', e.target.checked)
+                                            handleChangeInternationalEducation(index, 'level_of_education', e.target.value,)
                                         }}
                                     />
-                                </div>
-                            </>
+                                    <DropDownInput
+                                        label="Field of Study"
+                                        name={`field_of_study_${index}`}
+                                        options={fieldOfStudy}
+                                        disabled={!values.isInternationalEducation}
+                                        value={intEducation?.field_of_study || ''}
+                                        onChange={(e) => {
+                                            handleChangeInternationalEducation(index, 'field_of_study', e.target.value,)
+                                        }}
+                                    />
+                                    <DropDownInput
+                                        label="Year of Graduation"
+                                        name={`year_of_graduation_${index}`}
+                                        options={years}
+                                        disabled={!values.isInternationalEducation}
+                                        value={intEducation?.year_of_graduation || ''}
+                                        onChange={(e) => {
+                                            handleChangeInternationalEducation(index, 'year_of_graduation', e.target.value,)
+                                        }}
+                                    />
+                                    <TextFieldValue
+                                        type="text"
+                                        label="college Name"
+                                        value={intEducation?.college_name || ''}
+                                        name={`college_name_${index}`}
+                                        placeholder="Enter college name"
+                                        disabled={!values.isInternationalEducation}
+                                        onChange={(e) => {
+                                            handleChangeInternationalEducation(index, 'college_name', e.target.value,)
+                                        }}
+                                    />
+                                    <TextFieldValue
+                                        type="text"
+                                        label="GPA / Percentage "
+                                        value={intEducation?.global_gpa || ''}
+                                        name={`global_gpa_${index}`}
+                                        placeholder="Enter GPA"
+                                        disabled={!values.isInternationalEducation}
+                                        onChange={(e) => {
+                                            handleChangeInternationalEducation(index, 'global_gpa', e.target.value,)
+                                        }}
+                                    />
+                                    <TextFieldValue
+                                        type="text"
+                                        label="Credential No"
+                                        value={intEducation?.credential_no || ''}
+                                        name={`credential_no_${index}`}
+                                        placeholder="Enter Credential No"
+                                        disabled={!values.isInternationalEducation}
+                                        onChange={(e) => {
+                                            handleChangeInternationalEducation(index, 'credential_no', e.target.value,)
+                                        }}
+                                    />
+                                    <DropDownInput
+                                        label="Credential institute name"
+                                        name={`credential_institute_name_${index}`}
+                                        options={[{name: 'IQAS'}, {name: 'WES'}, {name: 'ICAS'}]}
+                                        disabled={!values.isInternationalEducation}
+                                        value={intEducation?.credential_institute_name || ''}
+                                        onChange={(e) => {
+                                            handleChangeInternationalEducation(index, 'credential_institute_name', e.target.value,)
+                                        }}
+                                    />
+                                    <div className={'flex items-center'}>
+                                        <label className="inline-flex items-center cursor-pointer">
+                                            <Label label={'Credential assessed :'} className="ml-2"/>
+                                            <Field
+                                                type="checkbox"
+                                                id={`credential_assesed_${index}`}
+                                                name={`credential_assesed_${index}`}
+                                                className="sr-only peer ml-2"
+                                                checked={intEducation?.credential_assesed || false}
+                                                disabled={!values.isInternationalEducation}
+                                                onChange={(e) => {
+                                                    handleChangeInternationalEducation(index, 'credential_assesed', e.target.checked)
+                                                }}
+                                            />
+                                            <div
+                                                className="relative w-11 h-6 bg-gray-200 rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:start-[2px] after:bg-white after:border-gray after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#f3902a] focus:border-[#f3902a]"
+                                            >
+                                            </div>
+                                        </label>
+                                    </div>
+
+                                </>
+                            </div>
+                        </div>))}
+                        <div className={'pb-3'}>
+                            <div
+                                disabled={!values.isInternationalEducation}
+                                className="ml-4 bg-primary px-4 py-2 text-white rounded w-[160px] cursor-pointer text-nowrap"
+                                onClick={handleAddInternationalEducation}
+                            >
+                                + Add Education
+                            </div>
                         </div>
-                    </div>))}
-                    <div className={'pb-3'}>
-                        <div
-                            className="ml-4 bg-primary px-4 py-2 text-white rounded w-[160px] cursor-pointer text-nowrap"
-                            onClick={handleAddInternationalEducation}
-                        >
-                            + Add Education
+                    </FormInfo>
+
+                    {/* ------------------Canadian Education--------------- */}
+                    <FormInfo
+                        title="Canadian Education"
+                        icon={<CanadianEducation/>}
+                        renderRight={true}
+                        renderRightContent={<ToggleButton
+                            label=""
+                            name="isCanadianEducation"
+                            onChange={(e) => setFieldValue('isCanadianEducation', e.target.checked)}
+                        />}
+                    >
+                        <div className="grid xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2 gap-x-5 py-6 px-4">
+                            <DropDownInput
+                                label="College/University"
+                                name="university"
+                                disabled={!values.isCanadianEducation}
+                                options={universityData?.map((data) => ({
+                                    name: data.name, value: data.name,
+                                }))}
+                                value={data?.canadianEducation?.university || ''}
+                                onChange={(e) => setFieldValue('university', e.target.value)}
+                            />
+                            <DropDownInput
+                                label="City"
+                                name="city"
+                                options={currentCity}
+                                disabled={!values.isCanadianEducation}
+                                value={data?.canadianEducation?.city || ''}
+                                onChange={(e) => setFieldValue('city', e.target.value)}
+                            />
+                            <DropDownInput
+                                label="Level of Education"
+                                name="level_of_education_canadian"
+                                options={levelOfEducation}
+                                disabled={!values.isCanadianEducation}
+                                value={data?.canadianEducation?.level_of_education_canadian || ''}
+                                onChange={(e) => setFieldValue('level_of_education_canadian', e.target.value)}
+                            />
+                            <DropDownInput
+                                label="Field of Study"
+                                name="field_of_study_canadian"
+                                disabled={!values.isCanadianEducation}
+                                options={fieldOfStudyCanadian}
+                                value={data?.canadianEducation?.field_of_study_canadian || ''}
+                                onChange={(e) => setFieldValue('field_of_study_canadian', e.target.value)}
+                            />
+                            <DropDownInput
+                                label="Year of completion"
+                                name="year_of_completion"
+                                disabled={!values.isCanadianEducation}
+                                options={years}
+                                value={data?.canadianEducation?.year_of_completion || ''}
+                                onChange={(e) => setFieldValue('year_of_completion', e.target.value)}
+                            />
+                            <TextField
+                                type="text"
+                                label="GPA"
+                                name="gpa"
+                                placeholder="10"
+                                disabled={!values.isCanadianEducation}
+                                onChange={(e) => setFieldValue('gpa', e.target.value)}
+                            />
                         </div>
-                    </div>
-                </FormInfo>
+                    </FormInfo>
 
-                {/* ------------------Canadian Education--------------- */}
-                <FormInfo
-                    title="Canadian Education"
-                    icon={<CanadianEducation/>}
-                    renderRight={true}
-                    renderRightContent={<ToggleButton
-                        label=""
-                        name="isCanadianEducation"
-                        onChange={(e) => setFieldValue('isCanadianEducation', e.target.checked)}
-                    />}
-                >
-                    <div className="grid xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2 gap-x-5 py-6 px-4">
-                        <DropDownInput
-                            label="College/University"
-                            name="university"
-                            disabled={!values.isCanadianEducation}
-                            options={universityData?.map((data) => ({
-                                name: data.name, value: data.name,
-                            }))}
-                            value={data?.canadianEducation?.university || ''}
-                            onChange={(e) => setFieldValue('university', e.target.value)}
-                        />
-                        <DropDownInput
-                            label="City"
-                            name="city"
-                            options={currentCity}
-                            disabled={!values.isCanadianEducation}
-                            value={data?.canadianEducation?.city || ''}
-                            onChange={(e) => setFieldValue('city', e.target.value)}
-                        />
-                        <DropDownInput
-                            label="Level of Education"
-                            name="level_of_education_canadian"
-                            options={levelOfEducation}
-                            disabled={!values.isCanadianEducation}
-                            value={data?.canadianEducation?.level_of_education_canadian || ''}
-                            onChange={(e) => setFieldValue('level_of_education_canadian', e.target.value)}
-                        />
-                        <DropDownInput
-                            label="Field of Study"
-                            name="field_of_study_canadian"
-                            disabled={!values.isCanadianEducation}
-                            options={fieldOfStudyCanadian}
-                            value={data?.canadianEducation?.field_of_study_canadian || ''}
-                            onChange={(e) => setFieldValue('field_of_study_canadian', e.target.value)}
-                        />
-                        <DropDownInput
-                            label="Year of completion"
-                            name="year_of_completion"
-                            disabled={!values.isCanadianEducation}
-                            options={years}
-                            value={data?.canadianEducation?.year_of_completion || ''}
-                            onChange={(e) => setFieldValue('year_of_completion', e.target.value)}
-                        />
-                        <TextField
-                            type="text"
-                            label="GPA"
-                            name="gpa"
-                            placeholder="10"
-                            disabled={!values.isCanadianEducation}
-                            onChange={(e) => setFieldValue('gpa', e.target.value)}
-                        />
-                    </div>
-                </FormInfo>
-
-                        {/* -------------Skills------------- */}
-                        <FormInfo title="Skills" icon={<Skills/>}>
-                            <div className="py-6 px-4">
-                                <FieldArray name="coreSkills">
-                                    {({ push, remove }) => (
-                                        <div className="space-y-6">
-                                            {/* Render all core skills */}
-                                            {values.coreSkills.map((coreSkill, coreIndex) => (
-                                                <div
-                                                    key={coreIndex}
-                                                    className={coreIndex > 0 ? "pt-5 border-t border-gray-200" : "mt-5"}
-                                                >
-                                                    <div className="flex justify-between items-start">
-                                                        {/* Core Skill Dropdown */}
-                                                        <div className="w-full lg:w-1/2 2xl:w-1/3">
-                                                            <DropDown
-                                                                label={coreIndex === 0 ? "Core Skills" : `Core Skill ${coreIndex + 1}`}
-                                                                name={`coreSkills[${coreIndex}].coreSkill`}
-                                                                value={coreSkill.coreSkill || ''}
-                                                                options={skillData?.map((skill) => ({
-                                                                    name: skill.core_skills,
-                                                                    value: skill.core_skills,
-                                                                }))}
-                                                                onChange={(e) => {
-                                                                    setFieldValue(`coreSkills[${coreIndex}].coreSkill`, e.target.value);
-                                                                    setFieldValue(`coreSkills[${coreIndex}].subSkills`, []);
-                                                                }}
-                                                            />
-                                                        </div>
-
-                                                        {/* Remove button (only show for additional skills) */}
-                                                        {coreIndex > 0 && (
-                                                            <button
-                                                                type="button"
-                                                                onClick={() => remove(coreIndex)}
-                                                                className="text-red-500 hover:text-red-700 text-sm ml-2"
-                                                            >
-                                                                Remove
-                                                            </button>
-                                                        )}
+                    {/* -------------Skills------------- */}
+                    <FormInfo title="Skills" icon={<Skills/>}>
+                        <div className="py-6 px-4">
+                            <FieldArray name="coreSkills">
+                                {({push, remove}) => (
+                                    <div className="space-y-6">
+                                        {/* Render all core skills */}
+                                        {values.coreSkills.map((coreSkill, coreIndex) => (
+                                            <div
+                                                key={coreIndex}
+                                                className={coreIndex > 0 ? "pt-5 border-t border-gray-200" : "mt-5"}
+                                            >
+                                                <div className="flex justify-between items-start">
+                                                    {/* Core Skill Dropdown */}
+                                                    <div className="w-full lg:w-1/2 2xl:w-1/3">
+                                                        <DropDown
+                                                            label={coreIndex === 0 ? "Core Skills" : `Core Skill ${coreIndex + 1}`}
+                                                            name={`coreSkills[${coreIndex}].coreSkill`}
+                                                            value={coreSkill.coreSkill || ''}
+                                                            options={skillData?.map((skill) => ({
+                                                                name: skill.core_skills,
+                                                                value: skill.core_skills,
+                                                            }))}
+                                                            onChange={(e) => {
+                                                                setFieldValue(`coreSkills[${coreIndex}].coreSkill`, e.target.value);
+                                                                setFieldValue(`coreSkills[${coreIndex}].subSkills`, []);
+                                                            }}
+                                                        />
                                                     </div>
 
-                                                    {/* Subskills Section (only show if core skill is selected) */}
-                                                    {coreSkill.coreSkill && (
-                                                        <div className="mt-4">
-                                                            {skillData
-                                                                ?.filter((skill) => skill.core_skills === coreSkill.coreSkill)
-                                                                .map((filteredSkill) => (
-                                                                    <div key={filteredSkill.core_skills}>
-                                                                        {/* Subskills Multiselect */}
-                                                                        <div className="w-full mt-3">
-                                                                            <Label label="Sub Skills" />
-                                                                            <Multiselect
-                                                                                options={filteredSkill.sub_skills.map((sub) => ({
-                                                                                    name: sub.sub_skill,
-                                                                                    id: sub.sub_skill,
-                                                                                }))}
-                                                                                selectedValues={coreSkill.subSkills?.map((skill) => ({
-                                                                                    name: skill.subSkill,
-                                                                                    id: skill.subSkill,
-                                                                                }))}
-                                                                                onSelect={(selectedList) => {
-                                                                                    const updatedSubSkills = selectedList.map((item) => ({
-                                                                                        subSkill: item.name,
-                                                                                        certificate: null,
-                                                                                    }));
-                                                                                    setFieldValue(`coreSkills[${coreIndex}].subSkills`, updatedSubSkills);
-                                                                                }}
-                                                                                displayValue="name"
-                                                                            />
-                                                                            {coreIndex === 0 && (
-                                                                                <span className="text-xs text-green-700">
+                                                    {/* Remove button (only show for additional skills) */}
+                                                    {coreIndex > 0 && (
+                                                        <button
+                                                            type="button"
+                                                            onClick={() => remove(coreIndex)}
+                                                            className="text-red-500 hover:text-red-700 text-sm ml-2"
+                                                        >
+                                                            Remove
+                                                        </button>
+                                                    )}
+                                                </div>
+
+                                                {/* Subskills Section (only show if core skill is selected) */}
+                                                {coreSkill.coreSkill && (
+                                                    <div className="mt-4">
+                                                        {skillData
+                                                            ?.filter((skill) => skill.core_skills === coreSkill.coreSkill)
+                                                            .map((filteredSkill) => (
+                                                                <div key={filteredSkill.core_skills}>
+                                                                    {/* Subskills Multiselect */}
+                                                                    <div className="w-full mt-3">
+                                                                        <Label label="Sub Skills"/>
+                                                                        <Multiselect
+                                                                            options={filteredSkill.sub_skills.map((sub) => ({
+                                                                                name: sub.sub_skill,
+                                                                                id: sub.sub_skill,
+                                                                            }))}
+                                                                            selectedValues={coreSkill.subSkills?.map((skill) => ({
+                                                                                name: skill.subSkill,
+                                                                                id: skill.subSkill,
+                                                                            }))}
+                                                                            onSelect={(selectedList) => {
+                                                                                const updatedSubSkills = selectedList.map((item) => ({
+                                                                                    subSkill: item.name,
+                                                                                    certificate: null,
+                                                                                }));
+                                                                                setFieldValue(`coreSkills[${coreIndex}].subSkills`, updatedSubSkills);
+                                                                            }}
+                                                                            displayValue="name"
+                                                                        />
+                                                                        {coreIndex === 0 && (
+                                                                            <span className="text-xs text-green-700">
                           * If your skill is not listed, please email team@zeroed.ca
                         </span>
-                                                                            )}
-                                                                        </div>
+                                                                        )}
+                                                                    </div>
 
-                                                                        {/* Certificate Uploads */}
-                                                                        <div className="grid xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-3 mt-4">
-                                                                            {coreSkill.subSkills?.map((subSkill, subIndex) => (
-                                                                                <div key={subIndex} className="mt-3">
-                                                                                    <Field name={`coreSkills[${coreIndex}].subSkills[${subIndex}].certificate`}>
-                                                                                        {({ field }) => (
-                                                                                            <div className="flex flex-col">
-                                                                                                <Label label={`Upload Certificate for ${subSkill.subSkill}`} />
-                                                                                                <input
-                                                                                                    type="file"
-                                                                                                    id={`cert-${coreIndex}-${subIndex}`}
-                                                                                                    className="hidden"
-                                                                                                    accept="image/jpeg,image/png,image/jpg,application/pdf"
-                                                                                                    onChange={(event) => {
-                                                                                                        const file = event.currentTarget.files[0];
-                                                                                                        if (file) {
-                                                                                                            const validTypes = [
-                                                                                                                'image/jpeg',
-                                                                                                                'image/png',
-                                                                                                                'image/jpg',
-                                                                                                                'application/pdf',
-                                                                                                            ];
-                                                                                                            if (validTypes.includes(file.type)) {
-                                                                                                                const updatedSubSkills = [...coreSkill.subSkills];
-                                                                                                                updatedSubSkills[subIndex] = {
-                                                                                                                    ...updatedSubSkills[subIndex],
-                                                                                                                    certificate: file,
-                                                                                                                };
-                                                                                                                setFieldValue(`coreSkills[${coreIndex}].subSkills`, updatedSubSkills);
-                                                                                                                setImgError(null);
-                                                                                                            } else {
-                                                                                                                setImgError('Please upload a valid file type (JPEG, PNG, JPG, PDF)');
-                                                                                                            }
+                                                                    {/* Certificate Uploads */}
+                                                                    <div
+                                                                        className="grid xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-3 mt-4">
+                                                                        {coreSkill.subSkills?.map((subSkill, subIndex) => (
+                                                                            <div key={subIndex} className="mt-3">
+                                                                                <Field
+                                                                                    name={`coreSkills[${coreIndex}].subSkills[${subIndex}].certificate`}>
+                                                                                    {({field}) => (
+                                                                                        <div className="flex flex-col">
+                                                                                            <Label
+                                                                                                label={`Upload Certificate for ${subSkill.subSkill}`}/>
+                                                                                            <input
+                                                                                                type="file"
+                                                                                                id={`cert-${coreIndex}-${subIndex}`}
+                                                                                                className="hidden"
+                                                                                                accept="image/jpeg,image/png,image/jpg,application/pdf"
+                                                                                                onChange={(event) => {
+                                                                                                    const file = event.currentTarget.files[0];
+                                                                                                    if (file) {
+                                                                                                        const validTypes = [
+                                                                                                            'image/jpeg',
+                                                                                                            'image/png',
+                                                                                                            'image/jpg',
+                                                                                                            'application/pdf',
+                                                                                                        ];
+                                                                                                        if (validTypes.includes(file.type)) {
+                                                                                                            const updatedSubSkills = [...coreSkill.subSkills];
+                                                                                                            updatedSubSkills[subIndex] = {
+                                                                                                                ...updatedSubSkills[subIndex],
+                                                                                                                certificate: file,
+                                                                                                            };
+                                                                                                            setFieldValue(`coreSkills[${coreIndex}].subSkills`, updatedSubSkills);
+                                                                                                            setImgError(null);
+                                                                                                        } else {
+                                                                                                            setImgError('Please upload a valid file type (JPEG, PNG, JPG, PDF)');
                                                                                                         }
-                                                                                                    }}
-                                                                                                />
-                                                                                                <label
-                                                                                                    htmlFor={`cert-${coreIndex}-${subIndex}`}
-                                                                                                    className="flex items-center gap-2 border border-gray-300 rounded-lg mt-1 px-3 py-2 cursor-pointer"
-                                                                                                >
+                                                                                                    }
+                                                                                                }}
+                                                                                            />
+                                                                                            <label
+                                                                                                htmlFor={`cert-${coreIndex}-${subIndex}`}
+                                                                                                className="flex items-center gap-2 border border-gray-300 rounded-lg mt-1 px-3 py-2 cursor-pointer"
+                                                                                            >
                                   <span className="px-2 py-1 bg-blue-100 text-blue-700 rounded">
                                     Choose file
                                   </span>
-                                                                                                    {subSkill.certificate ? (
-                                                                                                        <span className="truncate">
+                                                                                                {subSkill.certificate ? (
+                                                                                                    <span
+                                                                                                        className="truncate">
                                       {subSkill.certificate instanceof File
                                           ? subSkill.certificate.name
                                           : subSkill.certificate.split('/').pop()}
                                     </span>
-                                                                                                    ) : (
-                                                                                                        'No file chosen'
-                                                                                                    )}
-                                                                                                </label>
-                                                                                                {imgError && (
-                                                                                                    <div className="text-xs text-red-500 mt-1">{imgError}</div>
+                                                                                                ) : (
+                                                                                                    'No file chosen'
                                                                                                 )}
-                                                                                            </div>
-                                                                                        )}
-                                                                                    </Field>
-
-                                                                                    {/* Certificate Preview */}
-                                                                                    {subSkill.certificate && (
-                                                                                        <div className="mt-2">
-                                                                                            {subSkill.certificate instanceof File ? (
-                                                                                                <div className="text-sm text-gray-600">
-                                                                                                    File ready for upload: {subSkill.certificate.name}
-                                                                                                </div>
-                                                                                            ) : (
-                                                                                                <a
-                                                                                                    href={subSkill.certificate}
-                                                                                                    target="_blank"
-                                                                                                    rel="noopener noreferrer"
-                                                                                                    className="text-blue-600 hover:underline text-sm"
-                                                                                                >
-                                                                                                    View uploaded certificate
-                                                                                                </a>
+                                                                                            </label>
+                                                                                            {imgError && (
+                                                                                                <div
+                                                                                                    className="text-xs text-red-500 mt-1">{imgError}</div>
                                                                                             )}
                                                                                         </div>
                                                                                     )}
+                                                                                </Field>
 
-                                                                                    {/* Assessment Link */}
-                                                                                    <div className="mt-3">
-                                                                                        <TextField
-                                                                                            type="text"
-                                                                                            label="Assessment result link"
-                                                                                            name={`coreSkills[${coreIndex}].subSkills[${subIndex}].link`}
-                                                                                            placeholder="Enter assessment result link"
-                                                                                            onChange={(e) =>
-                                                                                                setFieldValue(
-                                                                                                    `coreSkills[${coreIndex}].subSkills[${subIndex}].link`,
-                                                                                                    e.target.value
-                                                                                                )
-                                                                                            }
-                                                                                        />
+                                                                                {/* Certificate Preview */}
+                                                                                {subSkill.certificate && (
+                                                                                    <div className="mt-2">
+                                                                                        {subSkill.certificate instanceof File ? (
+                                                                                            <div
+                                                                                                className="text-sm text-gray-600">
+                                                                                                File ready for
+                                                                                                upload: {subSkill.certificate.name}
+                                                                                            </div>
+                                                                                        ) : (
+                                                                                            <a
+                                                                                                href={subSkill.certificate}
+                                                                                                target="_blank"
+                                                                                                rel="noopener noreferrer"
+                                                                                                className="text-blue-600 hover:underline text-sm"
+                                                                                            >
+                                                                                                View uploaded
+                                                                                                certificate
+                                                                                            </a>
+                                                                                        )}
                                                                                     </div>
+                                                                                )}
+
+                                                                                {/* Assessment Link */}
+                                                                                <div className="mt-3">
+                                                                                    <TextField
+                                                                                        type="text"
+                                                                                        label="Assessment result link"
+                                                                                        name={`coreSkills[${coreIndex}].subSkills[${subIndex}].link`}
+                                                                                        placeholder="Enter assessment result link"
+                                                                                        onChange={(e) =>
+                                                                                            setFieldValue(
+                                                                                                `coreSkills[${coreIndex}].subSkills[${subIndex}].link`,
+                                                                                                e.target.value
+                                                                                            )
+                                                                                        }
+                                                                                    />
                                                                                 </div>
-                                                                            ))}
-                                                                        </div>
+                                                                            </div>
+                                                                        ))}
                                                                     </div>
-                                                                ))}
-                                                        </div>
-                                                    )}
-                                                </div>
-                                            ))}
+                                                                </div>
+                                                            ))}
+                                                    </div>
+                                                )}
+                                            </div>
+                                        ))}
 
-                                            {/* ADD SKILL BUTTON (only show if less than 3 skills) */}
-                                            {values.coreSkills.length < 3 && (
-                                                <button
-                                                    type="button"
-                                                    onClick={() => push({ coreSkill: '', subSkills: [] })}
-                                                    className="bg-primary px-4 py-2 text-white rounded"
-                                                >
-                                                    + Add Another Skill
-                                                </button>
-                                            )}
-                                        </div>
-                                    )}
-                                </FieldArray>
-                            </div>
-                        </FormInfo>
-
-                {/* -------------Work Experience------------- */}
-                <FormInfo title="Work Experience" icon={<WorkExperience/>}>
-                    {workExperiences.map((experience, index) => (<div key={index}>
-                        <div
-                            className="flex flex-wrap justify-between items-center gap-x-3 bg-primary-100 p-3 w-full">
-                            <div className="flex items-center gap-x-2">
-                                <div className="text-lg font-semibold capitalize text-primary text-nowrap">
-                                    {index + 1}.{' '}
-                                    {experience.work_experience_company_name || 'New Experience'}
-                                </div>
-                                {workExperiences.length > 1 && (<div
-                                    onClick={() => handleDeleteExperience(index)}
-                                    className="cursor-pointer font-black"
-                                >
-                                    <DeleteIcon/>
-                                </div>)}
-                            </div>
-
-                            <Checkbox
-                                label="Present?"
-                                name={`isCurrentlyWorking_${index}`}
-                                checked={experience.isCurrentlyWorking}
-                                onChange={(e) => {
-                                    const isChecked = e.target.checked
-
-                                    // Update the isCurrentlyWorking field in the state
-                                    setFieldValue(`isCurrentlyWorking_${index}`, isChecked)
-
-                                    // Update the workExperiences state
-                                    setWorkExperiences((prevWorkExperiences) => {
-                                        const updatedExperiences = [...prevWorkExperiences]
-                                        const updatedExperience = {
-                                            ...updatedExperiences[index],
-                                            isCurrentlyWorking: isChecked,
-                                            experience_end_date: isChecked ? null : updatedExperiences[index].experience_end_date || null,
-                                        }
-
-                                        updatedExperiences[index] = updatedExperience
-                                        return updatedExperiences
-                                    })
-                                }}
-                            />
+                                        {/* ADD SKILL BUTTON (only show if less than 3 skills) */}
+                                        {values.coreSkills.length < 3 && (
+                                            <button
+                                                type="button"
+                                                onClick={() => push({coreSkill: '', subSkills: []})}
+                                                className="bg-primary px-4 py-2 text-white rounded"
+                                            >
+                                                + Add Another Skill
+                                            </button>
+                                        )}
+                                    </div>
+                                )}
+                            </FieldArray>
                         </div>
+                    </FormInfo>
 
-                        <div
-                            className="grid xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2 gap-x-5 py-6 px-4">
-                            <DropDown
-                                label="Industry"
-                                name={`work_experience_industry_${index}`}
-                                value={experience.work_experience_industry}
-                                options={industriesData.map((industry) => ({
-                                    value: industry.name, name: industry.name,
-                                }))}
-                                onChange={(e) => {
-                                    handleSubIndustryChange(e, index)
-                                    handleChangeExperience(index, 'work_experience_industry', e.target.value,)
-                                }}
-                            />
-                            <DropDown
-                                label="Sub Industry"
-                                name={`work_experience_sub_industry_${index}`}
-                                value={experience.work_experience_sub_industry}
-                                options={subIndustryOptions[index] || []}
-                                onChange={(e) => {
-                                    handleChangeExperience(index, 'work_experience_sub_industry', e.target.value,)
-                                }}
-                            />
-                            <DropDownInput
-                                label="Country"
-                                name={`work_experience_country_${index}`}
-                                value={experience.work_experience_country}
-                                options={countryData}
-                                onChange={(e) => handleChangeExperience(index, 'work_experience_country', e.target.value,)}
-                            />
-                            <TextFieldValue
-                                required
-                                type="text"
-                                label="Title"
-                                name={`work_experience_job_title_${index}`}
-                                value={experience.work_experience_job_title}
-                                placeholder="Software Engineer"
-                                onChange={(e) => handleChangeExperience(index, 'work_experience_job_title', e.target.value,)}
-                            />
+                    {/* -------------Work Experience------------- */}
+                    <FormInfo title="Work Experience" icon={<WorkExperience/>}>
+                        {workExperiences.map((experience, index) => (<div key={index}>
+                                <div
+                                    className="flex flex-wrap justify-between items-center gap-x-3 bg-primary-100 p-3 w-full">
+                                    <div className="flex items-center gap-x-2">
+                                        <div className="text-lg font-semibold capitalize text-primary text-nowrap">
+                                            {index + 1}.{' '}
+                                            {experience.work_experience_company_name || 'New Experience'}
+                                        </div>
+                                        {workExperiences.length > 1 && (<div
+                                            onClick={() => handleDeleteExperience(index)}
+                                            className="cursor-pointer font-black"
+                                        >
+                                            <DeleteIcon/>
+                                        </div>)}
+                                    </div>
 
-                            <TextFieldValue
-                                type="text"
-                                label="Company Name"
-                                name={`work_experience_company_name_${index}`}
-                                value={experience.work_experience_company_name}
-                                placeholder="Company name"
-                                onChange={(e) => handleChangeExperience(index, 'work_experience_company_name', e.target.value,)}
-                            />
-                            <TextFieldValue
-                                type="text"
-                                label="Website link"
-                                name={`work_experience_company_website_${index}`}
-                                value={experience.work_experience_company_website}
-                                placeholder="Company website link"
-                                onChange={(e) => handleChangeExperience(index, 'work_experience_company_website', e.target.value,)}
-                            />
+                                    <Checkbox
+                                        label="Present?"
+                                        name={`isCurrentlyWorking_${index}`}
+                                        checked={experience.isCurrentlyWorking}
+                                        onChange={(e) => {
+                                            const isChecked = e.target.checked
 
-                            {/* Email Id For verification */}
-                            {/*<div className="flex flex-col items-center justify-between gap-x-2 relative">*/}
-                            {/*    <div className="w-full">*/}
-                            {/*        <TextFieldValue*/}
-                            {/*            type="text"*/}
-                            {/*            label="Email"*/}
-                            {/*            name={`email_${index}`}*/}
-                            {/*            value={experience.email || ''}*/}
-                            {/*            placeholder="Enter email"*/}
-                            {/*            onChange={(e) =>*/}
-                            {/*                handleChangeExperience(*/}
-                            {/*                    index,*/}
-                            {/*                    'email',*/}
-                            {/*                    e.target.value,*/}
-                            {/*                )*/}
-                            {/*            }*/}
-                            {/*        />*/}
-                            {/*        {experience.emailError && (*/}
-                            {/*            <div className="text-red-500 text-sm -mt-3">*/}
-                            {/*                {experience.emailError}*/}
-                            {/*            </div>*/}
-                            {/*        )}*/}
-                            {/*    </div>*/}
+                                            // Update the isCurrentlyWorking field in the state
+                                            setFieldValue(`isCurrentlyWorking_${index}`, isChecked)
 
-                            {/*</div>*/}
-                            {/* ---------Start Date------------- */}
-                            <div>
-                                <Label label="Start Date"/>
-                                <div className="relative">
-                                    <Field
-                                        name={`experience_start_date_${index}`}
-                                        className="border border-text-border border-b-4 focus:border-b-4 focus:border-primary outline-none rounded-lg mt-1 px-2 py-3 pr-10 w-full"
-                                        component={ExperienceDateFormat}
-                                        defaultValue={experience.experience_start_date} // This will be set to 10/27/2024
-                                        onChange={(e) => handleChangeExperience(index, 'experience_start_date', e,)}
+                                            // Update the workExperiences state
+                                            setWorkExperiences((prevWorkExperiences) => {
+                                                const updatedExperiences = [...prevWorkExperiences]
+                                                const updatedExperience = {
+                                                    ...updatedExperiences[index],
+                                                    isCurrentlyWorking: isChecked,
+                                                    experience_end_date: isChecked ? null : updatedExperiences[index].experience_end_date || null,
+                                                }
+
+                                                updatedExperiences[index] = updatedExperience
+                                                return updatedExperiences
+                                            })
+                                        }}
                                     />
-                                    <span className="absolute right-3 top-1/2 transform -translate-y-1/2">
+                                </div>
+
+                                <div
+                                    className="grid xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2 gap-x-5 py-6 px-4">
+                                    <DropDown
+                                        label="Industry"
+                                        name={`work_experience_industry_${index}`}
+                                        value={experience.work_experience_industry}
+                                        options={industriesData.map((industry) => ({
+                                            value: industry.name, name: industry.name,
+                                        }))}
+                                        onChange={(e) => {
+                                            handleSubIndustryChange(e, index)
+                                            handleChangeExperience(index, 'work_experience_industry', e.target.value,)
+                                        }}
+                                    />
+                                    <DropDown
+                                        label="Sub Industry"
+                                        name={`work_experience_sub_industry_${index}`}
+                                        value={experience.work_experience_sub_industry}
+                                        options={subIndustryOptions[index] || []}
+                                        onChange={(e) => {
+                                            handleChangeExperience(index, 'work_experience_sub_industry', e.target.value,)
+                                        }}
+                                    />
+                                    <DropDownInput
+                                        label="Country"
+                                        name={`work_experience_country_${index}`}
+                                        value={experience.work_experience_country}
+                                        options={countryData}
+                                        onChange={(e) => handleChangeExperience(index, 'work_experience_country', e.target.value,)}
+                                    />
+                                    <TextFieldValue
+                                        required
+                                        type="text"
+                                        label="Role"
+                                        name={`work_experience_job_title_${index}`}
+                                        value={experience.work_experience_job_title}
+                                        placeholder="Software Engineer"
+                                        onChange={(e) => handleChangeExperience(index, 'work_experience_job_title', e.target.value,)}
+                                    />
+
+                                    <TextFieldValue
+                                        type="text"
+                                        label="Company Name"
+                                        name={`work_experience_company_name_${index}`}
+                                        value={experience.work_experience_company_name}
+                                        placeholder="Company name"
+                                        onChange={(e) => handleChangeExperience(index, 'work_experience_company_name', e.target.value,)}
+                                    />
+                                    <TextFieldValue
+                                        type="text"
+                                        label="Website link"
+                                        name={`work_experience_company_website_${index}`}
+                                        value={experience.work_experience_company_website}
+                                        placeholder="Company website link"
+                                        onChange={(e) => handleChangeExperience(index, 'work_experience_company_website', e.target.value,)}
+                                    />
+
+                                    {/* Email Id For verification */}
+                                    {/*<div className="flex flex-col items-center justify-between gap-x-2 relative">*/}
+                                    {/*    <div className="w-full">*/}
+                                    {/*        <TextFieldValue*/}
+                                    {/*            type="text"*/}
+                                    {/*            label="Email"*/}
+                                    {/*            name={`email_${index}`}*/}
+                                    {/*            value={experience.email || ''}*/}
+                                    {/*            placeholder="Enter email"*/}
+                                    {/*            onChange={(e) =>*/}
+                                    {/*                handleChangeExperience(*/}
+                                    {/*                    index,*/}
+                                    {/*                    'email',*/}
+                                    {/*                    e.target.value,*/}
+                                    {/*                )*/}
+                                    {/*            }*/}
+                                    {/*        />*/}
+                                    {/*        {experience.emailError && (*/}
+                                    {/*            <div className="text-red-500 text-sm -mt-3">*/}
+                                    {/*                {experience.emailError}*/}
+                                    {/*            </div>*/}
+                                    {/*        )}*/}
+                                    {/*    </div>*/}
+
+                                    {/*</div>*/}
+                                    {/* ---------Start Date------------- */}
+                                    <div>
+                                        <Label label="Start Date"/>
+                                        <div className="relative">
+                                            <Field
+                                                name={`experience_start_date_${index}`}
+                                                className="border border-text-border border-b-4 focus:border-b-4 focus:border-primary outline-none rounded-lg mt-1 px-2 py-3 pr-10 w-full"
+                                                component={ExperienceDateFormat}
+                                                defaultValue={experience.experience_start_date} // This will be set to 10/27/2024
+                                                onChange={(e) => handleChangeExperience(index, 'experience_start_date', e,)}
+                                            />
+                                            <span className="absolute right-3 top-1/2 transform -translate-y-1/2">
                           <Calender/>
                         </span>
-                                </div>
-                                <ErrorMessage
-                                    name={`experience_start_date_${index}`}
-                                    component="div"
-                                    className="text-xs text-red-500 ml-1 mt-1"
-                                />
-                            </div>
+                                        </div>
+                                        <ErrorMessage
+                                            name={`experience_start_date_${index}`}
+                                            component="div"
+                                            className="text-xs text-red-500 ml-1 mt-1"
+                                        />
+                                    </div>
 
-                            {/* ---------End Date------------- */}
-                            <div>
-                                <Label label="End Date"/>
-                                <div className="relative">
-                                    <Field
-                                        name={`experience_end_date_${index}`}
-                                        className="border border-text-border border-b-4 focus:border-b-4 focus:border-primary outline-none rounded-lg mt-1 px-2 py-3 pr-10 w-full"
-                                        component={ExperienceDateFormat}
-                                        defaultValue={experience.experience_end_date === 'NaN/NaN/NaN' ? null : experience.experience_end_date}
-                                        disabled={experience.isCurrentlyWorking} // Disable if currently working
-                                        onChange={(e) => handleChangeExperience(index, 'experience_end_date', e,)}
-                                    />
-                                    <span className="absolute right-3 top-1/2 transform -translate-y-1/2">
+                                    {/* ---------End Date------------- */}
+                                    <div>
+                                        <Label label="End Date"/>
+                                        <div className="relative">
+                                            <Field
+                                                name={`experience_end_date_${index}`}
+                                                className="border border-text-border border-b-4 focus:border-b-4 focus:border-primary outline-none rounded-lg mt-1 px-2 py-3 pr-10 w-full"
+                                                component={ExperienceDateFormat}
+                                                defaultValue={experience.experience_end_date === 'NaN/NaN/NaN' ? null : experience.experience_end_date}
+                                                disabled={experience.isCurrentlyWorking} // Disable if currently working
+                                                onChange={(e) => handleChangeExperience(index, 'experience_end_date', e,)}
+                                            />
+                                            <span className="absolute right-3 top-1/2 transform -translate-y-1/2">
                           <Calender/>
                         </span>
-                                </div>
-                                <ErrorMessage
-                                    name={`experience_end_date_${index}`}
-                                    component="div"
-                                    className="text-xs text-red-500 ml-1 mt-1"
-                                />
-                            </div>
+                                        </div>
+                                        <ErrorMessage
+                                            name={`experience_end_date_${index}`}
+                                            component="div"
+                                            className="text-xs text-red-500 ml-1 mt-1"
+                                        />
+                                    </div>
 
-                                        {[...Array(visibleFields)].map((_, i) => (
+                                    {[...Array(visibleFields)].map((_, i) => (
+                                        <div style={{position: 'relative'}} key={i}>
                                             <TextArea
-                                                key={i}
                                                 name={`accomplishment_${i + 1}_${index}`}
                                                 label="Accomplishments"
-                                                value={experience.accomplishments_id?.[`accomplishment_${i + 1}`]}
-                                                onChange={(e) =>
+                                                value={experience.accomplishments_id?.[`accomplishment_${i + 1}`] || ""}
+                                                onChange={(e) => {
+                                                    const words = e.target.value.split(/\s+/).filter(Boolean);
+                                                    const wordCount = words.length;
+
+                                                    const updatedExperiences = [...workExperiences];
+
+                                                    // Ensure `accomplish` exists before updating it
+                                                    if (!updatedExperiences[index].accomplish) {
+                                                        updatedExperiences[index].accomplish = {};
+                                                    }
+
+                                                    updatedExperiences[index].accomplish[`accomplish${i + 1}`] = wordCount;
+
                                                     handleChangeExperience(
                                                         index,
                                                         `accomplishments_id.accomplishment_${i + 1}`,
                                                         e.target.value,
-                                                    )
-                                                }
+                                                    );
+                                                }}
                                             />
-                                        ))}
-                                        {visibleFields < 4 && (
-                                            <div className={'flex items-center'}>
-                                                <div
-                                                    className="ml-4 bg-primary px-4 py-2 text-white rounded text-center w-[100px] cursor-pointer text-nowrap mt-3"
-                                                    onClick={addField}
-                                                >
-                                                    + Add
-                                                </div>
-                                            </div>
-                                        )}
-                                    </div>
-
-                                    <div>
-                                        <div className='flex justify-between items-center pb-4 px-4 lg:w-1/4'>
-                                            <div className='text-[20px] font-bold'>Reference Check :</div>
-                                            <ToggleButton
-                                                label=""
-                                                value={experience.reference_check}
-                                                name={`reference_check_${index}`}
-                                                onChange={(e) => {
-                                                    handleChangeExperience(
-                                                        index,
-                                                        'reference_check',
-                                                        e.target.checked,
-                                                    )
-                                                    setFieldValue(`reference_check_${index}`, e.target.checked)
-
-                                                }
-                                                }
-                                            />
+                                            <span style={{
+                                                color: (experience?.accomplish?.[`accomplish${i + 1}`] || 0) > 14 ? 'red' : 'grey',
+                                                position: 'absolute',
+                                                right: 10,
+                                                bottom: 25,
+                                                fontSize: '14px'
+                                            }}>
+            {experience?.accomplish?.[`accomplish${i + 1}`] || 0} / 14
+        </span>
                                         </div>
-                                        {
-                                            experience.reference_check && (
-                                                <div
-                                                    className='grid xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2 gap-x-5 py-3 px-4'>
-                                                    <DropDownInput
-                                                        label="reference"
-                                                        name={`reference_${index}`}
-                                                        value={experience.reference}
-                                                        options={referenceOption}
+                                    ))}
+
+                                    {visibleFields < 4 && (
+                                        <div className={'flex items-center'}>
+                                            <div
+                                                className="ml-4 bg-primary px-4 py-2 text-white rounded text-center w-[100px] cursor-pointer text-nowrap mt-3"
+                                                onClick={addField}
+                                            >
+                                                + Add
+                                            </div>
+                                        </div>
+                                    )}
+                                </div>
+
+                                <div>
+                                    <div className='flex justify-between items-center pb-4 px-4 lg:w-1/4'>
+                                        <div className='text-[20px] font-bold'>Reference Check :</div>
+                                        <ToggleButton
+                                            label=""
+                                            value={experience.reference_check}
+                                            name={`reference_check_${index}`}
+                                            onChange={(e) => {
+                                                handleChangeExperience(
+                                                    index,
+                                                    'reference_check',
+                                                    e.target.checked,
+                                                )
+                                                setFieldValue(`reference_check_${index}`, e.target.checked)
+
+                                            }
+                                            }
+                                        />
+                                    </div>
+                                    {
+                                        experience.reference_check && (
+                                            <div
+                                                className='grid xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2 gap-x-5 py-3 px-4'>
+                                                <DropDownInput
+                                                    label="reference"
+                                                    name={`reference_${index}`}
+                                                    value={experience.reference}
+                                                    options={referenceOption}
+                                                    onChange={(e) =>
+                                                        handleChangeExperience(
+                                                            index,
+                                                            'reference',
+                                                            e.target.value,
+                                                        )
+                                                    }
+                                                />
+                                                <div className="w-full">
+                                                    <TextFieldValue
+                                                        type="text"
+                                                        label="Reference Email"
+                                                        name={`reference_email_${index}`}
+                                                        value={experience.reference_email || ''}
+                                                        placeholder="Enter reference email"
                                                         onChange={(e) =>
                                                             handleChangeExperience(
                                                                 index,
-                                                                'reference',
+                                                                'reference_email',
                                                                 e.target.value,
                                                             )
                                                         }
                                                     />
-                                                    <div className="w-full">
-                                                        <TextFieldValue
-                                                            type="text"
-                                                            label="Reference Email"
-                                                            name={`reference_email_${index}`}
-                                                            value={experience.reference_email || ''}
-                                                            placeholder="Enter reference email"
-                                                            onChange={(e) =>
-                                                                handleChangeExperience(
-                                                                    index,
-                                                                    'reference_email',
-                                                                    e.target.value,
-                                                                )
-                                                            }
-                                                        />
-                                                        {experience.referenceEmailError && (
-                                                            <div className="text-red-500 text-sm -mt-3">
-                                                                {experience.referenceEmailError}
-                                                            </div>
-                                                        )}
-                                                    </div>
-                                                    {(data && !experience.referenceEmailError) && <div
-                                                        className="text-center mt-7 bg-primary px-4 py-2 text-white rounded w-[160px] h-10 cursor-pointer text-nowrap"
-                                                        onClick={() => verifyEmail({
-                                                            ...experience,
-                                                            candidateName: `${values.firstname} ${values.lastname}`
-                                                        })}
-                                                    >
-                                                        Send
-                                                    </div>}
+                                                    {experience.referenceEmailError && (
+                                                        <div className="text-red-500 text-sm -mt-3">
+                                                            {experience.referenceEmailError}
+                                                        </div>
+                                                    )}
                                                 </div>
-                                            )
-                                        }
-                                    </div>
-
+                                                {(data && !experience.referenceEmailError) && <div
+                                                    className="text-center mt-7 bg-primary px-4 py-2 text-white rounded w-[160px] h-10 cursor-pointer text-nowrap"
+                                                    onClick={() => verifyEmail({
+                                                        ...experience,
+                                                        candidateName: `${values.firstname} ${values.lastname}`
+                                                    })}
+                                                >
+                                                    Send
+                                                </div>}
+                                            </div>
+                                        )
+                                    }
                                 </div>
-                            ))}
 
-                    <div
-                        className="ml-4 bg-primary px-4 py-2 text-white rounded w-[160px] cursor-pointer text-nowrap mt-3"
-                        onClick={handleAddExperience}
-                    >
-                        + Add Experience
-                    </div>
-                    <div className="text-xs text-red-500 ml-4 mt-4 mb-4">
-                        {experienceError}
-                    </div>
-                    {/* Introduction video upload */}
-                    <div className="py-6 px-4">
-                        <div className="flex sm:flex-row flex-col-reverse justify-between items-center">
-                            <div className="lg:w-1/5 sm:w-1/2">
-                                <div className="flex items-center gap-4">
-                                    <Label label="Video"/>
-                                    <div
-                                        onClick={() => setIsSampleModalOpen(true)}
-                                        className="text-primary underline text-sm cursor-pointer"
-                                    >
-                                        View Sample
-                                    </div>
-                                    <div
-                                        onClick={() => setShowInstruction(true)}
-                                        className="text-primary underline text-sm cursor-pointer"
-                                    >
-                                        View Instructions
-                                    </div>
-                                    <Dialog isOpen={showInstruction} onClose={closeInstructionDialog}
-                                            title="Instructions" hideCloseButton={true}>
-                                        <p className="text-sm">
-                                            <strong>Hi, here are a few things to keep in mind while recording
-                                                your video:</strong>
-                                        </p>
-                                        <ul className="text-sm space-y-2">
-                                            <li>📷 <strong>Use a good quality camera:</strong> A smartphone or
-                                                webcam with at least HD (720p)
-                                                resolution ensures sharp, professional-looking video.
-                                            </li>
-                                            <li>💡 <strong>Lighting is key:</strong> Natural light is great, but
-                                                soft artificial lighting works
-                                                too. Avoid backlighting to prevent shadows.
-                                            </li>
-                                            <li>🖼️ <strong>Keep your background clean:</strong> A neutral or
-                                                professional setup looks best.
-                                                Avoid clutter and distractions.
-                                            </li>
-                                            <li>📹 <strong>Use a stable setup:</strong> Place your camera on a
-                                                steady surface or tripod for
-                                                smooth, professional framing.
-                                            </li>
-                                            <li>👔 <strong>Dress appropriately:</strong> Wear attire that aligns
-                                                with your industry, whether
-                                                business casual or formal.
-                                            </li>
-                                            <li>🎯 <strong>Position yourself properly:</strong> Keep the camera
-                                                at eye level, maintain good
-                                                posture, and make direct eye contact.
-                                            </li>
-                                            <li>🎙️ <strong>Ensure clear audio:</strong> Record in a quiet space
-                                                and use an external microphone
-                                                if available to minimize background noise.
-                                            </li>
-                                            <li>📜 <strong>Practice makes perfect:</strong>
-                                                <ul className="list-disc pl-5">
-                                                    <li>Rehearse a few times before recording to feel
-                                                        comfortable.
-                                                    </li>
-                                                    <li>Use notes instead of a full script to sound natural.
-                                                    </li>
-                                                    <li>Record a test clip and adjust lighting, audio, and
-                                                        positioning as needed.
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                            <li>😊 <strong>Show confidence:</strong> Smile, maintain positive
-                                                body language, and be engaging.
-                                            </li>
-                                            <li>⏳ <strong>Keep it concise:</strong> Aim for 1-2 minutes to
-                                                deliver a strong, impactful message.
-                                            </li>
-                                        </ul>
-
-                                        <p className="mt-4 text-sm"><strong>Let’s structure your video for a
-                                            great first impression:</strong>
-                                        </p>
-
-                                        <div className="mt-2 space-y-4">
-                                            <div>
-                                                <h3 className="font-semibold">👋 Introduction (10-15
-                                                    seconds)</h3>
-                                                <p>🗣️ Start with a warm introduction and introduce yourself
-                                                    confidently.</p>
-                                                <p><strong>Example:</strong> "Hi, my name is [Your Name], and
-                                                    I’m a [Your Profession/Industry]."
-                                                </p>
-                                                <p>🗣️ Mention key experience or education to highlight your
-                                                    relevance.</p>
-                                                <p><strong>Example:</strong> "I have [X years] of experience in
-                                                    [Industry/Field]."</p>
-                                                <p>"I recently graduated with a [Degree] from [University]."</p>
-                                            </div>
-
-                                            <div>
-                                                <h3 className="font-semibold">🚀 Key Highlights (30-45
-                                                    seconds)</h3>
-                                                <p>🗣️ Showcase key skills and accomplishments that make you
-                                                    stand out.</p>
-                                                <p><strong>Example:</strong></p>
-                                                <ul className="list-disc pl-5">
-                                                    <li>"I specialize in [Skill 1, Skill 2, Skill 3]."</li>
-                                                    <li>"At [Company], I successfully [Achievement]."</li>
-                                                    <li>"I recently completed [Course/Certification] and worked
-                                                        on [Project]."
-                                                    </li>
-                                                </ul>
-                                            </div>
-
-                                            <div>
-                                                <h3 className="font-semibold">🎯 Closing & Call to Action (15-20
-                                                    seconds)</h3>
-                                                <p>🗣️ Wrap up with enthusiasm and invite engagement.</p>
-                                                <p><strong>Example:</strong></p>
-                                                <ul className="list-disc pl-5">
-                                                    <li>"I’m excited about roles in [Industry/Field] and eager
-                                                        to contribute my skills."
-                                                    </li>
-                                                    <li>"I’d love to connect and discuss how I can add value to
-                                                        your team."
-                                                    </li>
-                                                    <li>"Thank you for your time, and I look forward to
-                                                        connecting!"
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-
-                                        <p className="mt-4 text-sm"><strong>🎬 Final Tips:</strong></p>
-                                        <ul className="text-sm list-disc pl-5 space-y-2">
-                                            <li>✔️ Practice a few times before recording to build confidence.
-                                            </li>
-                                            <li>✔️ Keep your tone friendly, professional, and engaging.</li>
-                                            <li>✔️ Most importantly, be yourself! Authenticity helps you stand
-                                                out.
-                                            </li>
-                                        </ul>
-
-                                        <div className="flex justify-end gap-2 mt-4">
-                                            <button className="bg-primary text-white px-4 py-2 rounded"
-                                                    onClick={closeInstructionDialog}>
-                                                Ok
-                                            </button>
-                                        </div>
-                                    </Dialog>
-                                    <VideoSampleModal isOpen={isSampleModalOpen}
-                                                      onClose={() => setIsSampleModalOpen(false)}/>
-                                </div>
                             </div>
+                        ))}
 
-                        </div>
-                        <VideoUploader
-                            data={data}
-                            defaultVideo={data?.basicDetails?.video}
-                            onVideoUpload={(url) => setFieldValue(`video`, url)}
-                            defaultSecondaryVideo={data?.basicDetails?.secondary_video}
-                            onSecondaryVideoUpload={(url) => setFieldValue(`secondary_video`, url)}
-                        />
-                        <ErrorMessage
-                            name={'video'}
-                            component="div"
-                            className="text-xs text-red-500 ml-1 mt-1"
-                        />
-                    </div>
-
-                </FormInfo>
-
-                {/* -------------Career Goals------------- */}
-                <FormInfo title="Projects" icon={<CareerGoal/>}>
-                    {projects.map((item, index) => (<div key={index}>
-                        <div className="gap-x-3 bg-primary-100 p-3 w-full">
-                            <div className="flex items-center gap-x-2">
-                                <div className="text-lg font-semibold capitalize text-primary text-nowrap">
-                                    {index + 1}.{' '}
-                                    {item.project_title || 'New Project'}
-                                </div>
-                                {projects.length > 1 && (<div
-                                    onClick={() => handleDeleteProject(index)}
-                                    className="cursor-pointer font-black"
-                                >
-                                    <DeleteIcon/>
-                                </div>)}
-                            </div>
-                        </div>
-                        <div className="grid lg:grid-cols-3 sm:grid-cols-2 gap-x-5 py-6 px-4">
-
-                                        <TextField
-                                            type="text"
-                                            label="Title"
-                                            name={`project_title_${index}`}
-                                            value={item.project_title}
-                                            placeholder="Enter project title"
-                                            onChange={(e) =>
-                                                handleChangeProject('project_title', index, e.target.value)
-                                            }
-                                        />
-                                        <div style={{position: 'relative'}}>
-                                            <TextArea
-                                                name={`project_description_${index}`}
-                                                label="Description"
-                                                value={item.project_description}
-                                                onChange={(e) => {
-                                                    const words = e.target.value.split(/\s+/).filter(Boolean);
-                                                        handleChangeProject('project_description', index, e.target.value);
-                                                        setWordCounts((prev) => ({...prev, [index]: words.length}));
-                                                }}
-                                            />
-                                            <span style={{color: wordCounts[index] > 25 ? 'red' : 'grey',position: 'absolute',right: 10,bottom: 25,fontSize: '14px'}}>
-                                                {wordCounts[index] || 0} / 25
-                                            </span>
-                                        </div>
-                                        <TextField
-                                            type="text"
-                                            label="URL"
-                                            value={item.project_url}
-                                            name={`project_url_${index}`}
-                                            placeholder="Enter project url"
-                                            onChange={(e) =>
-                                                handleChangeProject('project_url', index, e.target.value)
-                                            }
-                                        />
-
-                        </div>
-                    </div>))}
-                    <div className='py-4'>
                         <div
-                            className="ml-4 bg-primary px-4 py-2 text-white rounded w-[160px] text-center cursor-pointer"
-                            onClick={handleAddProject}
+                            className="ml-4 bg-primary px-4 py-2 text-white rounded w-[160px] cursor-pointer text-nowrap mt-3"
+                            onClick={handleAddExperience}
                         >
-                            + Add Project
+                            + Add Experience
                         </div>
-                    </div>
-                </FormInfo>
-                <FormInfo title="Career Goals" icon={<CareerGoal/>}>
-                    <div className="grid lg:grid-cols-3 sm:grid-cols-2 gap-x-5 py-6 px-4">
+                        <div className="text-xs text-red-500 ml-4 mt-4 mb-4">
+                            {experienceError}
+                        </div>
+                        {/* Introduction video upload */}
+                        <div className="py-6 px-4">
+                            <div className="flex sm:flex-row flex-col-reverse justify-between items-center">
+                                <div className="lg:w-1/5 sm:w-1/2">
+                                    <div className="flex items-center gap-4">
+                                        <Label label="Video"/>
+                                        <div
+                                            onClick={() => setIsSampleModalOpen(true)}
+                                            className="text-primary underline text-sm cursor-pointer"
+                                        >
+                                            View Sample
+                                        </div>
+                                        <div
+                                            onClick={() => setShowInstruction(true)}
+                                            className="text-primary underline text-sm cursor-pointer"
+                                        >
+                                            View Instructions
+                                        </div>
+                                        <Dialog isOpen={showInstruction} onClose={closeInstructionDialog}
+                                                title="Instructions" hideCloseButton={true}>
+                                            <p className="text-sm">
+                                                <strong>Hi, here are a few things to keep in mind while recording
+                                                    your video:</strong>
+                                            </p>
+                                            <ul className="text-sm space-y-2">
+                                                <li>📷 <strong>Use a good quality camera:</strong> A smartphone or
+                                                    webcam with at least HD (720p)
+                                                    resolution ensures sharp, professional-looking video.
+                                                </li>
+                                                <li>💡 <strong>Lighting is key:</strong> Natural light is great, but
+                                                    soft artificial lighting works
+                                                    too. Avoid backlighting to prevent shadows.
+                                                </li>
+                                                <li>🖼️ <strong>Keep your background clean:</strong> A neutral or
+                                                    professional setup looks best.
+                                                    Avoid clutter and distractions.
+                                                </li>
+                                                <li>📹 <strong>Use a stable setup:</strong> Place your camera on a
+                                                    steady surface or tripod for
+                                                    smooth, professional framing.
+                                                </li>
+                                                <li>👔 <strong>Dress appropriately:</strong> Wear attire that aligns
+                                                    with your industry, whether
+                                                    business casual or formal.
+                                                </li>
+                                                <li>🎯 <strong>Position yourself properly:</strong> Keep the camera
+                                                    at eye level, maintain good
+                                                    posture, and make direct eye contact.
+                                                </li>
+                                                <li>🎙️ <strong>Ensure clear audio:</strong> Record in a quiet space
+                                                    and use an external microphone
+                                                    if available to minimize background noise.
+                                                </li>
+                                                <li>📜 <strong>Practice makes perfect:</strong>
+                                                    <ul className="list-disc pl-5">
+                                                        <li>Rehearse a few times before recording to feel
+                                                            comfortable.
+                                                        </li>
+                                                        <li>Use notes instead of a full script to sound natural.
+                                                        </li>
+                                                        <li>Record a test clip and adjust lighting, audio, and
+                                                            positioning as needed.
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                                <li>😊 <strong>Show confidence:</strong> Smile, maintain positive
+                                                    body language, and be engaging.
+                                                </li>
+                                                <li>⏳ <strong>Keep it concise:</strong> Aim for 1-2 minutes to
+                                                    deliver a strong, impactful message.
+                                                </li>
+                                            </ul>
+
+                                            <p className="mt-4 text-sm"><strong>Let’s structure your video for a
+                                                great first impression:</strong>
+                                            </p>
+
+                                            <div className="mt-2 space-y-4">
+                                                <div>
+                                                    <h3 className="font-semibold">👋 Introduction (10-15
+                                                        seconds)</h3>
+                                                    <p>🗣️ Start with a warm introduction and introduce yourself
+                                                        confidently.</p>
+                                                    <p><strong>Example:</strong> "Hi, my name is [Your Name], and
+                                                        I’m a [Your Profession/Industry]."
+                                                    </p>
+                                                    <p>🗣️ Mention key experience or education to highlight your
+                                                        relevance.</p>
+                                                    <p><strong>Example:</strong> "I have [X years] of experience in
+                                                        [Industry/Field]."</p>
+                                                    <p>"I recently graduated with a [Degree] from [University]."</p>
+                                                </div>
+
+                                                <div>
+                                                    <h3 className="font-semibold">🚀 Key Highlights (30-45
+                                                        seconds)</h3>
+                                                    <p>🗣️ Showcase key skills and accomplishments that make you
+                                                        stand out.</p>
+                                                    <p><strong>Example:</strong></p>
+                                                    <ul className="list-disc pl-5">
+                                                        <li>"I specialize in [Skill 1, Skill 2, Skill 3]."</li>
+                                                        <li>"At [Company], I successfully [Achievement]."</li>
+                                                        <li>"I recently completed [Course/Certification] and worked
+                                                            on [Project]."
+                                                        </li>
+                                                    </ul>
+                                                </div>
+
+                                                <div>
+                                                    <h3 className="font-semibold">🎯 Closing & Call to Action (15-20
+                                                        seconds)</h3>
+                                                    <p>🗣️ Wrap up with enthusiasm and invite engagement.</p>
+                                                    <p><strong>Example:</strong></p>
+                                                    <ul className="list-disc pl-5">
+                                                        <li>"I’m excited about roles in [Industry/Field] and eager
+                                                            to contribute my skills."
+                                                        </li>
+                                                        <li>"I’d love to connect and discuss how I can add value to
+                                                            your team."
+                                                        </li>
+                                                        <li>"Thank you for your time, and I look forward to
+                                                            connecting!"
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+
+                                            <p className="mt-4 text-sm"><strong>🎬 Final Tips:</strong></p>
+                                            <ul className="text-sm list-disc pl-5 space-y-2">
+                                                <li>✔️ Practice a few times before recording to build confidence.
+                                                </li>
+                                                <li>✔️ Keep your tone friendly, professional, and engaging.</li>
+                                                <li>✔️ Most importantly, be yourself! Authenticity helps you stand
+                                                    out.
+                                                </li>
+                                            </ul>
+
+                                            <div className="flex justify-end gap-2 mt-4">
+                                                <button className="bg-primary text-white px-4 py-2 rounded"
+                                                        onClick={closeInstructionDialog}>
+                                                    Ok
+                                                </button>
+                                            </div>
+                                        </Dialog>
+                                        <VideoSampleModal isOpen={isSampleModalOpen}
+                                                          onClose={() => setIsSampleModalOpen(false)}/>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <VideoUploader
+                                data={data}
+                                defaultVideo={data?.basicDetails?.video}
+                                onVideoUpload={(url) => setFieldValue(`video`, url)}
+                                defaultSecondaryVideo={data?.basicDetails?.secondary_video}
+                                onSecondaryVideoUpload={(url) => setFieldValue(`secondary_video`, url)}
+                            />
+                            <ErrorMessage
+                                name={'video'}
+                                component="div"
+                                className="text-xs text-red-500 ml-1 mt-1"
+                            />
+                        </div>
+
+                    </FormInfo>
+
+                    {/* -------------Career Goals------------- */}
+                    <FormInfo title="Projects" icon={<CareerGoal/>}>
+                        {projects.map((item, index) => (<div key={index}>
+                            <div className="gap-x-3 bg-primary-100 p-3 w-full">
+                                <div className="flex items-center gap-x-2">
+                                    <div className="text-lg font-semibold capitalize text-primary text-nowrap">
+                                        {index + 1}.{' '}
+                                        {item.project_title || 'New Project'}
+                                    </div>
+                                    {projects.length > 1 && (<div
+                                        onClick={() => handleDeleteProject(index)}
+                                        className="cursor-pointer font-black"
+                                    >
+                                        <DeleteIcon/>
+                                    </div>)}
+                                </div>
+                            </div>
+                            <div className="grid lg:grid-cols-3 sm:grid-cols-2 gap-x-5 py-6 px-4">
 
                                 <TextField
                                     type="text"
-                                    label="Role"
-                                    name="career_role"
-                                    placeholder="Enter career role"
+                                    label="Title"
+                                    name={`project_title_${index}`}
+                                    value={item.project_title}
+                                    placeholder="Enter project title"
                                     onChange={(e) =>
-                                        setFieldValue('career_role', e.target.value)
+                                        handleChangeProject('project_title', index, e.target.value)
                                     }
                                 />
-                                {/*<DropDownInput*/}
-                                {/*    label="Industry"*/}
-                                {/*    name="career_industry"*/}
-                                {/*    options={industriesData.map((industry) => ({*/}
-                                {/*        value: industry.name,*/}
-                                {/*        name: industry.name,*/}
-                                {/*    }))}*/}
-                                {/*    value={data?.careerGoal?.career_industry || ''}*/}
-                                {/*    onChange={(e) =>*/}
-                                {/*        setFieldValue('career_industry', e.target.value)*/}
-                                {/*    }*/}
-                                {/*/>*/}
-                                {/*<DropDownInput*/}
-                                {/*    label="Fields"*/}
-                                {/*    name="career_field"*/}
-                                {/*    options={industriesData.find((industry) => industry.name === values.career_industry)?.subsector || []}*/}
-                                {/*    value={data?.careerGoal?.career_industry || ''}*/}
-                                {/*    onChange={(e) =>*/}
-                                {/*        setFieldValue('career_field', e.target.value)*/}
-                                {/*    }*/}
-                                {/*/>*/}
+                                <div style={{position: 'relative'}}>
+                                    <TextArea
+                                        name={`project_description_${index}`}
+                                        label="Description"
+                                        value={item.project_description}
+                                        onChange={(e) => {
+                                            const words = e.target.value.split(/\s+/).filter(Boolean);
+                                            handleChangeProject('project_description', index, e.target.value);
+                                            setWordCounts((prev) => ({...prev, [index]: words.length}));
+                                        }}
+                                    />
+                                    <span style={{
+                                        color: wordCounts[index] > 25 ? 'red' : 'grey',
+                                        position: 'absolute',
+                                        right: 10,
+                                        bottom: 25,
+                                        fontSize: '14px'
+                                    }}>
+                                                {wordCounts[index] || 0} / 25
+                                            </span>
+                                </div>
+                                <TextField
+                                    type="text"
+                                    label="URL"
+                                    value={item.project_url}
+                                    name={`project_url_${index}`}
+                                    placeholder="Enter project url"
+                                    onChange={(e) =>
+                                        handleChangeProject('project_url', index, e.target.value)
+                                    }
+                                />
 
-                                {/*<DropDownInput*/}
-                                {/*    label="NOC Number"*/}
-                                {/*    name="noc_number"*/}
-                                {/*    value={data?.careerGoal?.noc_number || ''}*/}
-                                {/*    options={nocNumber}*/}
-                                {/*    onChange={(e) => setFieldValue('noc_number', e.target.value)}*/}
-                                {/*/>*/}
                             </div>
-                        </FormInfo>
+                        </div>))}
+                        <div className='py-4'>
+                            <div
+                                className="ml-4 bg-primary px-4 py-2 text-white rounded w-[160px] text-center cursor-pointer"
+                                onClick={handleAddProject}
+                            >
+                                + Add Project
+                            </div>
+                        </div>
+                    </FormInfo>
+                    <FormInfo title="Career Goals" icon={<CareerGoal/>}>
+                        <div className="grid lg:grid-cols-3 sm:grid-cols-2 gap-x-5 py-6 px-4">
 
-                        {/* --------------Submit button------------------- */}
-                        <div className="flex justify-end gap-x-5 pb-6">
-                            <button
-                                type="reset"
-                                onClick={() => {
-                                    handleReset()
-                                    resetWorkExperiences()
-                                }}
-                                className={`flex gap-x-2 justify-end items-center rounded w-auto py-2 px-10 mt-10 bg-gray-400`}
-                            >
-                                <span className="text-white text-base font-bold">Reset</span>
-                            </button>
-                            <button
-                                // disabled={disabledButton || isSubmitting || imgError === '' ? false : true}
-                                disabled={disabledButton || isSubmitting || isAnyDescriptionTooLong}
-                                type="submit"
-                                className={`flex gap-x-2 justify-end items-center rounded w-auto py-2 px-10 mt-10 bg-primary`}
-                            >
+                            <TextField
+                                type="text"
+                                label="Role"
+                                name="career_role"
+                                placeholder="Enter career role"
+                                onChange={(e) =>
+                                    setFieldValue('career_role', e.target.value)
+                                }
+                            />
+                            {/*<DropDownInput*/}
+                            {/*    label="Industry"*/}
+                            {/*    name="career_industry"*/}
+                            {/*    options={industriesData.map((industry) => ({*/}
+                            {/*        value: industry.name,*/}
+                            {/*        name: industry.name,*/}
+                            {/*    }))}*/}
+                            {/*    value={data?.careerGoal?.career_industry || ''}*/}
+                            {/*    onChange={(e) =>*/}
+                            {/*        setFieldValue('career_industry', e.target.value)*/}
+                            {/*    }*/}
+                            {/*/>*/}
+                            {/*<DropDownInput*/}
+                            {/*    label="Fields"*/}
+                            {/*    name="career_field"*/}
+                            {/*    options={industriesData.find((industry) => industry.name === values.career_industry)?.subsector || []}*/}
+                            {/*    value={data?.careerGoal?.career_industry || ''}*/}
+                            {/*    onChange={(e) =>*/}
+                            {/*        setFieldValue('career_field', e.target.value)*/}
+                            {/*    }*/}
+                            {/*/>*/}
+
+                            {/*<DropDownInput*/}
+                            {/*    label="NOC Number"*/}
+                            {/*    name="noc_number"*/}
+                            {/*    value={data?.careerGoal?.noc_number || ''}*/}
+                            {/*    options={nocNumber}*/}
+                            {/*    onChange={(e) => setFieldValue('noc_number', e.target.value)}*/}
+                            {/*/>*/}
+                        </div>
+                    </FormInfo>
+
+                    {/* --------------Submit button------------------- */}
+                    <div className="flex justify-end gap-x-5 pb-6">
+                        <button
+                            type="reset"
+                            onClick={() => {
+                                handleReset()
+                                resetWorkExperiences()
+                            }}
+                            className={`flex gap-x-2 justify-end items-center rounded w-auto py-2 px-10 mt-10 bg-gray-400`}
+                        >
+                            <span className="text-white text-base font-bold">Reset</span>
+                        </button>
+                        <button
+                            // disabled={disabledButton || isSubmitting || imgError === '' ? false : true}
+                            disabled={disabledButton || isSubmitting || isAnyDescriptionTooLong || isGreaterThan17}
+                            type="submit"
+                            className={`flex gap-x-2 justify-end items-center rounded w-auto py-2 px-10 mt-10 bg-primary`}
+                        >
                 <span className="text-white text-base font-bold">
                   {isSubmitting ? <Loader/> : data ? 'Update' : 'Submit'}
                 </span>
-                    </button>
-                </div>
-            </Form>)
+                        </button>
+                    </div>
+                </Form>)
         }}
     </Formik>)
 }

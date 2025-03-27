@@ -15,6 +15,7 @@ export const API_ROUTES = {
   UPDATE_PROFILE: `${URL}/user/update-profile/`,
   DELETE_WORK_EXPERIENCE: `${URL}/work-experience/delete/`,
   DELETE_PROJECT: `${URL}/project/delete/`,
+  DELETE_INTERNATIONAL_EDUCATION: `${URL}/international-education/delete/`,
   UPDATE_SECONDARY_VIDEO: `${URL}/user/update-secondary-video/`,
 
 }
