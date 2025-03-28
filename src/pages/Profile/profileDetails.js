@@ -552,17 +552,29 @@ function ProfileDetails({data}) {
                                     {/* Global Education */}
                                     <div>
                                         <ProfileInfo title="Global Education" open={true} edit={true}>
-                                            <div className="flex justify-between items-center">
-                                                <div className="xl:text-base text-xs  capitalize">
-                                                    {data?.internationalEducation?.level_of_education}
-                                                </div>
-                                                <div className="xl:text-base text-xs capitalize mt-[2px]">
-                                                    {data?.internationalEducation?.year_of_graduation}
-                                                </div>
+                                            <div>
+                                                {data?.internationalEducation.map((item,i) => (
+                                                    <div key={i} className="w-full flex gap-x-1">
+                                                        <div className="flex flex-col justify-center items-center">
+                                                            <div className="rounded-full w-4 h-4 bg-black"></div>
+                                                            <div className="h-full w-[2px] bg-[#D7D9DE]"></div>
+                                                        </div>
+
+                                                        <div className="pb-4 pt-2 w-full mt-2">
+                                                            <div className="xl:text-base text-xs  capitalize">
+                                                                {item?.level_of_education}
+                                                            </div>
+                                                            <div className="xl:text-base text-xs capitalize mt-[2px]">
+                                                                {item?.year_of_graduation}
+                                                            </div>
+                                                        <div className="xl:text-base text-xs capitalize">
+                                                            {item?.field_of_study}
+                                                        </div>
+                                                        </div>
+                                                    </div>
+                                                ))}
                                             </div>
-                                            <div className="xl:text-base text-xs capitalize">
-                                                {data?.internationalEducation?.field_of_study}
-                                            </div>
+
                                         </ProfileInfo>
                                     </div>
                                     {data?.canadianEducation?.isCanadianEducation && (

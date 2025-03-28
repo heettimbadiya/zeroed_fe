@@ -11,7 +11,7 @@ export const TextField = ({
                               onChange,
                               disabled,
                               icon,
-    value
+                              value
                           }) => {
     return (
         <div className="mb-4">
@@ -20,7 +20,7 @@ export const TextField = ({
                 <Field
                     type={type}
                     id={name}
-                    {...(value ? { value } : {})}
+                    {...(value ? {value} : {})}
                     name={name}
                     className="border border-text-border border-b-4 focus:border-b-4 focus:border-primary outline-none rounded-lg mt-1 px-2 py-3 pr-10 w-full"
                     placeholder={placeholder}

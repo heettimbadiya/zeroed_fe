@@ -90,13 +90,13 @@ export const jobFormValidation = yup.object({
     .string()
     .required('Preferred job location is required'),
 
-  level_of_education: yup.string().required('Level of education is required'),
-  field_of_study: yup.string().required('Field of study is required'),
-  year_of_graduation: yup
-    .number()
-    .required('Year of graduation is required')
-    .min(1900, 'Year must be after 1900')
-    .max(new Date().getFullYear(), 'Year cannot be in the future'),
+  // level_of_education: yup.string().required('Level of education is required'),
+  // field_of_study: yup.string().required('Field of study is required'),
+  // year_of_graduation: yup
+  //   .number()
+  //   .required('Year of graduation is required')
+  //   .min(1900, 'Year must be after 1900')
+  //   .max(new Date().getFullYear(), 'Year cannot be in the future'),
 
   university: yup.string().when('isCanadianEducation', {
     is: (isCanadianEducation) => isCanadianEducation,
@@ -142,11 +142,11 @@ export const jobFormValidation = yup.object({
   // career_field: yup.string().required('Career field is required'),
   // noc_number: yup.string().required('NOC number is required'),
   video: yup.mixed().nullable().required('Video is required'),
-    college_name: yup.string().required('Field of study is required'),
-    global_gpa: yup.string().required('Field of study is required'),
-    credential_no: yup.string().required('Field of study is required'),
-    credential_institute_name: yup.string().required('Field of study is required'),
-    credential_assesed: yup.boolean().required('Field of study is required'),
+    // college_name: yup.string().required('Field of study is required'),
+    // global_gpa: yup.string().required('Field of study is required'),
+    // credential_no: yup.string().required('Field of study is required'),
+    // credential_institute_name: yup.string().required('Field of study is required'),
+    // credential_assesed: yup.boolean().required('Field of study is required'),
   // video: yup
   //   .mixed()
   //   .nullable()
