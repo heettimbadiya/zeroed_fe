@@ -11,12 +11,15 @@ import ForgotPassword from './pages/Auth/ForgotPassword'
 import OTPVerify from './pages/Auth/ForgotPassword/OTPVerify'
 import ResetPassword from './pages/Auth/ForgotPassword/ResetPassword'
 import ChatPopup from "./pages/ChatPopup/ChatPopup";
-import Dashboard from "./pages/Dashboard/Dashboard";
+import Feed from "./pages/Feed/Feed";
 import Messaging from "./pages/Messaging/Messaging";
 import Header from "./pages/Header";
 import axios from "axios";
 import {API_ROUTES} from "./utils/APIs";
 import View from "./pages/View";
+import Pricing from "./pages/Pricing/Pricing";
+import Sidebar from "./component/sidebar/Sidebar";
+import MainLayout from "./layout/sidebar/MainLayout";
 
 function App() {
     const Home = lazy(() => import('./pages/Home'))
@@ -103,13 +106,19 @@ function App() {
                     </ProtectedRoute>}
                 />
                 <Route
-                    path={ROUTES_URL.DASHBOARD}
+                    path={ROUTES_URL.FEED}
                     element={<ProtectedRoute>
                         <Header
                             profile={data?.basicDetails ? data?.basicDetails?.profile_pic : null}
                             userId={user?.id}
                         />
-                        <Dashboard/>
+                        <Feed/>
+                    </ProtectedRoute>}
+                />
+                <Route
+                    path={`${ROUTES_URL.DASHBOARD}/*`}
+                    element={<ProtectedRoute>
+                        <MainLayout/>
                     </ProtectedRoute>}
                 />
                 <Route
@@ -120,6 +129,16 @@ function App() {
                             userId={user?.id}
                         />
                         <Messaging/>
+                    </ProtectedRoute>}
+                />
+                <Route
+                    path={ROUTES_URL.PRICING}
+                    element={<ProtectedRoute>
+                        <Header
+                            profile={data?.basicDetails ? data?.basicDetails?.profile_pic : null}
+                            userId={user?.id}
+                        />
+                        <Pricing />
                     </ProtectedRoute>}
                 />
                 <Route

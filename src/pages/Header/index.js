@@ -27,7 +27,9 @@ const Header = ({ profile, userId }) => {
         </div>
         <div className={'flex items-center'}>
             <div className={'px-3 cursor-pointer'} onClick={() => navigate('/dashboard')}>Dashboard</div>
+            <div className={'px-3 cursor-pointer'} onClick={() => navigate('/feed')}>Feed</div>
             <div className={'px-3 cursor-pointer'} onClick={() => navigate('/messaging')}>Messaging</div>
+            <div className={'px-3 cursor-pointer'} onClick={() => navigate('/pricing')}>Pricing</div>
           <div className="relative cursor-pointer flex items-center">
             <div onClick={toggleMenu}>
               <div className="flex justify-center items-center gap-x-4 border border-text-border py-1 px-2 rounded-lg">
