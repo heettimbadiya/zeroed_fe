@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import Sidebar from "../../component/sidebar/Sidebar";
-import Header from "../../component/sidebar/Header";
 import {Route, Routes} from "react-router-dom";
+import Sidebar from "../../components/sidebar/Sidebar";
+import Header from "../../components/sidebar/Header";
 import Dashboard from "../../pages/Dashboard/Dashboard";
 
 export default function MainLayout() {

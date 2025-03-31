@@ -10,10 +10,12 @@ const ROUTES_URL = {
   VIEW: `/view`,
   HOME: `/home`,
   PROFILE: `/profile`,
-  DASHBOARD: `/dashboard`,
   FEED: `/feed`,
   MESSAGING: `/messaging`,
   PRICING: `/pricing`,
+  // --------------------------- ADMIN ROUTES ---------------------------------------------------
+  ADMIN: `/admin`,
+  DASHBOARD: `/dashboard`,
 };
 
 export default ROUTES_URL;

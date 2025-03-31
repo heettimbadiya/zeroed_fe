@@ -18,8 +18,7 @@ import axios from "axios";
 import {API_ROUTES} from "./utils/APIs";
 import View from "./pages/View";
 import Pricing from "./pages/Pricing/Pricing";
-import Sidebar from "./component/sidebar/Sidebar";
-import MainLayout from "./layout/sidebar/MainLayout";
+import AdminApp from "./admin";
 
 function App() {
     const Home = lazy(() => import('./pages/Home'))
@@ -116,12 +115,6 @@ function App() {
                     </ProtectedRoute>}
                 />
                 <Route
-                    path={`${ROUTES_URL.DASHBOARD}/*`}
-                    element={<ProtectedRoute>
-                        <MainLayout/>
-                    </ProtectedRoute>}
-                />
-                <Route
                     path={ROUTES_URL.MESSAGING}
                     element={<ProtectedRoute>
                         <Header
@@ -138,7 +131,7 @@ function App() {
                             profile={data?.basicDetails ? data?.basicDetails?.profile_pic : null}
                             userId={user?.id}
                         />
-                        <Pricing />
+                        <Pricing/>
                     </ProtectedRoute>}
                 />
                 <Route
@@ -154,10 +147,25 @@ function App() {
                 <Route
                     path={`${ROUTES_URL.VIEW}/:id`}
                     element={<>
-                        <View />
+                        <View/>
                     </>}
                 />
+
+                {/*------------------------------------------------------ ADMIN ROUTES ------------------------------------------------------------*/}
+                {/*<Route*/}
+                {/*    path={`${ROUTES_URL.ADMIN}`}*/}
+                {/*    element={<ProtectedRoute>*/}
+                {/*        <MainLayout/>*/}
+                {/*    </ProtectedRoute>}*/}
+                {/*/>*/}
+                {/*<Route*/}
+                {/*    path={`${ROUTES_URL.DASHBOARD}/*`}*/}
+                {/*    element={<ProtectedRoute>*/}
+                {/*        <MainLayout/>*/}
+                {/*    </ProtectedRoute>}*/}
+                {/*/>*/}
             </Routes>
+            <AdminApp />
         </Suspense>
         <ChatPopup/>
     </div>)
