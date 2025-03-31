@@ -1190,108 +1190,146 @@ function Information({data}) {
                                                                     {/* Certificate Uploads */}
                                                                     <div
                                                                         className="grid xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-3 mt-4">
-                                                                        {coreSkill.subSkills?.map((subSkill, subIndex) => (
-                                                                            <div key={subIndex} className="mt-3">
-                                                                                <Field
-                                                                                    name={`coreSkills[${coreIndex}].subSkills[${subIndex}].certificate`}>
-                                                                                    {({field}) => (
-                                                                                        <div className="flex flex-col">
-                                                                                            <Label
-                                                                                                label={`Upload Certificate for ${subSkill.subSkill}`}/>
-                                                                                            <input
-                                                                                                type="file"
-                                                                                                id={`cert-${coreIndex}-${subIndex}`}
-                                                                                                className="hidden"
-                                                                                                accept="image/jpeg,image/png,image/jpg,application/pdf"
-                                                                                                onChange={(event) => {
-                                                                                                    const file = event.currentTarget.files[0];
-                                                                                                    if (file) {
-                                                                                                        const validTypes = [
-                                                                                                            'image/jpeg',
-                                                                                                            'image/png',
-                                                                                                            'image/jpg',
-                                                                                                            'application/pdf',
-                                                                                                        ];
-                                                                                                        if (validTypes.includes(file.type)) {
-                                                                                                            const updatedSubSkills = [...coreSkill.subSkills];
-                                                                                                            updatedSubSkills[subIndex] = {
-                                                                                                                ...updatedSubSkills[subIndex],
-                                                                                                                certificate: file,
-                                                                                                            };
-                                                                                                            setFieldValue(`coreSkills[${coreIndex}].subSkills`, updatedSubSkills);
-                                                                                                            setImgError(null);
-                                                                                                        } else {
-                                                                                                            setImgError('Please upload a valid file type (JPEG, PNG, JPG, PDF)');
-                                                                                                        }
-                                                                                                    }
-                                                                                                }}
-                                                                                            />
-                                                                                            <label
-                                                                                                htmlFor={`cert-${coreIndex}-${subIndex}`}
-                                                                                                className="flex items-center gap-2 border border-gray-300 rounded-lg mt-1 px-3 py-2 cursor-pointer"
-                                                                                            >
-                                  <span className="px-2 py-1 bg-blue-100 text-blue-700 rounded">
-                                    Choose file
-                                  </span>
-                                                                                                {subSkill.certificate ? (
-                                                                                                    <span
-                                                                                                        className="truncate">
-                                      {subSkill.certificate instanceof File
-                                          ? subSkill.certificate.name
-                                          : subSkill.certificate.split('/').pop()}
-                                    </span>
-                                                                                                ) : (
-                                                                                                    'No file chosen'
-                                                                                                )}
-                                                                                            </label>
-                                                                                            {imgError && (
-                                                                                                <div
-                                                                                                    className="text-xs text-red-500 mt-1">{imgError}</div>
-                                                                                            )}
-                                                                                        </div>
-                                                                                    )}
-                                                                                </Field>
-
-                                                                                {/* Certificate Preview */}
-                                                                                {subSkill.certificate && (
-                                                                                    <div className="mt-2">
-                                                                                        {subSkill.certificate instanceof File ? (
+                                                                        {coreSkill.subSkills?.map(
+                                                                            (subSkill, subIndex) => (
+                                                                                <div key={subIndex}
+                                                                                     className="mt-3">
+                                                                                    {filteredSkill.sub_skills
+                                                                                        ?.filter(
+                                                                                            (sub) =>
+                                                                                                sub.sub_skill ===
+                                                                                                subSkill.subSkill,
+                                                                                        )
+                                                                                        .map((sub) => (
                                                                                             <div
-                                                                                                className="text-sm text-gray-600">
-                                                                                                File ready for
-                                                                                                upload: {subSkill.certificate.name}
-                                                                                            </div>
-                                                                                        ) : (
-                                                                                            <a
-                                                                                                href={subSkill.certificate}
-                                                                                                target="_blank"
-                                                                                                rel="noopener noreferrer"
-                                                                                                className="text-blue-600 hover:underline text-sm"
-                                                                                            >
-                                                                                                View uploaded
-                                                                                                certificate
-                                                                                            </a>
-                                                                                        )}
-                                                                                    </div>
-                                                                                )}
+                                                                                                key={sub.sub_skill}>
+                                                                                                {/* File input */}
+                                                                                                <div>
+                                                                                                    <Label
+                                                                                                        label={`Upload Certificate for ${sub.sub_skill}`}
+                                                                                                    />
+                                                                                                    <Field
+                                                                                                        name={`coreSkills[${coreIndex}].subSkills[${subIndex}].certificate`}
+                                                                                                    >
+                                                                                                        {({field}) => (
+                                                                                                            <div
+                                                                                                                className="flex flex-col">
+                                                                                                                <input
+                                                                                                                    type="file"
+                                                                                                                    id={`coreSkills[${coreIndex}].subSkills[${subIndex}].certificate`}
+                                                                                                                    name={`coreSkills[${coreIndex}].subSkills[${subIndex}].certificate`}
+                                                                                                                    className="hidden"
+                                                                                                                    onChange={(
+                                                                                                                        event,
+                                                                                                                    ) => {
+                                                                                                                        const file =
+                                                                                                                            event
+                                                                                                                                .currentTarget
+                                                                                                                                .files[0]
+                                                                                                                        if (file) {
+                                                                                                                            const validTypes = [
+                                                                                                                                'image/jpeg',
+                                                                                                                                'image/png',
+                                                                                                                                'image/jpg',
+                                                                                                                                'application/pdf',
+                                                                                                                            ]
+                                                                                                                            if (
+                                                                                                                                validTypes.includes(
+                                                                                                                                    file.type,
+                                                                                                                                )
+                                                                                                                            ) {
+                                                                                                                                const updatedSubSkills = [
+                                                                                                                                    ...coreSkill.subSkills,
+                                                                                                                                ]
+                                                                                                                                updatedSubSkills[
+                                                                                                                                    subIndex
+                                                                                                                                    ] = {
+                                                                                                                                    ...updatedSubSkills[
+                                                                                                                                        subIndex
+                                                                                                                                        ],
+                                                                                                                                    certificate: file,
+                                                                                                                                }
+                                                                                                                                setFieldValue(
+                                                                                                                                    `coreSkills[${coreIndex}].subSkills`,
+                                                                                                                                    updatedSubSkills,
+                                                                                                                                )
+                                                                                                                            }
+                                                                                                                        }
+                                                                                                                    }}
+                                                                                                                />
+                                                                                                                <label
+                                                                                                                    htmlFor={`coreSkills[${coreIndex}].subSkills[${subIndex}].certificate`}
+                                                                                                                    className="flex flex-wrap items-center gap-1 border border-text-border border-b-4 focus:border-b-4 focus:border-primary outline-none rounded-lg mt-1 px-2 py-1 pr-10 w-full cursor-pointer whitespace-nowrap"
+                                                                                                                >
+                                                            <span
+                                                                className="px-2 py-1 border border-primary rounded bg-primary-100">
+                                                              Choose file
+                                                            </span>
+                                                                                                                    {subSkill.certificate ? (
+                                                                                                                        <div
+                                                                                                                            className="inline-block w-full whitespace-nowrap overflow-hidden text-ellipsis">
+                                                                                                                            {subSkill.certificate instanceof
+                                                                                                                            File
+                                                                                                                                ? subSkill
+                                                                                                                                    .certificate
+                                                                                                                                    .name
+                                                                                                                                : subSkill.certificate
+                                                                                                                                    .split(
+                                                                                                                                        '/',
+                                                                                                                                    )
+                                                                                                                                    .pop()}
+                                                                                                                        </div>
+                                                                                                                    ) : (
+                                                                                                                        'No file chosen'
+                                                                                                                    )}
+                                                                                                                </label>
 
-                                                                                {/* Assessment Link */}
-                                                                                <div className="mt-3">
-                                                                                    <TextField
-                                                                                        type="text"
-                                                                                        label="Assessment result link"
-                                                                                        name={`coreSkills[${coreIndex}].subSkills[${subIndex}].link`}
-                                                                                        placeholder="Enter assessment result link"
-                                                                                        onChange={(e) =>
-                                                                                            setFieldValue(
-                                                                                                `coreSkills[${coreIndex}].subSkills[${subIndex}].link`,
-                                                                                                e.target.value
-                                                                                            )
-                                                                                        }
-                                                                                    />
+                                                                                                                {/* Displaying error message */}
+                                                                                                                {imgError && (
+                                                                                                                    <div
+                                                                                                                        className="text-xs text-red-500 ml-1 mt-1">
+                                                                                                                        {imgError}
+                                                                                                                    </div>
+                                                                                                                )}
+                                                                                                                {imgError === '' && (
+                                                                                                                    <ErrorMessage
+                                                                                                                        name={`coreSkills[${coreIndex}].subSkills[${subIndex}].certificate`}
+                                                                                                                        component="div"
+                                                                                                                        className="text-xs text-red-500 ml-1 mt-1"
+                                                                                                                    />
+                                                                                                                )}
+                                                                                                            </div>
+                                                                                                        )}
+                                                                                                    </Field>
+                                                                                                </div>
+
+                                                                                                {/* Display uploaded certificate preview */}
+                                                                                                <CertificatePreview
+                                                                                                    subSkill={subSkill}
+                                                                                                />
+
+                                                                                                <div
+                                                                                                    className='mt-3'>
+                                                                                                    <TextField
+                                                                                                        type="text"
+                                                                                                        label="assesment result link"
+                                                                                                        name={`coreSkills[${coreIndex}].subSkills[${subIndex}].link`}
+                                                                                                        placeholder="Enter assesment result link"
+                                                                                                        onChange={(e) => setFieldValue(`coreSkills[${coreIndex}].subSkills[${subIndex}].link`, e.target.value)}
+                                                                                                    />
+                                                                                                </div>
+
+                                                                                                {/* Display error message if validation fails */}
+                                                                                                <ErrorMessage
+                                                                                                    name={`coreSkills[${coreIndex}].subSkills[${subIndex}].certificate`}
+                                                                                                    component="div"
+                                                                                                    style={{color: 'red'}}
+                                                                                                />
+                                                                                            </div>
+                                                                                        ))}
                                                                                 </div>
-                                                                            </div>
-                                                                        ))}
+                                                                            ),
+                                                                        )}
                                                                     </div>
                                                                 </div>
                                                             ))}
