@@ -557,7 +557,7 @@ function Information({data}) {
                             'Content-Type': 'multipart/form-data', Authorization: `${token}`,
                         },
                     },)
-                    if (response.data.status === 201) {
+                    if (response.data.status === 200) {
                         navigate(`${ROUTES_URL.PROFILE}/${user.id}`)
                     }
                 } catch (error) {
@@ -820,7 +820,6 @@ function Information({data}) {
                                         </div>
                                     )}
                                 </Field>
-
                             </div>
 
                             <DateField
@@ -925,20 +924,20 @@ function Information({data}) {
                               />}>
                         {internationalEducation?.length > 0 && internationalEducation?.map((intEducation, index) => (
                             <div key={index}>
-                                <div
-                                    className="flex flex-wrap justify-between items-center gap-x-3 bg-primary-100 p-3 w-full">
-                                    <div className="flex items-center gap-x-2">
-                                        <div className="text-lg font-semibold capitalize text-primary text-nowrap">
-                                            {index + 1}.{' '}
-                                            {intEducation.college_name || 'New Education'}
-                                        </div>
-                                        {internationalEducation.length > 1 && (<div
-                                            onClick={() => handleDeleteInternationalEducation(index)}
-                                            className="cursor-pointer font-black"
-                                        >
-                                            <DeleteIcon/>
-                                        </div>)}
+                            <div
+                                className="flex flex-wrap justify-between items-center gap-x-3 bg-primary-100 p-3 w-full">
+                                <div className="flex items-center gap-x-2">
+                                    <div className="text-lg font-semibold capitalize text-primary text-nowrap">
+                                        {index + 1}.{' '}
+                                        {intEducation.college_name || 'New Education'}
                                     </div>
+                                    {internationalEducation.length > 1 && (<div
+                                        onClick={() => handleDeleteInternationalEducation(index)}
+                                        className="cursor-pointer font-black"
+                                    >
+                                        <DeleteIcon/>
+                                    </div>)}
+                                </div>
 
                                 </div>
 
