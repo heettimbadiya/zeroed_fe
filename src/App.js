@@ -89,6 +89,7 @@ function App() {
                     element={<ProtectedRoute>
                         <Header
                             profile={data?.basicDetails ? data?.basicDetails?.profile_pic : null}
+                            slug={data?.basicDetails ? data?.basicDetails?.slug : null}
                             userId={user?.id}
                         />
                         <Home/>
@@ -99,6 +100,7 @@ function App() {
                     element={<ProtectedRoute>
                         <Header
                             profile={data?.basicDetails ? data?.basicDetails?.profile_pic : null}
+                            slug={data?.basicDetails ? data?.basicDetails?.slug : null}
                             userId={user?.id}
                         />
                         <Home/>
@@ -109,6 +111,7 @@ function App() {
                     element={<ProtectedRoute>
                         <Header
                             profile={data?.basicDetails ? data?.basicDetails?.profile_pic : null}
+                            slug={data?.basicDetails ? data?.basicDetails?.slug : null}
                             userId={user?.id}
                         />
                         <Feed/>
@@ -119,6 +122,7 @@ function App() {
                     element={<ProtectedRoute>
                         <Header
                             profile={data?.basicDetails ? data?.basicDetails?.profile_pic : null}
+                            slug={data?.basicDetails ? data?.basicDetails?.slug : null}
                             userId={user?.id}
                         />
                         <Messaging/>
@@ -129,6 +133,7 @@ function App() {
                     element={<ProtectedRoute>
                         <Header
                             profile={data?.basicDetails ? data?.basicDetails?.profile_pic : null}
+                            slug={data?.basicDetails ? data?.basicDetails?.slug : null}
                             userId={user?.id}
                         />
                         <Pricing/>
@@ -139,6 +144,7 @@ function App() {
                     element={<>
                         <Header
                             profile={data?.basicDetails ? data?.basicDetails?.profile_pic : null}
+                            slug={data?.basicDetails ? data?.basicDetails?.slug : null}
                             userId={user?.id}
                         />
                         <Profile/>
