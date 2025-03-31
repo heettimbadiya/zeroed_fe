@@ -16,13 +16,13 @@ const VideoUploader = ({defaultVideo, onVideoUpload, defaultSecondaryVideo, onSe
 
     useEffect(() => {
         if (defaultVideo) {
-            setRecordedVideo(process.env.REACT_APP_FILE_URL + "/" + defaultVideo);
+            setRecordedVideo(defaultVideo);
         }
     }, [defaultVideo]);
 
     useEffect(() => {
         if (defaultSecondaryVideo) {
-            setSecondaryVideo(process.env.REACT_APP_FILE_URL + "/" + defaultSecondaryVideo);
+            setSecondaryVideo(defaultSecondaryVideo);
         }
     }, [defaultSecondaryVideo]);
 

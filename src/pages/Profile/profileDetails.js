@@ -79,39 +79,6 @@ function ProfileDetails({data}) {
 
     const token = localStorage.getItem('token');
     const user = JSON.parse(localStorage.getItem('user'));
-    const handleSubmitVideo = async () => {
-        if (videoFile) {
-            const formData = new FormData();
-            formData.append('secondary_video', videoFile)
-            try {
-                const response = await axios.put(
-                    API_ROUTES.UPDATE_SECONDARY_VIDEO + user.id,
-                    formData,
-                    {
-                        headers: {
-                            'Content-Type': 'multipart/form-data',
-                            Authorization: `${token}`,
-                        },
-                    },
-                )
-                if (response) {
-                    handleClose();
-                    window.location.reload();
-                }
-            } catch (error) {
-                alert('Something went wrong')
-            }
-        }
-        // setOpen2(false)
-        setVideoFile(null)
-    };
-    const handleFileChange = (event) => {
-        const file = event.target.files[0];
-        if (file) {
-            setVideoFile(file);
-            setVideoURL(URL.createObjectURL(file));
-        }
-    };
     useEffect(() => {
         if (id === convertToStringify?.id) {
             setValidUser(true)
@@ -272,7 +239,7 @@ function ProfileDetails({data}) {
                                         </div>
                                         <div>
                                             <img
-                                                src={`${process.env.REACT_APP_FILE_URL}/${data?.basicDetails?.profile_pic}`}
+                                                src={data?.basicDetails?.profile_pic}
                                                 alt="user-avatar-image"
                                                 className="border-[2px] border-solid border-grayLight rounded-md min-h-[5rem] min-w-[5rem] max-h-[5rem] max-w-[5rem]"
                                             />
@@ -701,7 +668,7 @@ function ProfileDetails({data}) {
                                                 style={{height: "80vh"}}
                                             >
                                                 <source
-                                                    src={`${process.env.REACT_APP_FILE_URL}/${data?.basicDetails?.video}`}
+                                                    src={data?.basicDetails?.video}
                                                     type="video/mp4"
                                                     className={'h-[500px]'}
                                                 />
@@ -718,7 +685,7 @@ function ProfileDetails({data}) {
                                                         style={{height: "80vh"}}
                                                     >
                                                         <source
-                                                            src={`${process.env.REACT_APP_FILE_URL}/${data?.basicDetails?.secondary_video}`}
+                                                            src={data?.basicDetails?.secondary_video}
                                                             type="video/mp4"
                                                         />
                                                         Your browser does not support the video tag.

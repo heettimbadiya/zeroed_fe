@@ -12,7 +12,7 @@ const LinkPreview = ({ url }) => {
 
         const fetchPreview = async () => {
             hasFetched.current = true;
-            const apiKey = process.env.JSON_LINK_API_KEY;
+            const apiKey = process.env.REACT_APP_JSON_LINK_API_KEY;
             const apiUrl = `https://jsonlink.io/api/extract?url=${encodeURIComponent(url)}&api_key=${apiKey}`;
 
             try {
@@ -27,7 +27,7 @@ const LinkPreview = ({ url }) => {
             }
         };
 
-        fetchPreview();
+        // fetchPreview();
     }, [url]);
 
     return (
@@ -46,7 +46,7 @@ const LinkPreview = ({ url }) => {
             {isHovered && preview && (
                 <div className="absolute left-0 top-6 z-50 p-3 bg-white shadow-lg border rounded-lg w-64">
                     {preview.images?.length > 0 && (
-                        <img src={preview.images[0]} alt="Preview" className="w-full h-32 object-cover rounded" />
+                        <img src={preview.images[0]} alt="Preview" className="object-cover rounded w-50" />
                     )}
                     <div className="mt-2">
                         <div className="font-semibold">{preview.title}</div>
