@@ -36,7 +36,7 @@ const Header = ({ profile, userId }) => {
                 <img
                     src={
                       profile
-                          ? process.env.REACT_APP_FILE_URL + '/' + profile
+                          ? profile
                           : default_user
                     }
                     alt="profile"
