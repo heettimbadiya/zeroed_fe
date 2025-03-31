@@ -76,7 +76,7 @@ const Header = ({profile, userId, slug}) => {
                                             <span>Profile</span>
                                         </div>
                                     )}
-                                    {slug !== null && (
+                                    {slug && (
                                         <div className="relative">
                                             <div
                                                 onClick={handleCopy}
