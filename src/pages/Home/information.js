@@ -436,10 +436,12 @@ function Information({data}) {
         formData.append('basicDetails[firstname]', values.firstname)
         formData.append(`isInternationalEducation`, values.isInternationalEducation,)
         formData.append('basicDetails[lastname]', values.lastname)
-        if (values.profile_pic) {
-            // formData.append('basicDetails[profile_pic]', values.profile_pic)
-            formData.append('profile_pic', values.profile_pic)
+        if (values.profile_pic instanceof File) {
+            formData.append('profile_pic', values.profile_pic);
+        } else if (typeof values.profile_pic === "string") {
+            formData.append('profile_pic_url', values.profile_pic);
         }
+
         formData.append('basicDetails[dob]', values.dob)
         formData.append('basicDetails[gender]', values.gender)
         formData.append('basicDetails[nationality]', values.nationality)
@@ -510,7 +512,6 @@ function Information({data}) {
                 formData.append(`projectDetails[${index}][_id]`, data ? project?._id : null,)
             }
         })
-        console.log(workExperiences, "tyyyyyyyyy")
         workExperiences.forEach((experience, index) => {
             // Accomplishments fields
             formData.append(`workExperience[${index}][accomplishment_1]`, experience.accomplishments_id.accomplishment_1,)
@@ -556,7 +557,7 @@ function Information({data}) {
                             'Content-Type': 'multipart/form-data', Authorization: `${token}`,
                         },
                     },)
-                    if (response.data.status === 200) {
+                    if (response.data.status === 201) {
                         navigate(`${ROUTES_URL.PROFILE}/${user.id}`)
                     }
                 } catch (error) {
@@ -774,45 +775,52 @@ function Information({data}) {
                             <div className="mb-4">
                                 <Label label="Profile"/>
                                 <Field name="profile_pic">
-                                    {({field}) => (<div className="flex flex-col">
-                                        <input
-                                            type="file"
-                                            id="profile_pic"
-                                            className="hidden"
-                                            onChange={(event) => {
-                                                const file = event.currentTarget.files[0]
-                                                if (file) {
-                                                    const validTypes = ['image/jpeg', 'image/png', 'image/jpg',]
-                                                    if (validTypes.includes(file.type)) {
-                                                        setFieldValue('profile_pic', file)
-                                                        setImgError('') // Clear error
-                                                    } else {
-                                                        setImgError('Invalid file type. Please select a jpeg, JPG or PNG file.',)
+                                    {({field, form: {setFieldValue}}) => (
+                                        <div className="flex flex-col">
+                                            {/* Hidden file input */}
+                                            <input
+                                                type="file"
+                                                id="profile_pic"
+                                                className="hidden"
+                                                accept="image/jpeg, image/png, image/jpg"
+                                                onChange={(event) => {
+                                                    const file = event.currentTarget.files[0];
+                                                    if (file) {
+                                                        const validTypes = ["image/jpeg", "image/png", "image/jpg"];
+                                                        if (validTypes.includes(file.type)) {
+                                                            setFieldValue("profile_pic", file);
+                                                            setImgError(""); // Clear error
+                                                        } else {
+                                                            setImgError("Invalid file type. Please select a JPEG, JPG, or PNG file.");
+                                                        }
                                                     }
+                                                }}
+                                            />
 
-                                                }
-                                            }}
-                                        />
-                                        <label
-                                            htmlFor="profile_pic"
-                                            className="border border-text-border border-b-4 focus:border-b-4 focus:border-primary outline-none rounded-lg mt-1 px-2 py-3 pr-10 w-full cursor-pointer"
-                                        >
-                          <span className="px-2 py-1 border border-primary rounded bg-primary-100">
-                            Choose file
-                          </span>{' '}
-                                            {data ? values?.profile_pic?.name || data?.basicDetails?.profile_pic?.split('/').pop() : values?.profile_pic?.name || 'No file chosen'}
-                                        </label>
-                                        {/* Displaying error message */}
-                                        {imgError && (<div className="text-xs text-red-500 ml-1 mt-1">
-                                            {imgError}
-                                        </div>)}
-                                        {imgError === '' && (<ErrorMessage
-                                            name="profile_pic"
-                                            component="div"
-                                            className="text-xs text-red-500 ml-1 mt-1"
-                                        />)}
-                                    </div>)}
+                                            {/* Label for file input */}
+                                            <label
+                                                htmlFor="profile_pic"
+                                                className="border border-text-border border-b-4 focus:border-b-4 focus:border-primary outline-none rounded-lg mt-1 px-2 py-3 pr-10 w-full cursor-pointer"
+                                            >
+        <span className="px-2 py-1 border border-primary rounded bg-primary-100">
+          Choose file
+        </span>{" "}
+                                                {values.profile_pic?.name ||
+                                                    (data?.basicDetails?.profile_pic ? data.basicDetails.profile_pic.split("/").pop() : "No file chosen")}
+                                            </label>
+
+                                            {/* Displaying error messages */}
+                                            {imgError && (
+                                                <div className="text-xs text-red-500 ml-1 mt-1">{imgError}</div>
+                                            )}
+                                            {!imgError && (
+                                                <ErrorMessage name="profile_pic" component="div"
+                                                              className="text-xs text-red-500 ml-1 mt-1"/>
+                                            )}
+                                        </div>
+                                    )}
                                 </Field>
+
                             </div>
 
                             <DateField
@@ -915,124 +923,125 @@ function Information({data}) {
                                   name="isInternationalEducation"
                                   onChange={(e) => setFieldValue('isInternationalEducation', e.target.checked)}
                               />}>
-                        {internationalEducation?.length > 0 && internationalEducation?.map((intEducation, index) => (<div key={index}>
-                            <div
-                                className="flex flex-wrap justify-between items-center gap-x-3 bg-primary-100 p-3 w-full">
-                                <div className="flex items-center gap-x-2">
-                                    <div className="text-lg font-semibold capitalize text-primary text-nowrap">
-                                        {index + 1}.{' '}
-                                        {intEducation.college_name || 'New Education'}
+                        {internationalEducation?.length > 0 && internationalEducation?.map((intEducation, index) => (
+                            <div key={index}>
+                                <div
+                                    className="flex flex-wrap justify-between items-center gap-x-3 bg-primary-100 p-3 w-full">
+                                    <div className="flex items-center gap-x-2">
+                                        <div className="text-lg font-semibold capitalize text-primary text-nowrap">
+                                            {index + 1}.{' '}
+                                            {intEducation.college_name || 'New Education'}
+                                        </div>
+                                        {internationalEducation.length > 1 && (<div
+                                            onClick={() => handleDeleteInternationalEducation(index)}
+                                            className="cursor-pointer font-black"
+                                        >
+                                            <DeleteIcon/>
+                                        </div>)}
                                     </div>
-                                    {internationalEducation.length > 1 && (<div
-                                        onClick={() => handleDeleteInternationalEducation(index)}
-                                        className="cursor-pointer font-black"
-                                    >
-                                        <DeleteIcon/>
-                                    </div>)}
+
                                 </div>
 
-                            </div>
+                                <div
+                                    className="grid xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2 gap-x-5 py-6 px-4">
+                                    <>
+                                        <DropDownInput
+                                            label="Level of Education"
+                                            name={`level_of_education_${index}`}
+                                            options={levelOfEducation}
+                                            disabled={!values.isInternationalEducation}
+                                            value={intEducation?.level_of_education || ''}
+                                            onChange={(e) => {
+                                                handleChangeInternationalEducation(index, 'level_of_education', e.target.value,)
+                                            }}
+                                        />
+                                        <DropDownInput
+                                            label="Field of Study"
+                                            name={`field_of_study_${index}`}
+                                            options={fieldOfStudy}
+                                            disabled={!values.isInternationalEducation}
+                                            value={intEducation?.field_of_study || ''}
+                                            onChange={(e) => {
+                                                handleChangeInternationalEducation(index, 'field_of_study', e.target.value,)
+                                            }}
+                                        />
+                                        <DropDownInput
+                                            label="Year of Graduation"
+                                            name={`year_of_graduation_${index}`}
+                                            options={years}
+                                            disabled={!values.isInternationalEducation}
+                                            value={intEducation?.year_of_graduation || ''}
+                                            onChange={(e) => {
+                                                handleChangeInternationalEducation(index, 'year_of_graduation', e.target.value,)
+                                            }}
+                                        />
+                                        <TextFieldValue
+                                            type="text"
+                                            label="college Name"
+                                            value={intEducation?.college_name || ''}
+                                            name={`college_name_${index}`}
+                                            placeholder="Enter college name"
+                                            disabled={!values.isInternationalEducation}
+                                            onChange={(e) => {
+                                                handleChangeInternationalEducation(index, 'college_name', e.target.value,)
+                                            }}
+                                        />
+                                        <TextFieldValue
+                                            type="text"
+                                            label="GPA / Percentage "
+                                            value={intEducation?.global_gpa || ''}
+                                            name={`global_gpa_${index}`}
+                                            placeholder="Enter GPA"
+                                            disabled={!values.isInternationalEducation}
+                                            onChange={(e) => {
+                                                handleChangeInternationalEducation(index, 'global_gpa', e.target.value,)
+                                            }}
+                                        />
+                                        <TextFieldValue
+                                            type="text"
+                                            label="Credential No"
+                                            value={intEducation?.credential_no || ''}
+                                            name={`credential_no_${index}`}
+                                            placeholder="Enter Credential No"
+                                            disabled={!values.isInternationalEducation}
+                                            onChange={(e) => {
+                                                handleChangeInternationalEducation(index, 'credential_no', e.target.value,)
+                                            }}
+                                        />
+                                        <DropDownInput
+                                            label="Credential institute name"
+                                            name={`credential_institute_name_${index}`}
+                                            options={[{name: 'IQAS'}, {name: 'WES'}, {name: 'ICAS'}]}
+                                            disabled={!values.isInternationalEducation}
+                                            value={intEducation?.credential_institute_name || ''}
+                                            onChange={(e) => {
+                                                handleChangeInternationalEducation(index, 'credential_institute_name', e.target.value,)
+                                            }}
+                                        />
+                                        <div className={'flex items-center'}>
+                                            <label className="inline-flex items-center cursor-pointer">
+                                                <Label label={'Credential assessed :'} className="ml-2"/>
+                                                <Field
+                                                    type="checkbox"
+                                                    id={`credential_assesed_${index}`}
+                                                    name={`credential_assesed_${index}`}
+                                                    className="sr-only peer ml-2"
+                                                    checked={intEducation?.credential_assesed || false}
+                                                    disabled={!values.isInternationalEducation}
+                                                    onChange={(e) => {
+                                                        handleChangeInternationalEducation(index, 'credential_assesed', e.target.checked)
+                                                    }}
+                                                />
+                                                <div
+                                                    className="relative w-11 h-6 bg-gray-200 rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:start-[2px] after:bg-white after:border-gray after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#f3902a] focus:border-[#f3902a]"
+                                                >
+                                                </div>
+                                            </label>
+                                        </div>
 
-                            <div
-                                className="grid xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2 gap-x-5 py-6 px-4">
-                                <>
-                                    <DropDownInput
-                                        label="Level of Education"
-                                        name={`level_of_education_${index}`}
-                                        options={levelOfEducation}
-                                        disabled={!values.isInternationalEducation}
-                                        value={intEducation?.level_of_education || ''}
-                                        onChange={(e) => {
-                                            handleChangeInternationalEducation(index, 'level_of_education', e.target.value,)
-                                        }}
-                                    />
-                                    <DropDownInput
-                                        label="Field of Study"
-                                        name={`field_of_study_${index}`}
-                                        options={fieldOfStudy}
-                                        disabled={!values.isInternationalEducation}
-                                        value={intEducation?.field_of_study || ''}
-                                        onChange={(e) => {
-                                            handleChangeInternationalEducation(index, 'field_of_study', e.target.value,)
-                                        }}
-                                    />
-                                    <DropDownInput
-                                        label="Year of Graduation"
-                                        name={`year_of_graduation_${index}`}
-                                        options={years}
-                                        disabled={!values.isInternationalEducation}
-                                        value={intEducation?.year_of_graduation || ''}
-                                        onChange={(e) => {
-                                            handleChangeInternationalEducation(index, 'year_of_graduation', e.target.value,)
-                                        }}
-                                    />
-                                    <TextFieldValue
-                                        type="text"
-                                        label="college Name"
-                                        value={intEducation?.college_name || ''}
-                                        name={`college_name_${index}`}
-                                        placeholder="Enter college name"
-                                        disabled={!values.isInternationalEducation}
-                                        onChange={(e) => {
-                                            handleChangeInternationalEducation(index, 'college_name', e.target.value,)
-                                        }}
-                                    />
-                                    <TextFieldValue
-                                        type="text"
-                                        label="GPA / Percentage "
-                                        value={intEducation?.global_gpa || ''}
-                                        name={`global_gpa_${index}`}
-                                        placeholder="Enter GPA"
-                                        disabled={!values.isInternationalEducation}
-                                        onChange={(e) => {
-                                            handleChangeInternationalEducation(index, 'global_gpa', e.target.value,)
-                                        }}
-                                    />
-                                    <TextFieldValue
-                                        type="text"
-                                        label="Credential No"
-                                        value={intEducation?.credential_no || ''}
-                                        name={`credential_no_${index}`}
-                                        placeholder="Enter Credential No"
-                                        disabled={!values.isInternationalEducation}
-                                        onChange={(e) => {
-                                            handleChangeInternationalEducation(index, 'credential_no', e.target.value,)
-                                        }}
-                                    />
-                                    <DropDownInput
-                                        label="Credential institute name"
-                                        name={`credential_institute_name_${index}`}
-                                        options={[{name: 'IQAS'}, {name: 'WES'}, {name: 'ICAS'}]}
-                                        disabled={!values.isInternationalEducation}
-                                        value={intEducation?.credential_institute_name || ''}
-                                        onChange={(e) => {
-                                            handleChangeInternationalEducation(index, 'credential_institute_name', e.target.value,)
-                                        }}
-                                    />
-                                    <div className={'flex items-center'}>
-                                        <label className="inline-flex items-center cursor-pointer">
-                                            <Label label={'Credential assessed :'} className="ml-2"/>
-                                            <Field
-                                                type="checkbox"
-                                                id={`credential_assesed_${index}`}
-                                                name={`credential_assesed_${index}`}
-                                                className="sr-only peer ml-2"
-                                                checked={intEducation?.credential_assesed || false}
-                                                disabled={!values.isInternationalEducation}
-                                                onChange={(e) => {
-                                                    handleChangeInternationalEducation(index, 'credential_assesed', e.target.checked)
-                                                }}
-                                            />
-                                            <div
-                                                className="relative w-11 h-6 bg-gray-200 rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:start-[2px] after:bg-white after:border-gray after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#f3902a] focus:border-[#f3902a]"
-                                            >
-                                            </div>
-                                        </label>
-                                    </div>
-
-                                </>
-                            </div>
-                        </div>))}
+                                    </>
+                                </div>
+                            </div>))}
                         <div className={'pb-3'}>
                             <div
                                 disabled={!values.isInternationalEducation}

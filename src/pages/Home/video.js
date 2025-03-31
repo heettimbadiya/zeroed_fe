@@ -16,13 +16,13 @@ const VideoUploader = ({defaultVideo, onVideoUpload, defaultSecondaryVideo, onSe
 
     useEffect(() => {
         if (defaultVideo) {
-            setRecordedVideo(process.env.REACT_APP_FILE_URL + "/" + defaultVideo);
+            setRecordedVideo(defaultVideo);
         }
     }, [defaultVideo]);
 
     useEffect(() => {
         if (defaultSecondaryVideo) {
-            setSecondaryVideo(process.env.REACT_APP_FILE_URL + "/" + defaultSecondaryVideo);
+            setSecondaryVideo(defaultSecondaryVideo);
         }
     }, [defaultSecondaryVideo]);
 
@@ -86,6 +86,7 @@ const VideoUploader = ({defaultVideo, onVideoUpload, defaultSecondaryVideo, onSe
             console.log("File selection canceled or not supported", error);
         }
     };
+    console.log(data)
     return (
         <div className="lg:w-1/3 sm:w-1/2 pt-2">
             <div className="flex justify-between items-center gap-4 mt-2">
