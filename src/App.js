@@ -146,6 +146,7 @@ function App() {
                     element={<>
                         <Header
                             profile={data?.basicDetails ? data?.basicDetails?.profile_pic : null}
+                            slug={data?.basicDetails ? data?.basicDetails?.slug : null}
                             userId={user?.id}
                         />
                         <Profile/>
