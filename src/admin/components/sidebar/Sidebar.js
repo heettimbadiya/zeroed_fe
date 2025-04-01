@@ -178,17 +178,9 @@ import {
     FaChevronDown,
     FaChevronUp,
 } from "react-icons/fa";
-
-const menuItems = [
-    { text: "Inbox", icon: <FaInbox /> },
-    { text: "Starred", icon: <FaEnvelope /> },
-    { text: "Send email", icon: <FaInbox /> },
-    { text: "Drafts", icon: <FaEnvelope /> },
-    { text: "Trash", icon: <FaTrash /> },
-    { text: "Spam", icon: <FaEnvelope /> },
-];
-
-const Sidebar = ({ open, setOpen }) => {
+import {useNavigate} from "react-router-dom";
+const Sidebar = ({ open, setOpen ,menuItems}) => {
+    const navigate = useNavigate()
     const [openSubmenu, setOpenSubmenu] = useState({});
 
     useEffect(() => {
@@ -205,7 +197,10 @@ const Sidebar = ({ open, setOpen }) => {
     const renderMenuItem = (item) => (
         <li key={item.text} className="relative">
             <button
-                onClick={() => item.submenu && toggleSubmenu(item.text)}
+                onClick={() => {
+                    item.submenu && toggleSubmenu(item.text)
+                    navigate(item.path)
+                }}
                 className="w-full flex items-center px-4 py-3 rounded-lg hover:bg-gray-700 transition"
             >
                 <span className="text-lg">{item.icon}</span>

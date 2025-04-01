@@ -34,8 +34,8 @@ function SignIn() {
             if (response.data.status === 200) {
                 setError(null)
                 localStorage.removeItem('verify')
-                localStorage.setItem('token', response.data.data.token)
-                localStorage.setItem('user', JSON.stringify(response.data.data.user))
+                localStorage.setItem('admin_token', response.data.data.token)
+                localStorage.setItem('admin_user', JSON.stringify({...response.data.data.user,token:response.data.data.token}))
                 navigate(ROUTES_URL.DASHBOARD)
                 setLoading(false)
             }

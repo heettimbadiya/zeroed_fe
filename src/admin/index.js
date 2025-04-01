@@ -7,7 +7,6 @@ import ProtectedRoute from './helper/protectedRoute'
 import MainLayout from "./layout/sidebar/MainLayout";
 
 function AdminApp() {
-    const localUser = localStorage.getItem('user')
 
     return (<div>
         <Suspense fallback={<PageLoading/>}>
