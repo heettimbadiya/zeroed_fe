@@ -557,7 +557,7 @@ function Information({data}) {
                             'Content-Type': 'multipart/form-data', Authorization: `${token}`,
                         },
                     },)
-                    if (response.data.status === 200) {
+                    if (response.data.status) {
                         navigate(`${ROUTES_URL.PROFILE}/${user.id}`)
                     }
                 } catch (error) {
