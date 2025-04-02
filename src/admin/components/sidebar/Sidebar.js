@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, {useState, useEffect, useContext} from "react";
 import {
     FaBars,
     FaInbox,
@@ -8,7 +8,10 @@ import {
     FaChevronUp,
 } from "react-icons/fa";
 import {useNavigate} from "react-router-dom";
+import {UserContext} from "../../layout/sidebar/MainLayout";
 const Sidebar = ({ open, setOpen ,menuItems}) => {
+    const stringifyUser = localStorage.getItem('admin_user')
+    const parsedUser = JSON.parse(stringifyUser)
     const navigate = useNavigate()
     const [openSubmenu, setOpenSubmenu] = useState({});
 
@@ -69,8 +72,8 @@ const Sidebar = ({ open, setOpen ,menuItems}) => {
                         alt="logo"
                         className="w-32 h-32 rounded-full mx-auto"
                     />
-                    <h3 className="text-white mt-2">Zeroed</h3>
-                    <p className="text-gray-400 text-sm">zeroed650@gmail.com</p>
+                    <h3 className="text-white mt-2">{parsedUser?.userName}</h3>
+                    <p className="text-gray-400 text-sm">{parsedUser?.email}</p>
                 </div>}
                 <ul className="px-2 space-y-2">{menuItems.map(renderMenuItem)}</ul>
             </div>
@@ -95,8 +98,8 @@ const Sidebar = ({ open, setOpen ,menuItems}) => {
                         alt="logo"
                         className="w-32 h-32 rounded-full mx-auto"
                     />
-                    <h3 className="text-white mt-2">Zeroed</h3>
-                    <p className="text-gray-400 text-sm">zeroed650@gmail.com</p>
+                    <h3 className="text-white mt-2">{parsedUser?.userName}</h3>
+                    <p className="text-gray-400 text-sm">{parsedUser?.email}</p>
                 </div>
                 <ul className="px-2 space-y-2">{menuItems.map(renderMenuItem)}</ul>
             </div>
