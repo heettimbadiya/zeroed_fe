@@ -91,18 +91,19 @@ const VideoUploader = ({defaultVideo, onVideoUpload, defaultSecondaryVideo, onSe
             <div className="flex justify-between items-center gap-4 mt-2">
                 <div
                     onClick={(e) => handleSelectVideo(e, 'recorded')}
-                    className="border border-text-border border-b-4 focus:border-b-4 focus:border-primary outline-none rounded-lg px-4 py-3 w-1/2 text-center cursor-pointer"
+                    className="border-2 border-primary text-primary hover:bg-primary hover:text-white transition-all duration-200 rounded-lg py-3 w-1/2 text-center cursor-pointer"
                 >
-                    Primary Video
+                    {recordedVideo ? "Edit Primary Video" : "Add Primary Video"}
                 </div>
                 {data && (
                     <div
                         onClick={(e) => handleSelectVideo(e, 'secondary_video')}
-                        className="border border-text-border border-b-4 focus:border-b-4 focus:border-primary outline-none rounded-lg px-4 py-3 w-1/2 text-center cursor-pointer"
+                        className="border-2 border-primary text-primary hover:bg-primary hover:text-white transition-all duration-200 rounded-lg py-3 w-1/2 text-center cursor-pointer"
                     >
-                        Secondary Video
+                    {recordedVideo ? "Edit Secondary Video" : "Add Secondary Video"}
                     </div>
                 )}
+
             </div>
 
             <Dialog isOpen={showInstruction} onClose={closeInstructionDialog} title="Instructions"
