@@ -225,7 +225,7 @@ function Feed(props) {
                                         <div className="absolute inset-0 flex items-center justify-center">
                                             <div className="text-center">
                                                 <div className={`text-1xl font-bold ${getScoreColor()}`}>
-                                                    {scorePercentage.toFixed(2)}
+                                                    {scorePercentage.toFixed(0)}
                                                 </div>
                                                 <div className="text-xs text-gray-500">/ 100%</div>
                                             </div>

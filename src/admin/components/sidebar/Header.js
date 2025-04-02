@@ -6,7 +6,7 @@ import {useNavigate} from "react-router-dom";
 const Header = ({ handleDrawerToggle, open, setOpen }) => {
     const navigate = useNavigate()
     return (
-        <div className="flex w-[85%] justify-between items-center">
+        <div className={`flex justify-between items-center w-full`}>
             {/*<button*/}
             {/*    className="mr-2 h-[50px] w-[50px] flex items-center justify-center sm:hidden hover:bg-gray-200 rounded-full"*/}
             {/*    aria-label="open drawer"*/}
@@ -16,7 +16,7 @@ const Header = ({ handleDrawerToggle, open, setOpen }) => {
             {/*    <div className="text-black" />*/}
             {/*</button>*/}
             {/*{!open ? (*/}
-            <div>
+            <div className='flex items-center'>
                 <button
                     className="mr-2 h-[50px] w-[50px] flex items-center justify-center md:hidden xs:flex"
                     aria-label="open drawer"
@@ -34,7 +34,7 @@ const Header = ({ handleDrawerToggle, open, setOpen }) => {
                 </h6>
             </div>
             <button
-                className="flex items-center gap-2 text-gray-700 font-medium hover:text-red-500 transition"
+                className="flex items-center ms-auto gap-2 text-gray-700 font-medium hover:text-red-500 transition"
                 onClick={() => {
                     localStorage.clear()
                     navigate('/admin')

@@ -65,7 +65,7 @@ const Sidebar = ({ open, setOpen ,menuItems}) => {
                 </div>
                 {open && <div className="text-center my-4">
                     <img
-                        src="https://via.placeholder.com/40"
+                        src="https://static.vecteezy.com/system/resources/previews/036/594/092/non_2x/man-empty-avatar-photo-placeholder-for-social-networks-resumes-forums-and-dating-sites-male-and-female-no-photo-images-for-unfilled-user-profile-free-vector.jpg"
                         alt="logo"
                         className="w-32 h-32 rounded-full mx-auto"
                     />
@@ -91,7 +91,7 @@ const Sidebar = ({ open, setOpen ,menuItems}) => {
                 </div>
                 <div className="text-center my-4">
                     <img
-                        src="https://via.placeholder.com/40"
+                        src="https://static.vecteezy.com/system/resources/previews/036/594/092/non_2x/man-empty-avatar-photo-placeholder-for-social-networks-resumes-forums-and-dating-sites-male-and-female-no-photo-images-for-unfilled-user-profile-free-vector.jpg"
                         alt="logo"
                         className="w-32 h-32 rounded-full mx-auto"
                     />

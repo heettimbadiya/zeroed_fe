@@ -27,7 +27,7 @@ export default function MainLayout() {
     };
 
     return (
-        <div className="flex h-screen bg-gray-100">
+        <div className="flex h-screen overflow-auto bg-gray-100">
             {/* Sidebar */}
             <div
                 className={`fixed inset-y-0 left-0 bg-gray-800 text-white transition-all duration-300 ease-in-out ${open ? "w-64" : "md:w-16"}`}
@@ -36,13 +36,13 @@ export default function MainLayout() {
             </div>
 
             {/* Main Content */}
+                <header className="fixed w-full bg-white shadow-md flex items-center px-6 h-16 z-10">
+                    <Header handleDrawerToggle={handleDrawerToggle} open={open} setOpen={setOpen} />
+                </header>
             <div
                 className={`flex-1 transition-all duration-300 ease-in-out ${open ? "md:ml-72" : "md:ml-16"}`}
             >
                 {/* Header */}
-                <header className="fixed w-full bg-white shadow-md flex items-center px-6 h-16 z-10">
-                    <Header handleDrawerToggle={handleDrawerToggle} open={open} setOpen={setOpen} />
-                </header>
 
                 {/* Content Area */}
                 <main className="p-6 pt-20 overflow-auto">
