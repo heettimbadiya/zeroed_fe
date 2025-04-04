@@ -98,35 +98,35 @@ export const jobFormValidation = yup.object({
   //   .min(1900, 'Year must be after 1900')
   //   .max(new Date().getFullYear(), 'Year cannot be in the future'),
 
-  university: yup.string().when('isCanadianEducation', {
-    is: (isCanadianEducation) => isCanadianEducation,
-    then: (schema) => schema.required('University is required!'),
-  }),
-  city: yup.string().when('isCanadianEducation', {
-    is: (isCanadianEducation) => isCanadianEducation,
-    then: (schema) => schema.required('City is required!'),
-  }),
-  level_of_education_canadian: yup.string().when('isCanadianEducation', {
-    is: (isCanadianEducation) => isCanadianEducation,
-    then: (schema) =>
-      schema.required('Level of education canadian is required!'),
-  }),
-  field_of_study_canadian: yup.string().when('isCanadianEducation', {
-    is: (isCanadianEducation) => isCanadianEducation,
-    then: (schema) => schema.required('Field of study canadian is required!'),
-  }),
-  year_of_completion: yup.string().when('isCanadianEducation', {
-    is: (isCanadianEducation) => isCanadianEducation,
-    then: (schema) => schema.required('Year of completion is required'),
-  }),
-  gpa: yup.string().when('isCanadianEducation', {
-    is: (isCanadianEducation) => isCanadianEducation,
-    then: (schema) =>
-      schema
-        .required('GPA is required')
-        .min(1, 'GPA must be at least 1')
-        .max(10, 'GPA cannot be more than 10'),
-  }),
+  // university: yup.string().when('isCanadianEducation', {
+  //   is: (isCanadianEducation) => isCanadianEducation,
+  //   then: (schema) => schema.required('University is required!'),
+  // }),
+  // city: yup.string().when('isCanadianEducation', {
+  //   is: (isCanadianEducation) => isCanadianEducation,
+  //   then: (schema) => schema.required('City is required!'),
+  // }),
+  // level_of_education_canadian: yup.string().when('isCanadianEducation', {
+  //   is: (isCanadianEducation) => isCanadianEducation,
+  //   then: (schema) =>
+  //     schema.required('Level of education canadian is required!'),
+  // }),
+  // field_of_study_canadian: yup.string().when('isCanadianEducation', {
+  //   is: (isCanadianEducation) => isCanadianEducation,
+  //   then: (schema) => schema.required('Field of study canadian is required!'),
+  // }),
+  // year_of_completion: yup.string().when('isCanadianEducation', {
+  //   is: (isCanadianEducation) => isCanadianEducation,
+  //   then: (schema) => schema.required('Year of completion is required'),
+  // }),
+  // gpa: yup.string().when('isCanadianEducation', {
+  //   is: (isCanadianEducation) => isCanadianEducation,
+  //   then: (schema) =>
+  //     schema
+  //       .required('GPA is required')
+  //       .min(1, 'GPA must be at least 1')
+  //       .max(10, 'GPA cannot be more than 10'),
+  // }),
 
   core_skills: yup
     .array()

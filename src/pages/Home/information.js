@@ -81,7 +81,42 @@ function Information({data}) {
         field_of_study: '',
         level_of_education: '',
     }
-    const [internationalEducation, setInternationalEducation] = useState([initialInterNationalEducation] || [])
+    const initialInterNationalCEducation = {
+        university: '',
+        // credential_assesed: false,
+        city: '',
+        level_of_education_canadian: '',
+        field_of_study_canadian: '',
+        year_of_completion: '',
+        gpa: '',
+        // level_of_education: '',
+    }
+
+    const [internationalEducation, setInternationalEducation] = useState(() =>
+        data?.internationalEducation?.length
+            ? data.internationalEducation.map(edu => ({
+                ...initialInterNationalCEducation, // Default structure
+                ...edu, // Overwrite with actual data
+                internationalEducation: {
+                    ...initialInterNationalCEducation.internationalEducation, // Default structure
+                    ...edu.internationalEducation, // Overwrite with actual data
+                }
+            }))
+            : [initialInterNationalEducation] // Default if no data
+    );
+    const [internationalCEducation, setInternationalCEducation] = useState(() =>
+        data?.canadianEducation?.length
+            ? data.canadianEducation.map(edu => ({
+                ...initialInterNationalCEducation, // Default structure
+                ...edu, // Overwrite with actual data
+                canadianEducation: {
+                    ...initialInterNationalCEducation.canadianEducation, // Default structure
+                    ...edu.canadianEducation, // Overwrite with actual data
+                }
+            }))
+            : [initialInterNationalCEducation] // Default if no data
+    );
+
     const [stateOptions, setStateOptions] = useState([])
     const [projects, setProjects] = useState([initialProjects])
     const [cityOptions, setCityOptions] = useState([])
@@ -284,6 +319,62 @@ function Information({data}) {
             setInternationalEducation(updatedProject.filter((_, i) => i !== index))
         }
     }
+    const handleDeleteInternationalCEducation = (index) => {
+        if (!data) {
+            setInternationalCEducation((prev) => prev.filter((_, i) => i !== index))
+        } else {
+            const updatedProject = [...internationalCEducation]
+            const userId = updatedProject[index]?.user_id
+            if (userId) {
+                try {
+                    const response = axios.delete(API_ROUTES.DELETE_CANADIAN_EDUCATION + userId, {
+                        headers: {
+                            'Content-Type': 'multipart/form-data', Authorization: `${token}`,
+                        },
+                    },)
+                    if (response.data.status === 204) {
+                        console.log('International Education delete!')
+                    }
+                } catch (error) {
+                    console.log('Something went wrong', error)
+                }
+            }
+            setInternationalCEducation(updatedProject.filter((_, i) => i !== index))
+        }
+    }
+
+    useEffect(() => {
+        if (data?.canadianEducation?.length) {
+            setInternationalCEducation(
+                data.canadianEducation.map(edu => ({
+                    ...initialInterNationalCEducation,
+                    ...edu,
+                    canadianEducation: {
+                        ...initialInterNationalCEducation.canadianEducation,
+                        ...edu.canadianEducation,
+                    }
+                }))
+            );
+        } else {
+            setInternationalCEducation([initialInterNationalCEducation]);
+        }
+
+        if (data?.internationalEducation?.length) {
+            setInternationalEducation(
+                data.internationalEducation.map(edu => ({
+                    ...initialInterNationalEducation,
+                    ...edu,
+                    internationalEducation: {
+                        ...initialInterNationalEducation.internationalEducation,
+                        ...edu.internationalEducation,
+                    }
+                }))
+            );
+        } else {
+            setInternationalEducation([initialInterNationalEducation]);
+        }
+    }, [data]);
+
 
     useEffect(() => {
         if (data) {
@@ -402,6 +493,9 @@ function Information({data}) {
     const handleAddInternationalEducation = () => {
         setInternationalEducation([...internationalEducation, initialInterNationalEducation])
     }
+    const handleAddInternationalCEducation = () => {
+        setInternationalCEducation([...internationalCEducation, initialInterNationalCEducation])
+    }
     const handleAddProject = () => {
         setProjects([...projects, initialProjects])
     }
@@ -430,6 +524,7 @@ function Information({data}) {
     }
 
     const handleSubmit = async (values) => {
+        console.log('check')
         const formData = new FormData()
         // Append basic details
         formData.append('basicDetails[user_id]', user.id)
@@ -474,15 +569,22 @@ function Information({data}) {
             }
         })
 
-        // Append Canadian education
-        formData.append('canadianEducation[isCanadianEducation]', values.isCanadianEducation,)
-        formData.append('canadianEducation[university]', values.university)
-        formData.append('canadianEducation[city]', values.city)
-        formData.append('canadianEducation[level_of_education_canadian]', values.level_of_education_canadian,)
-        formData.append('canadianEducation[field_of_study_canadian]', values.field_of_study_canadian,)
-        formData.append('canadianEducation[year_of_completion]', values.year_of_completion,)
-        formData.append('canadianEducation[gpa]', values.gpa)
-        formData.append('coreSkillsWithSubSkills', JSON.stringify(values.coreSkills),)
+        internationalCEducation.map((item, index) => {
+            // Append Canadian education
+            formData.append(`canadianEducation[${index}][university]`, item.university)
+            formData.append(`canadianEducation[${index}][city]`, item.city)
+            formData.append(`canadianEducation[${index}][level_of_education_canadian]`, item.level_of_education_canadian,)
+            formData.append(`canadianEducation[${index}][field_of_study_canadian]`, item.field_of_study_canadian,)
+            formData.append(`canadianEducation[${index}][year_of_completion]`, item.year_of_completion,)
+            formData.append(`canadianEducation[${index}][gpa]`, item.gpa)
+            if (item?._id) {
+                console.log(item?._id,"djgsbyuvjgebsdioucahesficukyqhjwaiohdiweusdgc")
+                formData.append(`canadianEducation[${index}][_id]`, data ? item?._id : null,)
+            }
+        })
+
+
+            formData.append('coreSkillsWithSubSkills', JSON.stringify(values.coreSkills),)
 
         values.coreSkills.forEach((coreSkill, coreIndex) => {
             if (!coreSkill.coreSkill) return
@@ -585,6 +687,16 @@ function Information({data}) {
 
         setInternationalEducation(updatedExperiences)
     }
+    const handleChangeInternationalCEducation = (index, field, value) => {
+        console.log(index,"indexxxxx")
+        console.log(field,"fieldddddd")
+        console.log(value,"valueeeeee")
+        const updatedExperiences = [...internationalCEducation]
+        updatedExperiences[index][field] = value
+
+        setInternationalCEducation(updatedExperiences)
+
+    }
 
     const resetWorkExperiences = () => {
         setWorkExperiences([initialWorkExperience])
@@ -657,7 +769,7 @@ function Information({data}) {
             credential_no: data?.internationalEducation?.credential_no || '',
             credential_institute_name: data?.internationalEducation?.credential_institute_name || '',
             credential_assesed: data?.internationalEducation?.credential_assesed || false,
-            isCanadianEducation: data?.canadianEducation?.isCanadianEducation || false,
+            isCanadianEducation: data?.canadianEducation?.length > 0 ? true : false,
             university: data?.canadianEducation?.university || '',
             city: data?.canadianEducation?.city || '',
             level_of_education_canadian: data?.canadianEducation?.level_of_education_canadian || '',
@@ -924,20 +1036,20 @@ function Information({data}) {
                               />}>
                         {internationalEducation?.length > 0 && internationalEducation?.map((intEducation, index) => (
                             <div key={index}>
-                            <div
-                                className="flex flex-wrap justify-between items-center gap-x-3 bg-primary-100 p-3 w-full">
-                                <div className="flex items-center gap-x-2">
-                                    <div className="text-lg font-semibold capitalize text-primary text-nowrap">
-                                        {index + 1}.{' '}
-                                        {intEducation.college_name || 'New Education'}
+                                <div
+                                    className="flex flex-wrap justify-between items-center gap-x-3 bg-primary-100 p-3 w-full">
+                                    <div className="flex items-center gap-x-2">
+                                        <div className="text-lg font-semibold capitalize text-primary text-nowrap">
+                                            {index + 1}.{' '}
+                                            {intEducation.college_name || 'New Education'}
+                                        </div>
+                                        {internationalEducation.length > 1 && (<div
+                                            onClick={() => handleDeleteInternationalEducation(index)}
+                                            className="cursor-pointer font-black"
+                                        >
+                                            <DeleteIcon/>
+                                        </div>)}
                                     </div>
-                                    {internationalEducation.length > 1 && (<div
-                                        onClick={() => handleDeleteInternationalEducation(index)}
-                                        className="cursor-pointer font-black"
-                                    >
-                                        <DeleteIcon/>
-                                    </div>)}
-                                </div>
 
                                 </div>
 
@@ -1057,63 +1169,101 @@ function Information({data}) {
                         title="Canadian Education"
                         icon={<CanadianEducation/>}
                         renderRight={true}
+
                         renderRightContent={<ToggleButton
-                            label=""
-                            name="isCanadianEducation"
-                            onChange={(e) => setFieldValue('isCanadianEducation', e.target.checked)}
-                        />}
-                    >
-                        <div className="grid xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2 gap-x-5 py-6 px-4">
-                            <DropDownInput
-                                label="College/University"
-                                name="university"
-                                disabled={!values.isCanadianEducation}
-                                options={universityData?.map((data) => ({
-                                    name: data.name, value: data.name,
-                                }))}
-                                value={data?.canadianEducation?.university || ''}
-                                onChange={(e) => setFieldValue('university', e.target.value)}
-                            />
-                            <DropDownInput
-                                label="City"
-                                name="city"
-                                options={currentCity}
-                                disabled={!values.isCanadianEducation}
-                                value={data?.canadianEducation?.city || ''}
-                                onChange={(e) => setFieldValue('city', e.target.value)}
-                            />
-                            <DropDownInput
-                                label="Level of Education"
-                                name="level_of_education_canadian"
-                                options={levelOfEducation}
-                                disabled={!values.isCanadianEducation}
-                                value={data?.canadianEducation?.level_of_education_canadian || ''}
-                                onChange={(e) => setFieldValue('level_of_education_canadian', e.target.value)}
-                            />
-                            <DropDownInput
-                                label="Field of Study"
-                                name="field_of_study_canadian"
-                                disabled={!values.isCanadianEducation}
-                                options={fieldOfStudyCanadian}
-                                value={data?.canadianEducation?.field_of_study_canadian || ''}
-                                onChange={(e) => setFieldValue('field_of_study_canadian', e.target.value)}
-                            />
-                            <DropDownInput
-                                label="Year of completion"
-                                name="year_of_completion"
-                                disabled={!values.isCanadianEducation}
-                                options={years}
-                                value={data?.canadianEducation?.year_of_completion || ''}
-                                onChange={(e) => setFieldValue('year_of_completion', e.target.value)}
-                            />
-                            <TextField
-                                type="text"
-                                label="GPA"
-                                name="gpa"
-                                placeholder="10"
-                                disabled={!values.isCanadianEducation}
-                                onChange={(e) => setFieldValue('gpa', e.target.value)}
-                            />
+                        label=""
+                        name="isCanadianEducation"
+                        onChange={(e) => setFieldValue('isCanadianEducation', e.target.checked)}
+                    />}>
+                        {internationalCEducation?.length > 0 && internationalCEducation?.map((intEducation, index) => (
+                            <div key={index}>
+                                <div
+                                    className="flex flex-wrap justify-between items-center gap-x-3 bg-primary-100 p-3 w-full">
+                                    <div className="flex items-center gap-x-2">
+                                        <div className="text-lg font-semibold capitalize text-primary text-nowrap">
+                                            {index + 1}.{' '}
+                                            {intEducation.college_name || 'New Education'}
+                                        </div>
+                                        {internationalCEducation.length > 1 && (<div
+                                            onClick={() => handleDeleteInternationalCEducation(index)}
+                                            className="cursor-pointer font-black"
+                                        >
+                                            <DeleteIcon/>
+                                        </div>)}
+                                    </div>
+
+                                </div>
+                                <div className="grid xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2 gap-x-5 py-6 px-4">
+                                    <DropDownInput
+                                        label="College/University"
+                                        name={`university_${index}`}
+                                        disabled={!values.isCanadianEducation}
+                                        options={universityData?.map((data) => ({
+                                            name: data.name, value: data.name,
+                                        }))}
+                                        value={intEducation?.university || ''}
+                                        onChange={(e) => {
+                                            handleChangeInternationalCEducation(index, 'university', e.target.value)
+                                        }}
+                                    />
+                                    <DropDownInput
+                                        label="City"
+                                        name={`city_${index}`}
+                                        options={currentCity}
+                                        disabled={!values.isCanadianEducation}
+                                        value={intEducation?.city || ''}
+                                        onChange={(e) => {
+                                            handleChangeInternationalCEducation(index, 'city', e.target.value)
+                                        }}
+                                    />
+                                    <DropDownInput
+                                        label="Level of Education"
+                                        name={`level_of_education_canadian_${index}`}
+                                        options={levelOfEducation}
+                                        disabled={!values.isCanadianEducation}
+                                        value={intEducation?.level_of_education_canadian || ''}
+                                        onChange={(e) => {
+                                            handleChangeInternationalCEducation(index, 'level_of_education_canadian', e.target.value)
+                                        }}                                    />
+                                    <DropDownInput
+                                        label="Field of Study"
+                                        name={`field_of_study_canadian_${index}`}
+                                        disabled={!values.isCanadianEducation}
+                                        options={fieldOfStudyCanadian}
+                                        value={intEducation?.field_of_study_canadian || ''}
+                                        onChange={(e) => {
+                                            handleChangeInternationalCEducation(index, 'field_of_study_canadian', e.target.value)
+                                        }}                                    />
+                                    <DropDownInput
+                                        label="Year of completion"
+                                        name={`year_of_completion_${index}`}
+                                        disabled={!values.isCanadianEducation}
+                                        options={years}
+                                        value={intEducation?.year_of_completion || ''}
+                                        onChange={(e) => {
+                                            handleChangeInternationalCEducation(index, 'year_of_completion', e.target.value)
+                                        }}                                    />
+                                    <TextField
+                                        type="text"
+                                        label="GPA"
+                                        name={`gpa_${index}`}
+                                        placeholder="10"
+                                        disabled={!values.isCanadianEducation}
+                                        value={intEducation?.gpa || ''}
+                                        onChange={(e) => {
+                                            handleChangeInternationalCEducation(index, 'gpa', e.target.value)
+                                        }}                                    />
+                                </div>
+
+                            </div>))}
+                        <div className={'pb-3'}>
+                            <div
+                                disabled={!values.isInternationalEducation}
+                                className="ml-4 bg-primary px-4 py-2 text-white rounded w-[160px] cursor-pointer text-nowrap"
+                                onClick={handleAddInternationalCEducation}
+                            >
+                                + Add Education
+                            </div>
                         </div>
                     </FormInfo>
 
@@ -1963,13 +2113,14 @@ function Information({data}) {
                         </button>
                         <button
                             // disabled={disabledButton || isSubmitting || imgError === '' ? false : true}
-                            disabled={disabledButton || isSubmitting || isAnyDescriptionTooLong || isGreaterThan17}
+                            // disabled={disabledButton || isSubmitting || isAnyDescriptionTooLong || isGreaterThan17}
                             type="submit"
                             className={`flex gap-x-2 justify-end items-center rounded w-auto py-2 px-10 mt-10 bg-primary`}
                         >
                 <span className="text-white text-base font-bold">
                   {isSubmitting ? <Loader/> : data ? 'Update' : 'Submit'}
                 </span>
+
                         </button>
                     </div>
                 </Form>)
