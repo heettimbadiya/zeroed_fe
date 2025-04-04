@@ -1906,6 +1906,35 @@ function Information({data}) {
                     <FormInfo title="Career Goals" icon={<CareerGoal/>}>
                         <div className="grid lg:grid-cols-3 sm:grid-cols-2 gap-x-5 py-6 px-4">
 
+                            <DropDownInput
+                                label="NOC Number"
+                                name="noc_number"
+                                value={data?.careerGoal?.noc_number || ''}
+                                options={nocNumber}
+                                onChange={(e) => setFieldValue('noc_number', e.target.value)}
+                            />
+
+                            <DropDownInput
+                                label="Industry"
+                                name="career_industry"
+                                options={industriesData.map((industry) => ({
+                                    value: industry.name,
+                                    name: industry.name,
+                                }))}
+                                value={data?.careerGoal?.career_industry || ''}
+                                onChange={(e) =>
+                                    setFieldValue('career_industry', e.target.value)
+                                }
+                            />
+                            <DropDownInput
+                                label="Fields"
+                                name="career_field"
+                                options={industriesData.find((industry) => industry.name === values.career_industry)?.subsector || []}
+                                value={data?.careerGoal?.career_industry || ''}
+                                onChange={(e) =>
+                                    setFieldValue('career_field', e.target.value)
+                                }
+                            />
                             <TextField
                                 type="text"
                                 label="Role"
@@ -1915,35 +1944,8 @@ function Information({data}) {
                                     setFieldValue('career_role', e.target.value)
                                 }
                             />
-                            {/*<DropDownInput*/}
-                            {/*    label="Industry"*/}
-                            {/*    name="career_industry"*/}
-                            {/*    options={industriesData.map((industry) => ({*/}
-                            {/*        value: industry.name,*/}
-                            {/*        name: industry.name,*/}
-                            {/*    }))}*/}
-                            {/*    value={data?.careerGoal?.career_industry || ''}*/}
-                            {/*    onChange={(e) =>*/}
-                            {/*        setFieldValue('career_industry', e.target.value)*/}
-                            {/*    }*/}
-                            {/*/>*/}
-                            {/*<DropDownInput*/}
-                            {/*    label="Fields"*/}
-                            {/*    name="career_field"*/}
-                            {/*    options={industriesData.find((industry) => industry.name === values.career_industry)?.subsector || []}*/}
-                            {/*    value={data?.careerGoal?.career_industry || ''}*/}
-                            {/*    onChange={(e) =>*/}
-                            {/*        setFieldValue('career_field', e.target.value)*/}
-                            {/*    }*/}
-                            {/*/>*/}
 
-                            {/*<DropDownInput*/}
-                            {/*    label="NOC Number"*/}
-                            {/*    name="noc_number"*/}
-                            {/*    value={data?.careerGoal?.noc_number || ''}*/}
-                            {/*    options={nocNumber}*/}
-                            {/*    onChange={(e) => setFieldValue('noc_number', e.target.value)}*/}
-                            {/*/>*/}
+
                         </div>
                     </FormInfo>
 

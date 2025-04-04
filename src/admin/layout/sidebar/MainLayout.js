@@ -6,6 +6,7 @@ import Dashboard from "../../pages/Dashboard/Dashboard";
 import User from "../../pages/User/User";
 import {FaEnvelope, FaInbox, FaRegUser, FaTrash} from "react-icons/fa";
 import {TbDashboardFilled} from "react-icons/tb";
+import Messaging from "../../pages/messaging/messaging";
 const menuItems = [
     { text: "Dashboard", icon: <TbDashboardFilled /> ,path:'/dashboard'},
     { text: "User", icon: <FaRegUser /> ,path:'/dashboard/user'},

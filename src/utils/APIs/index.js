@@ -18,6 +18,7 @@ export const API_ROUTES = {
   DELETE_INTERNATIONAL_EDUCATION: `${URL}/international-education/delete/`,
   UPDATE_SECONDARY_VIDEO: `${URL}/user/update-secondary-video/`,
   ALL_CHAT : `${URL}/all-chats`,
-  CHAT_MESSAGES : `${URL}/messages`
+  CHAT_MESSAGES : `${URL}/messages`,
+
 
 }

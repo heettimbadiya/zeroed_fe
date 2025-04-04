@@ -16,6 +16,7 @@ const ROUTES_URL = {
   // --------------------------- ADMIN ROUTES ---------------------------------------------------
   ADMIN: `/admin`,
   DASHBOARD: `/dashboard`,
+  CHAT: `/chat`,
 };
 
 export default ROUTES_URL;

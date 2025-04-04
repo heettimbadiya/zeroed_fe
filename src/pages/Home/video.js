@@ -95,14 +95,16 @@ const VideoUploader = ({defaultVideo, onVideoUpload, defaultSecondaryVideo, onSe
                 >
                     {recordedVideo ? "Edit Primary Video" : "Add Primary Video"}
                 </div>
-                {data && (
+                {!recordedVideo && (
                     <div
                         onClick={(e) => handleSelectVideo(e, 'secondary_video')}
                         className="border-2 border-primary text-primary hover:bg-primary hover:text-white transition-all duration-200 rounded-lg py-3 w-1/2 text-center cursor-pointer"
                     >
-                    {recordedVideo ? "Edit Secondary Video" : "Add Secondary Video"}
+                        Add Secondary Video
                     </div>
                 )}
+
+
 
             </div>
 
