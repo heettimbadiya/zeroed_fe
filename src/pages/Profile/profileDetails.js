@@ -508,7 +508,7 @@ function ProfileDetails({data}) {
                                                         <div>
                                                             <div>{project.project_title}</div>
                                                             <div>{project.project_description}</div>
-                                                            <LinkPreview url={project.project_url} />
+                                                            <LinkPreview url={project.project_url}/>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -520,7 +520,7 @@ function ProfileDetails({data}) {
                                     <div>
                                         <ProfileInfo title="Global Education" open={true} edit={true}>
                                             <div>
-                                                {data?.internationalEducation.map((item,i) => (
+                                                {data?.internationalEducation.map((item, i) => (
                                                     <div key={i} className="w-full flex gap-x-1">
                                                         <div className="flex flex-col justify-center items-center">
                                                             <div className="rounded-full w-4 h-4 bg-black"></div>
@@ -534,9 +534,9 @@ function ProfileDetails({data}) {
                                                             <div className="xl:text-base text-xs capitalize mt-[2px]">
                                                                 {item?.year_of_graduation}
                                                             </div>
-                                                        <div className="xl:text-base text-xs capitalize">
-                                                            {item?.field_of_study}
-                                                        </div>
+                                                            <div className="xl:text-base text-xs capitalize">
+                                                                {item?.field_of_study}
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 ))}
@@ -544,42 +544,80 @@ function ProfileDetails({data}) {
 
                                         </ProfileInfo>
                                     </div>
-                                    {data?.canadianEducation?.isCanadianEducation && (
-                                        <div>
-                                            {/* Canadian Education */}
-                                            <ProfileInfo title="Canadian Education" open={true} edit={true}>
-                                                <div className="flex flex-wrap justify-between items-center gap-x-4">
-                                                    <div className="xl:text-base text-xs capitalize">
-                                                        {data?.canadianEducation?.field_of_study_canadian}
+                                    {/*{data?.canadianEducation?.isCanadianEducation && (*/}
+                                    <div>
+                                        {/* Canadian Education */}
+                                        <ProfileInfo title="Canadian Education" open={true} edit={true}>
+                                            {data?.canadianEducation.map((item, i) => (
+                                                <div key={i} className="w-full flex gap-x-1">
+                                                    {/* Timeline dots & line */}
+                                                    <div className="flex flex-col justify-center items-center">
+                                                        <div className="rounded-full w-4 h-4 bg-black"></div>
+                                                        <div className="h-full w-[2px] bg-[#D7D9DE]"></div>
                                                     </div>
 
-                                                    <div className="xl:text-base text-xs capitalize">
-                                                        {
-                                                            data?.canadianEducation
-                                                                ?.level_of_education_canadian
-                                                        }
+                                                    {/* Education content */}
+                                                    <div className="pb-4 pt-2 w-full mt-2">
+                                                        <div className="xl:text-base text-xs capitalize">
+                                                            {item?.field_of_study_canadian}
+                                                        </div>
+
+                                                        <div className="xl:text-base text-xs capitalize">
+                                                            {item?.level_of_education_canadian}
+                                                        </div>
+
+                                                        <div className="xl:text-base text-xs capitalize">
+                                                            {item?.university}
+                                                        </div>
+
+                                                        <div className="xl:text-base text-xs capitalize">
+                                                            {item?.city}
+                                                        </div>
+
+                                                        <div className="xl:text-base text-xs capitalize">
+                                                            {item?.year_of_completion}
+                                                        </div>
+
+                                                        <div className="flex gap-x-2 xl:text-base text-xs capitalize">
+                                                            <span>GPA</span>
+                                                            <span>{item?.gpa}</span>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                                <div className="flex flex-wrap justify-between items-center gap-x-4">
-                                                    <div className="xl:text-base text-xs capitalize">
-                                                        {data?.canadianEducation?.university}
-                                                    </div>
-                                                    <div className="xl:text-base text-xs capitalize">
-                                                        {data?.canadianEducation?.city}
-                                                    </div>
-                                                </div>
-                                                <div className="flex flex-wrap justify-between items-center gap-x-4">
-                                                    <div className="xl:text-base text-xs capitalize">
-                                                        {data?.canadianEducation?.year_of_completion}
-                                                    </div>
-                                                    <div className="flex gap-x-3 xl:text-base text-xs capitalize">
-                                                        <span className="">GPA</span>
-                                                        <span>{data?.canadianEducation?.gpa}</span>
-                                                    </div>
-                                                </div>
-                                            </ProfileInfo>
-                                        </div>
-                                    )}
+                                            ))}
+                                        </ProfileInfo>
+                                    </div>
+                                    {/*// )}*/}
+                                    {/*<div className="flex flex-wrap justify-between items-center gap-x-4">*/}
+                                    {/*    <div className="xl:text-base text-xs capitalize">*/}
+                                    {/*        {data?.canadianEducation?.field_of_study_canadian}*/}
+                                    {/*    </div>*/}
+
+                                    {/*    <div className="xl:text-base text-xs capitalize">*/}
+                                    {/*        {*/}
+                                    {/*            data?.canadianEducation*/}
+                                    {/*                ?.level_of_education_canadian*/}
+                                    {/*        }*/}
+                                    {/*    </div>*/}
+                                    {/*</div>*/}
+                                    {/*<div className="flex flex-wrap justify-between items-center gap-x-4">*/}
+                                    {/*    <div className="xl:text-base text-xs capitalize">*/}
+                                    {/*        {data?.canadianEducation?.university}*/}
+                                    {/*    </div>*/}
+                                    {/*    <div className="xl:text-base text-xs capitalize">*/}
+                                    {/*        {data?.canadianEducation?.city}*/}
+                                    {/*    </div>*/}
+                                    {/*</div>*/}
+                                    {/*<div className="flex flex-wrap justify-between items-center gap-x-4">*/}
+                                    {/*    <div className="xl:text-base text-xs capitalize">*/}
+                                    {/*        {data?.canadianEducation?.year_of_completion}*/}
+                                    {/*    </div>*/}
+                                    {/*    <div className="flex gap-x-3 xl:text-base text-xs capitalize">*/}
+                                    {/*        <span className="">GPA</span>*/}
+                                    {/*        <span>{data?.canadianEducation?.gpa}</span>*/}
+                                    {/*    </div>*/}
+                                    {/*</div>*/}
+
 
                                     {/* Career Goals */}
                                     {/* <ProfileInfo title="Career Goals" open={true}>
@@ -653,13 +691,13 @@ function ProfileDetails({data}) {
                                             <div className="flex justify-between items-center">
                                                 <div className="text-2xl font-bold my-5">Primary Video</div>
                                                 {params.id === user.id && (
-                                                <>
-                                                    <div
-                                                        className="ml-4 bg-primary px-4 py-2 text-white rounded cursor-pointer text-nowrap mt-3"
-                                                        onClick={() => navigate('/home')}>
-                                                        {data?.basicDetails?.secondary_video ? 'Change Secondary Video' : '+ Add Secondary Video' }
-                                                    </div>
-                                                </>
+                                                    <>
+                                                        <div
+                                                            className="ml-4 bg-primary px-4 py-2 text-white rounded cursor-pointer text-nowrap mt-3"
+                                                            onClick={() => navigate('/home')}>
+                                                            {data?.basicDetails?.secondary_video ? 'Change Secondary Video' : '+ Add Secondary Video'}
+                                                        </div>
+                                                    </>
                                                 )}
                                             </div>
                                             <video
