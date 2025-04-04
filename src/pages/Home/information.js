@@ -524,7 +524,6 @@ function Information({data}) {
     }
 
     const handleSubmit = async (values) => {
-        console.log('check')
         const formData = new FormData()
         // Append basic details
         formData.append('basicDetails[user_id]', user.id)
@@ -578,7 +577,6 @@ function Information({data}) {
             formData.append(`canadianEducation[${index}][year_of_completion]`, item.year_of_completion,)
             formData.append(`canadianEducation[${index}][gpa]`, item.gpa)
             if (item?._id) {
-                console.log(item?._id,"djgsbyuvjgebsdioucahesficukyqhjwaiohdiweusdgc")
                 formData.append(`canadianEducation[${index}][_id]`, data ? item?._id : null,)
             }
         })
@@ -688,9 +686,6 @@ function Information({data}) {
         setInternationalEducation(updatedExperiences)
     }
     const handleChangeInternationalCEducation = (index, field, value) => {
-        console.log(index,"indexxxxx")
-        console.log(field,"fieldddddd")
-        console.log(value,"valueeeeee")
         const updatedExperiences = [...internationalCEducation]
         updatedExperiences[index][field] = value
 
