@@ -6,95 +6,12 @@ import moment from "moment";
 
 function Messaging() {
     const token = localStorage.getItem('token')
+    const user = JSON.parse(localStorage.getItem('user'));
     const [selectedChat, setSelectedChat] = useState(null);
     const [newMessage, setNewMessage] = useState('');
     const [newMessageData, setNewMessageData] = useState([]);
     const [messenger, setMessenger] = useState(
-        // [
-        //     {
-        //         id: 0,
-        //         name: "Zeroed",
-        //         message: "Hello everyone...",
-        //         time: "Mar 18",
-        //         // image: 'https://static.vecteezy.com/system/resources/previews/041/642/170/non_2x/ai-generated-portrait-of-handsome-smiling-young-man-with-folded-arms-isolated-free-png.png',
-        //         image: logo,
-        //         sponsored: true,
-        //         messages: [
-        //             {
-        //                 id: 1,
-        //                 sender: 'Zeroed',
-        //                 content: 'Hello everyone',
-        //                 time: 'Mar 18',
-        //                 isUser: false
-        //             }
-        //         ]
-        //     },
-        //     {
-        //         id: 1,
-        //         name: "Kunj Kapadiya",
-        //         message: "Please Replay",
-        //         time: "4:40 PM",
-        //         image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTPGdrwSMxlAx_TZ9fEua6Rdykf0kfANNx8mA&s',
-        //         unread: true,
-        //         active: true,
-        //         messages: [
-        //             {
-        //                 id: 1,
-        //                 sender: 'Kunj Kapadiya',
-        //                 content: 'Hello sir,',
-        //                 time: '4:30 PM',
-        //                 isUser: false,
-        //             },
-        //             {
-        //                 id: 2,
-        //                 sender: 'You',
-        //                 content: 'How Are You',
-        //                 time: '4:31 PM',
-        //                 isUser: true
-        //             },
-        //             {
-        //                 id: 3,
-        //                 sender: 'Kunj Kapadiya',
-        //                 content: 'Sure',
-        //                 time: '4:31 PM',
-        //                 isUser: false
-        //             },
-        //         ]
-        //     },
-        //     {
-        //         id: 2,
-        //         name: "Pratik Kapasi",
-        //         message: "Sponsored Your unique experience...",
-        //         time: "Mar 18",
-        //         image: 'https://png.pngtree.com/png-vector/20240528/ourmid/pngtree-front-view-of-a-smiling-business-woman-png-image_12509704.png',
-        //         sponsored: true,
-        //         messages: [
-        //             {
-        //                 id: 1,
-        //                 sender: 'Pratik Kapasi',
-        //                 content: 'Your unique experience...',
-        //                 time: 'Mar 18',
-        //                 isUser: false
-        //             }
-        //         ]
-        //     },
-        //     {
-        //         id: 3,
-        //         name: "Gagandeep Singh",
-        //         message: "Gagandeep: Okay",
-        //         image: 'https://thumbs.dreamstime.com/b/beautiful-smiling-businesswoman-arms-folded-standing-black-suit-brown-jacket-isolated-white-background-also-105189427.jpg',
-        //         time: "Mar 10",
-        //         messages: [
-        //             {
-        //                 id: 1,
-        //                 sender: 'Gagandeep Singh',
-        //                 content: 'Okay',
-        //                 time: 'Mar 10',
-        //                 isUser: false
-        //             }
-        //         ]
-        //     },
-        // ]
+
         []
     );
 
@@ -103,9 +20,11 @@ function Messaging() {
             headers: {Authorization: token},
         })
         setMessenger(res.data)
-        setSelectedChat(res.data[0])
+        console.log(res?.data[0],"eeeeeeeeeeeeeeeeeeeeeeee")
+        setSelectedChat(res?.data[0])
     }
     const handelChangeMessage = async (id) => {
+        console.log(id,"iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii")
         setSelectedChat(id)
         const res = await axios.get(`${API_ROUTES.CHAT_MESSAGES}/${id._id}`, {
             headers: {Authorization: token},
@@ -115,46 +34,42 @@ function Messaging() {
     useEffect(() => {
         getAllChat()
     }, []);
+
     useEffect(() => {
-        if(messenger.length > 0){
+        if (messenger.length > 0) {
             handelChangeMessage(selectedChat)
         }
     }, [messenger]);
 
-    // const handleSendMessage = () => {
-    //     if (newMessage.trim()) {
-    //         const newMsg = {
-    //             id: messenger[selectedChat._id].messages.length + 1,
-    //             sender: 'You',
-    //             content: newMessage,
-    //             time: new Date().toLocaleTimeString([], {hour: '2-digit', minute: '2-digit'}),
-    //             isUser: true
-    //         };
-    //
-    //         const updatedMessenger = messenger.map(chat => {
-    //             if (chat.id) {
-    //                 return {
-    //                     ...chat,
-    //                     messages: [...chat.messages, newMsg],
-    //                     message: newMessage, // Update preview message
-    //                     time: new Date().toLocaleTimeString() // Update preview time
-    //                 };
-    //             }
-    //             return chat;
-    //         });
-    //
-    //         setMessenger(updatedMessenger);
-    //         setNewMessage('');
-    //     }
-    // };
-
+    const handleSendMessage = async () => {
+        if (newMessage.trim()) {
+            const payload =
+                {
+                    chatId: selectedChat._id,
+                    receiver: selectedChat.participants[0]._id,
+                    text: newMessage,
+                }
+            const res = await axios.post(`${API_ROUTES.SEND_MESSAGES}`, payload, {
+                headers: {Authorization: token},
+            });
+            // handelChangeMessage({_id: res.data.chatId})
+            if (res.data) {
+                const res = await axios.get(`${API_ROUTES.CHAT_MESSAGES}/${selectedChat._id}`, {
+                    headers: {Authorization: token},
+                })
+                setNewMessageData(res.data)
+                setNewMessage('')
+            }
+            setNewMessage('');
+        }
+    };
 
     return (
-        <div className="flex h-[90VH] bg-gray-100 justify-center items-center">
+        <div className="flex min-h-[90VH] h-[100%] bg-gray-100 justify-center items-center">
             <div className="container">
-                <div className="flex lg:flex-row flex-col justify-center gap-x-6">
-                    {/* Left Sidebar */}
-                    <div className="w-full h-[80VH] overflow-auto lg:w-[30%] bg-white border-r">
+                <div className="flex flex-row justify-center gap-x-6">
+            {/*        /!* Left Sidebar *!/*/}
+                    <div className={`w-full h-[80vh] overflow-auto lg:w-[30%] bg-white border-r ${selectedChat ? 'hidden lg:block' : ''}`}>
                         <div className="p-4 border-b">
                             <h1 className="text-xl font-semibold">Chats</h1>
                         </div>
@@ -199,61 +114,58 @@ function Messaging() {
                     </div>
 
                     {/* Right Chat Area */}
-                    <div className="flex-1 flex h-[80VH] overflow-auto flex-col hidden lg:flex">
-                        {selectedChat?._id !== null ? (
+                    <div className={`flex-1 flex h-[80vh] overflow-auto flex-col ${selectedChat ? 'block' : 'hidden'}`}>
+                        {selectedChat ? (
                             <>
+                                {/* Header with Back Button for Small Screens */}
                                 <div className="p-4 border-b bg-white flex items-center">
+                                    <button
+                                        onClick={() => setSelectedChat(null)}
+                                        className="lg:hidden p-2 text-gray-600 hover:bg-gray-200 rounded-md"
+                                    >
+                                        ← Back
+                                    </button>
                                     <img
                                         src={selectedChat?.participants[0]?.basicDetails?.profile_pic}
                                         alt="avatar"
-                                        className="w-10 h-10 rounded-full mr-3"
+                                        className="w-10 h-10 rounded-full ml-3"
                                     />
-                                    <div>
-                                        <h2 className="text-lg font-semibold">
-                                            {`${selectedChat?.participants[0]?.basicDetails?.firstname} ${selectedChat?.participants[0]?.basicDetails?.lastname}`}
-                                        </h2>
-                                        {/*<span className="text-green-500 text-sm">*/}
-                                        {/*    {messenger[selectedChat].active ? '● Active now' : 'Offline'}*/}
-                                        {/*</span>*/}
-                                    </div>
+                                    <h2 className="text-lg font-semibold ml-2">
+                                        {`${selectedChat?.participants[0]?.basicDetails?.firstname} ${selectedChat?.participants[0]?.basicDetails?.lastname}`}
+                                    </h2>
                                 </div>
 
                                 <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-gray-50">
-                                    {(newMessageData.length > 0) && newMessageData.map((msg) => (
-                                        <div
-                                            key={msg._id}
-                                            className={`flex ${selectedChat?.participants[0]?.basicDetails?._id === msg?.sender?._id ? 'justify-end' : 'justify-start'}`}
-                                        >
+                                    {newMessageData.length > 0 &&
+                                        newMessageData.map((msg) => (
                                             <div
-                                                className={`max-w-[70%] rounded-lg p-3 ${
-                                                    selectedChat?.participants[0]?.basicDetails?._id === msg?.sender?._id ? 'bg-blue-500 bg-white' : 'bg-white'
+                                                key={msg._id}
+                                                className={`flex ${
+                                                    user?.id === msg?.sender?._id
+                                                        ? 'justify-end'
+                                                        : 'justify-start'
                                                 }`}
                                             >
-                                                <div className="flex items-center gap-2 mb-1">
-                                                    <span className="text-sm font-medium">
-                                                        {msg?.text}
-                                                    </span>
+                                                <div className="max-w-[70%] rounded-lg p-3 bg-white">
+                                                    <p className="text-sm">{msg?.text}</p>
+                                                    <p className="text-xs mt-1 opacity-70">{moment(msg.createdAt).format("hh:mm A")}</p>
                                                 </div>
-                                                {/*<p className="text-sm">{msg.content}</p>*/}
-                                                <p className="text-xs mt-1 opacity-70">{moment(msg.createdAt).format("hh:mm A")}
-                                                </p>
                                             </div>
-                                        </div>
-                                    ))}
+                                        ))}
                                 </div>
 
+                                {/* Message Input */}
                                 <div className="p-4 border-t bg-white">
                                     <div className="flex items-center space-x-2">
                                         <input
                                             type="text"
                                             value={newMessage}
                                             onChange={(e) => setNewMessage(e.target.value)}
-                                            // onKeyPress={(e) => e.key === 'Enter' && handleSendMessage()}
                                             placeholder="Write a message..."
                                             className="flex-1 p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                                         />
                                         <button
-                                            // onClick={handleSendMessage}
+                                            onClick={handleSendMessage}
                                             className="bg-[#00C5FF] text-white px-4 py-2 rounded-lg hover:bg-blue-600"
                                         >
                                             Send

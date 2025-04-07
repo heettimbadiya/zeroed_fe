@@ -20,6 +20,8 @@ export const API_ROUTES = {
   UPDATE_SECONDARY_VIDEO: `${URL}/user/update-secondary-video/`,
   ALL_CHAT : `${URL}/all-chats`,
   CHAT_MESSAGES : `${URL}/messages`,
+  SEND_MESSAGES : `${URL}/send`,
+
 
 
 }
