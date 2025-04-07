@@ -95,7 +95,8 @@ const VideoUploader = ({defaultVideo, onVideoUpload, defaultSecondaryVideo, onSe
                 >
                     {recordedVideo ? "Edit Primary Video" : "Add Primary Video"}
                 </div>
-                {!recordedVideo && (
+
+                {data && !secondaryVideo && (
                     <div
                         onClick={(e) => handleSelectVideo(e, 'secondary_video')}
                         className="border-2 border-primary text-primary hover:bg-primary hover:text-white transition-all duration-200 rounded-lg py-3 w-1/2 text-center cursor-pointer"
@@ -103,8 +104,6 @@ const VideoUploader = ({defaultVideo, onVideoUpload, defaultSecondaryVideo, onSe
                         Add Secondary Video
                     </div>
                 )}
-
-
 
             </div>
 
@@ -213,15 +212,15 @@ const VideoUploader = ({defaultVideo, onVideoUpload, defaultSecondaryVideo, onSe
                 {videoError && <div className="text-xs text-red-500 mt-1">{videoError}</div>}
             </Dialog>
 
-            {/* Secondary Video Dialog */}
-            <Dialog isOpen={isSecondaryOpen} onClose={closeSecondaryDialog} title="Upload Secondary Video">
-                <div className="bg-primary px-4 py-2 text-white rounded cursor-pointer"
-                     onClick={(e) => handleSelectVideo(e, 'secondary_video')}>
-                    Select Secondary Video
-                </div>
-            </Dialog>
+             {/*Secondary Video Dialog*/}
+            {/*<Dialog isOpen={isSecondaryOpen} onClose={closeSecondaryDialog} title="Upload Secondary Video">*/}
+            {/*    <div className="bg-primary px-4 py-2 text-white rounded cursor-pointer"*/}
+            {/*         onClick={(e) => handleSelectVideo(e, 'secondary_video')}>*/}
+            {/*        Select Secondary Video*/}
+            {/*    </div>*/}
+            {/*</Dialog>*/}
 
-            {/* Video Previews */}
+             {/*Video Previews*/}
             <div className="mt-4 flex gap-4">
                 {recordedVideo && (
                     <div className="w-1/2">

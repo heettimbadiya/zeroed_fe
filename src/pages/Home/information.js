@@ -31,6 +31,7 @@ import Label from '../../component/InputField/label'
 import CertificatePreview from './certificatePreivew'
 import VideoSampleModal from "./videoSampleModal";
 import Dialog from "../../component/Dialog";
+import {logDOM} from "@testing-library/react";
 
 // Function to extract the domain from an email address
 const getDomainFromEmail = (email) => {
@@ -124,7 +125,10 @@ function Information({data}) {
     const [imgError, setImgError] = useState('')
     const [isSampleModalOpen, setIsSampleModalOpen] = useState(false);
     const isAnyDescriptionTooLong = Object.values(wordCounts).some(count => count > 25);
+    const [dropDown,setDropDown] =useState([])
+    // const [careerGoal,setCareerGoal] =useState([])
     // Get countries for the country dropdown
+
     const countryData = Country.getAllCountries().map((country) => ({
         value: country.name, name: country.name,
     }))
@@ -141,6 +145,29 @@ function Information({data}) {
     };
 
     const closeInstructionDialog = () => setShowInstruction(false);
+
+
+    async function careerDropdown() {
+        try {
+            const response = await axios.get(API_ROUTES.CAREER_INDUSTRY,{
+                headers: {
+                    'Content-Type': 'multipart/form-data', Authorization: `${token}`,
+                },
+            },)
+            if (response.data.length > 0) {
+                setDropDown(response.data)
+            }
+        } catch (error) {
+            alert('Something went wrong in update')
+        }
+    }
+
+
+    useEffect(() => {
+        careerDropdown()
+    },[]);
+
+
 
     const countryDataBasic = Country.getAllCountries().map((country) => ({
         value: country.isoCode, name: country.name,
@@ -430,6 +457,7 @@ function Information({data}) {
         }
     }, [data])
 
+
     const handleSubIndustryChange = (e, index) => {
         const selected = industriesData.find((industry) => industry.name === e.target.value,)
 
@@ -524,7 +552,6 @@ function Information({data}) {
     }
 
     const handleSubmit = async (values) => {
-        console.log('check')
         const formData = new FormData()
         // Append basic details
         formData.append('basicDetails[user_id]', user.id)
@@ -578,7 +605,6 @@ function Information({data}) {
             formData.append(`canadianEducation[${index}][year_of_completion]`, item.year_of_completion,)
             formData.append(`canadianEducation[${index}][gpa]`, item.gpa)
             if (item?._id) {
-                console.log(item?._id,"djgsbyuvjgebsdioucahesficukyqhjwaiohdiweusdgc")
                 formData.append(`canadianEducation[${index}][_id]`, data ? item?._id : null,)
             }
         })
@@ -640,10 +666,10 @@ function Information({data}) {
         })
 
         // Append career goal
-        // formData.append('careerGoal[career_industry]', values.career_industry)
+        formData.append('careerGoal[career_industry]', values.career_industry)
         formData.append('careerGoal[career_role]', values.career_role)
-        // formData.append('careerGoal[career_field]', values.career_field)
-        // formData.append('careerGoal[noc_number]', values.noc_number)
+        formData.append('careerGoal[career_field]', values.career_field)
+        formData.append('careerGoal[noc_number]', values.noc_number)
 
         const experience = workExperiences[0]
         const isEmpty = Object.values(experience).every((value) => value === '' || value === null,)
@@ -688,9 +714,6 @@ function Information({data}) {
         setInternationalEducation(updatedExperiences)
     }
     const handleChangeInternationalCEducation = (index, field, value) => {
-        console.log(index,"indexxxxx")
-        console.log(field,"fieldddddd")
-        console.log(value,"valueeeeee")
         const updatedExperiences = [...internationalCEducation]
         updatedExperiences[index][field] = value
 
@@ -742,6 +765,8 @@ function Information({data}) {
             setDisabledButton(false)
         }
     }
+
+
 
     return (<Formik
         initialValues={{
@@ -847,10 +872,10 @@ function Information({data}) {
             video: data?.basicDetails?.video || '',
             secondary_video: data?.basicDetails?.secondary_video || '',
 
-            // career_industry: data?.careerGoal?.career_industry || '',
+            career_industry: data?.careerGoal?.career_industry || '',
             career_role: data?.careerGoal?.career_role || '',
-            // career_field: data?.careerGoal?.career_field || '',
-            // noc_number: data?.careerGoal?.noc_number || '',
+            career_field: data?.careerGoal?.career_field || '',
+            noc_number: data?.careerGoal?.noc_number || '',
         }}
         validationSchema={jobFormValidation}
         onSubmit={handleSubmit}
@@ -1169,7 +1194,6 @@ function Information({data}) {
                         title="Canadian Education"
                         icon={<CanadianEducation/>}
                         renderRight={true}
-
                         renderRightContent={<ToggleButton
                         label=""
                         name="isCanadianEducation"
@@ -1999,7 +2023,6 @@ function Information({data}) {
                                 </div>
                             </div>
                             <div className="grid lg:grid-cols-3 sm:grid-cols-2 gap-x-5 py-6 px-4">
-
                                 <TextField
                                     type="text"
                                     label="Title"
@@ -2054,49 +2077,78 @@ function Information({data}) {
                         </div>
                     </FormInfo>
                     <FormInfo title="Career Goals" icon={<CareerGoal/>}>
-                        <div className="grid lg:grid-cols-3 sm:grid-cols-2 gap-x-5 py-6 px-4">
 
-                            <DropDownInput
-                                label="NOC Number"
-                                name="noc_number"
-                                value={data?.careerGoal?.noc_number || ''}
-                                options={nocNumber}
-                                onChange={(e) => setFieldValue('noc_number', e.target.value)}
-                            />
+                            <div className="grid lg:grid-cols-3 sm:grid-cols-2 gap-x-5 py-6 px-4">
+                                <TextField
+                                    type="text"
+                                    label="Role"
+                                    name="career_role"
+                                    placeholder="Enter career role"
+                                    onChange={(e) =>
+                                        setFieldValue('career_role', e.target.value)
+                                    }
+                                />
+                                {dropDown && (
+                                    <DropDown
+                                        label="Industry"
+                                        name="career_industry"
+                                        value={values?.career_industry || ''}
+                                        options={
+                                            [...new Map(dropDown.map(item => [item.Industry, {
+                                                value: item.Industry,
+                                                name: item.Industry
+                                            }])).values()]
+                                        }
+                                        onChange={(e) => {
+                                            const selectedValue = e.target.value;
+                                            setFieldValue('career_industry', selectedValue);
 
-                            <DropDownInput
-                                label="Industry"
-                                name="career_industry"
-                                options={industriesData.map((industry) => ({
-                                    value: industry.name,
-                                    name: industry.name,
-                                }))}
-                                value={data?.careerGoal?.career_industry || ''}
-                                onChange={(e) =>
-                                    setFieldValue('career_industry', e.target.value)
-                                }
-                            />
-                            <DropDownInput
-                                label="Fields"
-                                name="career_field"
-                                options={industriesData.find((industry) => industry.name === values.career_industry)?.subsector || []}
-                                value={data?.careerGoal?.career_industry || ''}
-                                onChange={(e) =>
-                                    setFieldValue('career_field', e.target.value)
-                                }
-                            />
-                            <TextField
-                                type="text"
-                                label="Role"
-                                name="career_role"
-                                placeholder="Enter career role"
-                                onChange={(e) =>
-                                    setFieldValue('career_role', e.target.value)
-                                }
-                            />
+                                            const matchedItem = dropDown.find(item => item.Industry === selectedValue);
+                                            if (matchedItem) {
+                                                setFieldValue('noc_number', String(matchedItem.NOC_CODE));
+                                                setFieldValue('career_field', matchedItem['Class title']);
+                                            }
+                                        }}
+                                    />
+                                )}
 
 
-                        </div>
+                                {dropDown && <DropDown
+                                    label="NOC Number"
+                                    name="noc_number"
+                                    value={values?.noc_number || ''}
+                                        options={dropDown?.map((item,index) => ({
+                                            value: String(item?.NOC_CODE),
+                                            name: String(item?.NOC_CODE),
+                                        }))}
+                                    onChange={(e) =>{ setFieldValue('noc_number', e.target.value)
+                                        const b = dropDown.find((item,index) => String(item.NOC_CODE) == e.target.value)
+                                        setFieldValue('career_industry', b?.Industry)
+
+                                    }}
+
+                                />}
+
+                                {dropDown && (
+                                    <DropDown
+                                        label="Career Field"
+                                        name="career_field"
+                                        value={values?.career_field || ''}
+                                        options={dropDown.map((item) => ({
+                                            value: item['Class title'],
+                                            name: item['Class title'],
+                                        }))}
+                                        onChange={(e) => {
+                                            const selectedValue = e.target.value;
+                                            setFieldValue('career_field', selectedValue);
+
+                                            const selectedItem = dropDown.find((item) => item['Class title'] === selectedValue);
+                                            setFieldValue('career_industry', selectedItem?.Industry || '');
+                                        }}
+                                    />
+                                )}
+
+                            </div>
                     </FormInfo>
 
                     {/* --------------Submit button------------------- */}

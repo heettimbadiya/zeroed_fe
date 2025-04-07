@@ -690,15 +690,15 @@ function ProfileDetails({data}) {
                                         <SwiperSlide>
                                             <div className="flex justify-between items-center">
                                                 <div className="text-2xl font-bold my-5">Primary Video</div>
-                                                {params.id === user.id && (
-                                                    <>
-                                                        <div
-                                                            className="ml-4 bg-primary px-4 py-2 text-white rounded cursor-pointer text-nowrap mt-3"
-                                                            onClick={() => navigate('/home')}>
-                                                            {data?.basicDetails?.secondary_video ? 'Change Secondary Video' : '+ Add Secondary Video'}
-                                                        </div>
-                                                    </>
-                                                )}
+                                                {/*{params.id === user.id && (*/}
+                                                {/*    <>*/}
+                                                {/*        <div*/}
+                                                {/*            className="ml-4 bg-primary px-4 py-2 text-white rounded cursor-pointer text-nowrap mt-3"*/}
+                                                {/*            onClick={() => navigate('/home')}>*/}
+                                                {/*            {data?.basicDetails?.secondary_video ? 'Change Secondary Video' : '+ Add Secondary Video'}*/}
+                                                {/*        </div>*/}
+                                                {/*    </>*/}
+                                                {/*)}*/}
                                             </div>
                                             <video
                                                 controls

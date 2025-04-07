@@ -519,7 +519,7 @@ function Information({ data }) {
             secondary_video: data?.basicDetails?.secondary_video || '',
 
             career_industry: data?.careerGoal?.career_industry || '',
-            career_field: data?.careerGoal?.career_field || '',
+            // career_field: data?.careerGoal?.career_field || '',
             career_role: data?.careerGoal?.career_role || '',
             noc: data?.careerGoal?.noc || '',
           }}
