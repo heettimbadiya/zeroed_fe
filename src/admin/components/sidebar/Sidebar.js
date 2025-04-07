@@ -10,7 +10,7 @@ import {
 import {useNavigate} from "react-router-dom";
 import {UserContext} from "../../layout/sidebar/MainLayout";
 const Sidebar = ({ open, setOpen ,menuItems}) => {
-    const stringifyUser = localStorage.getItem('admin_user')
+    const stringifyUser = sessionStorage.getItem('admin_user')
     const parsedUser = JSON.parse(stringifyUser)
     const navigate = useNavigate()
     const [openSubmenu, setOpenSubmenu] = useState({});

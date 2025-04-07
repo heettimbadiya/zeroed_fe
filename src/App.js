@@ -1,5 +1,5 @@
 import {Route, Routes} from 'react-router-dom'
-import SignIn from './pages/Auth/signIn'
+import SignIn from './admin/pages/Auth/signIn'
 import Verify from './pages/Auth/verify'
 import ROUTES_URL from './constant/routes'
 import SignUp from './pages/Auth/signUp'
@@ -23,7 +23,8 @@ import AdminMessaging from "./admin/pages/messaging/messaging";
 
 function App() {
     const Home = lazy(() => import('./pages/Home'))
-    const localUser = localStorage.getItem('user')
+    const localUser = sessionStorage.getItem('user')
+    const token = sessionStorage.getItem('token')
     const user = JSON.parse(localUser)
     const [data, setData] = useState(null)
     const [loading, setLoading] = useState(false)
@@ -151,6 +152,17 @@ function App() {
                         <Profile/>
                     </>}
                 />
+                {token && <Route
+                    path={`${ROUTES_URL.DASHBOARD}`}
+                    element={<>
+                        <Header
+                            profile={data?.basicDetails ? data?.basicDetails?.profile_pic : null}
+                            slug={data?.basicDetails ? data?.basicDetails?.slug : null}
+                            userId={user?.id}
+                        />
+                        <Feed/>
+                    </>}
+                />}
                 <Route
                     path={`${ROUTES_URL.VIEW}/:id`}
                     element={<>
@@ -165,12 +177,11 @@ function App() {
                 />
 
                 {/*------------------------------------------------------ ADMIN ROUTES ------------------------------------------------------------*/}
-                {/*<Route*/}
-                {/*    path={`${ROUTES_URL.ADMIN}`}*/}
-                {/*    element={<ProtectedRoute>*/}
-                {/*        <MainLayout/>*/}
-                {/*    </ProtectedRoute>}*/}
-                {/*/>*/}
+                <Route
+                    path={`${ROUTES_URL.ADMIN}`}
+                    element={
+                        <SignIn/>}
+                />
                 {/*<Route*/}
                 {/*    path={`${ROUTES_URL.DASHBOARD}/*`}*/}
                 {/*    element={<ProtectedRoute>*/}
@@ -178,7 +189,8 @@ function App() {
                 {/*    </ProtectedRoute>}*/}
                 {/*/>*/}
             </Routes>
-            <AdminApp />
+
+            {!token && <AdminApp/>}
         </Suspense>
         <ChatPopup/>
     </div>)

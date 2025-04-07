@@ -5,7 +5,7 @@ import ROUTES_URL from '../constant/routes'
 const ProtectedRoute = ({ children }) => {
   const navigate = useNavigate()
   const location = useLocation()
-  const token = localStorage.getItem('token')
+  const token = sessionStorage.getItem('token')
   const email = localStorage.getItem('verify-email')
   const emailForForgot = localStorage.getItem('forgot-email')
 

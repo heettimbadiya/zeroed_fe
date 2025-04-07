@@ -32,7 +32,7 @@ import { Loader } from '../../common/Icons'
 
 function Information({ data }) {
   let navigate = useNavigate()
-  const token = localStorage.getItem('token')
+  const token = sessionStorage.getItem('token')
 
   const [stateOptions, setStateOptions] = useState([])
   const [cityOptions, setCityOptions] = useState([])
@@ -158,7 +158,7 @@ function Information({ data }) {
     }
   }, [data])
 
-  const userDetails = localStorage.getItem('user')
+  const userDetails = sessionStorage.getItem('user')
   const user = JSON.parse(userDetails)
 
   const currentYear = new Date().getFullYear()

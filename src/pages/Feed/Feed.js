@@ -13,8 +13,8 @@ function Feed(props) {
         { name: 'Video', score: 0, maxScore: 30, completed: [], pending: [] },
     ]);
 
-    const token = localStorage.getItem('token');
-    const user = localStorage.getItem('user');
+    const token = sessionStorage.getItem('token');
+    const user = sessionStorage.getItem('user');
     const userData = user ? JSON.parse(user) : null;
 
     useEffect(() => {

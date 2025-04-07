@@ -54,17 +54,35 @@ const VideoUploader = ({defaultVideo, onVideoUpload, defaultSecondaryVideo, onSe
         }
 
         const url = URL.createObjectURL(file);
-        if (type === "recorded") {
-            setRecordedVideo(url);
-            onVideoUpload(file);
-        } else {
-            setSecondaryVideo(url);
-            onSecondaryVideoUpload(file);
-        }
 
-        closePrimaryDialog();
-        closeSecondaryDialog();
+        // Check orientation
+        const videoElement = document.createElement("video");
+        videoElement.preload = "metadata";
+        videoElement.src = url;
+
+        videoElement.onloadedmetadata = () => {
+            const { videoWidth, videoHeight } = videoElement;
+
+            if (videoWidth >= videoHeight) {
+                setVideoError("Please upload a portrait video (taller than it is wide).");
+                return;
+            }
+
+            // Valid portrait video
+            if (type === "recorded") {
+                setRecordedVideo(url);
+                onVideoUpload(file);
+            } else {
+                setSecondaryVideo(url);
+                onSecondaryVideoUpload(file);
+            }
+
+            setVideoError(""); // Clear error if previously shown
+            closePrimaryDialog();
+            closeSecondaryDialog();
+        };
     };
+
 
     const handleSelectVideo = async (e, type) => {
         try {

@@ -21,7 +21,7 @@ const menuItems = [
 ];
 export const UserContext = createContext()
 export default function MainLayout() {
-    const stringifyUser = localStorage.getItem('admin_user')
+    const stringifyUser = sessionStorage.getItem('admin_user')
     const [user,setUser] = useState(JSON.parse(stringifyUser))
     const [mobileOpen, setMobileOpen] = useState(false);
     const [open, setOpen] = useState(true);

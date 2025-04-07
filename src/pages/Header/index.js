@@ -38,7 +38,6 @@ const Header = ({profile, userId, slug}) => {
                 </div>
                 <div className={'flex items-center'}>
                     <div className={'px-3 cursor-pointer'} onClick={() => navigate('/dashboard')}>Dashboard</div>
-                    <div className={'px-3 cursor-pointer'} onClick={() => navigate('/feed')}>Inbox</div>
                     <div className={'px-3 cursor-pointer'} onClick={() => navigate('/messaging')}>Messaging</div>
                     <div className={'px-3 cursor-pointer'} onClick={() => navigate('/pricing')}>Pricing</div>
                     <div className="relative cursor-pointer flex items-center">

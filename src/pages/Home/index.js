@@ -6,7 +6,7 @@ import axios from 'axios'
 import { PageLoading } from '../../common/Icons/Loading/pageLoading'
 
 function Home() {
-  const localUser = localStorage.getItem('user')
+  const localUser = sessionStorage.getItem('user')
   const user = JSON.parse(localUser)
 
   const [data, setData] = useState(null)

@@ -33,9 +33,9 @@ function SignIn() {
             const response = await axios.post(API_ROUTES.SIGN_IN, values)
             if (response.data.status === 200) {
                 setError(null)
-                localStorage.removeItem('verify')
-                localStorage.setItem('admin_token', response.data.data.token)
-                localStorage.setItem('admin_user', JSON.stringify({...response.data.data.user,token:response.data.data.token}))
+                sessionStorage.clear()
+                sessionStorage.setItem('admin_token', response.data.data.token)
+                sessionStorage.setItem('admin_user', JSON.stringify({...response.data.data.user,token:response.data.data.token}))
                 navigate(ROUTES_URL.DASHBOARD)
                 setLoading(false)
             }

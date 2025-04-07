@@ -73,12 +73,12 @@ function ProfileDetails({data}) {
 
     const profile = `${process.env.REACT_APP_FILE_URL}/${data?.basicDetails?.profile_pic}`
     const {id} = useParams()
-    const localStorageData = localStorage.getItem('user')
+    const localStorageData = sessionStorage.getItem('user')
     const convertToStringify = JSON.parse(localStorageData)
     const [isValidUser, setValidUser] = useState(false)
 
-    const token = localStorage.getItem('token');
-    const user = JSON.parse(localStorage.getItem('user'));
+    const token = sessionStorage.getItem('token');
+    const user = JSON.parse(sessionStorage.getItem('user'));
     useEffect(() => {
         if (id === convertToStringify?.id) {
             setValidUser(true)

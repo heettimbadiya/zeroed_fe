@@ -8,8 +8,8 @@ import Header from "../../components/sidebar/Header";
 import profile from "../../assets/profilepic/profile.webp";
 
 function AdminMessaging() {
-    const token = localStorage.getItem("admin_token");
-    const user = JSON.parse(localStorage.getItem('admin_user'));
+    const token = sessionStorage.getItem("admin_token");
+    const user = JSON.parse(sessionStorage.getItem('admin_user'));
     const [selectedChat, setSelectedChat] = useState(null);
     const [newMessage, setNewMessage] = useState("");
     const [newMessageData, setNewMessageData] = useState([]);

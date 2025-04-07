@@ -68,7 +68,7 @@ function Information({data}) {
     const [showInstruction, setShowInstruction] = useState(false);
     let navigate = useNavigate()
     const [wordCounts, setWordCounts] = useState({});
-    const token = localStorage.getItem('token')
+    const token = sessionStorage.getItem('token')
     const initialProjects = {
         project_title: "", project_description: "", project_url: ""
     }
@@ -430,7 +430,7 @@ function Information({data}) {
         }
     }, [data])
 
-    const userDetails = localStorage.getItem('user')
+    const userDetails = sessionStorage.getItem('user')
     const user = JSON.parse(userDetails)
 
     const currentYear = new Date().getFullYear()
