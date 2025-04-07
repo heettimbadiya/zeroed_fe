@@ -5,12 +5,13 @@ import Header from "../../components/sidebar/Header";
 import Dashboard from "../../pages/Dashboard/Dashboard";
 import User from "../../pages/User/User";
 import {FaEnvelope, FaInbox, FaRegUser, FaTrash} from "react-icons/fa";
+import { MdOutlineMoveToInbox } from "react-icons/md";
 import {TbDashboardFilled} from "react-icons/tb";
 import Feed from "../../pages/Feed/feed";
 const menuItems = [
     { text: "Dashboard", icon: <TbDashboardFilled /> ,path:'/dashboard'},
     { text: "User", icon: <FaRegUser /> ,path:'/dashboard/user'},
-    { text: "Feed", icon: <FaRegUser /> ,path:'/dashboard/feed'},
+    { text: "InBox", icon: <MdOutlineMoveToInbox /> ,path:'/dashboard/feed'},
     // { text: "Starred", icon: <FaEnvelope /> ,path:'/user'},
     // { text: "Send email", icon: <FaInbox /> ,path:'/user'},
     // { text: "Drafts", icon: <FaEnvelope /> ,path:'/user'},

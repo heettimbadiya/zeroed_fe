@@ -9,15 +9,32 @@ import { UserContext } from "../../layout/sidebar/MainLayout";
 function Feed() {
     const [showPopover, setShowPopover] = useState(false);
     const user = useContext(UserContext);
-    const { feeds,mutate, isFeedLoading } = useGetAllFeed(user?.token);
+    const { feeds, mutate, isFeedLoading } = useGetAllFeed(user?.token);
     const [usersData, setUsersData] = useState(feeds || []);
+    const [nocOptions, setNocOptions] = useState([]);
 
     const [editItem, setEditItem] = useState(null);
     const [formData, setFormData] = useState({ description: '', thumbnail: '', noc_number: '' });
 
     useEffect(() => {
         setUsersData(feeds);
-    }, [feeds]);
+
+        const fetchNocNumbers = async () => {
+            try {
+                const response = await axios.get(API_ROUTES.NOC_NUMBERS, {
+                    headers: {
+                        Authorization: user?.token,
+                    },
+                });
+                const actualNocList = Array.isArray(response.data) ? response.data : response.data.data;
+                setNocOptions(actualNocList);
+            } catch (err) {
+                console.error('Failed to fetch NOC numbers:', err);
+            }
+        };
+
+        if (user?.token) fetchNocNumbers();
+    }, [feeds, user?.token]);
 
     const openAddPopover = () => {
         setEditItem(null);
@@ -66,18 +83,17 @@ function Feed() {
             if (editItem) {
                 await axios.put(`${API_ROUTES.FEED}/${editItem._id}`, payload, {
                     headers: {
-                        Authorization: `${user?.token}`,
+                        Authorization: user?.token,
                     },
                 });
-                mutate()
             } else {
                 await axios.post(API_ROUTES.FEED, payload, {
                     headers: {
-                        Authorization: `${user?.token}`,
+                        Authorization: user?.token,
                     },
                 });
-                mutate()
             }
+            mutate();
             setShowPopover(false);
         } catch (err) {
             console.error('Error submitting form:', err);
@@ -88,10 +104,10 @@ function Feed() {
         try {
             await axios.delete(`${API_ROUTES.FEED}/${id}`, {
                 headers: {
-                    Authorization: `${user?.token}`,
+                    Authorization: user?.token,
                 },
             });
-            mutate()
+            mutate();
         } catch (err) {
             console.error('Error deleting item:', err);
         }
@@ -99,11 +115,11 @@ function Feed() {
 
     return (
         <div className="container p-4 sm:p-6 bg-gray-100">
-            <h2 className="text-xl md:text-3xl font-bold mb-4 md:mb-6 text-gray-800 text-center">Feeds</h2>
+            <h2 className="text-xl md:text-3xl font-bold mb-4 md:mb-6 text-gray-800 text-center">InBox</h2>
 
             <div className="flex justify-end mb-5">
                 <button className="bg-[#374151] text-white px-7 py-3 rounded flex items-center gap-2" onClick={openAddPopover}>
-                    <Plus size={16} /> Add Feed
+                    <Plus size={16} /> Add InBox
                 </button>
             </div>
 
@@ -129,11 +145,13 @@ function Feed() {
                                     <tr key={item._id} className={index % 2 === 0 ? 'bg-gray-50' : 'bg-white'}>
                                         <td className="border px-4 py-2 text-sm text-center">{index + 1}</td>
                                         <td className="border px-4 py-2 text-center">
-                                            <img
-                                                src={item.thumbnail || 'https://via.placeholder.com/40'}
-                                                alt="Thumbnail"
-                                                className="w-10 h-10 object-cover rounded"
-                                            />
+                                            <div className="inline-block rounded-lg overflow-hidden shadow-md">
+                                                <img
+                                                    src={item.thumbnail || 'https://via.placeholder.com/40'}
+                                                    alt="Thumbnail"
+                                                    className="w-10 h-10 object-cover"
+                                                />
+                                            </div>
                                         </td>
                                         <td className="border px-4 py-2 text-sm text-center">{item.description}</td>
                                         <td className="border px-4 py-2 text-sm text-center">{item.noc_number || '-'}</td>
@@ -161,7 +179,6 @@ function Feed() {
                 )}
             </div>
 
-            {/* Popover */}
             {showPopover && (
                 <div className="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50">
                     <div className="bg-white rounded-lg p-6 w-[90%] max-w-md shadow-lg relative">
@@ -180,23 +197,49 @@ function Feed() {
 
                         <div className="mb-4">
                             <label className="block text-sm font-medium text-gray-700 mb-1">NOC Number</label>
-                            <input
+                            <select
                                 name="noc_number"
                                 value={formData.noc_number}
                                 onChange={handleInputChange}
                                 className="w-full border rounded px-3 py-2 text-sm"
-                                placeholder="Enter NOC number"
-                            />
+                            >
+                                <option value="">Select NOC number</option>
+                                {nocOptions.map((noc) => (
+                                    <option key={noc._id} value={noc.NOC_CODE}>
+                                        {noc.NOC_CODE}
+                                    </option>
+                                ))}
+                            </select>
                         </div>
 
                         <div className="mb-4">
                             <label className="block text-sm font-medium text-gray-700 mb-1">Thumbnail Image</label>
-                            <input type="file" accept="image/*" onChange={handleImageChange} className="w-full text-sm" />
-                            {formData.thumbnail && (
-                                <div className="mt-2">
-                                    <img src={formData.thumbnail} alt="Preview" className="w-20 h-20 object-cover rounded" />
-                                </div>
-                            )}
+                            <div
+                                className="border border-dashed border-gray-400 rounded-lg p-4 flex flex-col items-center justify-center gap-2 cursor-pointer"
+                                onClick={() => document.getElementById('thumbnailInput').click()}
+                            >
+                                {formData.thumbnail ? (
+                                    <img
+                                        src={formData.thumbnail}
+                                        alt="Thumbnail Preview"
+                                        className="w-24 h-24 object-cover rounded-lg shadow-md"
+                                    />
+                                ) : (
+                                    <>
+                                        <svg className="w-8 h-8 text-gray-500" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                            <path strokeLinecap="round" strokeLinejoin="round" d="M3 15a4 4 0 004 4h10a4 4 0 004-4M4 10l4-4m0 0l4 4m-4-4v12" />
+                                        </svg>
+                                        <span className="text-sm text-gray-500">Click to upload image</span>
+                                    </>
+                                )}
+                            </div>
+                            <input
+                                id="thumbnailInput"
+                                type="file"
+                                accept="image/*"
+                                onChange={handleImageChange}
+                                className="hidden"
+                            />
                         </div>
 
                         <div className="flex justify-end gap-3">

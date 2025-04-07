@@ -21,5 +21,6 @@ export const API_ROUTES = {
   ALL_CHAT : `${URL}/all-chats`,
   CHAT_MESSAGES : `${URL}/messages`,
   CAREER_INDUSTRY : `${URL}/industry`,
+  FEEDS : `${URL}/feed`,
 
 }
