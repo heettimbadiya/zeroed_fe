@@ -115,11 +115,11 @@ function Feed() {
 
     return (
         <div className="container p-4 sm:p-6 bg-gray-100">
-            <h2 className="text-xl md:text-3xl font-bold mb-4 md:mb-6 text-gray-800 text-center">InBox</h2>
+            <h2 className="text-xl md:text-3xl font-bold mb-4 md:mb-6 text-gray-800 text-center">Inbox</h2>
 
             <div className="flex justify-end mb-5">
                 <button className="bg-[#374151] text-white px-7 py-3 rounded flex items-center gap-2" onClick={openAddPopover}>
-                    <Plus size={16} /> Add InBox
+                    <Plus size={16} /> Add Inbox
                 </button>
             </div>
 
