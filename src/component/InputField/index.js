@@ -257,7 +257,6 @@ export const DropDown = ({
     useEffect(() => {
         setSearchTerm(value || '')
     }, [value])
-
     const handleSearchChange = (e) => {
         setSearchTerm(e.target.value)
     }
@@ -270,7 +269,6 @@ export const DropDown = ({
                 o.name.toLowerCase().includes(searchTerm.toLowerCase()),
         )
         : []
-
     const handleSelectChange = (option) => {
         setSearchTerm(option.name)
         onChange({target: {name, value: option.value}})

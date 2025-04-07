@@ -5,5 +5,7 @@ export const API_ROUTES = {
   SIGN_UP: `${URL}/auth/signup`,
   VERIFY_OTP: `${URL}/auth/verify-otp`,
   USER: `${URL}/user/basic-details`,
+  FEED : `${URL}/feed`
+
 
 }
