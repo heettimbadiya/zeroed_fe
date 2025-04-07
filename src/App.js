@@ -19,6 +19,7 @@ import {API_ROUTES} from "./utils/APIs";
 import View from "./pages/View";
 import Pricing from "./pages/Pricing/Pricing";
 import AdminApp from "./admin";
+import AdminMessaging from "./admin/pages/messaging/messaging";
 
 function App() {
     const Home = lazy(() => import('./pages/Home'))
@@ -154,6 +155,12 @@ function App() {
                     path={`${ROUTES_URL.VIEW}/:id`}
                     element={<>
                         <View/>
+                    </>}
+                />
+                <Route
+                    path={ROUTES_URL.CHAT}
+                    element={<>
+                        <AdminMessaging/>
                     </>}
                 />
 

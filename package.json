@@ -25,6 +25,7 @@
     "react-scripts": "5.0.1",
     "react-search-autocomplete": "^8.5.2",
     "recharts": "^2.15.1",
+    "socket.io-client": "^4.8.1",
     "swiper": "^11.2.5",
     "swr": "^2.3.3",
     "web-vitals": "^2.1.4",

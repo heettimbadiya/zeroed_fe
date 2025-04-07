@@ -33,6 +33,13 @@ const Header = ({ handleDrawerToggle, open, setOpen }) => {
                     </div>
                 </h6>
             </div>
+            <div className={`flex items-end items-center space-x-3`}>
+            <button
+                className="bg-green-500 text-white px-4 py-2 rounded-lg font-medium hover:bg-green-600 transition"
+                onClick={() => navigate('/chat')}
+            >
+                Chat
+            </button>
             <button
                 className="flex items-center ms-auto gap-2 text-gray-700 font-medium hover:text-red-500 transition"
                 onClick={() => {
@@ -43,6 +50,7 @@ const Header = ({ handleDrawerToggle, open, setOpen }) => {
                 <FaSignOutAlt size={20}/>
                 <span className="hidden sm:inline">Log Out</span>
             </button>
+            </div>
         </div>
     );
 };
