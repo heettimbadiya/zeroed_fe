@@ -668,7 +668,7 @@ function Information({data}) {
         // Append career goal
         formData.append('careerGoal[career_industry]', values.career_industry)
         formData.append('careerGoal[career_role]', values.career_role)
-        // formData.append('careerGoal[career_field]', values.career_field)
+        formData.append('careerGoal[career_field]', values.career_field)
         formData.append('careerGoal[noc_number]', values.noc_number)
 
         const experience = workExperiences[0]
@@ -874,7 +874,7 @@ function Information({data}) {
 
             career_industry: data?.careerGoal?.career_industry || '',
             career_role: data?.careerGoal?.career_role || '',
-            // career_field: data?.careerGoal?.career_field || '',
+            career_field: data?.careerGoal?.career_field || '',
             noc_number: data?.careerGoal?.noc_number || '',
         }}
         validationSchema={jobFormValidation}
@@ -2088,21 +2088,30 @@ function Information({data}) {
                                         setFieldValue('career_role', e.target.value)
                                     }
                                 />
-                                {dropDown && <DropDown
-                                    label="Industry"
-                                    name="career_industry"
-                                    value={values?.career_industry || ''}
-                                        options={dropDown?.map((item,index) => ({
-                                            value: item?.Industry,
-                                            name: item?.Industry,
-                                        }))}
-                                    onChange={(e) =>{
-                                        setFieldValue('career_industry', e.target.value)
-                                      const a = dropDown.find((item,index) => item.Industry == e.target.value)
-                                        // console.log(a,"5555555555555555")
-                                        setFieldValue('noc_number', String(a.NOC_CODE))
-                                    }}
-                                />}
+                                {dropDown && (
+                                    <DropDown
+                                        label="Industry"
+                                        name="career_industry"
+                                        value={values?.career_industry || ''}
+                                        options={
+                                            [...new Map(dropDown.map(item => [item.Industry, {
+                                                value: item.Industry,
+                                                name: item.Industry
+                                            }])).values()]
+                                        }
+                                        onChange={(e) => {
+                                            const selectedValue = e.target.value;
+                                            setFieldValue('career_industry', selectedValue);
+
+                                            const matchedItem = dropDown.find(item => item.Industry === selectedValue);
+                                            if (matchedItem) {
+                                                setFieldValue('noc_number', String(matchedItem.NOC_CODE));
+                                                setFieldValue('career_field', matchedItem['Class title']);
+                                            }
+                                        }}
+                                    />
+                                )}
+
 
                                 {dropDown && <DropDown
                                     label="NOC Number"
@@ -2117,7 +2126,28 @@ function Information({data}) {
                                         setFieldValue('career_industry', b?.Industry)
 
                                     }}
+
                                 />}
+
+                                {dropDown && (
+                                    <DropDown
+                                        label="Career Field"
+                                        name="career_field"
+                                        value={values?.career_field || ''}
+                                        options={dropDown.map((item) => ({
+                                            value: item['Class title'],
+                                            name: item['Class title'],
+                                        }))}
+                                        onChange={(e) => {
+                                            const selectedValue = e.target.value;
+                                            setFieldValue('career_field', selectedValue);
+
+                                            const selectedItem = dropDown.find((item) => item['Class title'] === selectedValue);
+                                            setFieldValue('career_industry', selectedItem?.Industry || '');
+                                        }}
+                                    />
+                                )}
+
                             </div>
                     </FormInfo>
 
