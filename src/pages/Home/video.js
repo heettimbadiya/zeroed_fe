@@ -54,35 +54,17 @@ const VideoUploader = ({defaultVideo, onVideoUpload, defaultSecondaryVideo, onSe
         }
 
         const url = URL.createObjectURL(file);
+        if (type === "recorded") {
+            setRecordedVideo(url);
+            onVideoUpload(file);
+        } else {
+            setSecondaryVideo(url);
+            onSecondaryVideoUpload(file);
+        }
 
-        // Check orientation
-        const videoElement = document.createElement("video");
-        videoElement.preload = "metadata";
-        videoElement.src = url;
-
-        videoElement.onloadedmetadata = () => {
-            const { videoWidth, videoHeight } = videoElement;
-
-            if (videoWidth >= videoHeight) {
-                setVideoError("Please upload a portrait video (taller than it is wide).");
-                return;
-            }
-
-            // Valid portrait video
-            if (type === "recorded") {
-                setRecordedVideo(url);
-                onVideoUpload(file);
-            } else {
-                setSecondaryVideo(url);
-                onSecondaryVideoUpload(file);
-            }
-
-            setVideoError(""); // Clear error if previously shown
-            closePrimaryDialog();
-            closeSecondaryDialog();
-        };
+        closePrimaryDialog();
+        closeSecondaryDialog();
     };
-
 
     const handleSelectVideo = async (e, type) => {
         try {
@@ -165,14 +147,14 @@ const VideoUploader = ({defaultVideo, onVideoUpload, defaultSecondaryVideo, onSe
                     </li>
                 </ul>
 
-                <p className="mt-4 text-sm"><strong>Let’s structure your video for a great first impression:</strong>
+                <p className="mt-4 text-sm"><strong>Let's structure your video for a great first impression:</strong>
                 </p>
 
                 <div className="mt-2 space-y-4">
                     <div>
                         <h3 className="font-semibold">👋 Introduction (10-15 seconds)</h3>
                         <p>🗣️ Start with a warm introduction and introduce yourself confidently.</p>
-                        <p><strong>Example:</strong> "Hi, my name is [Your Name], and I’m a [Your Profession/Industry]."
+                        <p><strong>Example:</strong> "Hi, my name is [Your Name], and I'm a [Your Profession/Industry]."
                         </p>
                         <p>🗣️ Mention key experience or education to highlight your relevance.</p>
                         <p><strong>Example:</strong> "I have [X years] of experience in [Industry/Field]."</p>
@@ -195,8 +177,8 @@ const VideoUploader = ({defaultVideo, onVideoUpload, defaultSecondaryVideo, onSe
                         <p>🗣️ Wrap up with enthusiasm and invite engagement.</p>
                         <p><strong>Example:</strong></p>
                         <ul className="list-disc pl-5">
-                            <li>"I’m excited about roles in [Industry/Field] and eager to contribute my skills."</li>
-                            <li>"I’d love to connect and discuss how I can add value to your team."</li>
+                            <li>"I'm excited about roles in [Industry/Field] and eager to contribute my skills."</li>
+                            <li>"I'd love to connect and discuss how I can add value to your team."</li>
                             <li>"Thank you for your time, and I look forward to connecting!"</li>
                         </ul>
                     </div>
@@ -230,7 +212,7 @@ const VideoUploader = ({defaultVideo, onVideoUpload, defaultSecondaryVideo, onSe
                 {videoError && <div className="text-xs text-red-500 mt-1">{videoError}</div>}
             </Dialog>
 
-             {/*Secondary Video Dialog*/}
+            {/*Secondary Video Dialog*/}
             {/*<Dialog isOpen={isSecondaryOpen} onClose={closeSecondaryDialog} title="Upload Secondary Video">*/}
             {/*    <div className="bg-primary px-4 py-2 text-white rounded cursor-pointer"*/}
             {/*         onClick={(e) => handleSelectVideo(e, 'secondary_video')}>*/}
@@ -238,7 +220,7 @@ const VideoUploader = ({defaultVideo, onVideoUpload, defaultSecondaryVideo, onSe
             {/*    </div>*/}
             {/*</Dialog>*/}
 
-             {/*Video Previews*/}
+            {/*Video Previews*/}
             <div className="mt-4 flex gap-4">
                 {recordedVideo && (
                     <div className="w-1/2">
