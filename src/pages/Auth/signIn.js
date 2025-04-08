@@ -11,7 +11,7 @@ import { API_ROUTES } from '../../utils/APIs'
 import logo from '../../assets/logo.png'
 import auth from '../../assets/auth.png'
 
-function SignIn() {
+function UserSignIn() {
   let navigate = useNavigate()
   const [error, setError] = useState(null)
   const [loading, setLoading] = useState(false)
@@ -149,4 +149,4 @@ function SignIn() {
   )
 }
 
-export default SignIn
+export default UserSignIn

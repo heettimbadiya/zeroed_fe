@@ -20,6 +20,7 @@ import View from "./pages/View";
 import Pricing from "./pages/Pricing/Pricing";
 import AdminApp from "./admin";
 import AdminMessaging from "./admin/pages/messaging/messaging";
+import UserSignIn from "./pages/Auth/signIn";
 
 function App() {
     const Home = lazy(() => import('./pages/Home'))
@@ -51,7 +52,7 @@ function App() {
                 <Route
                     path={ROUTES_URL.SIGN_IN}
                     element={<ProtectedRoute>
-                        <SignIn/>
+                        <UserSignIn/>
                     </ProtectedRoute>}
                 />
                 <Route
