@@ -155,8 +155,8 @@ function App() {
                         <Profile/>
                     </>}
                 />
-                {token && <Route
-                    path={`${ROUTES_URL.DASHBOARD}`}
+                 <Route
+                    path={`${ROUTES_URL.INBOX}`}
                     element={<>
                         <Header
                             profile={data?.basicDetails ? data?.basicDetails?.profile_pic : null}
@@ -165,7 +165,7 @@ function App() {
                         />
                         <Feed/>
                     </>}
-                />}
+                />
                 <Route
                     path={`${ROUTES_URL.VIEW}/:id`}
                     element={<>
@@ -193,7 +193,7 @@ function App() {
                 {/*/>*/}
             </Routes>
 
-            {!token && <AdminApp/>}
+           <AdminApp/>
         </Suspense>
         <ChatPopup/>
     </div>)

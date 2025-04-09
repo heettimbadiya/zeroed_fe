@@ -30,10 +30,10 @@ function SignIn() {
     const handleSubmit = async (values) => {
         setLoading(true)
         try {
+                sessionStorage.clear()
             const response = await axios.post(API_ROUTES.SIGN_IN, values)
             if (response.data.status === 200) {
                 setError(null)
-                sessionStorage.clear()
                 sessionStorage.setItem('admin_token', response.data.data.token)
                 sessionStorage.setItem('admin_user', JSON.stringify({...response.data.data.user,token:response.data.data.token}))
                 navigate(ROUTES_URL.DASHBOARD)
