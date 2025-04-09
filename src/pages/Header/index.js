@@ -25,7 +25,7 @@ const Header = ({profile, userId, slug}) => {
         }, 2000);
     };
     const handleLogout = () => {
-        localStorage.clear()
+        sessionStorage.clear()
         navigate(ROUTES_URL.SIGN_IN)
     }
 
