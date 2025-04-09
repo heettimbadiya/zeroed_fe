@@ -55,7 +55,7 @@ const Header = ({ handleDrawerToggle, open, setOpen }) => {
                     className="flex items-center ms-auto gap-2 text-gray-700 font-medium hover:text-red-500 transition"
                     onClick={() => {
                         sessionStorage.clear()
-                        navigate('/')
+                        navigate('/admin')
                     }}
                 >
                     <FaSignOutAlt size={20}/>
