@@ -1840,14 +1840,15 @@ function Information({data}) {
                             {experienceError}
                         </div>
                         {/* Introduction video upload */}
-                        <div className="py-6 px-4">
-                            <div className="flex sm:flex-row flex-col-reverse justify-between items-center">
-                                <div className="lg:w-1/5 sm:w-1/2">
-                                    <div className="flex items-center gap-4">
-                                        <Label label="Video"/>
+                        <div className="py-6 px-4 flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4">
+                            <div className="flex flex-col items-center sm:items-center text-center sm:text-left">
+                                <div className="lg:w-1/9 sm:w-1/8">
+                                    <div className=" items-center gap-4">
+                                        <Label label="Video" className="text-[30px] pb-4" />
+
                                         <div
                                             onClick={() => setIsSampleModalOpen(true)}
-                                            className="text-primary underline text-sm cursor-pointer"
+                                            className="text-primary underline text-sm cursor-pointer pb-2"
                                         >
                                             View Sample
                                         </div>
@@ -2100,54 +2101,57 @@ function Information({data}) {
                                             }])).values()]
                                         }
                                         onChange={(e) => {
-                                            const selectedValue = e.target.value;
-                                            setFieldValue('career_industry', selectedValue);
-
-                                            const matchedItem = dropDown.find(item => item.Industry === selectedValue);
-                                            if (matchedItem) {
-                                                setFieldValue('noc_number', String(matchedItem.NOC_CODE));
-                                                setFieldValue('career_field', matchedItem['Class title']);
-                                            }
+                                            const selectedIndustry = e.target.value;
+                                            setFieldValue('career_industry', selectedIndustry);
+                                            setFieldValue('career_field', '');
+                                            setFieldValue('noc_number', '');
                                         }}
                                     />
                                 )}
-
-
-                                {dropDown && <DropDown
-                                    label="NOC Number"
-                                    name="noc_number"
-                                    value={values?.noc_number || ''}
-                                        options={dropDown?.map((item,index) => ({
-                                            value: String(item?.NOC_CODE),
-                                            name: String(item?.NOC_CODE),
-                                        }))}
-                                    onChange={(e) =>{ setFieldValue('noc_number', e.target.value)
-                                        const b = dropDown.find((item,index) => String(item.NOC_CODE) == e.target.value)
-                                        setFieldValue('career_industry', b?.Industry)
-
-                                    }}
-
-                                />}
 
                                 {dropDown && (
                                     <DropDown
                                         label="Career Field"
                                         name="career_field"
                                         value={values?.career_field || ''}
-                                        options={dropDown.map((item) => ({
-                                            value: item['Class title'],
-                                            name: item['Class title'],
-                                        }))}
+                                        options={
+                                            dropDown
+                                                .filter(item => item.Industry === values?.career_industry)
+                                                .map(item => ({
+                                                    value: {filed:item['Class title'],noc:String(item.NOC_CODE)},
+                                                    name: item['Class title'],
+                                                }))
+                                        }
                                         onChange={(e) => {
-                                            const selectedValue = e.target.value;
-                                            setFieldValue('career_field', selectedValue);
-
-                                            const selectedItem = dropDown.find((item) => item['Class title'] === selectedValue);
-                                            setFieldValue('career_industry', selectedItem?.Industry || '');
+                                            const selectedCareerField = e.target.value;
+                                            setFieldValue('career_field', selectedCareerField.filed);
+                                            setFieldValue('noc_number', selectedCareerField.noc);
                                         }}
                                     />
                                 )}
 
+                                {dropDown && (
+                                    <DropDown
+                                        label="NOC Number"
+                                        name="noc_number"
+                                        value={values?.noc_number || ''}
+                                        options={
+                                            dropDown
+                                                .filter(item =>
+                                                    item.Industry === values?.career_industry &&
+                                                    item['Class title'] === values?.career_field
+                                                )
+                                                .map(item => ({
+                                                    value: String(item.NOC_CODE),
+                                                    name: String(item.NOC_CODE),
+                                                }))
+                                        }
+                                        onChange={(e) => {
+                                            const selectedNoc = e.target.value;
+                                            setFieldValue('noc_number', selectedNoc);
+                                        }}
+                                    />
+                                )}
                             </div>
                     </FormInfo>
 

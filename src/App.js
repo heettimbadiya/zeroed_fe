@@ -21,6 +21,7 @@ import Pricing from "./pages/Pricing/Pricing";
 import AdminApp from "./admin";
 import AdminMessaging from "./admin/pages/messaging/messaging";
 import UserSignIn from "./pages/Auth/signIn";
+import {Toaster} from "react-hot-toast";
 
 function App() {
     const Home = lazy(() => import('./pages/Home'))
@@ -47,6 +48,7 @@ function App() {
         fetchData()
     }, [user?.id])
     return (<div>
+        <Toaster />
         <Suspense fallback={<PageLoading/>}>
             <Routes>
                 <Route
