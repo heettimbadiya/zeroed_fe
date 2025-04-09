@@ -21,6 +21,7 @@ import Pricing from "./pages/Pricing/Pricing";
 import AdminApp from "./admin";
 // import AdminMessaging from "./admin/pages/messaging/messaging";
 import UserSignIn from "./pages/Auth/signIn";
+import {Toaster} from "react-hot-toast";
 
 function App() {
     const Home = lazy(() => import('./pages/Home'))
@@ -47,6 +48,7 @@ function App() {
         fetchData()
     }, [user?.id])
     return (<div>
+        <Toaster />
         <Suspense fallback={<PageLoading/>}>
             <Routes>
                 <Route
@@ -153,8 +155,8 @@ function App() {
                         <Profile/>
                     </>}
                 />
-                {token && <Route
-                    path={`${ROUTES_URL.DASHBOARD}`}
+                 <Route
+                    path={`${ROUTES_URL.INBOX}`}
                     element={<>
                         <Header
                             profile={data?.basicDetails ? data?.basicDetails?.profile_pic : null}
@@ -163,7 +165,7 @@ function App() {
                         />
                         <Feed/>
                     </>}
-                />}
+                />
                 <Route
                     path={`${ROUTES_URL.VIEW}/:id`}
                     element={<>
@@ -178,11 +180,7 @@ function App() {
                 />
 
                 {/*------------------------------------------------------ ADMIN ROUTES ------------------------------------------------------------*/}
-                <Route
-                    path={`${ROUTES_URL.ADMIN}`}
-                    element={
-                        <SignIn/>}
-                />
+
                 {/*<Route*/}
                 {/*    path={`${ROUTES_URL.DASHBOARD}/*`}*/}
                 {/*    element={<ProtectedRoute>*/}
@@ -191,7 +189,7 @@ function App() {
                 {/*/>*/}
             </Routes>
 
-            {!token && <AdminApp/>}
+           <AdminApp/>
         </Suspense>
         <ChatPopup/>
     </div>)
