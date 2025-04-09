@@ -18,10 +18,12 @@ export const API_ROUTES = {
   DELETE_INTERNATIONAL_EDUCATION: `${URL}/international-education/delete/`,
   DELETE_CANADIAN_EDUCATION: `${URL}/canadian-education/delete/`,
   UPDATE_SECONDARY_VIDEO: `${URL}/user/update-secondary-video/`,
-  ALL_CHAT : `${URL}/all-chats`,
+  ALL_CHAT : `${URL}/chat/all-chats`,
   SEND_MESSAGES : `${URL}/send`,
-  CHAT_MESSAGES : `${URL}/messages`,
+  CHAT_MESSAGES : `${URL}/message`,
   CAREER_INDUSTRY : `${URL}/industry`,
   FEEDS : `${URL}/feed`,
+  SEARCH : `${URL}/get-users`,
+  POST_CHAT : `${URL}/chat/create`,
 
 }

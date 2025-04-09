@@ -30,23 +30,23 @@ function App() {
     const user = JSON.parse(localUser)
     const [data, setData] = useState(null)
     const [loading, setLoading] = useState(false)
-    useEffect(() => {
-        setLoading(true)
-
-        async function fetchData() {
-            try {
-                const response = await axios.get(API_ROUTES.GET_PROFILE_INFO + '/' + user?.id,)
-                if (response?.data?.success) {
-                    setData(response?.data?.data)
-                    setLoading(false)
-                }
-            } catch (err) {
-                setLoading(false)
-            }
-        }
-
-        fetchData()
-    }, [user?.id])
+    // useEffect(() => {
+    //     setLoading(true)
+    //
+    //     async function fetchData() {
+    //         try {
+    //             const response = await axios.get(API_ROUTES.GET_PROFILE_INFO + '/' + user?.id,)
+    //             if (response?.data?.success) {
+    //                 setData(response?.data?.data)
+    //                 setLoading(false)
+    //             }
+    //         } catch (err) {
+    //             setLoading(false)
+    //         }
+    //     }
+    //
+    //     fetchData()
+    // }, [user?.id])
     return (<div>
         <Toaster />
         <Suspense fallback={<PageLoading/>}>

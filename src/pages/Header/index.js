@@ -4,6 +4,8 @@ import default_user from '../../assets/user.png'
 import React, {useState} from 'react'
 import ROUTES_URL from '../../constant/routes'
 import {ArrowDown, LinkIcon, LogoutIcon, UserIcon} from '../../common/Icons'
+import SideDrawer from "../../admin/components/sidebar/SideDrawer";
+import SideDrawere from "./SideDraweres";
 
 const Header = ({profile, userId, slug}) => {
     let navigate = useNavigate()
@@ -32,9 +34,14 @@ const Header = ({profile, userId, slug}) => {
     return (
         <div className="bg-white px-10">
             <div className="flex justify-between items-center py-5">
-                <div>
-                    <img src={logo} onClick={() => navigate('/home')} alt="zeroed"
-                         className="h-[1.875rem] w-[6.25rem] cursor-pointer"/>
+                <div className="flex">
+                    <div>
+                        <img src={logo} onClick={() => navigate('/home')} alt="zeroed"
+                             className="h-[1.875rem] w-[6.25rem] cursor-pointer"/>
+                    </div>
+                    <div className="ps-4">
+                        <SideDrawere/>
+                    </div>
                 </div>
                 <div className={'flex items-center'}>
                     <div className={'px-3 cursor-pointer'} onClick={() => navigate('/inbox')}>Inbox</div>

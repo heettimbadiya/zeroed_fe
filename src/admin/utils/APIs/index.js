@@ -8,6 +8,9 @@ export const API_ROUTES = {
   FEED : `${URL}/feed`,
   NOC_NUMBERS: `${URL}/industry`, // Add this if not already present
   BROADCAST : `${URL}/broadcast`,
-  ALL_CHAT : `${URL}/all-chats`,
+  ALL_CHAT : `${URL}/chat/all-chats`,
+  SEARCH : `${URL}/get-users`,
   CHAT_MESSAGES : `${URL}/messages`,
+  POST_CHAT : `${URL}/chat/create`,
+  ALL_CHATS : `${URL}/chat/all-chats`,
 }
