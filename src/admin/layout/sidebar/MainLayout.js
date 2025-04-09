@@ -12,7 +12,7 @@ import Messaging from "../../pages/messaging/messaging";
 const menuItems = [
     { text: "Dashboard", icon: <TbDashboardFilled /> ,path:'/dashboard'},
     { text: "User", icon: <FaRegUser /> ,path:'/dashboard/user'},
-    { text: "InBox", icon: <MdOutlineMoveToInbox /> ,path:'/dashboard/feed'},
+    { text: "Inbox", icon: <MdOutlineMoveToInbox /> ,path:'/dashboard/feed'},
     // { text: "Starred", icon: <FaEnvelope /> ,path:'/user'},
     // { text: "Send email", icon: <FaInbox /> ,path:'/user'},
     // { text: "Drafts", icon: <FaEnvelope /> ,path:'/user'},
