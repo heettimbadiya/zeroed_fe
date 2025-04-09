@@ -180,11 +180,7 @@ function App() {
                 />
 
                 {/*------------------------------------------------------ ADMIN ROUTES ------------------------------------------------------------*/}
-                <Route
-                    path={`${ROUTES_URL.ADMIN}`}
-                    element={
-                        <SignIn/>}
-                />
+
                 {/*<Route*/}
                 {/*    path={`${ROUTES_URL.DASHBOARD}/*`}*/}
                 {/*    element={<ProtectedRoute>*/}
