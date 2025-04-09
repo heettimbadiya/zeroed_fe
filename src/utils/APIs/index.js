@@ -19,10 +19,12 @@ export const API_ROUTES = {
   DELETE_CANADIAN_EDUCATION: `${URL}/canadian-education/delete/`,
   UPDATE_SECONDARY_VIDEO: `${URL}/user/update-secondary-video/`,
   ALL_CHAT : `${URL}/chat/all-chats`,
-  SEND_MESSAGES : `${URL}/send`,
+  CREATE_CHAT : `${URL}/chat/create`,
+  SEND_MESSAGES : `${URL}/message/send`,
   CHAT_MESSAGES : `${URL}/message`,
   CAREER_INDUSTRY : `${URL}/industry`,
   FEEDS : `${URL}/feed`,
+  BROADCAST : `${URL}/message/broadcast`,
   SEARCH : `${URL}/get-users`,
   POST_CHAT : `${URL}/chat/create`,
 

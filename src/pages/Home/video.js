@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Dialog from "../../component/Dialog";
 import toast from "react-hot-toast";
+import {ErrorMessage} from "formik";
 
 const VideoUploader = ({
                            defaultVideo,
@@ -104,11 +105,18 @@ const VideoUploader = ({
     return (
         <div className="lg:w-1/7 sm:w-1/2 pt-2">
             <div className="flex justify-between items-center gap-4 mt-2">
-                <div
-                    onClick={(e) => handleSelectVideo(e, "recorded")}
-                    className="border-2 border-primary text-primary hover:bg-primary hover:text-white transition-all duration-200 rounded-lg py-3 w-1/2 text-center cursor-pointer"
-                >
-                    {recordedVideo ? "Edit Primary Video" : "Add Primary Video"}
+                <div className={'w-[100%]'}>
+                    <div
+                        onClick={(e) => handleSelectVideo(e, "recorded")}
+                        className="border-2 border-primary text-primary hover:bg-primary hover:text-white transition-all duration-200 rounded-lg py-3 w-1/2 text-center cursor-pointer"
+                    >
+                        {recordedVideo ? "Edit Primary Video" : "Add Primary Video"}
+                    </div>
+                    <ErrorMessage
+                        name={'video'}
+                        component="div"
+                        className="text-xs text-red-500 ml-1 mt-1"
+                    />
                 </div>
 
                 {data && !secondaryVideo && (

@@ -31,7 +31,7 @@ const Header = ({ handleDrawerToggle, open, setOpen }) => {
                     <div className="flex items-center gap-4">
                         <img
                             src={logo}
-                            onClick={() => navigate('/home')}
+                            onClick={() => navigate('/dashboard')}
                             alt="zeroed"
                             className="h-[1.875rem] w-[6.25rem] cursor-pointer"
                         />

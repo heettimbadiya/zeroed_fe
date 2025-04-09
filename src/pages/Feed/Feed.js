@@ -85,7 +85,7 @@ function Feed() {
         addScore(1, 20, 'Certificate', profile.skills?.[0]?.subSkill?.[0]?.certificate);
         addScore(1, 20, 'Assessments', profile.skills?.[0]?.subSkill?.[0]?.link);
 
-        addScore(2, 30, 'Experience', profile.workExperience?.length > 0);
+        addScore(2, 30, 'Experience', ((profile.workExperience?.length > 0) && (profile.workExperience.at(0).work_experience_company_name !== 'null')));
 
         addScore(3, 30, 'Video Interview Instant', profile.basicDetails?.secondary_video);
 

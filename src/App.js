@@ -19,7 +19,7 @@ import {API_ROUTES} from "./utils/APIs";
 import View from "./pages/View";
 import Pricing from "./pages/Pricing/Pricing";
 import AdminApp from "./admin";
-import AdminMessaging from "./admin/pages/messaging/messaging";
+// import AdminMessaging from "./admin/pages/messaging/messaging";
 import UserSignIn from "./pages/Auth/signIn";
 import {Toaster} from "react-hot-toast";
 
@@ -175,16 +175,12 @@ function App() {
                 <Route
                     path={ROUTES_URL.CHAT}
                     element={<>
-                        <AdminMessaging/>
+                        <Messaging/>
                     </>}
                 />
 
                 {/*------------------------------------------------------ ADMIN ROUTES ------------------------------------------------------------*/}
-                <Route
-                    path={`${ROUTES_URL.ADMIN}`}
-                    element={
-                        <SignIn/>}
-                />
+
                 {/*<Route*/}
                 {/*    path={`${ROUTES_URL.DASHBOARD}/*`}*/}
                 {/*    element={<ProtectedRoute>*/}

@@ -8,7 +8,6 @@ import {FaEnvelope, FaInbox, FaRegUser, FaTrash} from "react-icons/fa";
 import { MdOutlineMoveToInbox } from "react-icons/md";
 import {TbDashboardFilled} from "react-icons/tb";
 import Feed from "../../pages/Feed/feed";
-import Messaging from "../../pages/messaging/messaging";
 const menuItems = [
     { text: "Dashboard", icon: <TbDashboardFilled /> ,path:'/dashboard'},
     { text: "User", icon: <FaRegUser /> ,path:'/dashboard/user'},
