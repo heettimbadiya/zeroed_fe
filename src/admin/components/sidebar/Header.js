@@ -28,7 +28,7 @@ const Header = ({ handleDrawerToggle, open, setOpen }) => {
                 {/*) : null}*/}
                 <h6 className="text-lg font-semibold">
                     <div>
-                        <img src={logo} onClick={() => navigate('/home')} alt="zeroed"
+                        <img src={logo} onClick={() => navigate('/dashboard')} alt="zeroed"
                              className="h-[1.875rem] w-[6.25rem] cursor-pointer"/>
                     </div>
                 </h6>
