@@ -1147,7 +1147,7 @@ function Information({data}) {
                                         <DropDownInput
                                             label="Credential institute name"
                                             name={`credential_institute_name_${index}`}
-                                            options={[{name: 'IQAS'}, {name: 'WES'}, {name: 'ICAS'}]}
+                                            options={[{name: 'IQAS',value:'IQAS'}, {name: 'WES',value:'WES'}, {name: 'ICAS',value:'ICAS'}]}
                                             disabled={!values.isInternationalEducation}
                                             value={intEducation?.credential_institute_name || ''}
                                             onChange={(e) => {

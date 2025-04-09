@@ -37,7 +37,7 @@ const Header = ({profile, userId, slug}) => {
                          className="h-[1.875rem] w-[6.25rem] cursor-pointer"/>
                 </div>
                 <div className={'flex items-center'}>
-                    <div className={'px-3 cursor-pointer'} onClick={() => navigate('/dashboard')}>Dashboard</div>
+                    <div className={'px-3 cursor-pointer'} onClick={() => navigate('/inbox')}>Inbox</div>
                     <div className={'px-3 cursor-pointer'} onClick={() => navigate('/messaging')}>Messaging</div>
                     <div className={'px-3 cursor-pointer'} onClick={() => navigate('/pricing')}>Pricing</div>
                     <div className="relative cursor-pointer flex items-center">
