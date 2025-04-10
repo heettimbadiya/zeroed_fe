@@ -46,7 +46,7 @@ function SignUp() {
         />
         <div className="xl:px-[6.25rem] px-4 lg:min-h-[calc(100vh-56px)] h-full flex flex-col justify-center items-center w-full">
           <div className="mt-8">
-            <div className="text-[2.5rem] font-bold lato leading-[3.25rem] text-black">
+            <div className="text-[2.5rem] font-bold leading-[3.25rem] text-black">
               Welcome
             </div>
             <div className="text-lg font-normal text-gray-500 mt-2">

@@ -291,7 +291,7 @@ function ProfileDetails({data}) {
                                             return (
                                                 <div key={i} className="mt-2">
                                                     <div>
-                                                        <div className="flex flex-col flex  -wrap gap-1">
+                                                        <div className="flex flex-col flex-wrap gap-1">
                                                             <div>
                                                                 {data?.core_skill && (
                                                                     <span
@@ -689,7 +689,7 @@ function ProfileDetails({data}) {
                                     <div className='my-3 relative z-[-5]'>
                                         <SwiperSlide>
                                             <div className="flex justify-between items-center">
-                                                <div className="text-2xl font-bold lato my-5">Primary Video</div>
+                                                <div className="text-2xl font-bold my-5">Primary Video</div>
                                                 {/*{params.id === user.id && (*/}
                                                 {/*    <>*/}
                                                 {/*        <div*/}

@@ -28,6 +28,7 @@ const Header = ({profile, userId, slug}) => {
         sessionStorage.clear()
         navigate(ROUTES_URL.SIGN_IN)
     }
+
     return (
         <div className="bg-white px-10">
             <div className="flex justify-between items-center py-5">
@@ -65,7 +66,7 @@ const Header = ({profile, userId, slug}) => {
                             <div
                                 className="absolute right-0 top-10 mt-2 w-36 bg-white rounded-md z-10 border border-gray-200">
                                 <div className="py-1">
-                                    {userId && (
+                                    {profile !== null && (
                                         <div
                                             onClick={() => {
                                                 toggleMenu()

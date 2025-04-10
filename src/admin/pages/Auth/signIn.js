@@ -1,150 +1,114 @@
-import { ArrowRight, Loader } from '../../common/Icons'
-import { Link, useNavigate } from 'react-router-dom'
-import ROUTES_URL from '../../constant/routes'
-import { Form, Formik } from 'formik'
-import { signInValidation } from '../../constant/validation'
-import axios from 'axios'
-import { useEffect, useState } from 'react'
-import { Error, Success } from '../../common/alert'
-import { API_ROUTES } from '../../utils/APIs'
-import logo from '../../assets/logo.png'
-import auth from '../../assets/auth.png'
-import {TextField} from "../../components/InputField";
+import React, { useState, useEffect } from 'react';
+import { FaLock, FaEnvelope } from 'react-icons/fa';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+import { API_ROUTES } from '../../utils/APIs';
+import { Error, Success } from '../../common/alert';
+import Logo from "../../../assets/logo.png";
+import { Formik, Form } from 'formik';
+import { signInValidation } from '../../constant/validation';
 
-function SignIn() {
-    let navigate = useNavigate()
-    const [error, setError] = useState(null)
-    const [loading, setLoading] = useState(false)
-
-    const [isVerify, setIsVerify] = useState(false)
+const SignIn = () => {
+    const [error, setError] = useState(null);
+    const [loading, setLoading] = useState(false);
+    const [success, setSuccess] = useState(null);
+    const [isVerify, setIsVerify] = useState(false);
+    const navigate = useNavigate();
 
     useEffect(() => {
-        const verifyStatus = localStorage.getItem('verify')
-        if (verifyStatus) {
-            setIsVerify(true)
-        } else {
-            setIsVerify(false)
-        }
-    }, [isVerify])
+        const verifyStatus = localStorage.getItem('verify');
+        setIsVerify(!!verifyStatus);
+    }, []);
 
     const handleSubmit = async (values) => {
-        setLoading(true)
+        setLoading(true);
+        setError(null);
         try {
-                sessionStorage.clear()
-            const response = await axios.post(API_ROUTES.SIGN_IN, values)
+            const response = await axios.post(API_ROUTES.SIGN_IN, values);
             if (response.data.status === 200) {
-                setError(null)
-                sessionStorage.setItem('admin_token', response.data.data.token)
-                sessionStorage.setItem('admin_user', JSON.stringify({...response.data.data.user,token:response.data.data.token}))
-                navigate(ROUTES_URL.DASHBOARD)
-                setLoading(false)
+                sessionStorage.setItem('admin_token', response.data.data.token);
+                sessionStorage.setItem('admin_user', JSON.stringify(response.data.data.user));
+                navigate('/dashboard');
             }
-        } catch (error) {
-            setError(error.response.data.message)
+        } catch (err) {
+            setError(err.response?.data?.message || 'Login failed. Try again.');
         } finally {
-            setLoading(false)
+            setLoading(false);
         }
-    }
+    };
 
     return (
-        <div className="lg:flex w-screen">
-            <div className="h-full lg:w-1/2">
-                <img
-                    src={logo}
-                    className="flex justify-center items-center xl:mx-10 mx-4 mt-10"
-                    width="64px"
-                    alt="logo"
-                />
-                <div className="xl:px-[6.25rem] px-4 lg:min-h-[calc(100vh-56px)] h-full flex flex-col justify-center items-center w-full">
-                    <div className="mt-8">
-                        <div className="text-[2.5rem] font-bold leading-[3.25rem] lato text-black">
-                            Welcome
-                        </div>
-                        <div className="text-lg font-normal text-gray-500 mt-2">
-                            Sign in account to continue...
-                        </div>
-                        <div className="text-xs font-normal leading-[1.125rem] text-gray-500">
-                            By creating an account or signing in, you understand and agree to
-                            Job Site's Terms. You also consent to our Cookie and Privacy
-                            policies. You will receive marketing messages from Job Site and
-                            may opt out at any time by following the unsubscribe link in our
-                            messages, or as detailed in our terms.
-                        </div>
-                    </div>
+        <div
+            className="w-full h-screen flex items-center justify-center bg-gradient-to-br from-blue-700 via-blue-600 to-blue-500 md:bg-none">
+            <div
+                className="relative w-full max-w-[400px] md:max-w-[850px] h-full md:h-[550px] flex flex-col md:flex-row rounded-3xl shadow-2xl md:bg-[#259ded] overflow-hidden">
 
-                    <div className="mt-6 w-full">
-                        {error && <Error message={error} />}
-                        {isVerify && (
-                            <Success message=" Email verified successful! please login to continue..." />
-                        )}
-                        <Formik
-                            initialValues={{
-                                userName: '',
-                                password: '',
-                            }}
-                            validationSchema={signInValidation}
-                            onSubmit={(values) => {
-                                handleSubmit(values)
-                            }}
-                        >
-                            {({ isSubmitting, setFieldValue, isValid }) => (
-                                <Form>
-                                    <TextField
-                                        type="userName"
-                                        label="userName"
+                {/* Left Side */}
+                <div className="hidden md:flex md:w-1/2 bg-[#259ded] flex-col justify-center items-center text-center p-10 md:p-16">
+                    <img src={Logo} alt="Logo" className="mb-10 w-30 h-12"/>
+                    <h1 className="text-2xl md:text-3xl font-bold text-white">Hello, Welcome!</h1>
+                    <p className="mt-2 mb-4 text-white">Don’t have an account?</p>
+                </div>
+
+
+                {/* Right Side - Login Form */}
+                <div className="w-full md:w-1/2 bg-white flex flex-col justify-center items-center p-10 md:p-16">
+                    <h1 className="text-3xl font-bold mb-8">Login</h1>
+                    {error && <Error message={error}/>}
+                    {isVerify && <Success message="Email verified successfully! Please login to continue..."/>}
+
+                    <Formik
+                        initialValues={{userName: '', password: ''}}
+                        validationSchema={signInValidation}
+                        onSubmit={handleSubmit}
+                    >
+                        {({setFieldValue, isValid}) => (
+                            <Form className="w-full">
+                                <div className="relative mb-4">
+                                    <input
+                                        type="name"
                                         name="userName"
-                                        placeholder="username"
+                                        placeholder="Email"
+                                        required
+                                        className="w-full px-5 py-2 pr-12 bg-gray-200 rounded-md"
                                         onChange={(e) => setFieldValue('userName', e.target.value)}
                                     />
-                                    <TextField
+                                    <FaEnvelope
+                                        className="absolute top-1/2 right-4 transform -translate-y-1/2 text-xl"/>
+                                </div>
+
+                                <div className="relative mb-3">
+                                    <input
                                         type="password"
-                                        label="password"
                                         name="password"
-                                        placeholder="* * * * * * * *"
+                                        placeholder="Password"
+                                        required
+                                        className="w-full px-5 py-2 pr-12 bg-gray-200 rounded-md"
                                         onChange={(e) => setFieldValue('password', e.target.value)}
                                     />
-                                    {/*<div*/}
-                                    {/*    className="font-semibold text-right text-sm text-primary cursor-pointer underline"*/}
-                                    {/*    onClick={() => navigate(ROUTES_URL.FORGOT_PASSWORD)}*/}
-                                    {/*>*/}
-                                    {/*    Forgot Password*/}
-                                    {/*</div>*/}
-                                    <button
-                                        className={`flex gap-x-2 justify-center items-center rounded w-full p-2 mt-4 bg-primary`}
-                                        // disabled={isValid ? false : true}
-                                    >
-                                        {loading ? (
-                                            <Loader />
-                                        ) : (
-                                            <>
-                        <span className="text-white text-base font-bold capitalize">
-                          Login
-                        </span>
-                                                <ArrowRight />
-                                            </>
-                                        )}
-                                    </button>
-                                </Form>
-                            )}
-                        </Formik>
-                    </div>
+                                    <FaLock className="absolute top-1/2 right-4 transform -translate-y-1/2 text-xl"/>
+                                </div>
 
-                    {/*<div className="flex gap-x-1 justify-end text-sm mt-2 mb-8">*/}
-                    {/*    <span className="text-gray-400">Don't have account</span>*/}
-                    {/*    <Link to={ROUTES_URL.SIGN_UP}>*/}
-                    {/*        <span className="text-primary font-bold uppercase">Signup</span>*/}
-                    {/*    </Link>*/}
-                    {/*</div>*/}
-                </div>
-            </div>
+                                <div className="text-sm text-left text-gray-600 mb-4">
+                                    <a href="#" className="hover:underline">
+                                        Forgot Password?
+                                    </a>
+                                </div>
 
-            <div className="lg:block hidden w-1/2 bg-primary-100 p-10">
-                <div className='flex justify-center items-center lg:min-h-[calc(100vh-105px)] h-full'>
-                    <img src={auth} className="h-auto w-auto" alt="login" />
+                                <button
+                                    type="submit"
+                                    disabled={loading || !isValid}
+                                    className="w-full py-3 bg-[#259ded] text-white font-semibold rounded-md hover:bg-blue-700"
+                                >
+                                    {loading ? 'Signing in...' : 'Login'}
+                                </button>
+                            </Form>
+                        )}
+                    </Formik>
                 </div>
             </div>
         </div>
-    )
-}
+    );
+};
 
-export default SignIn
+export default SignIn;
