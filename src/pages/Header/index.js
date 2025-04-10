@@ -1,5 +1,5 @@
 import {useNavigate} from 'react-router-dom'
-import logo from '../../assets/logo.png'
+import logo from '../../assets/logo (1).png'
 import default_user from '../../assets/user.png'
 import React, {useState} from 'react'
 import ROUTES_URL from '../../constant/routes'

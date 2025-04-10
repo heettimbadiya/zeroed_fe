@@ -68,7 +68,7 @@ const SignIn = () => {
                                     <input
                                         type="name"
                                         name="userName"
-                                        placeholder="Email"
+                                        placeholder="Username"
                                         required
                                         className="w-full px-5 py-2 pr-12 bg-gray-200 rounded-md"
                                         onChange={(e) => setFieldValue('userName', e.target.value)}

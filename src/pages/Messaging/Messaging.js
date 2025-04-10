@@ -1,6 +1,6 @@
 
 import React, {useEffect, useState} from "react";
-import logo from "../../assets/logo.png";
+import logo from "../../assets/logo (1).png";
 import profile from "../../admin/assets/profilepic/profile.webp";
 import {API_ROUTES} from "../../utils/APIs";
 import axios from "axios";

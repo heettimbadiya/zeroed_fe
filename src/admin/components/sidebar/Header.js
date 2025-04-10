@@ -1,6 +1,6 @@
 import React from 'react';
 import {FaBars, FaSignOutAlt} from "react-icons/fa";
-import logo from "../../assets/logo.png";
+import logo from "../../../assets/logo (1).png";
 import {useNavigate} from "react-router-dom";
 
 import {Icon} from "lucide-react";
