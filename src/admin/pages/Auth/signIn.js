@@ -57,7 +57,7 @@ function SignIn() {
                 />
                 <div className="xl:px-[6.25rem] px-4 lg:min-h-[calc(100vh-56px)] h-full flex flex-col justify-center items-center w-full">
                     <div className="mt-8">
-                        <div className="text-[2.5rem] font-bold leading-[3.25rem] text-black">
+                        <div className="text-[2.5rem] font-bold leading-[3.25rem] lato text-black">
                             Welcome
                         </div>
                         <div className="text-lg font-normal text-gray-500 mt-2">
@@ -93,7 +93,7 @@ function SignIn() {
                                         type="userName"
                                         label="userName"
                                         name="userName"
-                                        placeholder="youremail@domain.com"
+                                        placeholder="username"
                                         onChange={(e) => setFieldValue('userName', e.target.value)}
                                     />
                                     <TextField

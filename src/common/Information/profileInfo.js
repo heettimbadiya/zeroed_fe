@@ -7,7 +7,7 @@ const ProfileInfo = ({ title, icon, open, onClick, children,edit }) => {
     <div className="mt-4">
       <div className="bg-primary-100 rounded-t-lg bg-[ProfileInfo] py-[6px] px-3">
         <div className="flex justify-between items-center">
-          <span className="2xl:text-2xl lg:text-lg text-base font-bold text-primary">
+          <span className="2xl:text-2xl lg:text-lg text-base lato font-bold text-primary">
             {title}
           </span>
           {icon ? (

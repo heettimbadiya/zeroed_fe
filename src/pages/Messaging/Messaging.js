@@ -329,13 +329,13 @@ function Messaging() {
                                         className={`flex items-center p-4 border-b hover:bg-gray-50 cursor-pointer ${selectedChat?._id === chat._id ? 'bg-blue-50' : ''}`}
                                     >
                                         <img
-                                            src={chat?.participants[1]?.basicDetails?.profile_pic || profile}
+                                            src={chat?.participants[0]?.basicDetails?.profile_pic || profile}
                                             alt="avatar"
                                             className="w-10 h-10 rounded-full mr-3"
                                         />
                                         <div className="flex-1 min-w-0">
                                             <h3 className="text-sm font-medium">
-                                                {chat?.participants[1]?.basicDetails?.firstname} {chat?.participants[1]?.basicDetails?.lastname}
+                                                {chat?.participants[0]?.basicDetails?.firstname} {chat?.participants[0]?.basicDetails?.lastname}
                                             </h3>
                                         </div>
                                     </div>
@@ -356,12 +356,12 @@ function Messaging() {
                                             ← Back
                                         </button>
                                         <img
-                                            src={selectedChat?.participants[1]?.basicDetails?.profile_pic || profile}
+                                            src={selectedChat?.participants[0]?.basicDetails?.profile_pic || profile}
                                             alt="avatar"
                                             className="w-10 h-10 rounded-full ml-3"
                                         />
                                         <h2 className="text-lg font-semibold ml-2">
-                                            {selectedChat?.participants[1]?.basicDetails?.firstname} {selectedChat?.participants[1]?.basicDetails?.lastname}
+                                            {selectedChat?.participants[0]?.basicDetails?.firstname} {selectedChat?.participants[0]?.basicDetails?.lastname}
                                         </h2>
                                     </div>
 

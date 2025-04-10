@@ -3,8 +3,8 @@ import SignIn from './pages/Auth/signIn'
 import ROUTES_URL from './constant/routes'
 import React, {Suspense} from 'react'
 import {PageLoading} from './common/Icons/Loading/pageLoading'
-import ProtectedRoute from './helper/protectedRoute'
 import MainLayout from "./layout/sidebar/MainLayout";
+import AdminProtectedRoute from "./helper/protectedRoute";
 
 function AdminApp() {
 
@@ -13,9 +13,9 @@ function AdminApp() {
             <Routes>
                 <Route
                     path={ROUTES_URL.SIGN_IN}
-                    element={<ProtectedRoute>
+                    element={<AdminProtectedRoute>
                         <SignIn/>
-                    </ProtectedRoute>}
+                    </AdminProtectedRoute>}
                 />
 
 
@@ -28,9 +28,9 @@ function AdminApp() {
                 {/*/>*/}
                 <Route
                     path={`${ROUTES_URL.DASHBOARD}/*`}
-                    element={<ProtectedRoute>
+                    element={<AdminProtectedRoute>
                         <MainLayout/>
-                    </ProtectedRoute>}
+                    </AdminProtectedRoute>}
                 />
             </Routes>
         </Suspense>

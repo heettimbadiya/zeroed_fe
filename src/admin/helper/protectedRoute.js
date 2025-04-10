@@ -2,7 +2,7 @@ import { useLocation, useNavigate } from 'react-router-dom'
 import { useEffect } from 'react'
 import ROUTES_URL from '../constant/routes'
 
-const ProtectedRoute = ({ children }) => {
+const AdminProtectedRoute = ({ children }) => {
   const navigate = useNavigate()
   const location = useLocation()
   const token = sessionStorage.getItem('admin_token')
@@ -56,4 +56,4 @@ const ProtectedRoute = ({ children }) => {
   return children
 }
 
-export default ProtectedRoute
+export default AdminProtectedRoute

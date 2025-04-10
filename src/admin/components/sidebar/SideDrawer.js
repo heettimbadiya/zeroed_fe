@@ -80,7 +80,7 @@ export default function SideDrawer() {
             <div className="flex justify-between items-center">
                 <button
                     onClick={() => setIsOpen(true)}
-                    className="flex items-center space-x-2 text-gray-700 hover:text-blue-500"
+                    className="flex relative items-center space-x-2 text-gray-700 hover:text-blue-500"
                 >
                     <input
                         type="text"
@@ -150,17 +150,17 @@ export default function SideDrawer() {
                                     onClick={() => handleUserClick(user._id)}
                                 >
                                     <img
-                                        src={user.basicDetails.profile_pic || "https://via.placeholder.com/40"}
-                                        alt={user.name}
+                                        src={user?.basicDetails?.profile_pic || "https://via.placeholder.com/40"}
+                                        alt={user?.name}
                                         className="w-10 h-10 rounded-full border-2 object-cover"
                                     />
                                     <div>
                                         <p className="font-semibold text-[17px]">
-                                            {user.basicDetails.firstname + ' ' + user.basicDetails.lastname}
+                                            {user?.basicDetails?.firstname + ' ' + user?.basicDetails?.lastname}
                                         </p>
                                         <p className="text-sm">
                                             <span className="font-semibold text-[13px]">Email :</span>{" "}
-                                            <span className="text-gray-700">{user.email}</span>
+                                            <span className="text-gray-700">{user?.email}</span>
                                         </p>
                                     </div>
                                 </div>
