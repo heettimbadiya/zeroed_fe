@@ -21,7 +21,6 @@ function Messaging({open, setOpen}) {
     const [newMessageData, setNewMessageData] = useState([]);
     const [messenger, setMessenger] = useState([]);
     const [openDrawer, setOpenDrawer] = useState(false);
-    const [allUsers, setAllUsers] = useState([]);
     const [filteredUsers, setFilteredUsers] = useState([]);
     const [searchQuery, setSearchQuery] = useState("");
 
