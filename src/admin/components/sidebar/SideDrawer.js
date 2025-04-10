@@ -9,8 +9,16 @@ export default function SideDrawer() {
     const [results, setResults] = useState([]);
     const [loading, setLoading] = useState(false);
 
-    const token = sessionStorage.getItem("admin_token");
+    const isAdmin = !!sessionStorage.getItem("admin_token");
+    const user = isAdmin
+        ? JSON.parse(sessionStorage.getItem("admin_user"))
+        : JSON.parse(sessionStorage.getItem("user"));
+    const token = isAdmin
+        ? sessionStorage.getItem("admin_token")
+        : sessionStorage.getItem("token");
+
     const navigate = useNavigate();
+
     const handleSearch = async () => {
         if (!search) return;
 
@@ -32,10 +40,8 @@ export default function SideDrawer() {
         }
     };
 
-
     const handleUserClick = async (userId) => {
         try {
-            // 1. Create or get chat with selected user
             const response = await axios.post(
                 API_ROUTES.POST_CHAT,
                 { userId },
@@ -45,9 +51,10 @@ export default function SideDrawer() {
                     },
                 }
             );
+
             console.log("POST success:", response.data);
 
-            // 2. Fetch all chats
+            // ✅ GET only after POST is completed
             const allChats = await axios.get(API_ROUTES.ALL_CHAT, {
                 headers: {
                     Authorization: token,
@@ -56,8 +63,8 @@ export default function SideDrawer() {
 
             console.log("ALL_CHAT success:", allChats.data);
 
-            // 3. Navigate to chat page
-            navigate("/chat");
+            // ✅ Conditional navigation
+            navigate(isAdmin ? "/chat" : "/messaging");
         } catch (error) {
             console.error("Chat error:", error);
         } finally {
@@ -65,6 +72,7 @@ export default function SideDrawer() {
             setResults([]);
         }
     };
+
 
     return (
         <div className="w-full">
@@ -86,8 +94,12 @@ export default function SideDrawer() {
                         viewBox="0 0 24 24"
                         stroke="currentColor"
                     >
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"
-                              d="M21 21l-4.35-4.35m0 0A7.5 7.5 0 1011 18.5a7.5 7.5 0 005.65-1.85z" />
+                        <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth="2"
+                            d="M21 21l-4.35-4.35m0 0A7.5 7.5 0 1011 18.5a7.5 7.5 0 005.65-1.85z"
+                        />
                     </svg>
                 </button>
             </div>

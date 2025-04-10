@@ -5,7 +5,6 @@ import React, {useState} from 'react'
 import ROUTES_URL from '../../constant/routes'
 import {ArrowDown, LinkIcon, LogoutIcon, UserIcon} from '../../common/Icons'
 import SideDrawer from "../../admin/components/sidebar/SideDrawer";
-import SideDrawere from "./SideDraweres";
 
 const Header = ({profile, userId, slug}) => {
     let navigate = useNavigate()
@@ -40,7 +39,7 @@ const Header = ({profile, userId, slug}) => {
                              className="h-[1.875rem] w-[6.25rem] cursor-pointer"/>
                     </div>
                     <div className="ps-4">
-                        <SideDrawere/>
+                        <SideDrawer/>
                     </div>
                 </div>
                 <div className={'flex items-center'}>
