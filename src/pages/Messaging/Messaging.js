@@ -23,6 +23,7 @@ function Messaging({open, setOpen}) {
     const [openDrawer, setOpenDrawer] = useState(false);
     const [filteredUsers, setFilteredUsers] = useState([]);
     const [searchQuery, setSearchQuery] = useState("");
+    const [allUsers, setAllUsers] = useState([]);
 
 
     const navigate = useNavigate();
