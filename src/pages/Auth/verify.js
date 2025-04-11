@@ -11,7 +11,7 @@ import { useState } from 'react';
 import axios from 'axios';
 import { Error } from '../../common/alert';
 import { API_ROUTES } from '../../utils/APIs';
-import logo from '../../assets/logo.png';
+import logo from '../../assets/logo (1).png';
 import auth from '../../assets/auth.png';
 
 function Verify() {
