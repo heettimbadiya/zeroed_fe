@@ -66,7 +66,7 @@ const Header = ({profile, userId, slug}) => {
                             <div
                                 className="absolute right-0 top-10 mt-2 w-36 bg-white rounded-md z-10 border border-gray-200">
                                 <div className="py-1">
-                                    {profile !== null && (
+                                    {/*{profile !== null && (*/}
                                         <div
                                             onClick={() => {
                                                 toggleMenu()
@@ -79,7 +79,7 @@ const Header = ({profile, userId, slug}) => {
                                             </div>
                                             <span>Profile</span>
                                         </div>
-                                    )}
+                                    {/*)}*/}
                                     {slug && (
                                         <div className="relative">
                                             <div

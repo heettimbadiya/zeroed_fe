@@ -1,5 +1,5 @@
-import React, {useEffect, useState} from "react";
-import logo from "../../assets/logo.png";
+import React, {useEffect, useRef, useState} from "react";
+import logo from "../../assets/logo (1).png";
 import profile from "../../admin/assets/profilepic/profile.webp";
 import {API_ROUTES} from "../../utils/APIs";
 import axios from "axios";
@@ -24,10 +24,10 @@ const defaultOptions = {
 };
 
 function Messaging() {
+    const endOfMessagesRef = useRef(null);
     const isAdmin = !!sessionStorage.getItem("admin_token");
     const token = isAdmin ? sessionStorage.getItem("admin_token") : sessionStorage.getItem("token");
     const user = isAdmin ? JSON.parse(sessionStorage.getItem("admin_user")) : JSON.parse(sessionStorage.getItem("user"));
-
     const [selectedChat, setSelectedChat] = useState(null);
     const [newMessage, setNewMessage] = useState("");
     const [newMessageData, setNewMessageData] = useState([]);
@@ -222,6 +222,9 @@ function Messaging() {
             }
         }, timerLength);
     };
+    useEffect(() => {
+        endOfMessagesRef.current?.scrollIntoView({ behavior: "smooth" });
+    }, [newMessageData]);
     return (
         <>
             {isAdmin && (
@@ -370,23 +373,24 @@ function Messaging() {
                                                     </div>
                                                 </div>
                                             ))}
+                                        <div ref={endOfMessagesRef}/>
                                     </div>
 
                                     {/* Input Area */}
                                     <div className="p-4 border-t bg-white">
                                         <div className="flex items-center space-x-2">
-                                            {istyping ? (
-                                                <div>
-                                                    <Lottie
-                                                        options={defaultOptions}
-                                                        // height={50}
-                                                        width={70}
-                                                        style={{marginBottom: 15, marginLeft: 0}}
-                                                    />
-                                                </div>
-                                            ) : (
-                                                <></>
-                                            )}
+                                            {/*{istyping ? (*/}
+                                            {/*    <div>*/}
+                                            {/*        <Lottie*/}
+                                            {/*            options={defaultOptions}*/}
+                                            {/*            // height={50}*/}
+                                            {/*            width={70}*/}
+                                            {/*            style={{marginBottom: 15, marginLeft: 0}}*/}
+                                            {/*        />*/}
+                                            {/*    </div>*/}
+                                            {/*) : (*/}
+                                            {/*    <></>*/}
+                                            {/*)}*/}
                                             <input
                                                 type="text"
                                                 value={newMessage}

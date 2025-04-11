@@ -191,7 +191,6 @@ function App() {
 
            <AdminApp/>
         </Suspense>
-        <ChatPopup/>
     </div>)
 }
 

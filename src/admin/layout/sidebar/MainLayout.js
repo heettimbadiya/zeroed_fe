@@ -8,6 +8,7 @@ import {FaEnvelope, FaInbox, FaRegUser, FaTrash} from "react-icons/fa";
 import { MdOutlineMoveToInbox } from "react-icons/md";
 import {TbDashboardFilled} from "react-icons/tb";
 import Feed from "../../pages/Feed/feed";
+import ChatPopup from "../../../pages/ChatPopup/ChatPopup";
 const menuItems = [
     { text: "Dashboard", icon: <TbDashboardFilled /> ,path:'/dashboard'},
     { text: "User", icon: <FaRegUser /> ,path:'/dashboard/user'},
@@ -24,7 +25,6 @@ export default function MainLayout() {
     const [user,setUser] = useState(JSON.parse(stringifyUser))
     const [mobileOpen, setMobileOpen] = useState(false);
     const [open, setOpen] = useState(true);
-
     const handleDrawerToggle = () => {
         setMobileOpen(!mobileOpen);
     };
@@ -58,6 +58,7 @@ export default function MainLayout() {
                         {/*<Route path="three" element={<Three />} />*/}
                     </Routes>
                     </UserContext.Provider>
+                    <ChatPopup/>
                 </main>
             </div>
         </div>

@@ -45,7 +45,7 @@ const Header = ({ handleDrawerToggle, open, setOpen }) => {
             </div>
             <div className={`flex items-end items-center space-x-4`}>
                 <button
-                    className="bg-green-500 text-white px-4 py-2 rounded-lg font-medium hover:bg-green-600 transition"
+                    className="bg-[#00C5FF] text-white px-4 py-2 rounded-lg font-medium hover:bg-[#009ACD] transition"
                     onClick={() => navigate('/chat')}
                 >
                     <Chat/>
@@ -57,7 +57,7 @@ const Header = ({ handleDrawerToggle, open, setOpen }) => {
                         navigate('/admin')
                     }}
                 >
-                    <FaSignOutAlt size={20}/>
+                    <FaSignOutAlt size={20} />
                     <span className="hidden sm:inline">Log Out</span>
                 </button>
             </div>

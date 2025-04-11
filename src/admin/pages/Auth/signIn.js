@@ -27,7 +27,7 @@ const SignIn = () => {
             const response = await axios.post(API_ROUTES.SIGN_IN, values);
             if (response.data.status === 200) {
                 sessionStorage.setItem('admin_token', response.data.data.token);
-                sessionStorage.setItem('admin_user', JSON.stringify(response.data.data.user));
+                sessionStorage.setItem('admin_user', JSON.stringify({...response.data.data.user,token:response.data.data.token}));
                 navigate('/dashboard');
             }
         } catch (err) {

@@ -126,7 +126,7 @@ function Feed() {
 
                     {/* Profile Score Panel */}
                     <div className="lg:w-[36%] w-full lg:max-h-[calc(100vh-120px)] category2 h-auto overflow-y-auto bg-white lg:mt-0 mt-4">
-                        <div className="shadow-lg p-6 max-w-2xl mx-auto">
+                        <div className="p-6 max-w-2xl mx-auto">
                             {loadingProfile ? (
                                 <PageLoading />
                             ) : (
