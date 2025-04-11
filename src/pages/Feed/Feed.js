@@ -2,7 +2,7 @@ import React, { useEffect, useState, useCallback, useMemo } from 'react';
 import { True, Warning } from '../../common/Icons';
 import axios from 'axios';
 import { API_ROUTES } from '../../utils/APIs';
-import {PageLoading} from "../../common/Icons/Loading/pageLoading";
+import { PageLoading } from "../../common/Icons/Loading/pageLoading";
 
 function Feed() {
     const [profile, setProfile] = useState(null);
@@ -110,7 +110,9 @@ function Feed() {
                     <div className="lg:w-[40%] w-full lg:h-[calc(100vh-120px)] bg-white overflow-y-auto">
                         <div className="font-semibold text-[18px] mb-5 p-3">Feeds</div>
                         {loadingFeed ? (
-                            <PageLoading />
+                            <div className="flex justify-center items-center h-[calc(100vh-200px)]">
+                                <PageLoading />
+                            </div>
                         ) : (
                             feed.map((item, i) => (
                                 <div key={i}>
@@ -128,7 +130,9 @@ function Feed() {
                     <div className="lg:w-[36%] w-full lg:max-h-[calc(100vh-120px)] category2 h-auto overflow-y-auto bg-white lg:mt-0 mt-4">
                         <div className="p-6 max-w-2xl mx-auto">
                             {loadingProfile ? (
-                                <PageLoading />
+                                <div className="flex justify-center items-center h-[calc(100vh-200px)]">
+                                    <PageLoading />
+                                </div>
                             ) : (
                                 <>
                                     <div className="flex items-center justify-between mb-6">

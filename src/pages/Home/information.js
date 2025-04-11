@@ -791,7 +791,7 @@ function Information({data}) {
             year_of_graduation: data?.internationalEducation?.year_of_graduation || '',
             college_name: data?.internationalEducation?.college_name || '',
             global_gpa: data?.internationalEducation?.global_gpa || '',
-            isInternationalEducation: internationalEducation[0].field_of_study ? true : false,
+            isInternationalEducation: internationalEducation[0]?.field_of_study ? true : false,
             credential_no: data?.internationalEducation?.credential_no || '',
             credential_institute_name: data?.internationalEducation?.credential_institute_name || '',
             credential_assesed: data?.internationalEducation?.credential_assesed || false,
