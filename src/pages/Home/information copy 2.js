@@ -416,7 +416,7 @@ function Information({ data }) {
             navigate(`${ROUTES_URL.PROFILE}/${user.id}`)
           }
         } catch (error) {
-          alert('Something went wrong')
+            console.log('Something went wrong')
         }
       } else {
         try {
@@ -434,7 +434,7 @@ function Information({ data }) {
             navigate(`${ROUTES_URL.PROFILE}/${user.id}`)
           }
         } catch (error) {
-          alert('Something went wrong')
+            console.log('Something went wrong')
         }
       }
     }

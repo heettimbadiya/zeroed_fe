@@ -47,7 +47,7 @@ function Feed() {
             });
             if (Array.isArray(data) && data.length > 0) setFeed(data);
         } catch (error) {
-            alert('Something went wrong in update');
+            console.log('Something went wrong in update');
         } finally {
             setLoadingFeed(false);
         }

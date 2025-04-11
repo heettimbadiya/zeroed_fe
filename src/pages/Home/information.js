@@ -158,7 +158,7 @@ function Information({data}) {
                 setDropDown(response.data)
             }
         } catch (error) {
-            alert('Something went wrong in update')
+            console.log('Something went wrong in update')
         }
     }
 
@@ -691,7 +691,7 @@ function Information({data}) {
                         navigate(`${ROUTES_URL.PROFILE}/${user.id}`)
                     }
                 } catch (error) {
-                    alert('Something went wrong in update')
+                    console.log('Something went wrong in update')
                 }
             } else {
                 try {
@@ -704,7 +704,7 @@ function Information({data}) {
                         navigate(`${ROUTES_URL.PROFILE}/${user.id}`)
                     }
                 } catch (error) {
-                    alert('Something went wrong in insert')
+                    console.log('Something went wrong in insert')
                 }
             }
         }

@@ -19,7 +19,7 @@ const CertificatePreview = ({subSkill}) => {
         if (isPDF || isImage) {
             window.open(certificateUrl, '_blank');
         } else {
-            alert('Unsupported certificate type');
+            console.log('Unsupported certificate type');
         }
     };
 

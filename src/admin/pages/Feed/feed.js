@@ -153,7 +153,7 @@ function Feed() {
                                                 />
                                             </div>
                                         </td>
-                                        <td className="border px-4 py-2 text-sm text-center">{item.description}</td>
+                                        <td className="border px-4 py-2 text-sm">{item.description}</td>
                                         <td className="border px-4 py-2 text-sm text-center">{item.noc_number || '-'}</td>
                                         <td className="border px-4 py-2 text-sm text-center">{moment(item.date).format('DD MMM YYYY')}</td>
                                         <td className="border px-4 py-2 text-center">
