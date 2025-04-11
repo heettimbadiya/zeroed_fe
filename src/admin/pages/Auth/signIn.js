@@ -47,7 +47,7 @@ const SignIn = () => {
                 <div className="hidden md:flex md:w-1/2 bg-[#259ded] flex-col justify-center items-center text-center p-10 md:p-16">
                     <img src={Logo} alt="Logo" className="mb-10 w-30 h-12"/>
                     <h1 className="text-2xl md:text-3xl font-bold text-white">Hello, Welcome!</h1>
-                    <p className="mt-2 mb-4 text-white">Don’t have an account?</p>
+                    {/*<p className="mt-2 mb-4 text-white">Don’t have an account?</p>*/}
                 </div>
 
 

@@ -78,11 +78,19 @@ const AuthForm = () => {
                 {/* Side Panel */}
                 <div className={`hidden md:flex absolute top-0 left-0 w-1/2 h-full bg-blue-600 flex-col justify-center items-center text-center p-10 transition-transform duration-700 z-20 rounded-3xl ${isRegistering ? 'translate-x-full' : 'translate-x-0'}`}>
                     <img src={Logo} alt="Logo" className="mb-10 w-23 h-12" />
-                    <h1 className="text-3xl font-bold text-white">
-                        {isRegistering ? 'Welcome Back!' : 'Hello, Welcome!'}
+                    <h1 className="text-2xl font-bold text-white mb-2">
+                        {isRegistering ? 'Hello, Welcome! ' : 'Welcome Back!'}
                     </h1>
-                    <p className="mt-2 mb-4 text-white">
-                        {isRegistering ? 'Already have an account?' : 'Don’t have an account?'}
+                    <p className="mt-2 mb-6 text-white text-xs text-start" style={{textAlign: 'justify'}}>
+                        {isRegistering ? 'By creating an account or signing in, you understand and agree to\n' +
+                            '                            Job Site\'s Terms. You also consent to our Cookie and Privacy\n' +
+                            '                            policies. You will receive marketing messages from Job Site and\n' +
+                            '                            may opt out at any time by following the unsubscribe link in our\n' +
+                            '                            messages, or as detailed in our terms.' : 'By creating an account or signing in, you understand and agree to\n' +
+                            '                            Job Site\'s Terms. You also consent to our Cookie and Privacy\n' +
+                            '                            policies. You will receive marketing messages from Job Site and\n' +
+                            '                            may opt out at any time by following the unsubscribe link in our\n' +
+                            '                            messages, or as detailed in our terms.'}
                     </p>
                     <button
                         onClick={() => {
