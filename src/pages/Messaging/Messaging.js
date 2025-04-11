@@ -1,17 +1,17 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import logo from "../../assets/logo.png";
 import profile from "../../admin/assets/profilepic/profile.webp";
-import {API_ROUTES} from "../../utils/APIs";
+import { API_ROUTES } from "../../utils/APIs";
 import axios from "axios";
 import moment from "moment";
 import Header from "../../admin/components/sidebar/Header";
-import {AddChat, Back, Send} from "../../common/Icons";
-import {Search} from "lucide-react";
-import {useNavigate} from "react-router-dom";
-import {io} from "socket.io-client";
+import { AddChat, Back, Send } from "../../common/Icons";
+import { Search } from "lucide-react";
+import { useNavigate } from "react-router-dom";
+import { io } from "socket.io-client";
 import Lottie from "react-lottie";
 import animationData from "../../animations/typing.json";
-
+import { PageLoading } from "../../common/Icons/Loading/pageLoading";
 const ENDPOINT = process.env.REACT_APP_FILE_URL;
 let socket, selectedChatCompare;
 const defaultOptions = {
@@ -39,13 +39,16 @@ function Messaging() {
     const [filteredUsers, setFilteredUsers] = useState([]);
     const [searchQuery, setSearchQuery] = useState("");
     const [allUsers, setAllUsers] = useState([]);
-
+    const [loading, setLoading] = useState(false);
+    const [chatLoading, setChatLoading] = useState(false);
+    const [isLoading, setIsLoading] = useState(false); // Loading state for API calls
 
     const navigate = useNavigate();
 
     const fetchUsers = async () => {
+        setIsLoading(true);
         try {
-            const {data} = await axios.get(`${API_ROUTES.SEARCH}?search=`, {
+            const { data } = await axios.get(`${API_ROUTES.SEARCH}?search=`, {
                 headers: {
                     Authorization: token,
                 },
@@ -54,6 +57,8 @@ function Messaging() {
             setFilteredUsers(data.data);
         } catch (error) {
             console.error("Failed to fetch users:", error);
+        } finally {
+            setIsLoading(false);
         }
     };
 
@@ -75,7 +80,6 @@ function Messaging() {
         );
         setFilteredUsers(filtered);
     };
-
 
     const staticBroadcastChat = isAdmin
         ? [{
@@ -99,9 +103,10 @@ function Messaging() {
         : [];
 
     const getAllChat = async () => {
+        setIsLoading(true);
         try {
             const res = await axios.get(API_ROUTES.ALL_CHAT, {
-                headers: {Authorization: token},
+                headers: { Authorization: token },
             });
 
             const allChats = [...staticBroadcastChat, ...res.data];
@@ -113,13 +118,19 @@ function Messaging() {
             }
         } catch (error) {
             console.error("Error fetching chats:", error.response?.data || error.message);
+        } finally {
+            setIsLoading(false);  // Set loading to false after the API call
+            setLoading(false);  // Set loading to false after the API call
+
         }
     };
 
     const handleUserClick = async (userId) => {
+        setIsLoading(true);  // Set loading to true before the API call
+        setChatLoading(true);  // Set loading to true before the API call
         try {
-            const res = await axios.post(API_ROUTES.POST_CHAT, {userId}, {
-                headers: {Authorization: token},
+            const res = await axios.post(API_ROUTES.POST_CHAT, { userId }, {
+                headers: { Authorization: token },
             });
             if (res?.data?._id) {
                 getAllChat()
@@ -128,25 +139,33 @@ function Messaging() {
         } catch (error) {
             console.error("Error initiating chat:", error);
         } finally {
+            setIsLoading(false);  // Set loading to false after the API call
             setOpenDrawer(false);
+            setChatLoading(false);
         }
     };
+
     const manageMessages = async (chat) => {
+        setIsLoading(true);  // Set loading to true before the API call
+        setChatLoading(true);  // Set loading to true before the API call
         try {
             if (isAdmin && chat.userName === "BROADCAST") {
                 const res = await axios.get(API_ROUTES.BROADCAST, {
-                    headers: {Authorization: token},
+                    headers: { Authorization: token },
                 });
                 setNewMessageData(res.data);
             } else {
                 const res = await axios.get(`${API_ROUTES.CHAT_MESSAGES}/${chat._id}`, {
-                    headers: {Authorization: token},
+                    headers: { Authorization: token },
                 });
                 setNewMessageData(res.data);
                 socket.emit("join chat", selectedChat._id);
             }
         } catch (error) {
             console.error("Error fetching messages:", error.response?.data || error.message);
+        } finally {
+            setIsLoading(false);  // Set loading to false after the API call
+            setChatLoading(false);  // Set loading to false after the API call
         }
     };
 
@@ -154,22 +173,23 @@ function Messaging() {
         setSelectedChat(chat);
         manageMessages(chat);
     };
+
     useEffect(() => {
         socket = io(ENDPOINT);
         socket.emit("setup", user);
         socket.on("connected", () => setSocketConnected(true));
         socket.on("typing", () => setIsTyping(true));
         socket.on("stop typing", () => setIsTyping(false));
-
     }, [user]);
+
     const handleSendMessage = async () => {
         if (!newMessage.trim() || !selectedChat) return;
         socket.emit("stop typing", selectedChat._id);
         try {
             if (isAdmin && selectedChat.userName === "BROADCAST") {
-                const payload = {text: newMessage};
-                const {data} = await axios.post(API_ROUTES.BROADCAST, payload, {
-                    headers: {Authorization: token},
+                const payload = { text: newMessage };
+                const { data } = await axios.post(API_ROUTES.BROADCAST, payload, {
+                    headers: { Authorization: token },
                 });
                 socket.emit("new message", data);
             } else {
@@ -178,8 +198,8 @@ function Messaging() {
                     receiver: selectedChat.participants[0]._id,
                     text: newMessage,
                 };
-                const {data} = await axios.post(API_ROUTES.SEND_MESSAGES, payload, {
-                    headers: {Authorization: token},
+                const { data } = await axios.post(API_ROUTES.SEND_MESSAGES, payload, {
+                    headers: { Authorization: token },
                 });
                 socket.emit("new message", data);
             }
@@ -190,10 +210,11 @@ function Messaging() {
             console.error("Error sending message:", error.response?.data || error.message);
         }
     };
-
     useEffect(() => {
+        setLoading(true);
         getAllChat();
     }, []);
+
     useEffect(() => {
         socket.on("message received", (newMessageRecieved) => {
             setNewMessageData([...newMessageData, newMessageRecieved]);
@@ -202,6 +223,7 @@ function Messaging() {
             socket.off("setup", user);
         };
     });
+
     const typingHandler = (e) => {
         setNewMessage(e.target.value);
 
@@ -222,31 +244,30 @@ function Messaging() {
             }
         }, timerLength);
     };
+
     return (
         <>
             {isAdmin && (
                 <div className="py-3 px-5">
-                    <Header/>
+                    <Header />
                 </div>
             )}
+        {loading ? (
+            <PageLoading />
+        ) : (
 
             <div className="flex min-h-[93vh] h-[100%] bg-gray-100 justify-center items-center">
                 <div className="container">
                     <div className="flex flex-row justify-center gap-x-6">
                         {/* Sidebar */}
-                        <div
-                            className={`w-full h-[80vh] overflow-auto lg:w-[30%] bg-white relative border-r ${selectedChat ? 'hidden lg:block' : ''}`}>
+                        <div className={`w-full h-[80vh] overflow-auto lg:w-[30%] bg-white relative border-r ${selectedChat ? 'hidden lg:block' : ''}`}>
                             {openDrawer ? (
                                 <div className="absolute right-0 top-0 w-full lg:w-[100%] h-full z-40 shadow-xl transition-all overflow-hidden bg-white">
                                     <div className="flex flex-col h-full">
-
                                         {/* Header + Search */}
                                         <div className="shrink-0">
                                             <div className="flex items-center p-4 space-x-3">
-                                                <button
-                                                    onClick={() => setOpenDrawer(false)}
-                                                    className="text-black text-xl"
-                                                >
+                                                <button onClick={() => setOpenDrawer(false)} className="text-black text-xl">
                                                     <Back />
                                                 </button>
                                                 <h2 className="text-lg font-semibold">New Chat</h2>
@@ -269,6 +290,9 @@ function Messaging() {
                                         </div>
 
                                         {/* Scrollable User List */}
+                                        {isLoading ? (
+                                            <PageLoading />
+                                        ) : (
                                         <div className="overflow-y-auto px-4 pb-4 space-y-2 flex-1">
                                             {filteredUsers.length > 0 ? (
                                                 filteredUsers.map((user) => (
@@ -294,6 +318,7 @@ function Messaging() {
                                                 <p className="text-sm text-gray-500">No users found.</p>
                                             )}
                                         </div>
+                                        )}
                                     </div>
                                 </div>
                             ) : (
@@ -306,45 +331,49 @@ function Messaging() {
                                     </div>
 
                                     <div className="overflow-y-auto h-[calc(80vh-4rem)]">
-                                        {messenger.map((chat) => (
-                                            <div
-                                                key={chat._id}
-                                                onClick={() => handleChangeChat(chat)}
-                                                className={`flex items-center p-4 border-b hover:bg-gray-50 cursor-pointer ${
-                                                    selectedChat?._id === chat._id ? 'bg-blue-50' : ''
-                                                }`}
-                                            >
-                                                <img
-                                                    src={chat?.participants[0]?.basicDetails?.profile_pic || profile}
-                                                    alt="avatar"
-                                                    className="w-10 h-10 rounded-full mr-3"
-                                                />
-                                                <div className="flex-1 min-w-0">
-                                                    <h3 className="text-sm font-medium">
-                                                        {chat?.participants[0]?.basicDetails?.firstname}{' '}
-                                                        {chat?.participants[0]?.basicDetails?.lastname}
-                                                    </h3>
+                                        {/*{isLoading ? (*/}
+                                        {/*    <PageLoading />*/}
+                                        {/*) : (*/}
+                                        {
+                                            messenger.map((chat) => (
+                                                <div
+                                                    key={chat._id}
+                                                    onClick={() => handleChangeChat(chat)}
+                                                    className={`flex items-center p-4 border-b hover:bg-gray-50 cursor-pointer ${
+                                                        selectedChat?._id === chat._id ? 'bg-blue-50' : ''
+                                                    }`}
+                                                >
+                                                    <img
+                                                        src={chat?.participants[0]?.basicDetails?.profile_pic || profile}
+                                                        alt="avatar"
+                                                        className="w-10 h-10 rounded-full mr-3"
+                                                    />
+                                                    <div className="flex-1 min-w-0">
+                                                        <h3 className="text-sm font-medium">
+                                                            {chat?.participants[0]?.basicDetails?.firstname}{' '}
+                                                            {chat?.participants[0]?.basicDetails?.lastname}
+                                                        </h3>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        ))}
+                                            ))
+                                        }
                                     </div>
                                 </>
                             )}
-
                         </div>
 
                         {/* Chat Panel */}
-                        <div
-                            className={`flex-1 flex h-[80vh] overflow-auto flex-col ${selectedChat ? 'block' : 'hidden'}`}>
+                        <div className={`flex-1 flex h-[80vh] overflow-auto flex-col ${selectedChat ? 'block' : 'hidden'}`}>
                             {selectedChat ? (
                                 <>
                                     {/* Chat Header */}
+
                                     <div className="p-4 border-b bg-white flex items-center">
                                         <button
                                             onClick={() => setSelectedChat(null)}
                                             className="lg:hidden p-2 text-black hover:bg-gray-200 rounded-md"
                                         >
-                                            <Back/>
+                                            <Back />
                                         </button>
                                         <img
                                             src={selectedChat?.participants[0]?.basicDetails?.profile_pic || profile}
@@ -357,6 +386,10 @@ function Messaging() {
                                     </div>
 
                                     {/* Chat Messages */}
+
+                                    {/*{chatLoading ? (*/}
+                                    {/*    <PageLoading />*/}
+                                    {/*) : (*/}
                                     <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-gray-50">
                                         {newMessageData.length > 0 &&
                                             newMessageData.map((msg) => (
@@ -371,6 +404,7 @@ function Messaging() {
                                                 </div>
                                             ))}
                                     </div>
+                                    {/*)}*/}
 
                                     {/* Input Area */}
                                     <div className="p-4 border-t bg-white">
@@ -381,12 +415,10 @@ function Messaging() {
                                                         options={defaultOptions}
                                                         // height={50}
                                                         width={70}
-                                                        style={{marginBottom: 15, marginLeft: 0}}
+                                                        style={{ marginBottom: 15, marginLeft: 0 }}
                                                     />
                                                 </div>
-                                            ) : (
-                                                <></>
-                                            )}
+                                            ) : null}
                                             <input
                                                 type="text"
                                                 value={newMessage}
@@ -400,16 +432,12 @@ function Messaging() {
                                                     }
                                                 }}
                                             />
-
-
-                                                <button
-                                                    onClick={handleSendMessage}
-                                                    className="bg-[#00C5FF] text-white px-4 py-2 rounded-lg hover:bg-blue-600"
-                                                >
-                                                    <Send />
-                                                </button>
-
-
+                                            <button
+                                                onClick={handleSendMessage}
+                                                className="bg-[#00C5FF] text-white px-4 py-2 rounded-lg hover:bg-blue-600"
+                                            >
+                                                <Send />
+                                            </button>
                                         </div>
                                     </div>
                                 </>
@@ -422,6 +450,7 @@ function Messaging() {
                     </div>
                 </div>
             </div>
+)}
         </>
     );
 }

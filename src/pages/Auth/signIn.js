@@ -1,9 +1,9 @@
-import React, {useState} from 'react';
-import {FaLock, FaEnvelope, FaUser} from 'react-icons/fa';
+import React, { useState } from 'react';
+import { FaLock, FaEnvelope, FaUser } from 'react-icons/fa';
 import axios from 'axios';
-import {useNavigate} from 'react-router-dom';
-import {API_ROUTES} from '../../utils/APIs';
-import {Error, Success} from '../../common/alert';
+import { useNavigate } from 'react-router-dom';
+import { API_ROUTES } from '../../utils/APIs';
+import { Error, Success } from '../../common/alert';
 import Logo from '../../assets/logo.png';
 
 const AuthForm = () => {
@@ -13,13 +13,13 @@ const AuthForm = () => {
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
 
-    const handleSignIn = async ({email, password}) => {
+    const handleSignIn = async ({ email, password }) => {
         if (loading) return;
         setLoading(true);
         setError(null);
 
         try {
-            const response = await axios.post(API_ROUTES.SIGN_IN, {email, password});
+            const response = await axios.post(API_ROUTES.SIGN_IN, { email, password });
 
             if (response.data.status === 200) {
                 sessionStorage.setItem('token', response.data.data.token);
@@ -33,7 +33,7 @@ const AuthForm = () => {
         }
     };
 
-    const handleSignUp = async ({first_name, last_name, email, password, confirm_password}) => {
+    const handleSignUp = async ({ first_name, last_name, email, password, confirm_password }) => {
         if (loading) return;
         if (password !== confirm_password) {
             setError('Passwords do not match.');
@@ -43,14 +43,18 @@ const AuthForm = () => {
         setLoading(true);
         setError(null);
 
+        const payload = {
+            firstname:first_name,
+            lastname:last_name,
+            email,
+            password,
+            confirm_password,
+        };
+
+        console.log('SignUp Payload:', payload); // Debug log
+
         try {
-            const response = await axios.post(API_ROUTES.SIGN_UP, {
-                first_name,
-                last_name,
-                email,
-                password,
-                confirm_password,
-            });
+            const response = await axios.post(API_ROUTES.SIGN_UP, payload);
 
             if (response.data.status === 201) {
                 setSuccess('Registration successful! Check your email for verification.');
@@ -65,10 +69,8 @@ const AuthForm = () => {
     };
 
     return (
-        <div
-            className="w-full h-screen flex items-center justify-center bg-gradient-to-br from-blue-700 via-blue-600 to-blue-500 md:bg-none">
-            <div
-                className="relative w-full max-w-[850px] h-full md:h-[550px] flex flex-col md:flex-row rounded-3xl shadow-2xl md:bg-[#259ded] overflow-hidden">
+        <div className="w-full h-screen flex items-center justify-center bg-gradient-to-br from-blue-700 via-blue-600 to-blue-500 md:bg-none">
+            <div className="relative w-full max-w-[850px] h-full md:h-[550px] flex flex-col md:flex-row rounded-3xl shadow-2xl md:bg-[#259ded] overflow-hidden">
 
                 {/* Side Panel */}
                 <div
@@ -76,7 +78,7 @@ const AuthForm = () => {
                         isRegistering ? 'translate-x-full' : 'translate-x-0'
                     }`}
                 >
-                    <img src={Logo} alt="Logo" className="mb-10 w-23 h-12"/>
+                    <img src={Logo} alt="Logo" className="mb-10 w-23 h-12" />
                     <h1 className="text-3xl font-bold text-white">
                         {isRegistering ? 'Welcome Back!' : 'Hello, Welcome!'}
                     </h1>
@@ -105,24 +107,24 @@ const AuthForm = () => {
                         }`}
                     >
                         <h1 className="text-3xl text-center font-bold mb-8">Register</h1>
-                        <div className='flex flex-col items-center justify-center'>
-
+                        <div className="flex flex-col items-center justify-center">
                             <form
                                 className="w-full max-w-xs"
                                 onSubmit={(e) => {
                                     e.preventDefault();
-                                    const {first_name, last_name, email, password, confirm_password} = e.target;
+                                    const { first_name, last_name, email, password, confirm_password } = e.target;
+
                                     handleSignUp({
-                                        first_name: first_name?.value.trim(),
-                                        last_name: last_name?.value.trim(),
-                                        email: email?.value.trim(),
-                                        password: password?.value,
-                                        confirm_password: confirm_password?.value,
+                                        first_name: first_name.value.trim(),
+                                        last_name: last_name.value.trim(),
+                                        email: email.value.trim(),
+                                        password: password.value,
+                                        confirm_password: confirm_password.value,
                                     });
                                 }}
                             >
-                                {error && <Error message={error}/>}
-                                {success && <Success message={success}/>}
+                                {error && <Error message={error} />}
+                                {success && <Success message={success} />}
                                 <div className="flex gap-1 mb-4">
                                     <div className="relative w-1/2">
                                         <input
@@ -132,8 +134,7 @@ const AuthForm = () => {
                                             required
                                             className="w-full px-5 py-2 bg-gray-200 rounded-md"
                                         />
-                                        <FaUser
-                                            className="absolute top-1/2 right-4 transform -translate-y-1/2 text-md"/>
+                                        <FaUser className="absolute top-1/2 right-4 transform -translate-y-1/2 text-md" />
                                     </div>
                                     <div className="relative w-1/2">
                                         <input
@@ -143,10 +144,10 @@ const AuthForm = () => {
                                             required
                                             className="w-full px-5 py-2 bg-gray-200 rounded-md"
                                         />
-                                        <FaUser
-                                            className="absolute top-1/2 right-4 transform -translate-y-1/2 text-md"/>
+                                        <FaUser className="absolute top-1/2 right-4 transform -translate-y-1/2 text-md" />
                                     </div>
                                 </div>
+
                                 <div className="relative mb-4">
                                     <input
                                         type="email"
@@ -155,8 +156,7 @@ const AuthForm = () => {
                                         required
                                         className="w-full px-5 py-2 pr-12 bg-gray-200 rounded-md"
                                     />
-                                    <FaEnvelope
-                                        className="absolute top-1/2 right-4 transform -translate-y-1/2 text-xl"/>
+                                    <FaEnvelope className="absolute top-1/2 right-4 transform -translate-y-1/2 text-xl" />
                                 </div>
 
                                 <div className="relative mb-4">
@@ -167,7 +167,7 @@ const AuthForm = () => {
                                         required
                                         className="w-full px-5 py-2 pr-12 bg-gray-200 rounded-md"
                                     />
-                                    <FaLock className="absolute top-1/2 right-4 transform -translate-y-1/2 text-xl"/>
+                                    <FaLock className="absolute top-1/2 right-4 transform -translate-y-1/2 text-xl" />
                                 </div>
 
                                 <div className="relative mb-4">
@@ -178,7 +178,7 @@ const AuthForm = () => {
                                         required
                                         className="w-full px-5 py-2 pr-12 bg-gray-200 rounded-md"
                                     />
-                                    <FaLock className="absolute top-1/2 right-4 transform -translate-y-1/2 text-xl"/>
+                                    <FaLock className="absolute top-1/2 right-4 transform -translate-y-1/2 text-xl" />
                                 </div>
 
                                 <button
@@ -215,14 +215,14 @@ const AuthForm = () => {
                             className="w-full max-w-xs"
                             onSubmit={(e) => {
                                 e.preventDefault();
-                                const {email, password} = e.target;
+                                const { email, password } = e.target;
                                 handleSignIn({
                                     email: email.value.trim(),
                                     password: password.value,
                                 });
                             }}
                         >
-                            {error && <Error message={error}/>}
+                            {error && <Error message={error} />}
                             <div className="relative mb-4">
                                 <input
                                     type="email"
@@ -231,7 +231,7 @@ const AuthForm = () => {
                                     required
                                     className="w-full px-5 py-2 pr-12 bg-gray-200 rounded-md"
                                 />
-                                <FaEnvelope className="absolute top-1/2 right-4 transform -translate-y-1/2 text-xl"/>
+                                <FaEnvelope className="absolute top-1/2 right-4 transform -translate-y-1/2 text-xl" />
                             </div>
 
                             <div className="relative mb-3">
@@ -242,7 +242,7 @@ const AuthForm = () => {
                                     required
                                     className="w-full px-5 py-2 pr-12 bg-gray-200 rounded-md"
                                 />
-                                <FaLock className="absolute top-1/2 right-4 transform -translate-y-1/2 text-xl"/>
+                                <FaLock className="absolute top-1/2 right-4 transform -translate-y-1/2 text-xl" />
                             </div>
 
                             <div className="text-sm text-left text-gray-600 mb-4">
