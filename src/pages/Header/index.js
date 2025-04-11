@@ -89,7 +89,7 @@ const Header = ({profile, userId, slug}) => {
                                                 <div className="w-10 pl-1.5">
                                                     <LinkIcon/>
                                                 </div>
-                                                <span>Copy URL</span>
+                                                <span>Share URL</span>
                                             </div>
                                             {copied && (
                                                 <div
