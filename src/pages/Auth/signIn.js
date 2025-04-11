@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { FaLock, FaEnvelope, FaUser } from 'react-icons/fa';
+import { FaUnlock } from 'react-icons/fa6';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { API_ROUTES } from '../../utils/APIs';
@@ -12,6 +13,10 @@ const AuthForm = () => {
     const [success, setSuccess] = useState(null);
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
+
+    const [showLoginPassword, setShowLoginPassword] = useState(false);
+    const [showPassword, setShowPassword] = useState(false);
+    const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
     const handleSignIn = async ({ email, password }) => {
         if (loading) return;
@@ -44,14 +49,12 @@ const AuthForm = () => {
         setError(null);
 
         const payload = {
-            firstname:first_name,
-            lastname:last_name,
+            firstname: first_name,
+            lastname: last_name,
             email,
             password,
             confirm_password,
         };
-
-        console.log('SignUp Payload:', payload); // Debug log
 
         try {
             const response = await axios.post(API_ROUTES.SIGN_UP, payload);
@@ -73,11 +76,7 @@ const AuthForm = () => {
             <div className="relative w-full max-w-[850px] h-full md:h-[550px] flex flex-col md:flex-row rounded-3xl shadow-2xl md:bg-[#259ded] overflow-hidden">
 
                 {/* Side Panel */}
-                <div
-                    className={`hidden md:flex absolute top-0 left-0 w-1/2 h-full bg-blue-600 flex-col justify-center items-center text-center p-10 transition-transform duration-700 z-20 rounded-3xl ${
-                        isRegistering ? 'translate-x-full' : 'translate-x-0'
-                    }`}
-                >
+                <div className={`hidden md:flex absolute top-0 left-0 w-1/2 h-full bg-blue-600 flex-col justify-center items-center text-center p-10 transition-transform duration-700 z-20 rounded-3xl ${isRegistering ? 'translate-x-full' : 'translate-x-0'}`}>
                     <img src={Logo} alt="Logo" className="mb-10 w-23 h-12" />
                     <h1 className="text-3xl font-bold text-white">
                         {isRegistering ? 'Welcome Back!' : 'Hello, Welcome!'}
@@ -101,11 +100,7 @@ const AuthForm = () => {
                 <div className="w-full h-full relative flex flex-col md:flex-row items-center justify-center">
 
                     {/* Register */}
-                    <div
-                        className={`absolute md:static w-full text-center md:w-1/2 h-full flex flex-col justify-center items-center p-10 bg-white transition-all duration-700 ${
-                            isRegistering ? 'z-10 opacity-100 pointer-events-auto' : 'z-0 opacity-0 pointer-events-none'
-                        }`}
-                    >
+                    <div className={`absolute md:static w-full text-center md:w-1/2 h-full flex flex-col justify-center items-center p-10 bg-white transition-all duration-700 ${isRegistering ? 'z-10 opacity-100 pointer-events-auto' : 'z-0 opacity-0 pointer-events-none'}`}>
                         <h1 className="text-3xl text-center font-bold mb-8">Register</h1>
                         <div className="flex flex-col items-center justify-center">
                             <form
@@ -161,24 +156,34 @@ const AuthForm = () => {
 
                                 <div className="relative mb-4">
                                     <input
-                                        type="password"
+                                        type={showPassword ? 'text' : 'password'}
                                         name="password"
                                         placeholder="Password"
                                         required
                                         className="w-full px-5 py-2 pr-12 bg-gray-200 rounded-md"
                                     />
-                                    <FaLock className="absolute top-1/2 right-4 transform -translate-y-1/2 text-xl" />
+                                    <div
+                                        onClick={() => setShowPassword(prev => !prev)}
+                                        className="absolute top-1/2 right-4 transform -translate-y-1/2 text-xl text-gray-600 cursor-pointer"
+                                    >
+                                        {showPassword ? <FaUnlock /> : <FaLock />}
+                                    </div>
                                 </div>
 
                                 <div className="relative mb-4">
                                     <input
-                                        type="password"
+                                        type={showConfirmPassword ? 'text' : 'password'}
                                         name="confirm_password"
                                         placeholder="Confirm Password"
                                         required
                                         className="w-full px-5 py-2 pr-12 bg-gray-200 rounded-md"
                                     />
-                                    <FaLock className="absolute top-1/2 right-4 transform -translate-y-1/2 text-xl" />
+                                    <div
+                                        onClick={() => setShowConfirmPassword(prev => !prev)}
+                                        className="absolute top-1/2 right-4 transform -translate-y-1/2 text-xl text-gray-600 cursor-pointer"
+                                    >
+                                        {showConfirmPassword ? <FaUnlock /> : <FaLock />}
+                                    </div>
                                 </div>
 
                                 <button
@@ -205,11 +210,7 @@ const AuthForm = () => {
                     </div>
 
                     {/* Login */}
-                    <div
-                        className={`absolute md:static w-full md:w-1/2 h-full flex flex-col justify-center items-center p-10 bg-white transition-all duration-700 ${
-                            isRegistering ? 'z-0 opacity-0 pointer-events-none' : 'z-10 opacity-100 pointer-events-auto'
-                        }`}
-                    >
+                    <div className={`absolute md:static w-full md:w-1/2 h-full flex flex-col justify-center items-center p-10 bg-white transition-all duration-700 ${isRegistering ? 'z-0 opacity-0 pointer-events-none' : 'z-10 opacity-100 pointer-events-auto'}`}>
                         <h1 className="text-3xl font-bold mb-8">Login</h1>
                         <form
                             className="w-full max-w-xs"
@@ -234,21 +235,24 @@ const AuthForm = () => {
                                 <FaEnvelope className="absolute top-1/2 right-4 transform -translate-y-1/2 text-xl" />
                             </div>
 
-                            <div className="relative mb-3">
+                            <div className="relative mb-4">
                                 <input
-                                    type="password"
+                                    type={showLoginPassword ? 'text' : 'password'}
                                     name="password"
                                     placeholder="Password"
                                     required
                                     className="w-full px-5 py-2 pr-12 bg-gray-200 rounded-md"
                                 />
-                                <FaLock className="absolute top-1/2 right-4 transform -translate-y-1/2 text-xl" />
+                                <div
+                                    onClick={() => setShowLoginPassword(prev => !prev)}
+                                    className="absolute top-1/2 right-4 transform -translate-y-1/2 text-xl text-gray-600 cursor-pointer"
+                                >
+                                    {showLoginPassword ? <FaUnlock /> : <FaLock />}
+                                </div>
                             </div>
 
                             <div className="text-sm text-left text-gray-600 mb-4">
-                                <a href="#" className="hover:underline">
-                                    Forgot Password?
-                                </a>
+                                <a href="#" className="hover:underline">Forgot Password?</a>
                             </div>
 
                             <button
@@ -259,6 +263,7 @@ const AuthForm = () => {
                                 {loading ? 'Signing in...' : 'Login'}
                             </button>
                         </form>
+
                         <div className="text-sm text-left text-gray-600 mt-4">
                             <p className="text-center">
                                 Don’t have an account?{' '}
