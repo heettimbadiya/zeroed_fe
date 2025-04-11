@@ -1,10 +1,9 @@
 import {useNavigate} from 'react-router-dom'
-import logo from '../../assets/logo.png'
+import logo from '../../assets/logo (1).png'
 import default_user from '../../assets/user.png'
 import React, {useState} from 'react'
 import ROUTES_URL from '../../constant/routes'
-import {ArrowDown, LinkIcon, LogoutIcon, UserIcon} from '../../common/Icons'
-import SideDrawer from "../../admin/components/sidebar/SideDrawer";
+import {ArrowDown, LinkIcon, LogoutIcon, Messaging, UserIcon} from '../../common/Icons'
 
 const Header = ({profile, userId, slug}) => {
     let navigate = useNavigate()
@@ -29,6 +28,7 @@ const Header = ({profile, userId, slug}) => {
         sessionStorage.clear()
         navigate(ROUTES_URL.SIGN_IN)
     }
+
     return (
         <div className="bg-white px-10">
             <div className="flex justify-between items-center py-5">
@@ -37,14 +37,14 @@ const Header = ({profile, userId, slug}) => {
                         <img src={logo} onClick={() => navigate('/home')} alt="zeroed"
                              className="h-[1.875rem] w-[6.25rem] cursor-pointer"/>
                     </div>
-                    <div className="ps-4">
-                        <SideDrawer/>
-                    </div>
+                    {/*<div className="ps-4">*/}
+                    {/*    <SideDrawer/>*/}
+                    {/*</div>*/}
                 </div>
                 <div className={'flex items-center'}>
                     <div className={'px-3 cursor-pointer'} onClick={() => navigate('/inbox')}>Inbox</div>
-                    <div className={'px-3 cursor-pointer'} onClick={() => navigate('/messaging')}>Messaging</div>
                     <div className={'px-3 cursor-pointer'} onClick={() => navigate('/pricing')}>Pricing</div>
+                    <div className={'px-3 cursor-pointer'} onClick={() => navigate('/messaging')}>Messaging</div>
                     <div className="relative cursor-pointer flex items-center">
                         <div onClick={toggleMenu}>
                             <div
@@ -66,7 +66,7 @@ const Header = ({profile, userId, slug}) => {
                             <div
                                 className="absolute right-0 top-10 mt-2 w-36 bg-white rounded-md z-10 border border-gray-200">
                                 <div className="py-1">
-                                    {userId && (
+                                    {profile !== null && (
                                         <div
                                             onClick={() => {
                                                 toggleMenu()

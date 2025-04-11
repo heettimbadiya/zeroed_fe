@@ -1,152 +1,280 @@
-import { ArrowRight, Loader } from '../../common/Icons'
-import { Link, useNavigate } from 'react-router-dom'
-import ROUTES_URL from '../../constant/routes'
-import { Form, Formik } from 'formik'
-import { TextField } from '../../component/InputField'
-import { signInValidation } from '../../constant/validation'
-import axios from 'axios'
-import { useEffect, useState } from 'react'
-import { Error, Success } from '../../common/alert'
-import { API_ROUTES } from '../../utils/APIs'
-import logo from '../../assets/logo.png'
-import auth from '../../assets/auth.png'
+import React, {useState} from 'react';
+import {FaLock, FaEnvelope, FaUser} from 'react-icons/fa';
+import axios from 'axios';
+import {useNavigate} from 'react-router-dom';
+import {API_ROUTES} from '../../utils/APIs';
+import {Error, Success} from '../../common/alert';
+import Logo from '../../assets/logo.png';
 
-function UserSignIn() {
-  let navigate = useNavigate()
-  const [error, setError] = useState(null)
-  const [loading, setLoading] = useState(false)
+const AuthForm = () => {
+    const [isRegistering, setIsRegistering] = useState(false);
+    const [error, setError] = useState(null);
+    const [success, setSuccess] = useState(null);
+    const [loading, setLoading] = useState(false);
+    const navigate = useNavigate();
 
-  const [isVerify, setIsVerify] = useState(false)
+    const handleSignIn = async ({email, password}) => {
+        if (loading) return;
+        setLoading(true);
+        setError(null);
 
-  useEffect(() => {
-    const verifyStatus = localStorage.getItem('verify')
-    if (verifyStatus) {
-      setIsVerify(true)
-    } else {
-      setIsVerify(false)
-    }
-  }, [isVerify])
+        try {
+            const response = await axios.post(API_ROUTES.SIGN_IN, {email, password});
 
-  const handleSubmit = async (values) => {
-    setLoading(true)
-    try {
-        sessionStorage.clear()
-      const response = await axios.post(API_ROUTES.SIGN_IN, values)
-      if (response.data.status === 200) {
-        setError(null)
-        sessionStorage.setItem('token', response.data.data.token)
-        sessionStorage.setItem('user', JSON.stringify(response.data.data.user))
-        navigate(ROUTES_URL.HOME)
-        setLoading(false)
-      }
-    } catch (error) {
-      setError(error.response.data.message)
-    } finally {
-      setLoading(false)
-    }
-  }
+            if (response.data.status === 200) {
+                sessionStorage.setItem('token', response.data.data.token);
+                sessionStorage.setItem('user', JSON.stringify(response.data.data.user));
+                navigate('/home');
+            }
+        } catch (err) {
+            setError(err.response?.data?.message || 'Login failed. Try again.');
+        } finally {
+            setLoading(false);
+        }
+    };
 
-  return (
-    <div className="lg:flex w-screen">
-      <div className="h-full lg:w-1/2">
-        <img
-          src={logo}
-          className="flex justify-center items-center xl:mx-10 mx-4 mt-10"
-          width="64px"
-          alt="logo"
-        />
-        <div className="xl:px-[6.25rem] px-4 lg:min-h-[calc(100vh-56px)] h-full flex flex-col justify-center items-center w-full">
-          <div className="mt-8">
-            <div className="text-[2.5rem] font-bold leading-[3.25rem] lato text-black">
-              Welcome
-            </div>
-            <div className="text-lg font-normal text-gray-500 mt-2">
-              Sign in account to continue...
-            </div>
-            <div className="text-xs font-normal leading-[1.125rem] text-gray-500">
-              By creating an account or signing in, you understand and agree to
-              Job Site's Terms. You also consent to our Cookie and Privacy
-              policies. You will receive marketing messages from Job Site and
-              may opt out at any time by following the unsubscribe link in our
-              messages, or as detailed in our terms.
-            </div>
-          </div>
+    const handleSignUp = async ({first_name, last_name, email, password, confirm_password}) => {
+        if (loading) return;
+        if (password !== confirm_password) {
+            setError('Passwords do not match.');
+            return;
+        }
 
-          <div className="mt-6 w-full">
-            {error && <Error message={error} />}
-            {isVerify && (
-              <Success message=" Email verified successful! please login to continue..." />
-            )}
-            <Formik
-              initialValues={{
-                email: '',
-                password: '',
-              }}
-              validationSchema={signInValidation}
-              onSubmit={(values) => {
-                handleSubmit(values)
-              }}
-            >
-              {({ isSubmitting, setFieldValue, isValid }) => (
-                <Form>
-                  <TextField
-                    type="email"
-                    label="email"
-                    name="email"
-                    placeholder="youremail@domain.com"
-                    onChange={(e) => setFieldValue('email', e.target.value)}
-                  />
-                  <TextField
-                    type="password"
-                    label="password"
-                    name="password"
-                    placeholder="* * * * * * * *"
-                    onChange={(e) => setFieldValue('password', e.target.value)}
-                  />
-                  <div
-                    className="font-semibold text-right text-sm text-primary cursor-pointer underline"
-                    onClick={() => navigate(ROUTES_URL.FORGOT_PASSWORD)}
-                  >
-                    Forgot Password
-                  </div>
-                  <button
-                    className={`flex gap-x-2 justify-center items-center rounded w-full p-2 mt-4 ${
-                      isValid ? 'bg-primary' : 'bg-[#adbfdd]'
+        setLoading(true);
+        setError(null);
+
+        try {
+            const response = await axios.post(API_ROUTES.SIGN_UP, {
+                first_name,
+                last_name,
+                email,
+                password,
+                confirm_password,
+            });
+
+            if (response.data.status === 201) {
+                setSuccess('Registration successful! Check your email for verification.');
+                localStorage.setItem('verify-email', email);
+                navigate('/verify');
+            }
+        } catch (err) {
+            setError(err.response?.data?.message || 'Registration failed. Try again.');
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    return (
+        <div
+            className="w-full h-screen flex items-center justify-center bg-gradient-to-br from-blue-700 via-blue-600 to-blue-500 md:bg-none">
+            <div
+                className="relative w-full max-w-[850px] h-full md:h-[550px] flex flex-col md:flex-row rounded-3xl shadow-2xl md:bg-[#259ded] overflow-hidden">
+
+                {/* Side Panel */}
+                <div
+                    className={`hidden md:flex absolute top-0 left-0 w-1/2 h-full bg-blue-600 flex-col justify-center items-center text-center p-10 transition-transform duration-700 z-20 rounded-3xl ${
+                        isRegistering ? 'translate-x-full' : 'translate-x-0'
                     }`}
-                    disabled={isValid ? false : true}
-                  >
-                    {loading ? (
-                      <Loader />
-                    ) : (
-                      <>
-                        <span className="text-white text-base font-bold capitalize">
-                          continue
-                        </span>
-                        <ArrowRight />
-                      </>
-                    )}
-                  </button>
-                </Form>
-              )}
-            </Formik>
-          </div>
+                >
+                    <img src={Logo} alt="Logo" className="mb-10 w-23 h-12"/>
+                    <h1 className="text-3xl font-bold text-white">
+                        {isRegistering ? 'Welcome Back!' : 'Hello, Welcome!'}
+                    </h1>
+                    <p className="mt-2 mb-4 text-white">
+                        {isRegistering ? 'Already have an account?' : 'Don’t have an account?'}
+                    </p>
+                    <button
+                        onClick={() => {
+                            setError(null);
+                            setSuccess(null);
+                            setIsRegistering(!isRegistering);
+                        }}
+                        className="w-40 h-12 text-white border-2 border-white rounded-md"
+                    >
+                        {isRegistering ? 'Login' : 'Register'}
+                    </button>
+                </div>
 
-          <div className="flex gap-x-1 justify-end text-sm mt-2 mb-8">
-            <span className="text-gray-400">Don't have account</span>
-            <Link to={ROUTES_URL.SIGN_UP}>
-              <span className="text-primary font-bold uppercase">Signup</span>
-            </Link>
-          </div>
+                {/* Form Container */}
+                <div className="w-full h-full relative flex flex-col md:flex-row items-center justify-center">
+
+                    {/* Register */}
+                    <div
+                        className={`absolute md:static w-full text-center md:w-1/2 h-full flex flex-col justify-center items-center p-10 bg-white transition-all duration-700 ${
+                            isRegistering ? 'z-10 opacity-100 pointer-events-auto' : 'z-0 opacity-0 pointer-events-none'
+                        }`}
+                    >
+                        <h1 className="text-3xl text-center font-bold mb-8">Register</h1>
+                        <div className='flex flex-col items-center justify-center'>
+
+                            <form
+                                className="w-full max-w-xs"
+                                onSubmit={(e) => {
+                                    e.preventDefault();
+                                    const {first_name, last_name, email, password, confirm_password} = e.target;
+                                    handleSignUp({
+                                        first_name: first_name?.value.trim(),
+                                        last_name: last_name?.value.trim(),
+                                        email: email?.value.trim(),
+                                        password: password?.value,
+                                        confirm_password: confirm_password?.value,
+                                    });
+                                }}
+                            >
+                                {error && <Error message={error}/>}
+                                {success && <Success message={success}/>}
+                                <div className="flex gap-1 mb-4">
+                                    <div className="relative w-1/2">
+                                        <input
+                                            type="text"
+                                            name="first_name"
+                                            placeholder="First Name"
+                                            required
+                                            className="w-full px-5 py-2 bg-gray-200 rounded-md"
+                                        />
+                                        <FaUser
+                                            className="absolute top-1/2 right-4 transform -translate-y-1/2 text-md"/>
+                                    </div>
+                                    <div className="relative w-1/2">
+                                        <input
+                                            type="text"
+                                            name="last_name"
+                                            placeholder="Last Name"
+                                            required
+                                            className="w-full px-5 py-2 bg-gray-200 rounded-md"
+                                        />
+                                        <FaUser
+                                            className="absolute top-1/2 right-4 transform -translate-y-1/2 text-md"/>
+                                    </div>
+                                </div>
+                                <div className="relative mb-4">
+                                    <input
+                                        type="email"
+                                        name="email"
+                                        placeholder="Email"
+                                        required
+                                        className="w-full px-5 py-2 pr-12 bg-gray-200 rounded-md"
+                                    />
+                                    <FaEnvelope
+                                        className="absolute top-1/2 right-4 transform -translate-y-1/2 text-xl"/>
+                                </div>
+
+                                <div className="relative mb-4">
+                                    <input
+                                        type="password"
+                                        name="password"
+                                        placeholder="Password"
+                                        required
+                                        className="w-full px-5 py-2 pr-12 bg-gray-200 rounded-md"
+                                    />
+                                    <FaLock className="absolute top-1/2 right-4 transform -translate-y-1/2 text-xl"/>
+                                </div>
+
+                                <div className="relative mb-4">
+                                    <input
+                                        type="password"
+                                        name="confirm_password"
+                                        placeholder="Confirm Password"
+                                        required
+                                        className="w-full px-5 py-2 pr-12 bg-gray-200 rounded-md"
+                                    />
+                                    <FaLock className="absolute top-1/2 right-4 transform -translate-y-1/2 text-xl"/>
+                                </div>
+
+                                <button
+                                    type="submit"
+                                    disabled={loading}
+                                    className="w-full py-2 bg-[#259ded] text-white font-semibold rounded-md hover:bg-blue-700"
+                                >
+                                    {loading ? 'Registering...' : 'Register'}
+                                </button>
+                            </form>
+                        </div>
+
+                        <div className="text-sm text-left text-gray-600 mt-4">
+                            <p className="text-center">
+                                Already have an account?{' '}
+                                <span
+                                    onClick={() => setIsRegistering(false)}
+                                    className="cursor-pointer text-blue-600 hover:underline"
+                                >
+                                    Login here
+                                </span>
+                            </p>
+                        </div>
+                    </div>
+
+                    {/* Login */}
+                    <div
+                        className={`absolute md:static w-full md:w-1/2 h-full flex flex-col justify-center items-center p-10 bg-white transition-all duration-700 ${
+                            isRegistering ? 'z-0 opacity-0 pointer-events-none' : 'z-10 opacity-100 pointer-events-auto'
+                        }`}
+                    >
+                        <h1 className="text-3xl font-bold mb-8">Login</h1>
+                        <form
+                            className="w-full max-w-xs"
+                            onSubmit={(e) => {
+                                e.preventDefault();
+                                const {email, password} = e.target;
+                                handleSignIn({
+                                    email: email.value.trim(),
+                                    password: password.value,
+                                });
+                            }}
+                        >
+                            {error && <Error message={error}/>}
+                            <div className="relative mb-4">
+                                <input
+                                    type="email"
+                                    name="email"
+                                    placeholder="Email"
+                                    required
+                                    className="w-full px-5 py-2 pr-12 bg-gray-200 rounded-md"
+                                />
+                                <FaEnvelope className="absolute top-1/2 right-4 transform -translate-y-1/2 text-xl"/>
+                            </div>
+
+                            <div className="relative mb-3">
+                                <input
+                                    type="password"
+                                    name="password"
+                                    placeholder="Password"
+                                    required
+                                    className="w-full px-5 py-2 pr-12 bg-gray-200 rounded-md"
+                                />
+                                <FaLock className="absolute top-1/2 right-4 transform -translate-y-1/2 text-xl"/>
+                            </div>
+
+                            <div className="text-sm text-left text-gray-600 mb-4">
+                                <a href="#" className="hover:underline">
+                                    Forgot Password?
+                                </a>
+                            </div>
+
+                            <button
+                                type="submit"
+                                disabled={loading}
+                                className="w-full py-3 bg-[#259ded] text-white font-semibold rounded-md hover:bg-blue-700"
+                            >
+                                {loading ? 'Signing in...' : 'Login'}
+                            </button>
+                        </form>
+                        <div className="text-sm text-left text-gray-600 mt-4">
+                            <p className="text-center">
+                                Don’t have an account?{' '}
+                                <span
+                                    onClick={() => setIsRegistering(true)}
+                                    className="cursor-pointer text-blue-600 hover:underline"
+                                >
+                                    Register here
+                                </span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
+    );
+};
 
-      <div className="lg:block hidden w-1/2 bg-primary-100 p-10">
-        <div className='flex justify-center items-center lg:min-h-[calc(100vh-105px)] h-full'>
-          <img src={auth} className="h-auto w-auto" alt="login" />
-        </div>
-      </div>
-    </div>
-  )
-}
-
-export default UserSignIn
+export default AuthForm;

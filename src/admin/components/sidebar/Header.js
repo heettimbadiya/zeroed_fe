@@ -1,8 +1,10 @@
 import React from 'react';
 import {FaBars, FaSignOutAlt} from "react-icons/fa";
-import logo from "../../assets/logo.png";
+import logo from "../../../assets/logo (1).png";
 import {useNavigate} from "react-router-dom";
-import SideDrawer from "./SideDrawer";
+
+import {Icon} from "lucide-react";
+import {Chat} from "../../../common/Icons";
 
 const Header = ({ handleDrawerToggle, open, setOpen }) => {
     const navigate = useNavigate()
@@ -37,19 +39,16 @@ const Header = ({ handleDrawerToggle, open, setOpen }) => {
                         />
 
                         {/* Search Bar */}
-                        <div className="relative w-full max-w-xs">
-                            <SideDrawer/>
-                        </div>
                     </div>
 
                 </h6>
             </div>
-            <div className={`flex items-end items-center space-x-3`}>
+            <div className={`flex items-end items-center space-x-4`}>
                 <button
                     className="bg-green-500 text-white px-4 py-2 rounded-lg font-medium hover:bg-green-600 transition"
                     onClick={() => navigate('/chat')}
                 >
-                    Chat
+                    <Chat/>
                 </button>
                 <button
                     className="flex items-center ms-auto gap-2 text-gray-700 font-medium hover:text-red-500 transition"

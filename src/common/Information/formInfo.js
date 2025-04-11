@@ -5,7 +5,7 @@ function FormInfo({ children, title, icon, renderRight, renderRightContent }) {
         <div className="flex justify-between items-center">
           <div className="flex items-center gap-x-2">
             <div>{icon}</div>
-            <div className="text-2xl font-bold text-white lato">{title}</div>
+            <div className="text-2xl font-bold text-white">{title}</div>
           </div>
           <div>{renderRight && renderRightContent}</div>
         </div>

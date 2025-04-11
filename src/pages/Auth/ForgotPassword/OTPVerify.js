@@ -57,7 +57,7 @@ function OTPVerify() {
         />
         <div className="xl:px-[6.25rem] px-4 lg:min-h-[calc(100vh-56px)] h-full flex flex-col justify-center items-center w-full">
           <div className="mt-8 w-full text-start">
-            <div className="text-[2.5rem] font-bold leading-[3.25rem] lato text-black text-start">
+            <div className="text-[2.5rem] font-bold leading-[3.25rem] text-black text-start">
               OTP Verify
             </div>
           </div>

@@ -6,7 +6,7 @@ function Pricing() {
             <div className="grid gap-8 w-full max-w-6xl sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
                 {/* Standard Plan */}
                 <div className="bg-gray-100 p-8 rounded-xl shadow-lg w-full sm:w-80 text-center border border-gray-200 flex flex-col justify-center items-center">
-                    <h3 className="text-lg font-semibold text-gray-700">STANDARD</h3>
+                    <h3 className="text-lg font-semibold text-gray-700 lato">STANDARD</h3>
                     <p className="text-gray-500 text-sm mt-1">Perfect for small business</p>
                     <h2 className="text-5xl font-bold mt-4">$0<span className="text-lg font-normal">/mo</span></h2>
                     <ul className="mt-6 space-y-3 text-gray-700">
@@ -21,7 +21,7 @@ function Pricing() {
 
                 {/* Premium Plan */}
                 <div className="bg-blue-100 p-8 rounded-xl shadow-lg w-full sm:w-80 text-center border border-gray-200 flex flex-col justify-center items-center">
-                    <h3 className="text-lg font-semibold text-gray-700">PREMIUM</h3>
+                    <h3 className="text-lg font-semibold text-gray-700 lato">PREMIUM</h3>
                     <p className="text-gray-500 text-sm mt-1">Designed for corporate clients</p>
                     <h2 className="text-5xl font-bold mt-4">$499<span className="text-lg font-normal">/mo</span></h2>
                     <ul className="mt-6 space-y-3 text-gray-700">
@@ -37,7 +37,7 @@ function Pricing() {
                 {/* Information Section */}
                 <div className="flex flex-col justify-center text-left max-w-md">
                     <h3 className="text-gray-500 uppercase text-sm font-semibold">COOPERATION OPTIONS</h3>
-                    <h2 className="text-4xl font-bold mt-3 leading-tight">Our flexible pricing plans</h2>
+                    <h2 className="text-4xl font-bold mt-3 leading-tight lato   ">Our flexible pricing plans</h2>
                     <p className="text-gray-600 mt-4 text-sm leading-relaxed">
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
                     </p>

@@ -5,6 +5,9 @@ import {API_ROUTES} from "../../utils/APIs";
 import axios from "axios";
 import moment from "moment";
 import Header from "../../admin/components/sidebar/Header";
+import {AddChat, Back, Send} from "../../common/Icons";
+import {Search} from "lucide-react";
+import {useNavigate} from "react-router-dom";
 import {io} from "socket.io-client";
 import Lottie from "react-lottie";
 import animationData from "../../animations/typing.json";
@@ -32,6 +35,47 @@ function Messaging() {
     const [istyping, setIsTyping] = useState(false);
     const [socketConnected, setSocketConnected] = useState(false);
     const [messenger, setMessenger] = useState([]);
+    const [openDrawer, setOpenDrawer] = useState(false);
+    const [filteredUsers, setFilteredUsers] = useState([]);
+    const [searchQuery, setSearchQuery] = useState("");
+    const [allUsers, setAllUsers] = useState([]);
+
+
+    const navigate = useNavigate();
+
+    const fetchUsers = async () => {
+        try {
+            const {data} = await axios.get(`${API_ROUTES.SEARCH}?search=`, {
+                headers: {
+                    Authorization: token,
+                },
+            });
+            setAllUsers(data.data);
+            setFilteredUsers(data.data);
+        } catch (error) {
+            console.error("Failed to fetch users:", error);
+        }
+    };
+
+    useEffect(() => {
+        if (openDrawer) {
+            fetchUsers();
+        }
+    }, [openDrawer]);
+
+    const handleSearchChange = (e) => {
+        const value = e.target.value;
+        setSearchQuery(value);
+
+        const filtered = allUsers.filter((user) =>
+            (user?.basicDetails?.firstname + " " + user?.basicDetails?.lastname)
+                .toLowerCase()
+                .includes(value.toLowerCase()) ||
+            user?.email?.toLowerCase().includes(value.toLowerCase())
+        );
+        setFilteredUsers(filtered);
+    };
+
 
     const staticBroadcastChat = isAdmin
         ? [{
@@ -72,6 +116,21 @@ function Messaging() {
         }
     };
 
+    const handleUserClick = async (userId) => {
+        try {
+            const res = await axios.post(API_ROUTES.POST_CHAT, {userId}, {
+                headers: {Authorization: token},
+            });
+            if (res?.data?._id) {
+                getAllChat()
+                navigate(isAdmin ? "/chat" : "/messaging");
+            }
+        } catch (error) {
+            console.error("Error initiating chat:", error);
+        } finally {
+            setOpenDrawer(false);
+        }
+    };
     const manageMessages = async (chat) => {
         try {
             if (isAdmin && chat.userName === "BROADCAST") {
@@ -171,35 +230,107 @@ function Messaging() {
                 </div>
             )}
 
-            <div className="flex min-h-[90vh] h-[100%] bg-gray-100 justify-center items-center">
+            <div className="flex min-h-[93vh] h-[100%] bg-gray-100 justify-center items-center">
                 <div className="container">
                     <div className="flex flex-row justify-center gap-x-6">
                         {/* Sidebar */}
                         <div
-                            className={`w-full h-[80vh] overflow-auto lg:w-[30%] bg-white border-r ${selectedChat ? 'hidden lg:block' : ''}`}>
-                            <div className="p-4 border-b">
-                                <h1 className="text-xl font-semibold">Chats</h1>
-                            </div>
-                            <div className="overflow-y-auto h-[calc(80vh-4rem)]">
-                                {messenger.map((chat) => (
-                                    <div
-                                        key={chat._id}
-                                        onClick={() => handleChangeChat(chat)}
-                                        className={`flex items-center p-4 border-b hover:bg-gray-50 cursor-pointer ${selectedChat?._id === chat._id ? 'bg-blue-50' : ''}`}
-                                    >
-                                        <img
-                                            src={chat?.participants[0]?.basicDetails?.profile_pic || profile}
-                                            alt="avatar"
-                                            className="w-10 h-10 rounded-full mr-3"
-                                        />
-                                        <div className="flex-1 min-w-0">
-                                            <h3 className="text-sm font-medium">
-                                                {chat?.participants[0]?.basicDetails?.firstname} {chat?.participants[0]?.basicDetails?.lastname}
-                                            </h3>
+                            className={`w-full h-[80vh] overflow-auto lg:w-[30%] bg-white relative border-r ${selectedChat ? 'hidden lg:block' : ''}`}>
+                            {openDrawer ? (
+                                <div className="absolute right-0 top-0 w-full lg:w-[100%] h-full z-40 shadow-xl transition-all overflow-hidden bg-white">
+                                    <div className="flex flex-col h-full">
+
+                                        {/* Header + Search */}
+                                        <div className="shrink-0">
+                                            <div className="flex items-center p-4 space-x-3">
+                                                <button
+                                                    onClick={() => setOpenDrawer(false)}
+                                                    className="text-black text-xl"
+                                                >
+                                                    <Back />
+                                                </button>
+                                                <h2 className="text-lg font-semibold">New Chat</h2>
+                                            </div>
+
+                                            <div className="p-2">
+                                                <div className="flex items-center bg-white border-2 text-black px-4 py-2 rounded-md">
+                                                    <button className="text-black mr-3">
+                                                        <Search />
+                                                    </button>
+                                                    <input
+                                                        type="text"
+                                                        placeholder="Search name or number"
+                                                        className="bg-transparent outline-none w-full placeholder-gray-400 text-black"
+                                                        value={searchQuery}
+                                                        onChange={handleSearchChange}
+                                                    />
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        {/* Scrollable User List */}
+                                        <div className="overflow-y-auto px-4 pb-4 space-y-2 flex-1">
+                                            {filteredUsers.length > 0 ? (
+                                                filteredUsers.map((user) => (
+                                                    <div
+                                                        key={user._id}
+                                                        className="flex items-center space-x-3 bg-gray-100 p-3 rounded-md hover:bg-gray-200 transition cursor-pointer"
+                                                        onClick={() => handleUserClick(user._id)}
+                                                    >
+                                                        <img
+                                                            src={user?.basicDetails?.profile_pic || "https://via.placeholder.com/40"}
+                                                            alt={user?.name}
+                                                            className="w-10 h-10 rounded-full border-2 object-cover"
+                                                        />
+                                                        <div>
+                                                            <p className="font-semibold text-[17px]">
+                                                                {user?.basicDetails?.firstname + ' ' + user?.basicDetails?.lastname}
+                                                            </p>
+                                                            <p className="text-sm text-gray-700">{user?.email}</p>
+                                                        </div>
+                                                    </div>
+                                                ))
+                                            ) : (
+                                                <p className="text-sm text-gray-500">No users found.</p>
+                                            )}
                                         </div>
                                     </div>
-                                ))}
-                            </div>
+                                </div>
+                            ) : (
+                                <>
+                                    <div className="p-4 border-b flex justify-between items-center">
+                                        <h1 className="text-xl font-semibold lato">Chats</h1>
+                                        <button onClick={() => setOpenDrawer(true)}>
+                                            <AddChat />
+                                        </button>
+                                    </div>
+
+                                    <div className="overflow-y-auto h-[calc(80vh-4rem)]">
+                                        {messenger.map((chat) => (
+                                            <div
+                                                key={chat._id}
+                                                onClick={() => handleChangeChat(chat)}
+                                                className={`flex items-center p-4 border-b hover:bg-gray-50 cursor-pointer ${
+                                                    selectedChat?._id === chat._id ? 'bg-blue-50' : ''
+                                                }`}
+                                            >
+                                                <img
+                                                    src={chat?.participants[0]?.basicDetails?.profile_pic || profile}
+                                                    alt="avatar"
+                                                    className="w-10 h-10 rounded-full mr-3"
+                                                />
+                                                <div className="flex-1 min-w-0">
+                                                    <h3 className="text-sm font-medium">
+                                                        {chat?.participants[0]?.basicDetails?.firstname}{' '}
+                                                        {chat?.participants[0]?.basicDetails?.lastname}
+                                                    </h3>
+                                                </div>
+                                            </div>
+                                        ))}
+                                    </div>
+                                </>
+                            )}
+
                         </div>
 
                         {/* Chat Panel */}
@@ -211,16 +342,16 @@ function Messaging() {
                                     <div className="p-4 border-b bg-white flex items-center">
                                         <button
                                             onClick={() => setSelectedChat(null)}
-                                            className="lg:hidden p-2 text-gray-600 hover:bg-gray-200 rounded-md"
+                                            className="lg:hidden p-2 text-black hover:bg-gray-200 rounded-md"
                                         >
-                                            ← Back
+                                            <Back/>
                                         </button>
                                         <img
                                             src={selectedChat?.participants[0]?.basicDetails?.profile_pic || profile}
                                             alt="avatar"
                                             className="w-10 h-10 rounded-full ml-3"
                                         />
-                                        <h2 className="text-lg font-semibold ml-2">
+                                        <h2 className="text-lg font-semibold lato ml-2">
                                             {selectedChat?.participants[0]?.basicDetails?.firstname} {selectedChat?.participants[0]?.basicDetails?.lastname}
                                         </h2>
                                     </div>
@@ -259,16 +390,26 @@ function Messaging() {
                                             <input
                                                 type="text"
                                                 value={newMessage}
-                                                onChange={typingHandler}
                                                 placeholder="Write a message..."
                                                 className="flex-1 p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                                onChange={typingHandler}
+                                                onKeyDown={(e) => {
+                                                    if (e.key === "Enter") {
+                                                        e.preventDefault();
+                                                        handleSendMessage();
+                                                    }
+                                                }}
                                             />
-                                            <button
-                                                onClick={handleSendMessage}
-                                                className="bg-[#00C5FF] text-white px-4 py-2 rounded-lg hover:bg-blue-600"
-                                            >
-                                                Send
-                                            </button>
+
+
+                                                <button
+                                                    onClick={handleSendMessage}
+                                                    className="bg-[#00C5FF] text-white px-4 py-2 rounded-lg hover:bg-blue-600"
+                                                >
+                                                    <Send />
+                                                </button>
+
+
                                         </div>
                                     </div>
                                 </>

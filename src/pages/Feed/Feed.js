@@ -108,7 +108,7 @@ function Feed() {
 
                     {/* Feed List */}
                     <div className="lg:w-[40%] w-full lg:h-[calc(100vh-120px)] bg-white overflow-y-auto">
-                        <div className="font-semibold text-[18px] mb-5 p-3 lato">Feeds</div>
+                        <div className="font-semibold text-[18px] mb-5 p-3">Feeds</div>
                         {loadingFeed ? (
                             <PageLoading />
                         ) : (
@@ -133,7 +133,7 @@ function Feed() {
                                 <>
                                     <div className="flex items-center justify-between mb-6">
                                         <div className="flex-grow">
-                                            <h2 className="text-2xl font-bold text-gray-800 mb-2 lato">Profile Completion</h2>
+                                            <h2 className="text-2xl font-bold text-gray-800 mb-2">Profile Completion</h2>
                                             <p className="text-gray-600">Keep improving your profile to unlock more opportunities</p>
                                         </div>
 
@@ -168,7 +168,7 @@ function Feed() {
                                     {sections.map((section, index) => (
                                         <div key={index} className="mb-6">
                                             <div className="flex justify-between items-center mb-3">
-                                                <h3 className="text-lg font-semibold lato">{section.name}</h3>
+                                                <h3 className="text-lg font-semibold">{section.name}</h3>
                                                 <span className="text-sm text-gray-600">
                                                     {section.score}/{section.maxScore}
                                                 </span>

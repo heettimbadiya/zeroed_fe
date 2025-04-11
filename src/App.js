@@ -22,7 +22,6 @@ import AdminApp from "./admin";
 // import AdminMessaging from "./admin/pages/messaging/messaging";
 import UserSignIn from "./pages/Auth/signIn";
 import {Toaster} from "react-hot-toast";
-import AdminProtectedRoute from "./admin/helper/protectedRoute";
 
 function App() {
     const Home = lazy(() => import('./pages/Home'))
@@ -176,9 +175,7 @@ function App() {
                 <Route
                     path={ROUTES_URL.CHAT}
                     element={<>
-                    <AdminProtectedRoute>
                         <Messaging/>
-                        </AdminProtectedRoute>
                     </>}
                 />
 
