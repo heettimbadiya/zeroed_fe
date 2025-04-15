@@ -16,7 +16,7 @@ const ROUTES_URL = {
   // --------------------------- ADMIN ROUTES ---------------------------------------------------
   ADMIN: `/admin`,
   DASHBOARD: `/dashboard`,
-  INBOX: `/inbox`,
+  INBOX: `/zeroed-in`,
   CHAT: `/chat`,
 };
 

@@ -2,7 +2,7 @@ import React from 'react';
 import PDFIcon from "../../assets/pdfIcon.svg"
 
 const CertificatePreview = ({ subSkill }) => {
-  const certificate = subSkill.certificate; 
+  const certificate = subSkill.certificate;
   const isPDF = (fileName) => {
     return fileName && fileName.toLowerCase().endsWith('.pdf');
   };
@@ -12,7 +12,7 @@ const CertificatePreview = ({ subSkill }) => {
     if (certificate instanceof File) {
       return URL.createObjectURL(certificate); // For file object
     }
-    return `${process.env.REACT_APP_FILE_URL}/${certificate.replace(/\\/g, '/')}`; // For file path (URL)
+    return certificate; // For file path (URL)
   };
 
   return (
@@ -47,7 +47,7 @@ const CertificatePreview = ({ subSkill }) => {
               ) : (
                 // Otherwise, show image preview
                 <img
-                  src={`${process.env.REACT_APP_FILE_URL}/${certificate.replace(/\\/g, '/')}`}
+                  src={certificate}
                   alt="Certificate Preview"
                   style={{
                     width: 100,

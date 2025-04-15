@@ -90,9 +90,9 @@ const SignIn = () => {
                                 </div>
 
                                 <div className="text-sm text-left text-gray-600 mb-4">
-                                    <a href="#" className="hover:underline">
-                                        Forgot Password?
-                                    </a>
+                                    <div className="hover:underline cursor-pointer" onClick={() => navigate('/forgot-password')}>Forgot
+                                        Password?
+                                    </div>
                                 </div>
 
                                 <button

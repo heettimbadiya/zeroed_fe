@@ -2,7 +2,7 @@ import React from 'react';
 import {CertificateIcon, Verify} from '../../common/Icons';
 
 
-const CertificatePreview = ({subSkill}) => {
+const CertificatePreview = ({subSkill,data}) => {
     const handleCertificateClick = () => {
         if (!subSkill?.certificate) return;
 
@@ -13,11 +13,11 @@ const CertificatePreview = ({subSkill}) => {
         const isImage = certificatePath.match(/\.(jpeg|jpg|png|gif)$/i);
 
         // Build the full URL to the certificate
-        const certificateUrl = `${process.env.REACT_APP_FILE_URL}/${certificatePath.replace(/\\/g, '/')}`;
+        // const certificateUrl = `${process.env.REACT_APP_FILE_URL}/${certificatePath.replace(/\\/g, '/')}`;
 
         // Open the certificate in a new tab
         if (isPDF || isImage) {
-            window.open(certificateUrl, '_blank');
+            window.open(certificatePath, '_blank');
         } else {
             alert('Unsupported certificate type');
         }
@@ -31,7 +31,7 @@ const CertificatePreview = ({subSkill}) => {
           <CertificateIcon/>
         </span>
             )}
-            <Verify />
+            {data?.basicDetails?.is_experience_verified && <Verify/>}
         </div>
     );
 };

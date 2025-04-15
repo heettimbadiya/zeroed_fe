@@ -8,7 +8,7 @@ import { Error, Success } from '../../../common/alert'
 import { TextField } from '../../../component/InputField'
 import { ArrowRight, Loader } from '../../../common/Icons'
 import { forgotPasswordValidation } from '../../../constant/validation'
-import logo from '../../../assets/logo.png'
+import logo from '../../../assets/logo (1).png'
 import forgotPassword from '../../../assets/forgotPassword.png'
 
 function ForgotPassword() {
@@ -34,20 +34,26 @@ function ForgotPassword() {
   }
 
   return (
-    <div className="lg:flex w-screen">
-      <div className="h-full lg:w-1/2">
-        <img
-          src={logo}
-          className="flex justify-center items-center xl:mx-10 mx-4 mt-10"
-          width="64px"
-          alt="logo"
-        />
-        <div className="xl:px-[6.25rem] px-4 lg:min-h-[calc(100vh-56px)] h-full flex flex-col justify-center items-center w-full">
-          <div className="mt-8 w-full text-start">
-            <div className="text-[2.5rem] font-bold leading-[3.25rem] text-black text-start">
-              Forgot Password
+      <div className="flex justify-center items-center min-h-screen bg-gray-100">
+        <div className="bg-white rounded-lg shadow-lg p-8 w-full max-w-md">
+          <div>
+
+            <div className="text-center mt-8">
+              <div className="flex justify-center mb-4">
+                <div className="p-3 rounded-md">
+                  <img
+                      src={logo}
+                      className="flex justify-center items-center "
+                      width="150px"
+                      alt="logo"
+                  />
+                </div>
+              </div>
+              <h2 className="text-2xl font-bold text-black">Forgot Password</h2>
+              <p className="text-gray-500 mt-2">
+                Easily reset your password if you've forgotten it. Just enter your registered email address and we'll send you a link to create a new password.
+              </p>
             </div>
-          </div>
 
           <div className="mt-6 w-full">
             {error && <Error message={error} />}
@@ -93,18 +99,12 @@ function ForgotPassword() {
             </Formik>
           </div>
 
-          <div className="flex gap-x-1 justify-end text-sm mt-2 mb-8">
+          <div className="flex gap-x-1 justify-center text-sm mt-2 mb-8">
             <span className="text-gray-400">Back to</span>
             <Link to={ROUTES_URL.SIGN_IN}>
               <span className="text-primary font-bold uppercase">Login</span>
             </Link>
           </div>
-        </div>
-      </div>
-
-      <div className="lg:block hidden w-1/2 bg-primary-100 p-10">
-        <div className="flex justify-center items-center lg:min-h-[calc(100vh-105px)] h-full">
-          <img src={forgotPassword} className="h-auto w-auto" alt="login" />
         </div>
       </div>
     </div>

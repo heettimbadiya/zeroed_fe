@@ -119,7 +119,7 @@ function Feed() {
 
             <div className="flex justify-end mb-5">
                 <button className="bg-[#374151] text-white px-7 py-3 rounded flex items-center gap-2" onClick={openAddPopover}>
-                    <Plus size={16} /> Add Inbox
+                    <Plus size={16} /> Add Zeroed-In
                 </button>
             </div>
 

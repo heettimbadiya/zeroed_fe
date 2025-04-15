@@ -12,7 +12,7 @@ import ChatPopup from "../../../pages/ChatPopup/ChatPopup";
 const menuItems = [
     { text: "Dashboard", icon: <TbDashboardFilled /> ,path:'/dashboard'},
     { text: "User", icon: <FaRegUser /> ,path:'/dashboard/user'},
-    { text: "Inbox", icon: <MdOutlineMoveToInbox /> ,path:'/dashboard/feed'},
+    { text: "Zeroed-In", icon: <MdOutlineMoveToInbox /> ,path:'/dashboard/feed'},
     // { text: "Starred", icon: <FaEnvelope /> ,path:'/user'},
     // { text: "Send email", icon: <FaInbox /> ,path:'/user'},
     // { text: "Drafts", icon: <FaEnvelope /> ,path:'/user'},

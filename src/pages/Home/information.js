@@ -32,6 +32,7 @@ import CertificatePreview from './certificatePreivew'
 import VideoSampleModal from "./videoSampleModal";
 import Dialog from "../../component/Dialog";
 import {logDOM} from "@testing-library/react";
+import toast from "react-hot-toast";
 
 // Function to extract the domain from an email address
 const getDomainFromEmail = (email) => {
@@ -66,11 +67,16 @@ const getDomainFromUrl = (url) => {
 function Information({data}) {
     const [visibleFields, setVisibleFields] = useState(data?.workExperience?.length ? 4 : 1);
     const [showInstruction, setShowInstruction] = useState(false);
+    const [experienceLoading, setExperienceLoading] = useState(false);
+    const [projectLoading, setProjectLoading] = useState(false);
     let navigate = useNavigate()
     const [wordCounts, setWordCounts] = useState({});
     const token = sessionStorage.getItem('token')
     const initialProjects = {
-        project_title: "", project_description: "", project_url: ""
+        project_title: "", project_description: "", project_url: "", reference_email: '',
+        reference_name: '',
+        reference: '',
+        reference_check: false,
     }
     const initialInterNationalEducation = {
         credential_institute_name: '',
@@ -126,6 +132,7 @@ function Information({data}) {
     const [isSampleModalOpen, setIsSampleModalOpen] = useState(false);
     const isAnyDescriptionTooLong = Object.values(wordCounts).some(count => count > 25);
     const [dropDown, setDropDown] = useState([])
+    const [previewImage, setPreviewImage] = useState(null); // for preview
     // const [careerGoal,setCareerGoal] =useState([])
     // Get countries for the country dropdown
 
@@ -136,6 +143,11 @@ function Information({data}) {
         value: "HR", name: "HR"
     }, {
         value: "Reporting Manager", name: "Reporting Manager"
+    }]
+    const projectReferenceOption = [{
+        value: "Assistant Professor", name: "Assistant Professor"
+    }, {
+        value: "Head of Department", name: "Head of Department"
     }]
 
     const addField = () => {
@@ -266,9 +278,10 @@ function Information({data}) {
             accomplish3: 0,
             accomplish4: 0,
         },
-        email: '',
+        reference_email: '',
+        reference_name: '',
         reference: '',
-        reference_check: false
+        reference_check: false,
     }
     const [workExperiences, setWorkExperiences] = useState([initialWorkExperience,])
     const isGreaterThan17 = workExperiences.some(item =>
@@ -471,25 +484,55 @@ function Information({data}) {
         })
     }
     const verifyEmail = (payload) => {
+        setExperienceLoading(true)
         const payloads = {
-            referenceEmail: payload.reference_email,
-            candidateName: payload.candidateName,
-            companyName: payload.work_experience_company_name,
-            jobTitle: payload.work_experience_job_title,
-            accomplishment_1: payload.accomplishments_id.accomplishment_1,
-            accomplishment_2: payload.accomplishments_id.accomplishment_2,
-            accomplishment_3: payload.accomplishments_id.accomplishment_3,
-            accomplishment_4: payload.accomplishments_id.accomplishment_4,
-            startDate: payload.experience_start_date,
-            endDate: payload.experience_end_date,
+            referenceEmail: payload?.reference_email,
+            reference_name: payload?.reference_name,
+            workExperienceId: payload?._id,
+            candidateName: payload?.candidateName,
+            companyName: payload?.work_experience_company_name,
+            jobTitle: payload?.work_experience_job_title,
+            accomplishment_1: payload?.accomplishments_id.accomplishment_1,
+            accomplishment_2: payload?.accomplishments_id.accomplishment_2,
+            accomplishment_3: payload?.accomplishments_id.accomplishment_3,
+            accomplishment_4: payload?.accomplishments_id.accomplishment_4,
+            startDate: payload?.experience_start_date,
+            endDate: payload?.experience_end_date,
             userId: data.basicDetails?.user_id
         }
         try {
             const res = axios.post(`${process.env.REACT_APP_AUTH_URL}/work-experience/verify`, payloads)
+            toast.success('Mail send successfully !')
             console.log(res)
 
         } catch (e) {
             console.log(e)
+            toast.error('Something want wrong !')
+        } finally {
+            setExperienceLoading(false)
+        }
+    }
+    const verifyProjectEmail = (payload) => {
+        setProjectLoading(true)
+        const payloads = {
+            referenceEmail: payload?.reference_email,
+            reference_name: payload?.reference_name,
+            projectId: payload?._id,
+            project_title: payload?.project_title,
+            project_url: payload?.project_url,
+            project_description: payload?.project_description,
+            userId: data.basicDetails?.user_id
+        }
+        try {
+            const res = axios.post(`${process.env.REACT_APP_AUTH_URL}/project/verify`, payloads)
+            toast.success('Mail send successfully !')
+            console.log(res)
+
+        } catch (e) {
+            console.log(e)
+            toast.error('Something want wrong !')
+        } finally {
+            setProjectLoading(false)
         }
     }
     const handleAddExperience = () => {
@@ -512,7 +555,8 @@ function Information({data}) {
                 accomplish3: 0,
                 accomplish4: 0,
             },
-            email: '',
+            reference_email: '',
+            reference_name: '',
             reference: '',
             reference_check: false,
         },])
@@ -635,36 +679,43 @@ function Information({data}) {
             formData.append(`projectDetails[${index}][project_title]`, project.project_title,)
             formData.append(`projectDetails[${index}][project_description]`, project.project_description,)
             formData.append(`projectDetails[${index}][project_url]`, project.project_url,)
+            formData.append(`projectDetails[${index}][reference_email]`, project.reference_email,)
+            formData.append(`projectDetails[${index}][reference_name]`, project.reference_name,)
+            formData.append(`projectDetails[${index}][reference]`, project.reference,)
+            formData.append(`projectDetails[${index}][reference_check]`, project.reference_check,)
             if (project?._id) {
                 formData.append(`projectDetails[${index}][_id]`, data ? project?._id : null,)
             }
         })
-        if(workExperiences.length > 0 && workExperiences.at(0).work_experience_company_name){
+        if (workExperiences.length > 0 && workExperiences.at(0).work_experience_company_name) {
 
-        workExperiences.forEach((experience, index) => {
-            // Accomplishments fields
-            formData.append(`workExperience[${index}][accomplishment_1]`, experience.accomplishments_id.accomplishment_1,)
-            formData.append(`workExperience[${index}][accomplishment_2]`, experience.accomplishments_id.accomplishment_2,)
-            formData.append(`workExperience[${index}][accomplishment_3]`, experience.accomplishments_id.accomplishment_3,)
-            formData.append(`workExperience[${index}][accomplishment_4]`, experience.accomplishments_id.accomplishment_4,)
+            workExperiences.forEach((experience, index) => {
+                // Accomplishments fields
+                formData.append(`workExperience[${index}][accomplishment_1]`, experience.accomplishments_id.accomplishment_1,)
+                formData.append(`workExperience[${index}][accomplishment_2]`, experience.accomplishments_id.accomplishment_2,)
+                formData.append(`workExperience[${index}][accomplishment_3]`, experience.accomplishments_id.accomplishment_3,)
+                formData.append(`workExperience[${index}][accomplishment_4]`, experience.accomplishments_id.accomplishment_4,)
 
-            // Experience fields
-            formData.append(`workExperience[${index}][email]`, experience.email)
-            formData.append(`workExperience[${index}][work_experience_industry]`, experience.work_experience_industry,)
-            formData.append(`workExperience[${index}][work_experience_sub_industry]`, experience.work_experience_sub_industry,)
-            formData.append(`workExperience[${index}][work_experience_country]`, experience.work_experience_country,)
-            formData.append(`workExperience[${index}][work_experience_job_title]`, experience.work_experience_job_title,)
-            formData.append(`workExperience[${index}][work_experience_company_name]`, experience.work_experience_company_name,)
-            formData.append(`workExperience[${index}][work_experience_company_website]`, experience.work_experience_company_website,)
-            formData.append(`workExperience[${index}][experience_start_date]`, experience.experience_start_date || null,)
-            formData.append(`workExperience[${index}][experience_end_date]`, experience.experience_end_date || null,)
-            formData.append(`workExperience[${index}][isCurrentlyWorking]`, experience.isCurrentlyWorking,)
-            formData.append(`workExperience[${index}][reference_email]`, experience.reference_email,)
-            formData.append(`workExperience[${index}][reference]`, experience.reference,)
-            formData.append(`workExperience[${index}][reference_check]`, experience.reference_check,)
-            formData.append(`workExperience[${index}][accomplishments]`, data ? experience?.accomplishments_id?._id : null,)
-            formData.append(`workExperience[${index}][_id]`, data ? experience?._id : null,)
-        })
+                // Experience fields
+                formData.append(`workExperience[${index}][email]`, experience.email)
+                formData.append(`workExperience[${index}][work_experience_industry]`, experience.work_experience_industry,)
+                formData.append(`workExperience[${index}][work_experience_sub_industry]`, experience.work_experience_sub_industry,)
+                formData.append(`workExperience[${index}][work_experience_country]`, experience.work_experience_country,)
+                formData.append(`workExperience[${index}][work_experience_job_title]`, experience.work_experience_job_title,)
+                formData.append(`workExperience[${index}][work_experience_company_name]`, experience.work_experience_company_name,)
+                formData.append(`workExperience[${index}][work_experience_company_website]`, experience.work_experience_company_website,)
+                formData.append(`workExperience[${index}][experience_start_date]`, experience.experience_start_date || null,)
+                formData.append(`workExperience[${index}][experience_end_date]`, experience.experience_end_date || null,)
+                formData.append(`workExperience[${index}][isCurrentlyWorking]`, experience.isCurrentlyWorking,)
+                formData.append(`workExperience[${index}][reference_email]`, experience.reference_email,)
+                formData.append(`workExperience[${index}][reference_name]`, experience.reference_name,)
+                formData.append(`workExperience[${index}][reference]`, experience.reference,)
+                formData.append(`workExperience[${index}][reference_check]`, experience.reference_check,)
+                formData.append(`workExperience[${index}][accomplishments]`, data ? experience?.accomplishments_id?._id : null,)
+                if (experience?._id) {
+                    formData.append(`workExperience[${index}][_id]`, data ? experience?._id : null,)
+                }
+            })
         }
 
         // Append career goal
@@ -768,7 +819,6 @@ function Information({data}) {
         }
     }
 
-
     return (<Formik
         initialValues={{
             isPrivate: false,
@@ -795,7 +845,7 @@ function Information({data}) {
             credential_no: data?.internationalEducation?.credential_no || '',
             credential_institute_name: data?.internationalEducation?.credential_institute_name || '',
             credential_assesed: data?.internationalEducation?.credential_assesed || false,
-            isCanadianEducation: data?.canadianEducation?.length > 0 ? true : false,
+            isCanadianEducation: data?.canadianEducation[0]?.university ? true : false,
             university: data?.canadianEducation?.university || '',
             city: data?.canadianEducation?.city || '',
             level_of_education_canadian: data?.canadianEducation?.level_of_education_canadian || '',
@@ -886,172 +936,152 @@ function Information({data}) {
                 <Form>
                     {/* ------------------Personal Information--------------- */}
                     <FormInfo title="Personal Information" icon={<UserInfo/>}>
-                        <div className="grid xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2 gap-x-5 py-6 px-4">
-                            {/*<DropDownInput1*/}
-                            {/*    label={"Hello"}*/}
-                            {/*    name={"hello"}*/}
-                            {/*    value={values.hello}*/}
-                            {/*    onChange={(e) => setFieldValue('hello', e.target.value)}*/}
-                            {/*    placeholder="Type and press Enter"*/}
+                        <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 px-4 py-4">
 
-                            {/*/>*/}
-                            <TextField
-                                type="text"
-                                label="firstname"
-                                name="firstname"
-                                placeholder="Enter first name"
-                                onChange={(e) => setFieldValue('firstname', e.target.value)}
-                            />
-                            <TextField
-                                type="text"
-                                label="lastname"
-                                name="lastname"
-                                placeholder="Enter last name"
-                                onChange={(e) => setFieldValue('lastname', e.target.value)}
-                            />
-
-                            <div className="mb-4">
-                                <Label label="Profile"/>
-                                <Field name="profile_pic">
-                                    {({field, form: {setFieldValue}}) => (
-                                        <div className="flex flex-col">
-                                            {/* Hidden file input */}
-                                            <input
-                                                type="file"
-                                                id="profile_pic"
-                                                className="hidden"
-                                                accept="image/jpeg, image/png, image/jpg"
-                                                onChange={(event) => {
-                                                    const file = event.currentTarget.files[0];
-                                                    if (file) {
-                                                        const validTypes = ["image/jpeg", "image/png", "image/jpg"];
-                                                        if (validTypes.includes(file.type)) {
-                                                            setFieldValue("profile_pic", file);
-                                                            setImgError(""); // Clear error
-                                                        } else {
-                                                            setImgError("Invalid file type. Please select a JPEG, JPG, or PNG file.");
-                                                        }
+                            {/* Upload Photo Section */}
+                            <div className="col-span-12 lg:col-span-3 flex justify-center items-center">
+                                <div className="flex flex-col items-center">
+                                    <div
+                                        className="w-32 h-32 rounded-full border-2 border-dashed border-gray-300 flex items-center justify-center overflow-hidden relative">
+                                        <input
+                                            type="file"
+                                            id="profile_pic"
+                                            name="profile_pic"
+                                            // value={values?.profile_pic}
+                                            className="absolute opacity-0 w-full h-full cursor-pointer"
+                                            accept="image/jpeg, image/png, image/jpg"
+                                            onChange={(event) => {
+                                                const file = event.currentTarget.files[0];
+                                                const maxSize = 2 * 1024 * 1024;
+                                                if (file) {
+                                                    const validTypes = ["image/jpeg", "image/png", "image/jpg"];
+                                                    if (file.size > maxSize) {
+                                                        setImgError("File size should be less than 2MB.");
+                                                        return;
                                                     }
-                                                }}
-                                            />
+                                                    if (validTypes.includes(file.type)) {
+                                                        setFieldValue("profile_pic", file);
+                                                        setImgError(""); // Clear error
+                                                    } else {
+                                                        setImgError("Invalid file type. Please select a JPEG, JPG, or PNG file.");
+                                                    }
+                                                }
+                                            }}
+                                        />
 
-                                            {/* Label for file input */}
-                                            <label
-                                                htmlFor="profile_pic"
-                                                className="border border-text-border border-b-4 focus:border-b-4 focus:border-primary outline-none rounded-lg mt-1 px-2 py-3 pr-10 w-full cursor-pointer"
-                                            >
-        <span className="px-2 py-1 border border-primary rounded bg-primary-100">
-          Choose file
-        </span>{" "}
-                                                {values.profile_pic?.name ||
-                                                    (data?.basicDetails?.profile_pic ? data.basicDetails.profile_pic.split("/").pop() : "No file chosen")}
+                                        {(values.profile_pic || previewImage) ? (
+                                            <img src={previewImage || values.profile_pic} alt="Preview"
+                                                 className="w-full h-full object-cover"/>
+                                        ) : (
+                                            <label htmlFor="profile_pic"
+                                                   className="text-xs text-gray-400 text-center z-10">
+                                                <div className="flex flex-col items-center justify-center">
+                                                    <span className="text-2xl">📷</span>
+                                                    <span>Upload photo</span>
+                                                </div>
                                             </label>
-
-                                            {/* Displaying error messages */}
-                                            {imgError && (
-                                                <div className="text-xs text-red-500 ml-1 mt-1">{imgError}</div>
-                                            )}
-                                            {!imgError && (
-                                                <ErrorMessage name="profile_pic" component="div"
-                                                              className="text-xs text-red-500 ml-1 mt-1"/>
-                                            )}
-                                        </div>
-                                    )}
-                                </Field>
+                                        )}
+                                    </div>
+                                    {imgError && <div className="text-xs text-red-500 mt-1">{imgError}</div>}
+                                </div>
                             </div>
 
-                            <DateField
-                                label="Date of Birth"
-                                name="dob"
-                                icon={<Calender/>}
-                            />
+                            {/* Form Grid Section */}
+                            <div className="col-span-12 lg:col-span-9">
+                                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 gap-y-0">
+                                    <TextField type="text" name="firstname" label="First Name" placeholder="First Name"
+                                               onChange={(e) => setFieldValue("firstname", e.target.value)}/>
 
-                            <RadioGroup
-                                name="gender"
-                                label="Gender"
-                                options={[{value: 'male', label: 'Male'}, {
-                                    value: 'female',
-                                    label: 'Female'
-                                }, {value: 'other', label: 'Other'},]}
-                            />
+                                    <TextField type="text" name="lastname" label="Last Name" placeholder="Last Name"
+                                               onChange={(e) => setFieldValue("lastname", e.target.value)}/>
 
-                            <DropDown
-                                label="Nationality"
-                                name="nationality"
-                                options={countryData}
-                                value={data?.basicDetails?.nationality || 'Canada'}
-                                onChange={(e) => setFieldValue('nationality', e.target.value)}
-                            />
+                                    <DateField name="dob" label="Date Of Birth" placeholder="Date Of Birth"
+                                               icon={<Calender/>}/>
 
-                            <DropDown
-                                label="Country"
-                                name="current_country"
-                                options={countryDataBasic}
-                                value={getCountryNameByValue(defaultCurrentCountry)} // Show name
-                                onChange={(e) => handleChangeCountry(e, setFieldValue)}
-                            />
+                                    <div>
+                                        <Label label={'Contact No'}/>
+                                        <PhoneInput
+                                            name="contact_no"
+                                            value={values.contact_no}
+                                            onChange={(value) => setFieldValue("contact_no", value)}
+                                            placeholder="Contact No"
+                                            label="Contact No"
+                                        />
+                                        <ErrorMessage name="contact_no" component="div"
+                                                      className="text-xs text-red-500 ml-1 mt-1"/>
+                                    </div>
 
-                            <DropDown
-                                label="Current State/Province"
-                                name="current_state"
-                                options={stateOptions}
-                                value={getStateNameByValue(data?.basicDetails?.current_state || '',)}
-                                onChange={(e) => handleChangeState(e, setFieldValue, values)}
-                            />
+                                    <DropDown
+                                        name="nationality"
+                                        options={countryData}
+                                        value={data?.basicDetails?.nationality || "Canada"}
+                                        onChange={(e) => setFieldValue("nationality", e.target.value)}
+                                        placeholder="Nationality"
+                                        label="Nationality"
+                                    />
 
-                            <DropDownInput
-                                label="Current City"
-                                name="current_city"
-                                options={cityOptions}
-                                value={data?.basicDetails?.current_city || ''} // Assuming city names are used
-                                onChange={(e) => setFieldValue('current_city', e.target.value, values)}
-                            />
+                                    <div className="flex flex-row items-center gap-4">
+                                        <p className="text-sm font-medium text-gray-600 mb-4">Gender :</p>
+                                        <RadioGroup className='mb-0'
+                                                    name="gender"
+                                                    options={[
+                                                        {value: "male", label: "Male"},
+                                                        {value: "female", label: "Female"},
+                                                        {value: "other", label: "Other"},
+                                                    ]}
+                                        />
+                                    </div>
 
-                            <div className="mb-4">
-                                <Label label="Contact No"/>
-                                <div className="mt-1">
-                                    <PhoneInput
-                                        name="contact_no"
-                                        value={values.contact_no}
-                                        onChange={(value) => setFieldValue('contact_no', value)}
-                                        placeholder="+1 250-555-0199"
+                                    <DropDown
+                                        name="current_country"
+                                        options={countryDataBasic}
+                                        value={getCountryNameByValue(defaultCurrentCountry)}
+                                        onChange={(e) => handleChangeCountry(e, setFieldValue)}
+                                        placeholder="Country"
+                                        label="Country"
+                                    />
+
+                                    <DropDown
+                                        name="current_state"
+                                        options={stateOptions}
+                                        value={getStateNameByValue(data?.basicDetails?.current_state || "")}
+                                        onChange={(e) => handleChangeState(e, setFieldValue, values)}
+                                        placeholder="Current State / Province"
+                                        label="Current State / Province"
+                                    />
+
+                                    <DropDownInput
+                                        name="current_city"
+                                        options={cityOptions}
+                                        value={data?.basicDetails?.current_city || ""}
+                                        onChange={(e) => setFieldValue("current_city", e.target.value, values)}
+                                        placeholder="Current City"
+                                        label="Current City"
+                                    />
+
+                                    <TextField
+                                        type="text"
+                                        name="contact_email_id"
+                                        placeholder="Contact Email Id"
+                                        label="Contact Email"
+                                        onChange={(e) => setFieldValue("contact_email_id", e.target.value)}
+                                    />
+
+                                    <DropDownInput
+                                        name="job_preferred_location"
+                                        options={provinceData}
+                                        value={data?.basicDetails?.job_preferred_location}
+                                        onChange={(e) => setFieldValue("job_preferred_location", e.target.value)}
+                                        allowCustom={true}
+                                        placeholder="Job Preferred location"
+                                        label="Job Preferred location"
                                     />
                                 </div>
-                                <ErrorMessage
-                                    name={'contact_no'}
-                                    component="div"
-                                    className="text-xs text-red-500 ml-1 mt-1"
-                                />
                             </div>
 
-                            <TextField
-                                type="text"
-                                label="Contact email Id"
-                                name="contact_email_id"
-                                placeholder="Enter contact email Id"
-                                onChange={(e) => setFieldValue('contact_email_id', e.target.value)}
-                            />
-
-                            <DropDownInput
-                                label="Job preferred location"
-                                name="job_preferred_location"
-                                options={provinceData}
-                                value={data?.basicDetails?.job_preferred_location}
-                                onChange={(e) => setFieldValue('job_preferred_location', e.target.value)}
-                                allowCustom={true}
-                            />
-
-                            {/* <DropDownInput
-                  label="Job preferred location"
-                  name="job_preferred_location"
-                  options={provinceData}
-                  value={data?.basicDetails?.job_preferred_location}
-                  onChange={(e) =>
-                    setFieldValue('job_preferred_location', e.target.value)
-                  }
-                /> */}
                         </div>
                     </FormInfo>
+
 
                     {/* ------------------International Education--------------- */}
                     <FormInfo title="Global Education" icon={<GlobalEducation/>} renderRight={true}
@@ -1061,137 +1091,138 @@ function Information({data}) {
                                   onChange={(e) => setFieldValue('isInternationalEducation', e.target.checked)}
                               />}>
                         {internationalEducation?.length > 0 && internationalEducation?.map((intEducation, index) => (
-                            <div key={index}>
+                            <div key={index} className="bg-white rounded-md shadow border mb-6">
                                 <div
-                                    className="flex flex-wrap justify-between items-center gap-x-3 bg-primary-100 p-3 w-full">
-                                    <div className="flex items-center gap-x-2">
-                                        <div className="text-lg font-semibold capitalize text-primary text-nowrap">
-                                            {index + 1}.{' '}
-                                            {intEducation.college_name || 'New Education'}
-                                        </div>
-                                        {internationalEducation.length > 1 && (<div
-                                            onClick={() => handleDeleteInternationalEducation(index)}
-                                            className="cursor-pointer font-black"
-                                        >
-                                            <DeleteIcon/>
-                                        </div>)}
-                                    </div>
-
-                                </div>
-
-                                <div
-                                    className="grid xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2 gap-x-5 py-6 px-4">
-                                    <>
-                                        <DropDownInput
-                                            label="Level of Education"
-                                            name={`level_of_education_${index}`}
-                                            options={levelOfEducation}
-                                            disabled={!values.isInternationalEducation}
-                                            value={intEducation?.level_of_education || ''}
-                                            onChange={(e) => {
-                                                handleChangeInternationalEducation(index, 'level_of_education', e.target.value,)
-                                            }}
-                                        />
-                                        <DropDownInput
-                                            label="Field of Study"
-                                            name={`field_of_study_${index}`}
-                                            options={fieldOfStudy}
-                                            disabled={!values.isInternationalEducation}
-                                            value={intEducation?.field_of_study || ''}
-                                            onChange={(e) => {
-                                                handleChangeInternationalEducation(index, 'field_of_study', e.target.value,)
-                                            }}
-                                        />
-                                        <DropDownInput
-                                            label="Year of Graduation"
-                                            name={`year_of_graduation_${index}`}
-                                            options={years}
-                                            disabled={!values.isInternationalEducation}
-                                            value={intEducation?.year_of_graduation || ''}
-                                            onChange={(e) => {
-                                                handleChangeInternationalEducation(index, 'year_of_graduation', e.target.value,)
-                                            }}
-                                        />
-                                        <TextFieldValue
-                                            type="text"
-                                            label="college Name"
-                                            value={intEducation?.college_name || ''}
-                                            name={`college_name_${index}`}
-                                            placeholder="Enter college name"
-                                            disabled={!values.isInternationalEducation}
-                                            onChange={(e) => {
-                                                handleChangeInternationalEducation(index, 'college_name', e.target.value,)
-                                            }}
-                                        />
-                                        <TextFieldValue
-                                            type="text"
-                                            label="GPA / Percentage "
-                                            value={intEducation?.global_gpa || ''}
-                                            name={`global_gpa_${index}`}
-                                            placeholder="Enter GPA"
-                                            disabled={!values.isInternationalEducation}
-                                            onChange={(e) => {
-                                                handleChangeInternationalEducation(index, 'global_gpa', e.target.value,)
-                                            }}
-                                        />
-                                        <TextFieldValue
-                                            type="text"
-                                            label="Credential No"
-                                            value={intEducation?.credential_no || ''}
-                                            name={`credential_no_${index}`}
-                                            placeholder="Enter Credential No"
-                                            disabled={!values.isInternationalEducation}
-                                            onChange={(e) => {
-                                                handleChangeInternationalEducation(index, 'credential_no', e.target.value,)
-                                            }}
-                                        />
-                                        <DropDownInput
-                                            label="Credential institute name"
-                                            name={`credential_institute_name_${index}`}
-                                            options={[{name: 'IQAS', value: 'IQAS'}, {
-                                                name: 'WES',
-                                                value: 'WES'
-                                            }, {name: 'ICAS', value: 'ICAS'}]}
-                                            disabled={!values.isInternationalEducation}
-                                            value={intEducation?.credential_institute_name || ''}
-                                            onChange={(e) => {
-                                                handleChangeInternationalEducation(index, 'credential_institute_name', e.target.value,)
-                                            }}
-                                        />
-                                        <div className={'flex items-center'}>
-                                            <label className="inline-flex items-center cursor-pointer">
-                                                <Label label={'Credential assessed :'} className="ml-2"/>
-                                                <Field
-                                                    type="checkbox"
-                                                    id={`credential_assesed_${index}`}
-                                                    name={`credential_assesed_${index}`}
-                                                    className="sr-only peer ml-2"
-                                                    checked={intEducation?.credential_assesed || false}
-                                                    disabled={!values.isInternationalEducation}
-                                                    onChange={(e) => {
-                                                        handleChangeInternationalEducation(index, 'credential_assesed', e.target.checked)
-                                                    }}
-                                                />
+                                    className="flex flex-wrap justify-between items-center pt-4 w-full rounded-t-md">
+                                    <div className="flex items-center">
+                                        <div
+                                            className="flex items-center bg-[#F3F3F3] px-10 py-2 rounded-r-full text-lg font-semibold text-[#1B2028] text-nowrap">
+                                            {index + 1}.&nbsp;{intEducation.college_name || 'New Education'}
+                                            {internationalEducation.length > 0 && (
                                                 <div
-                                                    className="relative w-11 h-6 bg-gray-200 rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:start-[2px] after:bg-white after:border-gray after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#f3902a] focus:border-[#f3902a]"
+                                                    onClick={() => handleDeleteInternationalEducation(index)}
+                                                    className="ml-2 cursor-pointer"
                                                 >
+                                                    <DeleteIcon/>
                                                 </div>
-                                            </label>
+                                            )}
                                         </div>
-
-                                    </>
+                                    </div>
                                 </div>
-                            </div>))}
+
+                                <div
+                                    className="grid xl:grid-cols-3 lg:grid-cols-3 sm:grid-cols-2 gap-x-5 gap-y-4 py-6 px-4">
+                                    <DropDownInput
+                                        label="Level of Education"
+                                        name={`level_of_education_${index}`}
+                                        options={levelOfEducation}
+                                        disabled={!values.isInternationalEducation}
+                                        value={intEducation?.level_of_education || ''}
+                                        onChange={(e) => {
+                                            handleChangeInternationalEducation(index, 'level_of_education', e.target.value,)
+                                        }}
+                                    />
+                                    <DropDownInput
+                                        label="Field of Study"
+                                        name={`field_of_study_${index}`}
+                                        options={fieldOfStudy}
+                                        disabled={!values.isInternationalEducation}
+                                        value={intEducation?.field_of_study || ''}
+                                        onChange={(e) => {
+                                            handleChangeInternationalEducation(index, 'field_of_study', e.target.value,)
+                                        }}
+                                    />
+                                    <DropDownInput
+                                        label="Year of Graduation"
+                                        name={`year_of_graduation_${index}`}
+                                        options={years}
+                                        disabled={!values.isInternationalEducation}
+                                        value={intEducation?.year_of_graduation || ''}
+                                        onChange={(e) => {
+                                            handleChangeInternationalEducation(index, 'year_of_graduation', e.target.value,)
+                                        }}
+                                    />
+                                    <TextFieldValue
+                                        type="text"
+                                        label="College Name"
+                                        value={intEducation?.college_name || ''}
+                                        name={`college_name_${index}`}
+                                        placeholder="Enter college name"
+                                        disabled={!values.isInternationalEducation}
+                                        onChange={(e) => {
+                                            handleChangeInternationalEducation(index, 'college_name', e.target.value,)
+                                        }}
+                                    />
+                                    <TextFieldValue
+                                        type="text"
+                                        label="GPA"
+                                        value={intEducation?.global_gpa || ''}
+                                        name={`global_gpa_${index}`}
+                                        placeholder="Divide % by 25 to get GPA"
+                                        disabled={!values.isInternationalEducation}
+                                        onChange={(e) => {
+                                            handleChangeInternationalEducation(index, 'global_gpa', e.target.value,)
+                                        }}
+                                    />
+
+                                    <TextFieldValue
+                                        type="text"
+                                        label="Credential No"
+                                        value={intEducation?.credential_no || ''}
+                                        name={`credential_no_${index}`}
+                                        placeholder="Enter Credential No"
+                                        disabled={!values.isInternationalEducation}
+                                        onChange={(e) => {
+                                            handleChangeInternationalEducation(index, 'credential_no', e.target.value,)
+                                        }}
+                                    />
+                                    <DropDownInput
+                                        label="Credential Institute Name"
+                                        name={`credential_institute_name_${index}`}
+                                        options={[{name: 'IQAS', value: 'IQAS'}, {
+                                            name: 'WES',
+                                            value: 'WES'
+                                        }, {name: 'ICAS', value: 'ICAS'}]}
+                                        disabled={!values.isInternationalEducation}
+                                        value={intEducation?.credential_institute_name || ''}
+                                        onChange={(e) => {
+                                            handleChangeInternationalEducation(index, 'credential_institute_name', e.target.value,)
+                                        }}
+                                    />
+                                    <div className={'flex items-center'}>
+                                        <label className="inline-flex items-center cursor-pointer">
+                                            <Label label={'Credential Assessed:'} className="mr-2"/>
+                                            <Field
+                                                type="checkbox"
+                                                id={`credential_assesed_${index}`}
+                                                name={`credential_assesed_${index}`}
+                                                className="sr-only peer"
+                                                checked={intEducation?.credential_assesed || false}
+                                                disabled={!values.isInternationalEducation}
+                                                onChange={(e) => {
+                                                    handleChangeInternationalEducation(index, 'credential_assesed', e.target.checked)
+                                                }}
+                                            />
+                                            <div
+                                                className="relative w-11 h-6 bg-gray-200 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#1A202C]">
+                                            </div>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        ))}
+
                         <div className={'pb-3'}>
-                            <div
+                            <button
                                 disabled={!values.isInternationalEducation}
-                                className="ml-4 bg-primary px-4 py-2 text-white rounded w-[160px] cursor-pointer text-nowrap"
+                                className="ml-4 bg-black px-4 py-2 text-white rounded cursor-pointer text-nowrap"
                                 onClick={handleAddInternationalEducation}
                             >
                                 + Add Education
-                            </div>
+                            </button>
                         </div>
                     </FormInfo>
+
 
                     {/* ------------------Canadian Education--------------- */}
                     <FormInfo
@@ -1205,23 +1236,39 @@ function Information({data}) {
                         />}>
                         {internationalCEducation?.length > 0 && internationalCEducation?.map((intEducation, index) => (
                             <div key={index}>
-                                <div
-                                    className="flex flex-wrap justify-between items-center gap-x-3 bg-primary-100 p-3 w-full">
-                                    <div className="flex items-center gap-x-2">
-                                        <div className="text-lg font-semibold capitalize text-primary text-nowrap">
-                                            {index + 1}.{' '}
-                                            {intEducation.college_name || 'New Education'}
-                                        </div>
-                                        {internationalCEducation.length > 1 && (<div
-                                            onClick={() => handleDeleteInternationalCEducation(index)}
-                                            className="cursor-pointer font-black"
-                                        >
-                                            <DeleteIcon/>
-                                        </div>)}
-                                    </div>
+                                {/*<div*/}
+                                {/*    className="flex flex-wrap justify-between items-center gap-x-3 bg-primary-100 p-3 w-full">*/}
+                                {/*    <div className="flex items-center gap-x-2">*/}
+                                {/*        <div className="text-lg font-semibold capitalize text-primary text-nowrap">*/}
+                                {/*            {index + 1}.{' '}*/}
+                                {/*            {intEducation.college_name || 'New Education'}*/}
+                                {/*        </div>*/}
+                                {/*        {internationalCEducation.length > 1 && (<div*/}
+                                {/*            onClick={() => handleDeleteInternationalCEducation(index)}*/}
+                                {/*            className="cursor-pointer font-black"*/}
+                                {/*        >*/}
+                                {/*            <DeleteIcon/>*/}
+                                {/*        </div>)}*/}
+                                {/*    </div>*/}
+                                {/*</div>*/}
 
+                                <div
+                                    className="flex flex-wrap justify-between items-center pt-4 w-full rounded-t-md">
+                                    <div className="flex items-center">
+                                        <div
+                                            className="flex items-center bg-[#F3F3F3] px-10 py-2 rounded-r-full text-lg font-semibold text-[#1B2028] text-nowrap">
+                                            {index + 1}.&nbsp;{intEducation.college_name || 'New Education'}
+                                            {internationalCEducation.length > 1 && (<div
+                                                onClick={() => handleDeleteInternationalCEducation(index)}
+                                                className="cursor-pointer font-black"
+                                            >
+                                                <DeleteIcon/>
+                                            </div>)}
+                                        </div>
+                                    </div>
                                 </div>
-                                <div className="grid xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2 gap-x-5 py-6 px-4">
+
+                                <div className="grid xl:grid-cols-3 lg:grid-cols-3 sm:grid-cols-2 gap-x-5 py-6 px-4">
                                     <DropDownInput
                                         label="College/University"
                                         name={`university_${index}`}
@@ -1285,13 +1332,13 @@ function Information({data}) {
 
                             </div>))}
                         <div className={'pb-3'}>
-                            <div
+                            <button
                                 disabled={!values.isInternationalEducation}
-                                className="ml-4 bg-primary px-4 py-2 text-white rounded w-[160px] cursor-pointer text-nowrap"
+                                className="ml-4 bg-black px-4 py-2 text-white rounded cursor-pointer text-nowrap"
                                 onClick={handleAddInternationalCEducation}
                             >
                                 + Add Education
-                            </div>
+                            </button>
                         </div>
                     </FormInfo>
 
@@ -1348,6 +1395,7 @@ function Information({data}) {
                                                                     <div className="w-full mt-3">
                                                                         <Label label="Sub Skills"/>
                                                                         <Multiselect
+                                                                            placeholder={"Select a sub skill"}
                                                                             options={filteredSkill.sub_skills.map((sub) => ({
                                                                                 name: sub.sub_skill,
                                                                                 id: sub.sub_skill,
@@ -1528,7 +1576,7 @@ function Information({data}) {
                                             <button
                                                 type="button"
                                                 onClick={() => push({coreSkill: '', subSkills: []})}
-                                                className="bg-primary px-4 py-2 text-white rounded"
+                                                className="bg-black px-4 py-2 text-white rounded"
                                             >
                                                 + Add Another Skill
                                             </button>
@@ -1542,49 +1590,66 @@ function Information({data}) {
                     {/* -------------Work Experience------------- */}
                     <FormInfo title="Work Experience" icon={<WorkExperience/>}>
                         {workExperiences.map((experience, index) => (<div key={index}>
+                                {/*<div*/}
+                                {/*    className="flex flex-wrap justify-between items-center gap-x-3 bg-primary-100 p-3 w-full">*/}
+                                {/*    <div className="flex items-center gap-x-2">*/}
+                                {/*        <div className="text-lg font-semibold capitalize text-primary text-nowrap">*/}
+                                {/*            {index + 1}.{' '}*/}
+                                {/*            {experience.work_experience_company_name || 'New Experience'}*/}
+                                {/*        </div>*/}
+                                {/*        {workExperiences.length > 1 && (<div*/}
+                                {/*            onClick={() => handleDeleteExperience(index)}*/}
+                                {/*            className="cursor-pointer font-black"*/}
+                                {/*        >*/}
+                                {/*            <DeleteIcon/>*/}
+                                {/*        </div>)}*/}
+                                {/*    </div>*/}
+
                                 <div
-                                    className="flex flex-wrap justify-between items-center gap-x-3 bg-primary-100 p-3 w-full">
-                                    <div className="flex items-center gap-x-2">
-                                        <div className="text-lg font-semibold capitalize text-primary text-nowrap">
+                                    className="flex flex-wrap justify-between items-center pt-4 w-full rounded-t-md">
+                                    <div className="flex items-center">
+                                        <div
+                                            className="flex items-center bg-[#F3F3F3] px-10 py-2 rounded-r-full text-lg font-semibold text-[#1B2028] text-nowrap">
                                             {index + 1}.{' '}
                                             {experience.work_experience_company_name || 'New Experience'}
+                                            {workExperiences.length > 1 && (<div
+                                                onClick={() => handleDeleteExperience(index)}
+                                                className="cursor-pointer font-black ml-2"
+                                            >
+                                                <DeleteIcon/>
+                                            </div>)}
                                         </div>
-                                        {workExperiences.length > 1 && (<div
-                                            onClick={() => handleDeleteExperience(index)}
-                                            className="cursor-pointer font-black"
-                                        >
-                                            <DeleteIcon/>
-                                        </div>)}
                                     </div>
-
-                                    <Checkbox
-                                        label="Present?"
-                                        name={`isCurrentlyWorking_${index}`}
-                                        checked={experience.isCurrentlyWorking}
-                                        onChange={(e) => {
-                                            const isChecked = e.target.checked
-
-                                            // Update the isCurrentlyWorking field in the state
-                                            setFieldValue(`isCurrentlyWorking_${index}`, isChecked)
-
-                                            // Update the workExperiences state
-                                            setWorkExperiences((prevWorkExperiences) => {
-                                                const updatedExperiences = [...prevWorkExperiences]
-                                                const updatedExperience = {
-                                                    ...updatedExperiences[index],
-                                                    isCurrentlyWorking: isChecked,
-                                                    experience_end_date: isChecked ? null : updatedExperiences[index].experience_end_date || null,
-                                                }
-
-                                                updatedExperiences[index] = updatedExperience
-                                                return updatedExperiences
-                                            })
-                                        }}
-                                    />
                                 </div>
 
+                                {/*<Checkbox*/}
+                                {/*    label="Present?"*/}
+                                {/*    name={`isCurrentlyWorking_${index}`}*/}
+                                {/*    checked={experience.isCurrentlyWorking}*/}
+                                {/*    onChange={(e) => {*/}
+                                {/*        const isChecked = e.target.checked*/}
+
+                                {/*        // Update the isCurrentlyWorking field in the state*/}
+                                {/*        setFieldValue(`isCurrentlyWorking_${index}`, isChecked)*/}
+
+                                {/*        // Update the workExperiences state*/}
+                                {/*        setWorkExperiences((prevWorkExperiences) => {*/}
+                                {/*            const updatedExperiences = [...prevWorkExperiences]*/}
+                                {/*            const updatedExperience = {*/}
+                                {/*                ...updatedExperiences[index],*/}
+                                {/*                isCurrentlyWorking: isChecked,*/}
+                                {/*                experience_end_date: isChecked ? null : updatedExperiences[index].experience_end_date || null,*/}
+                                {/*            }*/}
+
+                                {/*            updatedExperiences[index] = updatedExperience*/}
+                                {/*            return updatedExperiences*/}
+                                {/*        })*/}
+                                {/*    }}*/}
+                                {/*/>*/}
+                                {/*</div>*/}
+
                                 <div
-                                    className="grid xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2 gap-x-5 py-6 px-4">
+                                    className="grid xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2  gap-x-5 py-6 px-4">
                                     <DropDown
                                         label="Industry"
                                         name={`work_experience_industry_${index}`}
@@ -1636,7 +1701,7 @@ function Information({data}) {
                                         label="Website link"
                                         name={`work_experience_company_website_${index}`}
                                         value={experience.work_experience_company_website}
-                                        placeholder="Company website link"
+                                        placeholder="www.website.com"
                                         onChange={(e) => handleChangeExperience(index, 'work_experience_company_website', e.target.value,)}
                                     />
 
@@ -1666,7 +1731,7 @@ function Information({data}) {
 
                                     {/*</div>*/}
                                     {/* ---------Start Date------------- */}
-                                    <div>
+                                    <div className='mb-2'>
                                         <Label label="Start Date"/>
                                         <div className="relative">
                                             <Field
@@ -1752,7 +1817,7 @@ function Information({data}) {
                                     {visibleFields < 4 && (
                                         <div className={'flex items-center'}>
                                             <div
-                                                className="ml-4 bg-primary px-4 py-2 text-white rounded text-center w-[100px] cursor-pointer text-nowrap mt-3"
+                                                className="ml-4 bg-black px-4 py-2 text-white rounded text-center w-[100px] cursor-pointer text-nowrap mt-3"
                                                 onClick={addField}
                                             >
                                                 + Add
@@ -1762,24 +1827,26 @@ function Information({data}) {
                                 </div>
 
                                 <div>
-                                    <div className='flex justify-between items-center pb-4 px-4 lg:w-1/4'>
-                                        <div className='text-[20px] font-bold'>Reference Check :</div>
-                                        <ToggleButton
-                                            label=""
-                                            value={experience.reference_check}
-                                            name={`reference_check_${index}`}
-                                            onChange={(e) => {
-                                                handleChangeExperience(
-                                                    index,
-                                                    'reference_check',
-                                                    e.target.checked,
-                                                )
-                                                setFieldValue(`reference_check_${index}`, e.target.checked)
+                                    {experience._id &&
+                                        <div className='flex justify-between items-center pb-4 px-4 lg:w-1/4'>
 
-                                            }
-                                            }
-                                        />
-                                    </div>
+                                            <label className="inline-flex items-center cursor-pointer">
+                                                <Label label={'Reference Check :'} className="mr-2"/>
+                                                <Field
+                                                    type="checkbox"
+                                                    id={`reference_check_${index}`}
+                                                    name={`reference_check_${index}`}
+                                                    className="sr-only peer"
+                                                    checked={experience?.reference_check || false}
+                                                    onChange={(e) => {
+                                                        handleChangeExperience(index, 'reference_check', e.target.checked)
+                                                    }}
+                                                />
+                                                <div
+                                                    className="relative w-11 h-6 bg-gray-200 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#1A202C]">
+                                                </div>
+                                            </label>
+                                        </div>}
                                     {
                                         experience.reference_check && (
                                             <div
@@ -1797,6 +1864,23 @@ function Information({data}) {
                                                         )
                                                     }
                                                 />
+                                                <div className="w-full">
+                                                    <TextFieldValue
+                                                        type="text"
+                                                        label="Reference Name"
+                                                        name={`reference_name_${index}`}
+                                                        value={experience.reference_name || ''}
+                                                        placeholder="Enter reference name"
+                                                        onChange={(e) =>
+                                                            handleChangeExperience(
+                                                                index,
+                                                                'reference_name',
+                                                                e.target.value,
+                                                            )
+                                                        }
+                                                    />
+
+                                                </div>
                                                 <div className="w-full">
                                                     <TextFieldValue
                                                         type="text"
@@ -1818,15 +1902,20 @@ function Information({data}) {
                                                         </div>
                                                     )}
                                                 </div>
-                                                {(data && !experience.referenceEmailError) && <div
-                                                    className="text-center mt-7 bg-primary px-4 py-2 text-white rounded w-[160px] h-10 cursor-pointer text-nowrap"
+                                                {(data && !experience.referenceEmailError) && <button
+                                                    className={`text-center mt-8 px-4 py-2 rounded w-[160px] h-10 text-nowrap text-white 
+      ${experience.is_experience_verified || experienceLoading
+                                                        ? 'bg-gray-400 opacity-80'
+                                                        : 'bg-black '}`}
                                                     onClick={() => verifyEmail({
                                                         ...experience,
                                                         candidateName: `${values.firstname} ${values.lastname}`
                                                     })}
+                                                    disabled={experience.is_experience_verified || experienceLoading}
+
                                                 >
                                                     Send
-                                                </div>}
+                                                </button>}
                                             </div>
                                         )
                                     }
@@ -1835,34 +1924,215 @@ function Information({data}) {
                             </div>
                         ))}
 
-                        <div
-                            className="ml-4 bg-primary px-4 py-2 text-white rounded w-[160px] cursor-pointer text-nowrap mt-3"
-                            onClick={handleAddExperience}
-                        >
-                            + Add Experience
+                        <div className="py-6">
+                            <button
+                                className="ml-4 bg-black px-4 py-2 text-white rounded text-nowrap mt-3"
+                                onClick={handleAddExperience}
+                            >
+                                + Add Experience
+                            </button>
                         </div>
                         <div className="text-xs text-red-500 ml-4 mt-4 mb-4">
                             {experienceError}
                         </div>
                         {/* Introduction video upload */}
+                    </FormInfo>
+                    <FormInfo title="Projects" icon={<CareerGoal/>}>
+                        {projects.map((item, index) => (<div key={index}>
+                            {/*<div className="gap-x-3 bg-primary-100 p-3 w-full">*/}
+                            {/*    <div className="flex items-center gap-x-2">*/}
+                            {/*        <div className="text-lg font-semibold capitalize text-primary text-nowrap">*/}
+                            {/*            {index + 1}.{' '}*/}
+                            {/*            {item.project_title || 'New Project'}*/}
+                            {/*        </div>*/}
+                            {/*        {projects.length > 1 && (<div*/}
+                            {/*            onClick={() => handleDeleteProject(index)}*/}
+                            {/*            className="cursor-pointer font-black"*/}
+                            {/*        >*/}
+                            {/*            <DeleteIcon/>*/}
+                            {/*        </div>)}*/}
+                            {/*    </div>*/}
+                            {/*</div>*/}
+
+                            <div
+                                className="flex flex-wrap justify-between items-center pt-4 w-full rounded-t-md">
+                                <div className="flex items-center">
+                                    <div
+                                        className="flex items-center bg-[#F3F3F3] px-10 py-2 rounded-r-full text-lg font-semibold text-[#1B2028] text-nowrap">
+                                        {index + 1}.{' '}
+                                        {item.project_title || 'New Project'}
+                                        {projects.length > 1 && (<div
+                                            onClick={() => handleDeleteProject(index)}
+                                            className="cursor-pointer font-black"
+                                        >
+                                            <DeleteIcon/>
+                                        </div>)}
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className="grid lg:grid-cols-3 sm:grid-cols-2 gap-x-5 py-6 px-4">
+                                <TextField
+                                    type="text"
+                                    label="Title"
+                                    name={`project_title_${index}`}
+                                    value={item.project_title}
+                                    placeholder="Enter project title"
+                                    onChange={(e) =>
+                                        handleChangeProject('project_title', index, e.target.value)
+                                    }
+                                />
+                                <TextField
+                                    type="text"
+                                    label="URL"
+                                    value={item.project_url}
+                                    name={`project_url_${index}`}
+                                    placeholder="Enter project url"
+                                    onChange={(e) =>
+                                        handleChangeProject('project_url', index, e.target.value)
+                                    }
+                                />
+                                <div style={{position: 'relative'}}>
+                                    <TextArea
+                                        name={`project_description_${index}`}
+                                        label="Description"
+                                        value={item.project_description}
+                                        onChange={(e) => {
+                                            const words = e.target.value.split(/\s+/).filter(Boolean);
+                                            handleChangeProject('project_description', index, e.target.value);
+                                            setWordCounts((prev) => ({...prev, [index]: words.length}));
+                                        }}
+                                    />
+                                    <span style={{
+                                        color: wordCounts[index] > 25 ? 'red' : 'grey',
+                                        position: 'absolute',
+                                        right: 10,
+                                        bottom: 25,
+                                        fontSize: '14px'
+                                    }}>
+                                                {wordCounts[index] || 0} / 25
+                                            </span>
+                                </div>
+
+
+                            </div>
+                            <div>
+                                {item._id &&
+                                    <div className='flex justify-between items-center pb-4 px-4 lg:w-1/4'>
+                                        <label className="inline-flex items-center cursor-pointer">
+                                            <Label label={'Reference Check :'} className="mr-2"/>
+                                            <Field
+                                                type="checkbox"
+                                                id={`reference_check_${index}`}
+                                                name={`reference_check_${index}`}
+                                                className="sr-only peer"
+                                                checked={item?.reference_check || false}
+                                                onChange={(e) => {
+                                                    handleChangeProject('reference_check', index, e.target.checked)
+                                                }}
+                                            />
+                                            <div
+                                                className="relative w-11 h-6 bg-gray-200 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#1A202C]">
+                                            </div>
+                                        </label>
+                                    </div>}
+                                {
+                                    item.reference_check && (
+                                        <div
+                                            className='grid xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2 gap-x-5 py-3 px-4'>
+                                            <DropDownInput
+                                                label="reference"
+                                                name={`reference_${index}`}
+                                                value={item.reference}
+                                                options={projectReferenceOption}
+                                                onChange={(e) =>
+                                                    handleChangeProject(
+                                                        'reference',
+                                                        index,
+                                                        e.target.value,
+                                                    )
+                                                }
+                                            />
+                                            <div className="w-full">
+                                                <TextFieldValue
+                                                    type="text"
+                                                    label="Reference Name"
+                                                    name={`reference_name_${index}`}
+                                                    value={item.reference_name || ''}
+                                                    placeholder="Enter reference name"
+                                                    onChange={(e) =>
+                                                        handleChangeProject(
+                                                            'reference_name',
+                                                            index,
+                                                            e.target.value,
+                                                        )
+                                                    }
+                                                />
+
+                                            </div>
+                                            <div className="w-full">
+                                                <TextFieldValue
+                                                    type="text"
+                                                    label="Reference Email"
+                                                    name={`reference_email_${index}`}
+                                                    value={item.reference_email || ''}
+                                                    placeholder="Enter reference email"
+                                                    onChange={(e) =>
+                                                        handleChangeProject(
+                                                            'reference_email',
+                                                            index,
+                                                            e.target.value,
+                                                        )
+                                                    }
+                                                />
+                                            </div>
+                                            {(data && item.reference_email) && (
+                                                <button
+                                                    className={`text-center mt-8 px-4 py-2 rounded w-[160px] h-10 text-nowrap text-white 
+      ${item.is_project_verified || projectLoading
+                                                        ? 'bg-gray-400 opacity-80'
+                                                        : 'bg-black '}
+    `}
+                                                    onClick={() => verifyProjectEmail({...item})}
+                                                    disabled={item.is_project_verified || projectLoading}
+                                                >
+                                                    Send
+                                                </button>
+                                            )}
+
+                                        </div>
+                                    )
+                                }
+                            </div>
+                        </div>))}
+                        <div className='py-4'>
+                            <button
+                                className="ml-4 bg-black px-4 py-2 text-white rounded text-center"
+                                onClick={handleAddProject}
+                            >
+                                + Add Project
+                            </button>
+                        </div>
+                    </FormInfo>
+                    <FormInfo title="Intro Video" icon={<WorkExperience/>}>
+                        <div className="flex">
+                            <div
+                                onClick={() => setIsSampleModalOpen(true)}
+                                className="text-primary underline pl-5 pt-5 text-sm cursor-pointer pb-2 pe-5"
+                            >
+                                View Sample
+                            </div>
+                            <div
+                                onClick={() => setShowInstruction(true)}
+                                className="text-primary underline pt-5 text-sm cursor-pointer"
+                            >
+                                View Instructions
+                            </div>
+                        </div>
                         <div className="py-6 px-4 flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4">
                             <div className="flex flex-col items-center sm:items-center text-center sm:text-left">
                                 <div className="lg:w-1/9 sm:w-1/8">
                                     <div className=" items-center gap-4">
-                                        <Label label="Video" className="text-[30px] pb-4"/>
-
-                                        <div
-                                            onClick={() => setIsSampleModalOpen(true)}
-                                            className="text-primary underline text-sm cursor-pointer pb-2"
-                                        >
-                                            View Sample
-                                        </div>
-                                        <div
-                                            onClick={() => setShowInstruction(true)}
-                                            className="text-primary underline text-sm cursor-pointer"
-                                        >
-                                            View Instructions
-                                        </div>
                                         <Dialog isOpen={showInstruction} onClose={closeInstructionDialog}
                                                 title="Instructions" hideCloseButton={true}>
                                             <p className="text-sm">
@@ -2004,80 +2274,9 @@ function Information({data}) {
                             />
 
                         </div>
-
                     </FormInfo>
 
                     {/* -------------Career Goals------------- */}
-                    <FormInfo title="Projects" icon={<CareerGoal/>}>
-                        {projects.map((item, index) => (<div key={index}>
-                            <div className="gap-x-3 bg-primary-100 p-3 w-full">
-                                <div className="flex items-center gap-x-2">
-                                    <div className="text-lg font-semibold capitalize text-primary text-nowrap">
-                                        {index + 1}.{' '}
-                                        {item.project_title || 'New Project'}
-                                    </div>
-                                    {projects.length > 1 && (<div
-                                        onClick={() => handleDeleteProject(index)}
-                                        className="cursor-pointer font-black"
-                                    >
-                                        <DeleteIcon/>
-                                    </div>)}
-                                </div>
-                            </div>
-                            <div className="grid lg:grid-cols-3 sm:grid-cols-2 gap-x-5 py-6 px-4">
-                                <TextField
-                                    type="text"
-                                    label="Title"
-                                    name={`project_title_${index}`}
-                                    value={item.project_title}
-                                    placeholder="Enter project title"
-                                    onChange={(e) =>
-                                        handleChangeProject('project_title', index, e.target.value)
-                                    }
-                                />
-                                <div style={{position: 'relative'}}>
-                                    <TextArea
-                                        name={`project_description_${index}`}
-                                        label="Description"
-                                        value={item.project_description}
-                                        onChange={(e) => {
-                                            const words = e.target.value.split(/\s+/).filter(Boolean);
-                                            handleChangeProject('project_description', index, e.target.value);
-                                            setWordCounts((prev) => ({...prev, [index]: words.length}));
-                                        }}
-                                    />
-                                    <span style={{
-                                        color: wordCounts[index] > 25 ? 'red' : 'grey',
-                                        position: 'absolute',
-                                        right: 10,
-                                        bottom: 25,
-                                        fontSize: '14px'
-                                    }}>
-                                                {wordCounts[index] || 0} / 25
-                                            </span>
-                                </div>
-                                <TextField
-                                    type="text"
-                                    label="URL"
-                                    value={item.project_url}
-                                    name={`project_url_${index}`}
-                                    placeholder="Enter project url"
-                                    onChange={(e) =>
-                                        handleChangeProject('project_url', index, e.target.value)
-                                    }
-                                />
-
-                            </div>
-                        </div>))}
-                        <div className='py-4'>
-                            <div
-                                className="ml-4 bg-primary px-4 py-2 text-white rounded w-[160px] text-center cursor-pointer"
-                                onClick={handleAddProject}
-                            >
-                                + Add Project
-                            </div>
-                        </div>
-                    </FormInfo>
                     <FormInfo title="Career Goals" icon={<CareerGoal/>}>
 
                         <div className="grid lg:grid-cols-3 sm:grid-cols-2 gap-x-5 py-6 px-4">
@@ -2131,29 +2330,29 @@ function Information({data}) {
                                 />
                             )}
 
-                            {dropDown && (
-                                <DropDown
-                                    label="NOC Number"
-                                    name="noc_number"
-                                    value={values?.noc_number || ''}
-                                    disabled={true}
-                                    options={
-                                        dropDown
-                                            .filter(item =>
-                                                item.Industry === values?.career_industry &&
-                                                item['Class title'] === values?.career_field
-                                            )
-                                            .map(item => ({
-                                                value: String(item.NOC_CODE),
-                                                name: String(item.NOC_CODE),
-                                            }))
-                                    }
-                                    onChange={(e) => {
-                                        const selectedNoc = e.target.value;
-                                        setFieldValue('noc_number', selectedNoc);
-                                    }}
-                                />
-                            )}
+                            {/*{dropDown && (*/}
+                            {/*    <DropDown*/}
+                            {/*        label="NOC Number"*/}
+                            {/*        name="noc_number"*/}
+                            {/*        value={values?.noc_number || ''}*/}
+                            {/*        disabled={true}*/}
+                            {/*        options={*/}
+                            {/*            dropDown*/}
+                            {/*                .filter(item =>*/}
+                            {/*                    item.Industry === values?.career_industry &&*/}
+                            {/*                    item['Class title'] === values?.career_field*/}
+                            {/*                )*/}
+                            {/*                .map(item => ({*/}
+                            {/*                    value: String(item.NOC_CODE),*/}
+                            {/*                    name: String(item.NOC_CODE),*/}
+                            {/*                }))*/}
+                            {/*        }*/}
+                            {/*        onChange={(e) => {*/}
+                            {/*            const selectedNoc = e.target.value;*/}
+                            {/*            setFieldValue('noc_number', selectedNoc);*/}
+                            {/*        }}*/}
+                            {/*    />*/}
+                            {/*)}*/}
                         </div>
                     </FormInfo>
 
@@ -2165,15 +2364,15 @@ function Information({data}) {
                                 handleReset()
                                 resetWorkExperiences()
                             }}
-                            className={`flex gap-x-2 justify-end items-center rounded w-auto py-2 px-10 mt-10 bg-gray-400`}
+                            className={`flex gap-x-2 lato justify-end items-center rounded w-auto py-2 px-10 mt-10 bg-white border border-black`}
                         >
-                            <span className="text-white text-base font-bold">Reset</span>
+                            <span className="text-black text-base font-bold">Reset</span>
                         </button>
                         <button
                             // disabled={disabledButton || isSubmitting || imgError === '' ? false : true}
                             // disabled={disabledButton || isSubmitting || isAnyDescriptionTooLong || isGreaterThan17}
                             type="submit"
-                            className={`flex gap-x-2 justify-end items-center rounded w-auto py-2 px-10 mt-10 bg-primary`}
+                            className={`flex lato gap-x-2 justify-end items-center rounded w-auto py-2 px-10 mt-10 bg-black`}
                         >
                 <span className="text-white text-base font-bold">
                   {isSubmitting ? <Loader/> : data ? 'Update' : 'Submit'}

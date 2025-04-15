@@ -1,6 +1,6 @@
 import React from 'react';
 import LinkPreview from "../../component/LinkPreview/linkPreview";
-import {Edit} from "../../common/Icons";
+import {Edit, Email, EmailIcon, Phone, PhoneIcon} from "../../common/Icons";
 import {useNavigate} from "react-router-dom";
 
 const ProfileDetails = ({data}) => {
@@ -39,43 +39,58 @@ const ProfileDetails = ({data}) => {
                             </h1>
 
                             <div className="mt-2 text-gray-600">
-                                <p className="text-sm">
-                                    <span className="font-medium">Email:</span> {data?.basicDetails?.contact_email_id}
+                                <p className="text-sm flex md:justify-start  justify-center">
+                                    <span className="font-medium mr-2"><Email/></span> {data?.basicDetails?.contact_email_id}
                                 </p>
-                                <p className="text-sm">
-                                    <span className="font-medium">Phone:</span> {data?.basicDetails?.contact_no}
+                                <p className="text-sm flex md:justify-start justify-center">
+                                    <span className="font-medium mr-2"><Phone/></span> {data?.basicDetails?.contact_no}
                                 </p>
                             </div>
                         </div>
                     </div>
 
-                    <div className="bg-white rounded-2xl text-center flex flex-col items-center space-y-4 h-fit w-full">
-                        <div className="text-left pr-4 text-gray-500 font-extrabold border-b px-6 py-5 w-full">Details</div>
-                        <div className="w-full text-left space-y-3 text-sm pt-2 p-6">
+                    <div className="bg-white rounded-lg w-full mx-auto">
+                        {/* Header */}
+                        <div className="text-left pr-4 text-gray-500 font-extrabold border-b px-6 py-5">Details</div>
+
+                        {/* Content */}
+                        <div className="p-6 grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-6 text-sm">
+                            {/* Location */}
                             <div>
-                                <p className="text-gray-500 font-medium">Location</p>
-                                <p className="text-blue-600">
+                                <p className="text-gray-500 font-medium mb-1">Location</p>
+                                <p className="text-blue-600 font-semibold">
                                     {data?.basicDetails?.current_city}, {data?.basicDetails?.current_state}, {data?.basicDetails?.current_country}
                                 </p>
                             </div>
+
+                            {/* DOB */}
                             <div>
-                                <p className="text-gray-500 font-medium">DOB</p>
-                                <p className="text-blue-600">{new Date(data?.basicDetails?.dob)?.toLocaleDateString()}</p>
+                                <p className="text-gray-500 font-medium mb-1">Date of Birth</p>
+                                <p className="text-blue-600 font-semibold">
+                                    {new Date(data?.basicDetails?.dob)?.toLocaleDateString()}
+                                </p>
                             </div>
+
+                            {/* Gender */}
                             <div>
-                                <p className="text-gray-500 font-medium">Gender</p>
-                                <p className="text-blue-600">{data?.basicDetails?.gender}</p>
+                                <p className="text-gray-500 font-medium mb-1">Gender</p>
+                                <p className="text-blue-600 font-semibold">{data?.basicDetails?.gender}</p>
                             </div>
+
+                            {/* Nationality */}
                             <div>
-                                <p className="text-gray-500 font-medium">Nationality</p>
-                                <p className="text-blue-600">{data?.basicDetails?.nationality}</p>
+                                <p className="text-gray-500 font-medium mb-1">Nationality</p>
+                                <p className="text-blue-600 font-semibold">{data?.basicDetails?.nationality}</p>
                             </div>
-                            <div>
-                                <p className="text-gray-500 font-medium">Preferred Job Location</p>
-                                <p className="text-blue-600">{data?.basicDetails?.job_preferred_location}</p>
+
+                            {/* Preferred Job Location */}
+                            <div className="sm:col-span-2">
+                                <p className="text-gray-500 font-medium mb-1">Preferred Job Location</p>
+                                <p className="text-blue-600 font-semibold">{data?.basicDetails?.job_preferred_location}</p>
                             </div>
                         </div>
                     </div>
+
 
                     <div className="bg-white rounded-lg">
                         <div className="text-left pr-4 text-gray-500 font-extrabold border-b px-6 py-5">Summary</div>

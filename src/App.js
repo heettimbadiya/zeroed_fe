@@ -19,35 +19,12 @@ import {API_ROUTES} from "./utils/APIs";
 import View from "./pages/View";
 import Pricing from "./pages/Pricing/Pricing";
 import AdminApp from "./admin";
-// import AdminMessaging from "./admin/pages/messaging/messaging";
 import UserSignIn from "./pages/Auth/signIn";
 import {Toaster} from "react-hot-toast";
 
 function App() {
-    const Home = lazy(() => import('./pages/Home'))
-    const localUser = sessionStorage.getItem('user')
-    const token = sessionStorage.getItem('token')
-    const user = JSON.parse(localUser)
-    const [data, setData] = useState(null)
-    const [loading, setLoading] = useState(false)
-    useEffect(() => {
-        setLoading(true)
+    const Home = lazy(() => import('./pages/Home'));
 
-        async function fetchData() {
-            try {
-                const response = await axios.get(API_ROUTES.GET_PROFILE_INFO + '/' + user?.id,)
-                if (response?.data?.success) {
-                    setData(response?.data?.data)
-                    setLoading(false)
-                }
-            } catch (err) {
-                setLoading(false)
-            }
-        }
-
-        fetchData()
-    }, [user?.id])
-    console.log()
     return (<div>
         <Toaster />
         <Suspense fallback={<PageLoading/>}>
@@ -94,9 +71,9 @@ function App() {
                     path={ROUTES_URL.INITIAL}
                     element={<ProtectedRoute>
                         <Header
-                            profile={data?.basicDetails ? data?.basicDetails?.profile_pic : null}
-                            slug={data?.basicDetails ? data?.basicDetails?.slug : null}
-                            userId={user?.id}
+                            // profile={data?.basicDetails ? data?.basicDetails?.profile_pic : null}
+                            // slug={data?.basicDetails ? data?.basicDetails?.slug : null}
+                            // userId={user?.id || data?.basicDetails?.user_id}
                         />
                         <Home/>
                     </ProtectedRoute>}
@@ -105,9 +82,9 @@ function App() {
                     path={ROUTES_URL.HOME}
                     element={<ProtectedRoute>
                         <Header
-                            profile={data?.basicDetails ? data?.basicDetails?.profile_pic : null}
-                            slug={data?.basicDetails ? data?.basicDetails?.slug : null}
-                            userId={user?.id}
+                            // profile={data?.basicDetails ? data?.basicDetails?.profile_pic : null}
+                            // slug={data?.basicDetails ? data?.basicDetails?.slug : null}
+                            // userId={user?.id || data?.basicDetails?.user_id}
                         />
                         <Home/>
                     </ProtectedRoute>}
@@ -116,9 +93,9 @@ function App() {
                     path={ROUTES_URL.FEED}
                     element={<ProtectedRoute>
                         <Header
-                            profile={data?.basicDetails ? data?.basicDetails?.profile_pic : null}
-                            slug={data?.basicDetails ? data?.basicDetails?.slug : null}
-                            userId={user?.id}
+                            // profile={data?.basicDetails ? data?.basicDetails?.profile_pic : null}
+                            // slug={data?.basicDetails ? data?.basicDetails?.slug : null}
+                            //  userId={user?.id || data?.basicDetails?.user_id}
                         />
                         <Feed/>
                     </ProtectedRoute>}
@@ -127,9 +104,9 @@ function App() {
                     path={ROUTES_URL.MESSAGING}
                     element={<ProtectedRoute>
                         <Header
-                            profile={data?.basicDetails ? data?.basicDetails?.profile_pic : null}
-                            slug={data?.basicDetails ? data?.basicDetails?.slug : null}
-                            userId={user?.id}
+                            // profile={data?.basicDetails ? data?.basicDetails?.profile_pic : null}
+                            // slug={data?.basicDetails ? data?.basicDetails?.slug : null}
+                            //  userId={user?.id || data?.basicDetails?.user_id}
                         />
                         <Messaging/>
                     </ProtectedRoute>}
@@ -138,9 +115,9 @@ function App() {
                     path={ROUTES_URL.PRICING}
                     element={<ProtectedRoute>
                         <Header
-                            profile={data?.basicDetails ? data?.basicDetails?.profile_pic : null}
-                            slug={data?.basicDetails ? data?.basicDetails?.slug : null}
-                            userId={user?.id}
+                            // profile={data?.basicDetails ? data?.basicDetails?.profile_pic : null}
+                            // slug={data?.basicDetails ? data?.basicDetails?.slug : null}
+                            //  userId={user?.id || data?.basicDetails?.user_id}
                         />
                         <Pricing/>
                     </ProtectedRoute>}
@@ -149,9 +126,9 @@ function App() {
                     path={`${ROUTES_URL.PROFILE}/:id`}
                     element={<>
                         <Header
-                            profile={data?.basicDetails ? data?.basicDetails?.profile_pic : null}
-                            slug={data?.basicDetails ? data?.basicDetails?.slug : null}
-                            userId={user?.id}
+                            // profile={data?.basicDetails ? data?.basicDetails?.profile_pic : null}
+                            // slug={data?.basicDetails ? data?.basicDetails?.slug : null}
+                            //  userId={user?.id || data?.basicDetails?.user_id}
                         />
                         <Profile/>
                     </>}
@@ -160,9 +137,9 @@ function App() {
                     path={`${ROUTES_URL.INBOX}`}
                     element={<>
                         <Header
-                            profile={data?.basicDetails ? data?.basicDetails?.profile_pic : null}
-                            slug={data?.basicDetails ? data?.basicDetails?.slug : null}
-                            userId={user?.id}
+                            // profile={data?.basicDetails ? data?.basicDetails?.profile_pic : null}
+                            // slug={data?.basicDetails ? data?.basicDetails?.slug : null}
+                            //  userId={user?.id || data?.basicDetails?.user_id}
                         />
                         <Feed/>
                     </>}
@@ -179,15 +156,6 @@ function App() {
                         <Messaging/>
                     </>}
                 />
-
-                {/*------------------------------------------------------ ADMIN ROUTES ------------------------------------------------------------*/}
-
-                {/*<Route*/}
-                {/*    path={`${ROUTES_URL.DASHBOARD}/*`}*/}
-                {/*    element={<ProtectedRoute>*/}
-                {/*        <MainLayout/>*/}
-                {/*    </ProtectedRoute>}*/}
-                {/*/>*/}
             </Routes>
 
            <AdminApp/>

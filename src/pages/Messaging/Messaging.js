@@ -178,9 +178,7 @@ function Messaging() {
         socket = io(ENDPOINT);
         socket.emit("setup", user);
         socket.on("connected", () => setSocketConnected(true));
-        socket.on("typing", () => setIsTyping(true));
-        socket.on("stop typing", () => setIsTyping(false));
-    }, [user]);
+    }, []);
 
     const handleSendMessage = async () => {
         if (!newMessage.trim() || !selectedChat) return;
