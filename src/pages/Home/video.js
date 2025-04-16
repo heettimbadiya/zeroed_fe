@@ -102,16 +102,18 @@ const VideoUploader = ({
     const renderVideoBlock = (videoSrc, type) => (
         <div className="relative w-full">
             {/* Icon button in top-right */}
-            <div
-                onClick={(e) => handleSelectVideo(e, type)}
-                className="absolute top-2 right-2 w-10 h-10 bg-white border border-black rounded-full flex items-center justify-center cursor-pointer transition-all z-10"
-                title={videoSrc ? "Edit Video" : "Add Video"}
-            >
-                <Icon icon={videoSrc ? "mdi:pencil" : "mdi:plus"} className="text-xl" />
-            </div>
+            {(!videoSrc || type !== "secondary_video") && (
+                <div
+                    onClick={(e) => handleSelectVideo(e, type)}
+                    className="absolute top-2 right-2 w-10 h-10 bg-white border border-black rounded-full flex items-center justify-center cursor-pointer transition-all z-10"
+                    title={videoSrc ? "Edit Video" : "Add Video"}
+                >
+                    <Icon icon={videoSrc ? "mdi:pencil" : "mdi:plus"} className="text-xl"/>
+                </div>
+            )}
 
             {videoSrc ? (
-                <video controls src={videoSrc} className="w-full rounded-md shadow-md" />
+                <video controls src={videoSrc} className="w-full rounded-md shadow-md"/>
             ) : (
                 <div className="w-full h-64 bg-gray-200 rounded-md flex items-center justify-center text-gray-500">
                     No {type === "recorded" ? "Primary" : "Secondary"} Video

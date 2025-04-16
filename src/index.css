@@ -103,7 +103,9 @@ body {
     outline: none;
     margin-top: 4px;
 }
-
+.no-scrollbar::-webkit-scrollbar {
+    display: none;
+}
 /*
 .searchWrapper{
   border: 0px !important;
