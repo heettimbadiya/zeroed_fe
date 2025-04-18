@@ -325,10 +325,11 @@ function Information({data}) {
         }
     }
 
-    const handleDeleteInternationalEducation = (index) => {
+    const handleDeleteInternationalEducation = (setFieldValue,internationalEducation,index) => {
         if (!data) {
-            setInternationalEducation((prev) => prev.filter((_, i) => i !== index))
+            setFieldValue("internationalEducation",(prev) => prev.filter((_, i) => i !== index))
         } else {
+            console.log(internationalEducation,"uuuuuuuuuuuuuuuuuu")
             const updatedProject = [...internationalEducation]
             const userId = updatedProject[index]?.user_id
             if (userId) {
@@ -345,7 +346,7 @@ function Information({data}) {
                     console.log('Something went wrong', error)
                 }
             }
-            setInternationalEducation(updatedProject.filter((_, i) => i !== index))
+            setFieldValue("internationalEducation",updatedProject.filter((_, i) => i !== index))
         }
     }
     const handleDeleteInternationalCEducation = (index) => {
@@ -538,8 +539,8 @@ function Information({data}) {
             reference_check: false,
         },])
     }
-    const handleAddInternationalEducation = () => {
-        setInternationalEducation([...internationalEducation, initialInterNationalEducation])
+    const handleAddInternationalEducation = (internationalEducation,setFieldValue) => {
+        setFieldValue("internationalEducation",[...internationalEducation, initialInterNationalEducation])
     }
     const handleAddInternationalCEducation = () => {
         setInternationalCEducation([...internationalCEducation, initialInterNationalCEducation])
@@ -601,7 +602,7 @@ function Information({data}) {
         }
 
         // Append international education
-        internationalEducation.map((item, index) => {
+        values.internationalEducation.map((item, index) => {
 
             formData.append(`internationalEducation[${index}][level_of_education]`, item.level_of_education,)
             formData.append(`internationalEducation[${index}][field_of_study]`, item.field_of_study,)
@@ -737,10 +738,10 @@ function Information({data}) {
             }
         }
     }
-    const handleChangeInternationalEducation = (index, field, value) => {
+    const handleChangeInternationalEducation = (internationalEducation,setFieldValue,index, field, value) => {
         const updatedExperiences = [...internationalEducation]
         updatedExperiences[index][field] = value
-
+        setFieldValue('internationalEducation',updatedExperiences)
         setInternationalEducation(updatedExperiences)
     }
     const handleChangeInternationalCEducation = (index, field, value) => {
@@ -799,7 +800,6 @@ function Information({data}) {
     return (<Formik
         initialValues={{
             isPrivate: false,
-
             firstname: data?.basicDetails?.firstname || '',
             lastname: data?.basicDetails?.lastname || '',
             profile_pic: data?.basicDetails?.profile_pic || null,
@@ -813,15 +813,19 @@ function Information({data}) {
             contact_email_id: data?.basicDetails?.contact_email_id || '',
             job_preferred_location: data?.basicDetails?.job_preferred_location || '',
 
-            level_of_education: data?.internationalEducation?.level_of_education || '',
-            field_of_study: data?.internationalEducation?.field_of_study || '',
-            year_of_graduation: data?.internationalEducation?.year_of_graduation || '',
-            college_name: data?.internationalEducation?.college_name || '',
-            global_gpa: data?.internationalEducation?.global_gpa || '',
-            isInternationalEducation: internationalEducation[0]?.field_of_study ? true : false,
-            credential_no: data?.internationalEducation?.credential_no || '',
-            credential_institute_name: data?.internationalEducation?.credential_institute_name || '',
-            credential_assesed: data?.internationalEducation?.credential_assesed || false,
+            internationalEducation: data?.internationalEducation || [{
+                credential_institute_name: '',
+                credential_assesed: false,
+                credential_no: '',
+                global_gpa: '',
+                college_name: '',
+                year_of_graduation: '',
+                field_of_study: '',
+                level_of_education: '',
+            }],
+
+            isInternationalEducation: data?.internationalEducation?.length > 0,
+
             isCanadianEducation: data?.canadianEducation[0]?.university ? true : false,
             university: data?.canadianEducation?.university || '',
             city: data?.canadianEducation?.city || '',
@@ -836,42 +840,14 @@ function Information({data}) {
             coreSkills: [{
                 _id: data?.skills[0]?._id || null,
                 coreSkill: data?.skills[0]?.core_skill || '',
-                subSkills: data?.skills[0]?.subSkill?.length > 0 ? data?.skills[0]?.subSkill?.map((data) => {
+                subSkills: data?.skills[0]?.subSkill?.length > 0 ? data?.skills[0]?.subSkill.map((data) => {
                     const _id = data?._id || null
                     const subSkill = data.sub_skills || ''
                     const certificate = data.certificate || ''
                     const link = data.link || ''
                     return {_id, subSkill, certificate, link}
                 }) : [],
-            }, // {
-                //     _id: data?.skills[1]?._id || null,
-                //     coreSkill: data?.skills[1]?.core_skill || '',
-                //     subSkills:
-                //         data?.skills[1]?.subSkill?.length > 0
-                //             ? data?.skills[1]?.subSkill?.map((data) => {
-                //                 const _id = data?._id || null
-                //                 const subSkill = data.sub_skills || ''
-                //                 const certificate = data.certificate || ''
-                //                 const link = data.link || ''
-                //                 return {_id, subSkill, certificate, link}
-                //             })
-                //             : [],
-                // },
-                // {
-                //     _id: data?.skills[2]?._id || null,
-                //     coreSkill: data?.skills[2]?.core_skill || '',
-                //     subSkills:
-                //         data?.skills[2]?.subSkill?.length > 0
-                //             ? data?.skills[2]?.subSkill?.map((data) => {
-                //                 const _id = data?._id || null
-                //                 const subSkill = data.sub_skills || ''
-                //                 const certificate = data.certificate || ''
-                //                 const link = data.link || ''
-                //                 return {_id, subSkill, certificate, link}
-                //             })
-                //             : [],
-                // },
-            ],
+            }],
 
             accomplishment_1: data?.workExperience?.accomplishment_1 || '',
             accomplishment_2: data?.workExperience?.accomplishment_2 || '',
@@ -883,9 +859,7 @@ function Information({data}) {
             work_experience_country: data?.workExperience?.work_experience_country || '',
             work_experience_job_title: data?.workExperience?.work_experience_job_title || '',
             work_experience_company_name: data?.workExperience?.work_experience_company_name || '',
-            work_experience_company_website: data?.workExperience?.work_experience_company_website || '', // experience_start_date:
-            //   data?.workExperience?.experience_start_date || null,
-            // experience_end_date: data?.workExperience?.experience_end_date || null,
+            work_experience_company_website: data?.workExperience?.work_experience_company_website || '',
             isCurrentlyWorking: data?.workExperience?.isCurrentlyWorking || false,
             email: data?.workExperience?.email || '',
             reference_check: data?.workExperience?.reference_check || false,
@@ -900,6 +874,7 @@ function Information({data}) {
             career_field: data?.careerGoal?.career_field || '',
             noc_number: data?.careerGoal?.noc_number || '',
         }}
+        // context={{ isInternationalEducation: true }}
         validationSchema={jobFormValidation}
         onSubmit={handleSubmit}
     >
@@ -959,6 +934,7 @@ function Information({data}) {
                             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 gap-y-0">
                                 <TextField type="text" name="firstname" label="First Name" placeholder="First Name"
                                            onChange={(e) => setFieldValue("firstname", e.target.value)}/>
+
 
                                 <TextField type="text" name="lastname" label="Last Name" placeholder="Last Name"
                                            onChange={(e) => setFieldValue("lastname", e.target.value)}/>
@@ -1051,141 +1027,135 @@ function Information({data}) {
 
 
                 {/* ------------------International Education--------------- */}
-                <FormInfo title="Global Education" icon={<GlobalEducation/>} renderRight={true}
-                          renderRightContent={<ToggleButton
-                              label=""
-                              name="isInternationalEducation"
-                              onChange={(e) => setFieldValue('isInternationalEducation', e.target.checked)}
-                          />}>
-                    {internationalEducation?.length > 0 && internationalEducation?.map((intEducation, index) => (
-                        <div key={index} className="bg-white rounded-md shadow border mb-6">
-                            <div
-                                className="flex flex-wrap justify-between items-center pt-4 w-full rounded-t-md">
-                                <div className="flex items-center">
-                                    <div
-                                        className="flex items-center bg-[#F3F3F3] px-10 py-2 rounded-r-full text-lg font-semibold text-[#1B2028] text-nowrap">
-                                        {index + 1}.&nbsp;{intEducation.college_name || 'New Education'}
-                                        {internationalEducation.length > 0 && (<div
-                                            onClick={() => handleDeleteInternationalEducation(index)}
-                                            className="ml-2 cursor-pointer"
-                                        >
-                                            <DeleteIcon/>
-                                        </div>)}
+                <FormInfo
+                    title="Global Education"
+                    icon={<GlobalEducation />}
+                    renderRight={true}
+                    renderRightContent={
+                        <ToggleButton
+                            label=""
+                            name="isInternationalEducation"
+                            onChange={(e) => setFieldValue('isInternationalEducation', e.target.checked)}
+                        />
+                    }
+                >
+                    {values.internationalEducation.length > 0 &&
+                        values.internationalEducation.map((intEducation, index) => (
+                            <div key={index} className="bg-white rounded-md shadow border mb-6">
+                                <div className="flex flex-wrap justify-between items-center pt-4 w-full rounded-t-md">
+                                    <div className="flex items-center">
+                                        <div className="flex items-center bg-[#F3F3F3] px-10 py-2 rounded-r-full text-lg font-semibold text-[#1B2028] text-nowrap">
+                                            {index + 1}.&nbsp;{intEducation.college_name || 'New Education'}
+                                            <div
+                                                onClick={() => handleDeleteInternationalEducation(setFieldValue,values.internationalEducation,index)}
+                                                className="ml-2 cursor-pointer"
+                                            >
+                                                <DeleteIcon />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div className="grid xl:grid-cols-3 lg:grid-cols-3 sm:grid-cols-2 gap-x-5 gap-y-4 py-6 px-4">
+                                    <DropDownInput
+                                        label="Level of Education"
+                                        name={`internationalEducation[${index}].level_of_education`}
+                                        options={levelOfEducation}
+                                        disabled={!values.isInternationalEducation}
+                                        value={intEducation?.level_of_education || ''}
+                                        onChange={(e) => handleChangeInternationalEducation(values.internationalEducation,setFieldValue,index, 'level_of_education', e.target.value)}
+                                    />
+
+                                    <DropDownInput
+                                        label="Field of Study"
+                                        name={`internationalEducation[${index}].field_of_study`}
+                                        options={fieldOfStudy}
+                                        disabled={!values.isInternationalEducation}
+                                        value={intEducation?.field_of_study || ''}
+                                        onChange={(e) => handleChangeInternationalEducation(values.internationalEducation,setFieldValue,index,'field_of_study', e.target.value)}
+                                    />
+
+                                    <DropDownInput
+                                        label="Year of Graduation"
+                                        name={`internationalEducation[${index}].year_of_graduation`}
+                                        options={years}
+                                        disabled={!values.isInternationalEducation}
+                                        value={intEducation?.year_of_graduation || ''}
+                                        onChange={(e) => handleChangeInternationalEducation(values.internationalEducation,setFieldValue,index,'year_of_graduation', e.target.value)}
+                                    />
+
+                                    <TextFieldValue
+                                        type="text"
+                                        label="College Name"
+                                        name={`internationalEducation[${index}].college_name`}
+                                        value={intEducation?.college_name || ''}
+                                        placeholder="Enter college name"
+                                        disabled={!values.isInternationalEducation}
+                                        onChange={(e) => handleChangeInternationalEducation(values.internationalEducation,setFieldValue,index, 'college_name', e.target.value)}
+                                    />
+
+                                    <TextFieldValue
+                                        type="text"
+                                        label="GPA"
+                                        name={`internationalEducation[${index}].global_gpa`}
+                                        value={intEducation?.global_gpa || ''}
+                                        placeholder="Divide % by 25 to get GPA"
+                                        disabled={!values.isInternationalEducation}
+                                        onChange={(e) => handleChangeInternationalEducation(values.internationalEducation,setFieldValue,index,'global_gpa', e.target.value)}
+                                    />
+
+                                    <TextFieldValue
+                                        type="text"
+                                        label="Credential No"
+                                        name={`internationalEducation[${index}].credential_no`}
+                                        value={intEducation?.credential_no || ''}
+                                        placeholder="Enter Credential No"
+                                        disabled={!values.isInternationalEducation}
+                                        onChange={(e) => handleChangeInternationalEducation(values.internationalEducation,setFieldValue,index,'credential_no', e.target.value)}
+                                    />
+
+                                    <DropDownInput
+                                        label="Credential Institute Name"
+                                        name={`internationalEducation[${index}].credential_institute_name`}
+                                        options={[
+                                            { name: 'IQAS', value: 'IQAS' },
+                                            { name: 'WES', value: 'WES' },
+                                            { name: 'ICAS', value: 'ICAS' },
+                                        ]}
+                                        disabled={!values.isInternationalEducation}
+                                        value={intEducation?.credential_institute_name || ''}
+                                        onChange={(e) => handleChangeInternationalEducation(values.internationalEducation,setFieldValue,index,'credential_institute_name', e.target.value)}
+                                    />
+
+                                    <div className="flex items-center">
+                                        <label className="inline-flex items-center cursor-pointer">
+                                            <Label label="Credential Assessed:" className="mr-2" />
+                                            <Field
+                                                type="checkbox"
+                                                name={`internationalEducation[${index}].credential_assesed`}
+                                                className="sr-only peer"
+                                                checked={intEducation?.credential_assesed || false}
+                                                disabled={!values.isInternationalEducation}
+                                                onChange={(e) => handleChangeInternationalEducation(values.internationalEducation,setFieldValue,index,'credential_assesed', e.target.checked)}
+                                            />
+                                            <div className="relative w-11 h-6 bg-gray-200 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#1A202C]" />
+                                        </label>
                                     </div>
                                 </div>
                             </div>
+                        ))}
 
-                            <div
-                                className="grid xl:grid-cols-3 lg:grid-cols-3 sm:grid-cols-2 gap-x-5 gap-y-4 py-6 px-4">
-                                <DropDownInput
-                                    label="Level of Education"
-                                    name={`level_of_education_${index}`}
-                                    options={levelOfEducation}
-                                    disabled={!values.isInternationalEducation}
-                                    value={intEducation?.level_of_education || ''}
-                                    onChange={(e) => {
-                                        handleChangeInternationalEducation(index, 'level_of_education', e.target.value,)
-                                    }}
-                                />
-                                <DropDownInput
-                                    label="Field of Study"
-                                    name={`field_of_study_${index}`}
-                                    options={fieldOfStudy}
-                                    disabled={!values.isInternationalEducation}
-                                    value={intEducation?.field_of_study || ''}
-                                    onChange={(e) => {
-                                        handleChangeInternationalEducation(index, 'field_of_study', e.target.value,)
-                                    }}
-                                />
-                                <DropDownInput
-                                    label="Year of Graduation"
-                                    name={`year_of_graduation_${index}`}
-                                    options={years}
-                                    disabled={!values.isInternationalEducation}
-                                    value={intEducation?.year_of_graduation || ''}
-                                    onChange={(e) => {
-                                        handleChangeInternationalEducation(index, 'year_of_graduation', e.target.value,)
-                                    }}
-                                />
-                                <TextFieldValue
-                                    type="text"
-                                    label="College Name"
-                                    value={intEducation?.college_name || ''}
-                                    name={`college_name_${index}`}
-                                    placeholder="Enter college name"
-                                    disabled={!values.isInternationalEducation}
-                                    onChange={(e) => {
-                                        handleChangeInternationalEducation(index, 'college_name', e.target.value,)
-                                    }}
-                                />
-                                <TextFieldValue
-                                    type="text"
-                                    label="GPA"
-                                    value={intEducation?.global_gpa || ''}
-                                    name={`global_gpa_${index}`}
-                                    placeholder="Divide % by 25 to get GPA"
-                                    disabled={!values.isInternationalEducation}
-                                    onChange={(e) => {
-                                        handleChangeInternationalEducation(index, 'global_gpa', e.target.value,)
-                                    }}
-                                />
-
-                                <TextFieldValue
-                                    type="text"
-                                    label="Credential No"
-                                    value={intEducation?.credential_no || ''}
-                                    name={`credential_no_${index}`}
-                                    placeholder="Enter Credential No"
-                                    disabled={!values.isInternationalEducation}
-                                    onChange={(e) => {
-                                        handleChangeInternationalEducation(index, 'credential_no', e.target.value,)
-                                    }}
-                                />
-                                <DropDownInput
-                                    label="Credential Institute Name"
-                                    name={`credential_institute_name_${index}`}
-                                    options={[{name: 'IQAS', value: 'IQAS'}, {
-                                        name: 'WES', value: 'WES'
-                                    }, {name: 'ICAS', value: 'ICAS'}]}
-                                    disabled={!values.isInternationalEducation}
-                                    value={intEducation?.credential_institute_name || ''}
-                                    onChange={(e) => {
-                                        handleChangeInternationalEducation(index, 'credential_institute_name', e.target.value,)
-                                    }}
-                                />
-                                <div className={'flex items-center'}>
-                                    <label className="inline-flex items-center cursor-pointer">
-                                        <Label label={'Credential Assessed:'} className="mr-2"/>
-                                        <Field
-                                            type="checkbox"
-                                            id={`credential_assesed_${index}`}
-                                            name={`credential_assesed_${index}`}
-                                            className="sr-only peer"
-                                            checked={intEducation?.credential_assesed || false}
-                                            disabled={!values.isInternationalEducation}
-                                            onChange={(e) => {
-                                                handleChangeInternationalEducation(index, 'credential_assesed', e.target.checked)
-                                            }}
-                                        />
-                                        <div
-                                            className="relative w-11 h-6 bg-gray-200 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#1A202C]">
-                                        </div>
-                                    </label>
-                                </div>
-                            </div>
-                        </div>))}
-
-                    <div className={'pb-3'}>
-                        <button
+                    {/* Add Education Button */}
+                    <div className="pb-3">
+                        <div
                             disabled={!values.isInternationalEducation}
-                            className="ml-4 bg-black px-4 py-2 text-white rounded cursor-pointer text-nowrap"
-                            onClick={handleAddInternationalEducation}
+                            className="ml-4 bg-black px-4 py-2 text-white rounded cursor-pointer text-nowrap inline-block"
+                            onClick={() => handleAddInternationalEducation(values.internationalEducation,setFieldValue)}
                         >
                             + Add Education
-                        </button>
+                        </div>
                     </div>
                 </FormInfo>
-
 
                 {/* ------------------Canadian Education--------------- */}
                 <FormInfo
@@ -1295,13 +1265,13 @@ function Information({data}) {
 
                         </div>))}
                     <div className={'pb-3'}>
-                        <button
+                        <div
                             disabled={!values.isInternationalEducation}
-                            className="ml-4 bg-black px-4 py-2 text-white rounded cursor-pointer text-nowrap"
+                            className="ml-4 bg-black px-4 py-2 text-white rounded cursor-pointer text-nowrap inline-block"
                             onClick={handleAddInternationalCEducation}
                         >
                             + Add Education
-                        </button>
+                        </div>
                     </div>
                 </FormInfo>
 
@@ -1331,7 +1301,6 @@ function Information({data}) {
                                                 }}
                                             />
                                         </div>
-
                                         {/* Remove button (only show for additional skills) */}
                                         {coreIndex > 0 && (<button
                                             type="button"
@@ -1341,7 +1310,6 @@ function Information({data}) {
                                             Remove
                                         </button>)}
                                     </div>
-
                                     {/* Subskills Section (only show if core skill is selected) */}
                                     {coreSkill.coreSkill && (<div className="mt-4">
                                         {skillData
@@ -1371,14 +1339,20 @@ function Information({data}) {
                                                             }));
                                                             setFieldValue(`coreSkills[${coreIndex}].subSkills`, updatedSubSkills);
                                                         }}
+                                                        selectionLimit={3}
                                                         displayValue="name"
                                                     />
+                                                    <ErrorMessage
+                                                        name={`coreSkills[${coreIndex}].subSkills`}
+                                                        component="div"
+                                                        className="text-xs text-red-500 ml-1 mt-1"
+                                                    />
+
                                                     {coreIndex === 0 && (
                                                         <span className="text-xs text-green-700">
                           * If your skill is not listed, please email team@zeroed.ca
                         </span>)}
                                                 </div>
-
                                                 {/* Certificate Uploads */}
                                                 <div
                                                     className="grid xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-3 mt-4">
@@ -1435,7 +1409,6 @@ function Information({data}) {
                                                                                                 .pop()}
                                                                                         </div>) : ('No file chosen')}
                                                                                 </label>
-
                                                                                 {/* Displaying error message */}
                                                                                 {imgError && (
                                                                                     <div
@@ -1451,12 +1424,10 @@ function Information({data}) {
                                                                             </div>)}
                                                                         </Field>
                                                                     </div>
-
                                                                     {/* Display uploaded certificate preview */}
                                                                     <CertificatePreview
                                                                         subSkill={subSkill}
                                                                     />
-
                                                                     <div
                                                                         className='mt-3'>
                                                                         <TextField
@@ -1467,10 +1438,9 @@ function Information({data}) {
                                                                             onChange={(e) => setFieldValue(`coreSkills[${coreIndex}].subSkills[${subIndex}].link`, e.target.value)}
                                                                         />
                                                                     </div>
-
                                                                     {/* Display error message if validation fails */}
                                                                     <ErrorMessage
-                                                                        name={`coreSkills[${coreIndex}].subSkills[${subIndex}].certificate`}
+                                                                        name={`coreSkills[${coreIndex}].subSkills[${subIndex}].link`}
                                                                         component="div"
                                                                         style={{color: 'red'}}
                                                                     />
@@ -1480,7 +1450,6 @@ function Information({data}) {
                                             </div>))}
                                     </div>)}
                                 </div>))}
-
                                 {/* ADD SKILL BUTTON (only show if less than 3 skills) */}
                                 {values.coreSkills.length < 3 && (<button
                                     type="button"
@@ -1797,12 +1766,12 @@ function Information({data}) {
                     </div>))}
 
                     <div className="py-6">
-                        <button
-                            className="ml-4 bg-black px-4 py-2 text-white rounded text-nowrap mt-3"
+                        <div
+                            className="ml-4 bg-black px-4 py-2 text-white rounded text-nowrap mt-3 inline-block"
                             onClick={handleAddExperience}
                         >
                             + Add Experience
-                        </button>
+                        </div>
                     </div>
                     <div className="text-xs text-red-500 ml-4 mt-4 mb-4">
                         {experienceError}
@@ -1947,12 +1916,12 @@ function Information({data}) {
                         </div>
                     </div>))}
                     <div className='py-4'>
-                        <button
-                            className="ml-4 bg-black px-4 py-2 text-white rounded text-center"
+                        <div
+                            className="ml-4 bg-black px-4 py-2 text-white rounded text-center inline-block"
                             onClick={handleAddProject}
                         >
                             + Add Project
-                        </button>
+                        </div>
                     </div>
                 </FormInfo>
                 <FormInfo title="Intro Video" icon={<WorkExperience/>}>
