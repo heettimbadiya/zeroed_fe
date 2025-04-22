@@ -72,6 +72,7 @@ function Information({data}) {
     let navigate = useNavigate()
     const [wordCounts, setWordCounts] = useState({});
     const token = sessionStorage.getItem('token')
+
     const initialProjects = {
         project_title: "",
         project_description: "",
@@ -253,6 +254,9 @@ function Information({data}) {
 
     const initialWorkExperience = {
         isValidation: true,
+        company: '',
+        email: '',
+        website: '',
         emailError: '',
         referenceEmailError: '',
         work_experience_industry: '',
@@ -265,7 +269,11 @@ function Information({data}) {
         experience_end_date: null,
         isCurrentlyWorking: false,
         accomplishments_id: {
-            accomplishment_1: '', accomplishment_2: '', accomplishment_3: '', accomplishment_4: '',
+            accomplishment_1: '',
+            accomplishment_2: '',
+            accomplishment_3: '',
+            accomplishment_4: '',
+            _id: ''
         },
         accomplish: {
             accomplish1: 0, accomplish2: 0, accomplish3: 0, accomplish4: 0,
@@ -275,12 +283,12 @@ function Information({data}) {
         reference: '',
         reference_check: false,
     }
-    const [workExperiences, setWorkExperiences] = useState([initialWorkExperience,])
+    const [workExperiences, setWorkExperiences] = useState([initialWorkExperience])
     const isGreaterThan17 = workExperiences.some(item => Object.values(item.accomplish || {}).some(value => value > 14));
 
-    const handleDeleteExperience = (index) => {
+    const handleDeleteExperience = (setFieldValue,workExperiences,index) => {
         if (!data) {
-            setWorkExperiences((prev) => prev.filter((_, i) => i !== index))
+            setFieldValue("workExperience",(prev) => prev.filter((_, i) => i !== index))
         } else {
             const updatedExperiences = [...workExperiences]
             const userId = updatedExperiences[index]?.user_id
@@ -298,7 +306,7 @@ function Information({data}) {
                     console.log('Something went wrong', error)
                 }
             }
-            setWorkExperiences(updatedExperiences.filter((_, i) => i !== index))
+            setFieldValue("workExperience",updatedExperiences.filter((_, i) => i !== index))
         }
     }
     const handleDeleteProject = (index) => {
@@ -329,7 +337,6 @@ function Information({data}) {
         if (!data) {
             setFieldValue("internationalEducation",(prev) => prev.filter((_, i) => i !== index))
         } else {
-            console.log(internationalEducation,"uuuuuuuuuuuuuuuuuu")
             const updatedProject = [...internationalEducation]
             const userId = updatedProject[index]?.user_id
             if (userId) {
@@ -349,9 +356,9 @@ function Information({data}) {
             setFieldValue("internationalEducation",updatedProject.filter((_, i) => i !== index))
         }
     }
-    const handleDeleteInternationalCEducation = (index) => {
+    const handleDeleteInternationalCEducation = (setFieldValue,internationalCEducation,index) => {
         if (!data) {
-            setInternationalCEducation((prev) => prev.filter((_, i) => i !== index))
+            setFieldValue("internationalCEducation",(prev) => prev.filter((_, i) => i !== index))
         } else {
             const updatedProject = [...internationalCEducation]
             const userId = updatedProject[index]?.user_id
@@ -369,7 +376,7 @@ function Information({data}) {
                     console.log('Something went wrong', error)
                 }
             }
-            setInternationalCEducation(updatedProject.filter((_, i) => i !== index))
+            setFieldValue("internationalCEducation",updatedProject.filter((_, i) => i !== index))
         }
     }
 
@@ -516,8 +523,8 @@ function Information({data}) {
             setProjectLoading(false)
         }
     }
-    const handleAddExperience = () => {
-        setWorkExperiences([...workExperiences, {
+    const handleAddExperience = (workExperiences,setFieldValue) => {
+        setFieldValue("workExperience",[...workExperiences, {
             work_experience_industry: '',
             work_experience_sub_industry: '',
             work_experience_country: '',
@@ -542,8 +549,8 @@ function Information({data}) {
     const handleAddInternationalEducation = (internationalEducation,setFieldValue) => {
         setFieldValue("internationalEducation",[...internationalEducation, initialInterNationalEducation])
     }
-    const handleAddInternationalCEducation = () => {
-        setInternationalCEducation([...internationalCEducation, initialInterNationalCEducation])
+    const handleAddInternationalCEducation = (internationalCEducation,setFieldValue) => {
+        setFieldValue("internationalCEducation",[...internationalCEducation, initialInterNationalCEducation])
     }
     const handleAddProject = () => {
         setProjects([...projects, initialProjects])
@@ -554,23 +561,42 @@ function Information({data}) {
         setProjects(updatedProject)
 
     }
-    const handleChangeExperience = (index, field, value) => {
-        const updatedExperiences = [...workExperiences]
+    const handleChangeExperience = (workExperiences, setFieldValue, index, field, value) => {
+        const updatedExperiences = [...workExperiences];
 
+        // Ensure the index exists
+        if (!updatedExperiences[index]) {
+            updatedExperiences[index] = {};
+        }
+
+        // If it's an accomplishment field
         if (field.startsWith('accomplishments_id.')) {
-            const accomplishmentField = field.split('.').pop()
-            updatedExperiences[index].accomplishments_id[accomplishmentField] = value
+            const accomplishmentField = field.split('.').pop();
+
+            // Safely initialize the accomplishments_id object if missing
+            if (!updatedExperiences[index].accomplishments_id) {
+                updatedExperiences[index].accomplishments_id = {};
+            }
+
+            updatedExperiences[index].accomplishments_id[accomplishmentField] = value;
         } else {
-            updatedExperiences[index][field] = value
+            updatedExperiences[index][field] = value;
         }
 
-        setWorkExperiences(updatedExperiences)
+        // Update the form
+        setFieldValue('workExperiences', updatedExperiences);
 
-        // Trigger email and website validation if either of these fields change
-        if (field === 'email' || field === 'reference_email' || field === 'work_experience_company_website') {
-            validateEmailAndWebsite(index, updatedExperiences[index])
+        // Run validation for specific fields
+        if (
+            field === 'email' ||
+            field === 'reference_email' ||
+            field === 'work_experience_company_website'
+        ) {
+            validateEmailAndWebsite(index, updatedExperiences[index]);
         }
-    }
+    };
+
+
 
     const handleSubmit = async (values) => {
         const formData = new FormData()
@@ -617,7 +643,7 @@ function Information({data}) {
             }
         })
 
-        internationalCEducation.map((item, index) => {
+        values.internationalCEducation.map((item, index) => {
             // Append Canadian education
             formData.append(`canadianEducation[${index}][university]`, item.university)
             formData.append(`canadianEducation[${index}][city]`, item.city)
@@ -665,42 +691,46 @@ function Information({data}) {
                 formData.append(`projectDetails[${index}][_id]`, data ? project?._id : null,)
             }
         })
-        if (workExperiences.length > 0 && workExperiences.at(0).work_experience_company_name) {
+        if (values?.workExperience.length > 0 && values?.workExperience.at(0).work_experience_company_name) {
 
-            workExperiences.forEach((experience, index) => {
-                // Accomplishments fields
-                formData.append(`workExperience[${index}][accomplishment_1]`, experience.accomplishments_id.accomplishment_1,)
-                formData.append(`workExperience[${index}][accomplishment_2]`, experience.accomplishments_id.accomplishment_2,)
-                formData.append(`workExperience[${index}][accomplishment_3]`, experience.accomplishments_id.accomplishment_3,)
-                formData.append(`workExperience[${index}][accomplishment_4]`, experience.accomplishments_id.accomplishment_4,)
+            values?.workExperience.forEach((experience, index) => {
+                // ✅ Accomplishments fields with optional chaining and fallback
+                const accomplishments = experience.accomplishments_id || {};
 
-                // Experience fields
-                formData.append(`workExperience[${index}][email]`, experience.email)
-                formData.append(`workExperience[${index}][work_experience_industry]`, experience.work_experience_industry,)
-                formData.append(`workExperience[${index}][work_experience_sub_industry]`, experience.work_experience_sub_industry,)
-                formData.append(`workExperience[${index}][work_experience_country]`, experience.work_experience_country,)
-                formData.append(`workExperience[${index}][work_experience_job_title]`, experience.work_experience_job_title,)
-                formData.append(`workExperience[${index}][work_experience_company_name]`, experience.work_experience_company_name,)
-                formData.append(`workExperience[${index}][work_experience_company_website]`, experience.work_experience_company_website,)
-                formData.append(`workExperience[${index}][experience_start_date]`, experience.experience_start_date || null,)
-                formData.append(`workExperience[${index}][experience_end_date]`, experience.experience_end_date || null,)
-                formData.append(`workExperience[${index}][isCurrentlyWorking]`, experience.isCurrentlyWorking,)
-                formData.append(`workExperience[${index}][reference_email]`, experience.reference_email,)
-                formData.append(`workExperience[${index}][reference_name]`, experience.reference_name,)
-                formData.append(`workExperience[${index}][reference]`, experience.reference,)
-                formData.append(`workExperience[${index}][reference_check]`, experience.reference_check,)
-                formData.append(`workExperience[${index}][accomplishments]`, data ? experience?.accomplishments_id?._id : null,)
+                accomplishments._id && formData.append(`workExperience[${index}][accomplishments_id]`, accomplishments._id || '');
+                formData.append(`workExperience[${index}][accomplishment_1]`, accomplishments.accomplishment_1 || '');
+                formData.append(`workExperience[${index}][accomplishment_2]`, accomplishments.accomplishment_2 || '');
+                formData.append(`workExperience[${index}][accomplishment_3]`, accomplishments.accomplishment_3 || '');
+                formData.append(`workExperience[${index}][accomplishment_4]`, accomplishments.accomplishment_4 || '');
+                formData.append(`workExperience[${index}][email]`, experience.email || '');
+                formData.append(`workExperience[${index}][work_experience_industry]`, experience.work_experience_industry || '');
+                formData.append(`workExperience[${index}][work_experience_sub_industry]`, experience.work_experience_sub_industry || '');
+                formData.append(`workExperience[${index}][work_experience_country]`, experience.work_experience_country || '');
+                formData.append(`workExperience[${index}][work_experience_job_title]`, experience.work_experience_job_title || '');
+                formData.append(`workExperience[${index}][work_experience_company_name]`, experience.work_experience_company_name || '');
+                formData.append(`workExperience[${index}][work_experience_company_website]`, experience.work_experience_company_website || '');
+                formData.append(`workExperience[${index}][experience_start_date]`, experience.experience_start_date || '');
+                formData.append(`workExperience[${index}][experience_end_date]`, experience.experience_end_date || '');
+                formData.append(`workExperience[${index}][isCurrentlyWorking]`, experience.isCurrentlyWorking || false);
+                formData.append(`workExperience[${index}][reference_email]`, experience.reference_email || '');
+                formData.append(`workExperience[${index}][reference_name]`, experience.reference_name || '');
+                formData.append(`workExperience[${index}][reference]`, experience.reference || '');
+                formData.append(`workExperience[${index}][reference_check]`, experience.reference_check || false);
+                formData.append(`workExperience[${index}][accomplishments]`, data ? accomplishments._id || '' : '');
+
                 if (experience?._id) {
-                    formData.append(`workExperience[${index}][_id]`, data ? experience?._id : null,)
+                    formData.append(`workExperience[${index}][_id]`, data ? experience._id : '');
                 }
-            })
+            });
+
         }
 
         // Append career goal
-        formData.append('careerGoal[career_industry]', values.career_industry)
         formData.append('careerGoal[career_role]', values.career_role)
-        formData.append('careerGoal[career_field]', values.career_field)
+        formData.append('careerGoal[career_industry]', values.career_industry);
+        formData.append('careerGoal[career_field]', values.career_field);
         formData.append('careerGoal[noc_number]', values.noc_number)
+
 
         const experience = workExperiences[0]
         const isEmpty = Object.values(experience).every((value) => value === '' || value === null,)
@@ -738,16 +768,29 @@ function Information({data}) {
             }
         }
     }
-    const handleChangeInternationalEducation = (internationalEducation,setFieldValue,index, field, value) => {
-        const updatedExperiences = [...internationalEducation]
-        updatedExperiences[index][field] = value
-        setFieldValue('internationalEducation',updatedExperiences)
-        setInternationalEducation(updatedExperiences)
-    }
-    const handleChangeInternationalCEducation = (index, field, value) => {
+    // const handleChangeInternationalEducation = (internationalEducation,setFieldValue,index, field, value) => {
+    //     const updatedExperiences = [...internationalEducation]
+    //     updatedExperiences[index][field] = value
+    //     setFieldValue('internationalEducation',updatedExperiences)
+    //     setInternationalEducation(updatedExperiences)
+    // }
+    const handleChangeInternationalEducation = (
+        internationalEducation,
+        setFieldValue,
+        index,
+        field,
+        value
+    ) => {
+        const updated = internationalEducation.map((item, idx) =>
+            idx === index ? { ...item, [field]: value } : item
+        );
+        setFieldValue('internationalEducation', updated);
+    };
+
+    const handleChangeInternationalCEducation = (internationalCEducation,setFieldValue,index, field, value) => {
         const updatedExperiences = [...internationalCEducation]
         updatedExperiences[index][field] = value
-
+        setFieldValue('internationalCEducation',updatedExperiences)
         setInternationalCEducation(updatedExperiences)
 
     }
@@ -762,23 +805,36 @@ function Information({data}) {
         const emailDomain = getDomainFromEmail(experience.email)
         const referenceEmailDomain = getDomainFromEmail(experience.reference_email)
 
-        // Compare the website domain and email domain
+
         if (websiteDomain && emailDomain && websiteDomain !== emailDomain) {
-            const errorMessage = 'Email domain must match the company website domain.'
+            const errorMessage = 'Email domain must match the company website domain.';
             setWorkExperiences((prevWorkExperiences) => {
-                const updatedWorkExperiences = [...prevWorkExperiences]
-                updatedWorkExperiences[index].emailError = errorMessage
-                return updatedWorkExperiences
-            })
-            setDisabledButton(true)
+                const updatedWorkExperiences = [...prevWorkExperiences];
+
+                // ✅ Fix: Ensure index exists
+                if (!updatedWorkExperiences[index]) {
+                    updatedWorkExperiences[index] = {}; // Create empty object if missing
+                }
+
+                updatedWorkExperiences[index].emailError = errorMessage;
+                return updatedWorkExperiences;
+            });
+            setDisabledButton(true);
         } else {
             setWorkExperiences((prevWorkExperiences) => {
-                const updatedWorkExperiences = [...prevWorkExperiences]
-                updatedWorkExperiences[index].emailError = ''
-                return updatedWorkExperiences
-            })
-            setDisabledButton(false)
+                const updatedWorkExperiences = [...prevWorkExperiences];
+
+                // ✅ Fix: Ensure index exists
+                if (!updatedWorkExperiences[index]) {
+                    updatedWorkExperiences[index] = {};
+                }
+
+                updatedWorkExperiences[index].emailError = '';
+                return updatedWorkExperiences;
+            });
+            setDisabledButton(false);
         }
+
         if (websiteDomain && referenceEmailDomain && websiteDomain !== referenceEmailDomain) {
             // const errorMessage = 'Reference email domain must match the company website domain.'
             // setWorkExperiences((prevWorkExperiences) => {
@@ -796,7 +852,7 @@ function Information({data}) {
             setDisabledButton(false)
         }
     }
-
+    console.log(data?.internationalEducation,"0000000000000000000")
     return (<Formik
         initialValues={{
             isPrivate: false,
@@ -824,18 +880,30 @@ function Information({data}) {
                 level_of_education: '',
             }],
 
+
             isInternationalEducation: data?.internationalEducation?.length > 0,
 
-            isCanadianEducation: data?.canadianEducation[0]?.university ? true : false,
-            university: data?.canadianEducation?.university || '',
-            city: data?.canadianEducation?.city || '',
-            level_of_education_canadian: data?.canadianEducation?.level_of_education_canadian || '',
-            field_of_study_canadian: data?.canadianEducation?.field_of_study_canadian || '',
-            year_of_completion: data?.canadianEducation?.year_of_completion || '',
-            gpa: data?.canadianEducation?.gpa || '',
-            project_title: data?.canadianEducation?.project_title || '',
-            project_description: data?.canadianEducation?.project_description || '',
-            project_url: data?.canadianEducation?.project_url || '',
+            isCanadianEducation: data?.canadianEducation[0]?.university ? true : false || false,
+
+            internationalCEducation: data?.canadianEducation || [{
+                university: '', // credential_assesed: false,
+                city: '',
+                level_of_education_canadian: '',
+                field_of_study_canadian: '',
+                year_of_completion: '',
+                gpa: '', // level_of_education: '',
+            }],
+
+
+            // university: data?.canadianEducation?.university || '',
+            // city: data?.canadianEducation?.city || '',
+            // level_of_education_canadian: data?.canadianEducation?.level_of_education_canadian || '',
+            // field_of_study_canadian: data?.canadianEducation?.field_of_study_canadian || '',
+            // year_of_completion: data?.canadianEducation?.year_of_completion || '',
+            // gpa: data?.canadianEducation?.gpa || '',
+            // project_title: data?.canadianEducation?.project_title || '',
+            // project_description: data?.canadianEducation?.project_description || '',
+            // project_url: data?.canadianEducation?.project_url || '',
 
             coreSkills: [{
                 _id: data?.skills[0]?._id || null,
@@ -848,6 +916,35 @@ function Information({data}) {
                     return {_id, subSkill, certificate, link}
                 }) : [],
             }],
+
+            workExperience: data?.workExperience || [{
+                isValidation: true,
+                emailError: '',
+                referenceEmailError: '',
+                work_experience_industry: '',
+                work_experience_sub_industry: '',
+                work_experience_country: '',
+                work_experience_job_title: '',
+                work_experience_company_name: '',
+                work_experience_company_website: '',
+                experience_start_date: null,
+                experience_end_date: null,
+                isCurrentlyWorking: false,
+                accomplishments_id: {
+                    accomplishment_1: data?.workExperience?.accomplishment_1 || '',
+                    accomplishment_2: data?.workExperience?.accomplishment_2 || '',
+                    accomplishment_3: data?.workExperience?.accomplishment_3 || '',
+                    accomplishment_4: data?.workExperience?.accomplishment_4 || '',
+                },
+                accomplish: {
+                    accomplish1: 0, accomplish2: 0, accomplish3: 0, accomplish4: 0,
+                },
+                reference_email: '',
+                reference_name: '',
+                reference: '',
+                reference_check: false,
+            }],
+
 
             accomplishment_1: data?.workExperience?.accomplishment_1 || '',
             accomplishment_2: data?.workExperience?.accomplishment_2 || '',
@@ -869,12 +966,11 @@ function Information({data}) {
             video: data?.basicDetails?.video || '',
             secondary_video: data?.basicDetails?.secondary_video || '',
 
-            career_industry: data?.careerGoal?.career_industry || '',
             career_role: data?.careerGoal?.career_role || '',
+            career_industry: data?.careerGoal?.career_industry || '',
             career_field: data?.careerGoal?.career_field || '',
-            noc_number: data?.careerGoal?.noc_number || '',
+            // noc_number: data?.careerGoal?.noc_number || '',
         }}
-        // context={{ isInternationalEducation: true }}
         validationSchema={jobFormValidation}
         onSubmit={handleSubmit}
     >
@@ -883,7 +979,6 @@ function Information({data}) {
                 {/* ------------------Personal Information--------------- */}
                 <FormInfo title="Personal Information" icon={<UserInfo/>}>
                     <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 px-4 py-4">
-
                         {/* Upload Photo Section */}
                         <div className="col-span-12 lg:col-span-3 flex justify-center items-center">
                             <div className="flex flex-col items-center">
@@ -1134,9 +1229,17 @@ function Information({data}) {
                                                 type="checkbox"
                                                 name={`internationalEducation[${index}].credential_assesed`}
                                                 className="sr-only peer"
-                                                checked={intEducation?.credential_assesed || false}
                                                 disabled={!values.isInternationalEducation}
-                                                onChange={(e) => handleChangeInternationalEducation(values.internationalEducation,setFieldValue,index,'credential_assesed', e.target.checked)}
+                                                onChange={(e) =>
+                                                    handleChangeInternationalEducation(
+                                                        values.internationalEducation,
+                                                        setFieldValue,
+                                                        index,
+                                                        'credential_assesed',
+                                                        e.target.checked
+                                                    )
+                                                }
+                                                checked={!!intEducation.credential_assesed}
                                             />
                                             <div className="relative w-11 h-6 bg-gray-200 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#1A202C]" />
                                         </label>
@@ -1165,9 +1268,11 @@ function Information({data}) {
                     renderRightContent={<ToggleButton
                         label=""
                         name="isCanadianEducation"
-                        onChange={(e) => setFieldValue('isCanadianEducation', e.target.checked)}
+                        onChange={(e) => {
+                            setFieldValue('isCanadianEducation', e.target.checked)
+                        }}
                     />}>
-                    {internationalCEducation?.length > 0 && internationalCEducation?.map((intEducation, index) => (
+                    {values.internationalCEducation?.length > 0 && values.internationalCEducation?.map((intEducation, index) => (
                         <div key={index}>
                             {/*<div*/}
                             {/*    className="flex flex-wrap justify-between items-center gap-x-3 bg-primary-100 p-3 w-full">*/}
@@ -1176,7 +1281,7 @@ function Information({data}) {
                             {/*            {index + 1}.{' '}*/}
                             {/*            {intEducation.college_name || 'New Education'}*/}
                             {/*        </div>*/}
-                            {/*        {internationalCEducation.length > 1 && (<div*/}
+                            {/*        {values.internationalCEducation.length > 1 && (<div*/}
                             {/*            onClick={() => handleDeleteInternationalCEducation(index)}*/}
                             {/*            className="cursor-pointer font-black"*/}
                             {/*        >*/}
@@ -1191,8 +1296,8 @@ function Information({data}) {
                                     <div
                                         className="flex items-center bg-[#F3F3F3] px-10 py-2 rounded-r-full text-lg font-semibold text-[#1B2028] text-nowrap">
                                         {index + 1}.&nbsp;{intEducation.college_name || 'New Education'}
-                                        {internationalCEducation.length > 1 && (<div
-                                            onClick={() => handleDeleteInternationalCEducation(index)}
+                                        {values.internationalCEducation.length > 1 && (<div
+                                            onClick={() => handleDeleteInternationalCEducation(setFieldValue,values.internationalCEducation,index)}
                                             className="cursor-pointer font-black"
                                         >
                                             <DeleteIcon/>
@@ -1204,62 +1309,63 @@ function Information({data}) {
                             <div className="grid xl:grid-cols-3 lg:grid-cols-3 sm:grid-cols-2 gap-x-5 py-6 px-4">
                                 <DropDownInput
                                     label="College/University"
-                                    name={`university_${index}`}
+                                    name={`internationalCEducation[${index}].university`}
                                     disabled={!values.isCanadianEducation}
                                     options={universityData?.map((data) => ({
                                         name: data.name, value: data.name,
                                     }))}
                                     value={intEducation?.university || ''}
                                     onChange={(e) => {
-                                        handleChangeInternationalCEducation(index, 'university', e.target.value)
+                                        handleChangeInternationalCEducation(values.internationalCEducation,setFieldValue,index, 'university', e.target.value)
                                     }}
                                 />
+
                                 <DropDownInput
                                     label="City"
-                                    name={`city_${index}`}
+                                    name={`internationalCEducation[${index}].city`}
                                     options={currentCity}
                                     disabled={!values.isCanadianEducation}
                                     value={intEducation?.city || ''}
                                     onChange={(e) => {
-                                        handleChangeInternationalCEducation(index, 'city', e.target.value)
+                                        handleChangeInternationalCEducation(values.internationalCEducation,setFieldValue,index, 'city', e.target.value)
                                     }}
                                 />
                                 <DropDownInput
                                     label="Level of Education"
-                                    name={`level_of_education_canadian_${index}`}
+                                    name={`internationalCEducation[${index}].level_of_education_canadian`}
                                     options={levelOfEducation}
                                     disabled={!values.isCanadianEducation}
                                     value={intEducation?.level_of_education_canadian || ''}
                                     onChange={(e) => {
-                                        handleChangeInternationalCEducation(index, 'level_of_education_canadian', e.target.value)
+                                        handleChangeInternationalCEducation(values.internationalCEducation,setFieldValue,index, 'level_of_education_canadian', e.target.value)
                                     }}/>
                                 <DropDownInput
                                     label="Field of Study"
-                                    name={`field_of_study_canadian_${index}`}
+                                    name={`internationalCEducation[${index}].field_of_study_canadian`}
                                     disabled={!values.isCanadianEducation}
                                     options={fieldOfStudyCanadian}
                                     value={intEducation?.field_of_study_canadian || ''}
                                     onChange={(e) => {
-                                        handleChangeInternationalCEducation(index, 'field_of_study_canadian', e.target.value)
+                                        handleChangeInternationalCEducation(values.internationalCEducation,setFieldValue,index, 'field_of_study_canadian', e.target.value)
                                     }}/>
                                 <DropDownInput
                                     label="Year of completion"
-                                    name={`year_of_completion_${index}`}
+                                    name={`internationalCEducation[${index}].year_of_completion`}
                                     disabled={!values.isCanadianEducation}
                                     options={years}
                                     value={intEducation?.year_of_completion || ''}
                                     onChange={(e) => {
-                                        handleChangeInternationalCEducation(index, 'year_of_completion', e.target.value)
+                                        handleChangeInternationalCEducation(values.internationalCEducation,setFieldValue,index, 'year_of_completion', e.target.value)
                                     }}/>
                                 <TextField
                                     type="text"
                                     label="GPA"
-                                    name={`gpa_${index}`}
+                                    name={`internationalCEducation[${index}].gpa`}
                                     placeholder="10"
                                     disabled={!values.isCanadianEducation}
                                     value={intEducation?.gpa || ''}
                                     onChange={(e) => {
-                                        handleChangeInternationalCEducation(index, 'gpa', e.target.value)
+                                        handleChangeInternationalCEducation(values.internationalCEducation,setFieldValue,index, 'gpa', e.target.value)
                                     }}/>
                             </div>
 
@@ -1268,7 +1374,7 @@ function Information({data}) {
                         <div
                             disabled={!values.isInternationalEducation}
                             className="ml-4 bg-black px-4 py-2 text-white rounded cursor-pointer text-nowrap inline-block"
-                            onClick={handleAddInternationalCEducation}
+                            onClick={() => handleAddInternationalCEducation(values.internationalCEducation,setFieldValue)}
                         >
                             + Add Education
                         </div>
@@ -1302,13 +1408,13 @@ function Information({data}) {
                                             />
                                         </div>
                                         {/* Remove button (only show for additional skills) */}
-                                        {coreIndex > 0 && (<button
+                                        {coreIndex > 0 && (<div
                                             type="button"
                                             onClick={() => remove(coreIndex)}
                                             className="text-red-500 hover:text-red-700 text-sm ml-2"
                                         >
                                             Remove
-                                        </button>)}
+                                        </div>)}
                                     </div>
                                     {/* Subskills Section (only show if core skill is selected) */}
                                     {coreSkill.coreSkill && (<div className="mt-4">
@@ -1451,13 +1557,13 @@ function Information({data}) {
                                     </div>)}
                                 </div>))}
                                 {/* ADD SKILL BUTTON (only show if less than 3 skills) */}
-                                {values.coreSkills.length < 3 && (<button
+                                {values.coreSkills.length < 3 && (<div
                                     type="button"
                                     onClick={() => push({coreSkill: '', subSkills: []})}
-                                    className="bg-black px-4 py-2 text-white rounded"
+                                    className="bg-black px-4 py-2 inline-block text-white rounded"
                                 >
                                     + Add Another Skill
-                                </button>)}
+                                </div>)}
                             </div>)}
                         </FieldArray>
                     </div>
@@ -1465,22 +1571,7 @@ function Information({data}) {
 
                 {/* -------------Work Experience------------- */}
                 <FormInfo title="Work Experience" icon={<WorkExperience/>}>
-                    {workExperiences.map((experience, index) => (<div key={index}>
-                        {/*<div*/}
-                        {/*    className="flex flex-wrap justify-between items-center gap-x-3 bg-primary-100 p-3 w-full">*/}
-                        {/*    <div className="flex items-center gap-x-2">*/}
-                        {/*        <div className="text-lg font-semibold capitalize text-primary text-nowrap">*/}
-                        {/*            {index + 1}.{' '}*/}
-                        {/*            {experience.work_experience_company_name || 'New Experience'}*/}
-                        {/*        </div>*/}
-                        {/*        {workExperiences.length > 1 && (<div*/}
-                        {/*            onClick={() => handleDeleteExperience(index)}*/}
-                        {/*            className="cursor-pointer font-black"*/}
-                        {/*        >*/}
-                        {/*            <DeleteIcon/>*/}
-                        {/*        </div>)}*/}
-                        {/*    </div>*/}
-
+                    {values?.workExperience.map((experience, index) => (<div key={index}>
                         <div
                             className="flex flex-wrap justify-between items-center pt-4 w-full rounded-t-md">
                             <div className="flex items-center">
@@ -1488,8 +1579,8 @@ function Information({data}) {
                                     className="flex items-center bg-[#F3F3F3] px-10 py-2 rounded-r-full text-lg font-semibold text-[#1B2028] text-nowrap">
                                     {index + 1}.{' '}
                                     {experience.work_experience_company_name || 'New Experience'}
-                                    {workExperiences.length > 1 && (<div
-                                        onClick={() => handleDeleteExperience(index)}
+                                    {values?.workExperience?.length > 1 && (<div
+                                        onClick={() => handleDeleteExperience(setFieldValue,values?.workExperience,index)}
                                         className="cursor-pointer font-black ml-2"
                                     >
                                         <DeleteIcon/>
@@ -1497,136 +1588,84 @@ function Information({data}) {
                                 </div>
                             </div>
                         </div>
-
-                        {/*<Checkbox*/}
-                        {/*    label="Present?"*/}
-                        {/*    name={`isCurrentlyWorking_${index}`}*/}
-                        {/*    checked={experience.isCurrentlyWorking}*/}
-                        {/*    onChange={(e) => {*/}
-                        {/*        const isChecked = e.target.checked*/}
-
-                        {/*        // Update the isCurrentlyWorking field in the state*/}
-                        {/*        setFieldValue(`isCurrentlyWorking_${index}`, isChecked)*/}
-
-                        {/*        // Update the workExperiences state*/}
-                        {/*        setWorkExperiences((prevWorkExperiences) => {*/}
-                        {/*            const updatedExperiences = [...prevWorkExperiences]*/}
-                        {/*            const updatedExperience = {*/}
-                        {/*                ...updatedExperiences[index],*/}
-                        {/*                isCurrentlyWorking: isChecked,*/}
-                        {/*                experience_end_date: isChecked ? null : updatedExperiences[index].experience_end_date || null,*/}
-                        {/*            }*/}
-
-                        {/*            updatedExperiences[index] = updatedExperience*/}
-                        {/*            return updatedExperiences*/}
-                        {/*        })*/}
-                        {/*    }}*/}
-                        {/*/>*/}
-                        {/*</div>*/}
-
                         <div
                             className="grid xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2  gap-x-5 py-6 px-4">
                             <DropDown
                                 label="Industry"
-                                name={`work_experience_industry_${index}`}
+                                name={`workExperience[${index}].work_experience_industry`}
                                 value={experience.work_experience_industry}
                                 options={industriesData.map((industry) => ({
                                     value: industry.name, name: industry.name,
                                 }))}
                                 onChange={(e) => {
                                     handleSubIndustryChange(e, index)
-                                    handleChangeExperience(index, 'work_experience_industry', e.target.value,)
+                                    handleChangeExperience(values.workExperience,setFieldValue,index, 'work_experience_industry', e.target.value,)
                                 }}
                             />
                             <DropDown
                                 label="Sub Industry"
-                                name={`work_experience_sub_industry_${index}`}
+                                name={`workExperience[${index}].work_experience_sub_industry`}
                                 value={experience.work_experience_sub_industry}
                                 options={subIndustryOptions[index] || []}
                                 onChange={(e) => {
-                                    handleChangeExperience(index, 'work_experience_sub_industry', e.target.value,)
+                                    handleChangeExperience(values.workExperience,setFieldValue,index, 'work_experience_sub_industry', e.target.value,)
                                 }}
                             />
                             <DropDownInput
                                 label="Country"
-                                name={`work_experience_country_${index}`}
+                                name={`workExperience[${index}].work_experience_country`}
                                 value={experience.work_experience_country}
                                 options={countryData}
-                                onChange={(e) => handleChangeExperience(index, 'work_experience_country', e.target.value,)}
+                                onChange={(e) => handleChangeExperience(values.workExperience,setFieldValue,index, 'work_experience_country', e.target.value,)}
                             />
                             <TextFieldValue
                                 required
                                 type="text"
                                 label="Role"
-                                name={`work_experience_job_title_${index}`}
+                                name={`workExperience[${index}].work_experience_job_title`}
                                 value={experience.work_experience_job_title}
                                 placeholder="Software Engineer"
-                                onChange={(e) => handleChangeExperience(index, 'work_experience_job_title', e.target.value,)}
+                                onChange={(e) => handleChangeExperience(values.workExperience,setFieldValue,index, 'work_experience_job_title', e.target.value,)}
                             />
 
                             <TextFieldValue
                                 type="text"
                                 label="Company Name"
-                                name={`work_experience_company_name_${index}`}
+                                name={`workExperience[${index}].work_experience_company_name`}
                                 value={experience.work_experience_company_name}
                                 placeholder="Company name"
-                                onChange={(e) => handleChangeExperience(index, 'work_experience_company_name', e.target.value,)}
+                                onChange={(e) => handleChangeExperience(values.workExperience,setFieldValue,index, 'work_experience_company_name', e.target.value,)}
                             />
                             <TextFieldValue
                                 type="text"
                                 label="Website link"
-                                name={`work_experience_company_website_${index}`}
+                                name={`workExperience[${index}].work_experience_company_website`}
                                 value={experience.work_experience_company_website}
                                 placeholder="www.website.com"
-                                onChange={(e) => handleChangeExperience(index, 'work_experience_company_website', e.target.value,)}
+                                onChange={(e) => handleChangeExperience(values.workExperience,setFieldValue,index, 'work_experience_company_website', e.target.value,)}
                             />
 
-                            {/* Email Id For verification */}
-                            {/*<div className="flex flex-col items-center justify-between gap-x-2 relative">*/}
-                            {/*    <div className="w-full">*/}
-                            {/*        <TextFieldValue*/}
-                            {/*            type="text"*/}
-                            {/*            label="Email"*/}
-                            {/*            name={`email_${index}`}*/}
-                            {/*            value={experience.email || ''}*/}
-                            {/*            placeholder="Enter email"*/}
-                            {/*            onChange={(e) =>*/}
-                            {/*                handleChangeExperience(*/}
-                            {/*                    index,*/}
-                            {/*                    'email',*/}
-                            {/*                    e.target.value,*/}
-                            {/*                )*/}
-                            {/*            }*/}
-                            {/*        />*/}
-                            {/*        {experience.emailError && (*/}
-                            {/*            <div className="text-red-500 text-sm -mt-3">*/}
-                            {/*                {experience.emailError}*/}
-                            {/*            </div>*/}
-                            {/*        )}*/}
-                            {/*    </div>*/}
-
-                            {/*</div>*/}
                             {/* ---------Start Date------------- */}
                             <div className='mb-2'>
                                 <Label label="Start Date"/>
                                 <div className="relative">
                                     <Field
-                                        name={`experience_start_date_${index}`}
+                                        name={`workExperience[${index}].experience_start_date`}
                                         className="border border-text-border border-b-4 focus:border-b-4 focus:border-primary outline-none rounded-lg mt-1 px-2 py-3 pr-10 w-full"
                                         component={ExperienceDateFormat}
                                         defaultValue={experience.experience_start_date == 'NaN/NaN/NaN' ? null : experience.experience_start_date} // This will be set
                                         // to 10/27/2024
-                                        onChange={(e) => handleChangeExperience(index, 'experience_start_date', e,)}
+                                        onChange={(e) => handleChangeExperience(values.workExperience,setFieldValue,index, 'experience_start_date', e,)}
                                     />
                                     <span className="absolute right-3 top-1/2 transform -translate-y-1/2">
                           <Calender/>
                         </span>
+                                    <ErrorMessage
+                                        name={`workExperience[${index}].experience_start_date`}
+                                        component="div"
+                                        className="text-red-500 text-xs mt-1"
+                                    />
                                 </div>
-                                <ErrorMessage
-                                    name={`experience_start_date_${index}`}
-                                    component="div"
-                                    className="text-xs text-red-500 ml-1 mt-1"
-                                />
                             </div>
 
                             {/* ---------End Date------------- */}
@@ -1634,22 +1673,22 @@ function Information({data}) {
                                 <Label label="End Date"/>
                                 <div className="relative">
                                     <Field
-                                        name={`experience_end_date_${index}`}
+                                        name={`workExperience[${index}].experience_end_date`}
                                         className="border border-text-border border-b-4 focus:border-b-4 focus:border-primary outline-none rounded-lg mt-1 px-2 py-3 pr-10 w-full"
                                         component={ExperienceDateFormat}
                                         defaultValue={experience.experience_end_date == 'NaN/NaN/NaN' ? null : experience.experience_end_date}
                                         disabled={experience.isCurrentlyWorking} // Disable if currently working
-                                        onChange={(e) => handleChangeExperience(index, 'experience_end_date', e,)}
+                                        onChange={(e) => handleChangeExperience(values.workExperience,setFieldValue,index, 'experience_end_date', e,)}
                                     />
                                     <span className="absolute right-3 top-1/2 transform -translate-y-1/2">
                           <Calender/>
                         </span>
+                                    <ErrorMessage
+                                        name={`workExperience[${index}].experience_end_date`}
+                                        component="div"
+                                        className="text-red-500 text-xs mt-1"
+                                    />
                                 </div>
-                                <ErrorMessage
-                                    name={`experience_end_date_${index}`}
-                                    component="div"
-                                    className="text-xs text-red-500 ml-1 mt-1"
-                                />
                             </div>
 
                             {[...Array(visibleFields)].map((_, i) => (<div style={{position: 'relative'}} key={i}>
@@ -1670,9 +1709,11 @@ function Information({data}) {
 
                                         updatedExperiences[index].accomplish[`accomplish${i + 1}`] = wordCount;
 
-                                        handleChangeExperience(index, `accomplishments_id.accomplishment_${i + 1}`, e.target.value,);
+                                        handleChangeExperience(values.workExperience,setFieldValue,index, `accomplishments_id.accomplishment_${i + 1}`, e.target.value,);
                                     }}
                                 />
+
+
                                 <span style={{
                                     color: (experience?.accomplish?.[`accomplish${i + 1}`] || 0) > 14 ? 'red' : 'grey',
                                     position: 'absolute',
@@ -1749,7 +1790,7 @@ function Information({data}) {
                                             {experience.referenceEmailError}
                                         </div>)}
                                 </div>
-                                {(data && !experience.referenceEmailError) && <button
+                                {(data && !experience.referenceEmailError) && <div
                                     className={`text-center mt-8 px-4 py-2 rounded w-[160px] h-10 text-nowrap text-white 
       ${experience.is_experience_verified || experienceLoading ? 'bg-gray-400 opacity-80' : 'bg-black '}`}
                                     onClick={() => verifyEmail({
@@ -1759,7 +1800,7 @@ function Information({data}) {
 
                                 >
                                     Send
-                                </button>}
+                                </div>}
                             </div>)}
                         </div>
 
@@ -1768,7 +1809,7 @@ function Information({data}) {
                     <div className="py-6">
                         <div
                             className="ml-4 bg-black px-4 py-2 text-white rounded text-nowrap mt-3 inline-block"
-                            onClick={handleAddExperience}
+                            onClick={() => handleAddExperience(values?.workExperience,setFieldValue)}
                         >
                             + Add Experience
                         </div>
@@ -1902,7 +1943,7 @@ function Information({data}) {
                                         onChange={(e) => handleChangeProject('reference_email', index, e.target.value,)}
                                     />
                                 </div>
-                                {(data && item.reference_email) && (<button
+                                {(data && item.reference_email) && (<div
                                     className={`text-center mt-8 px-4 py-2 rounded w-[160px] h-10 text-nowrap text-white 
       ${item.is_project_verified || projectLoading ? 'bg-gray-400 opacity-80' : 'bg-black '}
     `}
@@ -1910,7 +1951,7 @@ function Information({data}) {
                                     disabled={item.is_project_verified || projectLoading}
                                 >
                                     Send
-                                </button>)}
+                                </div>)}
 
                             </div>)}
                         </div>
@@ -2063,10 +2104,10 @@ function Information({data}) {
                                         </ul>
 
                                         <div className="flex justify-end gap-2 mt-4">
-                                            <button className="bg-primary text-white px-4 py-2 rounded"
-                                                    onClick={closeInstructionDialog}>
+                                            <div className="bg-primary text-white px-4 py-2 rounded"
+                                                 onClick={closeInstructionDialog}>
                                                 Ok
-                                            </button>
+                                            </div>
                                         </div>
                                     </Dialog>
                                     <VideoSampleModal isOpen={isSampleModalOpen}
@@ -2097,37 +2138,61 @@ function Information({data}) {
                             placeholder="Enter career role"
                             onChange={(e) => setFieldValue('career_role', e.target.value)}
                         />
-                        {dropDown && (<DropDown
+
+                        {/*{dropDown && (*/}
+                        <DropDown
                             label="Industry"
                             name="career_industry"
-                            value={values?.career_industry || ''}
-                            options={[...new Map(dropDown.map(item => [item.Industry, {
-                                value: item.Industry, name: item.Industry
-                            }])).values()]}
+                            value={values.career_industry}
+                            options={[
+                                { value: '', name: 'Select Industry' },
+                                ...new Map(
+                                    dropDown
+                                        .filter(item => item.Industry === 'Minor Group')
+                                        .map(item => [item['Class title'], {
+                                            value: item['Class title'],
+                                            name: item['Class title'],
+                                        }])
+                                ).values()
+                            ]}
                             onChange={(e) => {
-                                const selectedIndustry = e.target.value;
-                                setFieldValue('career_industry', selectedIndustry);
-                                setFieldValue('career_field', '');
-                                setFieldValue('noc_number', '');
+                                setFieldValue('career_industry', e.target.value);
+                                // Reset career_field when industry changes
+                                if (values.career_field) {
+                                    setFieldValue('career_field', '');
+                                }
                             }}
-                        />)}
+                        />
 
-                        {dropDown && (<DropDown
+                        {/*// For the Career Field dropdown:*/}
+                        <DropDown
                             label="Career Field"
                             name="career_field"
-                            value={values?.career_field || ''}
-                            options={dropDown
-                                .filter(item => item.Industry === values?.career_industry)
-                                .map(item => ({
-                                    value: {filed: item['Class title'], noc: String(item.NOC_CODE)},
-                                    name: item['Class title'],
-                                }))}
+                            value={values.career_field}
+                            options={[
+                                { value: '', name: 'Select Career Field' },
+                                ...dropDown
+                                    .filter(item => item.Industry === 'Unit Group')
+                                    .map(item => ({
+                                        value: item['Class title'],
+                                        name: item['Class title'],
+                                        noc: String(item.NOC_CODE),
+                                    }))
+                            ]}
                             onChange={(e) => {
-                                const selectedCareerField = e.target.value;
-                                setFieldValue('career_field', selectedCareerField.filed);
-                                setFieldValue('noc_number', selectedCareerField.noc);
+                                const selectedValue = e.target.value;
+                                setFieldValue('career_field', selectedValue);
                             }}
-                        />)}
+                        />
+                        {/*// )}*/}
+
+                        {/*<ErrorMessage*/}
+                        {/*    name="career_field"*/}
+                        {/*    component="div"*/}
+                        {/*    className="text-red-500 text-sm"*/}
+                        {/*/>*/}
+
+
 
                         {/*{dropDown && (*/}
                         {/*    <DropDown*/}

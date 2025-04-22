@@ -2,54 +2,54 @@ import * as yup from 'yup'
 import { isValidPhoneNumber } from 'react-phone-number-input'
 
 export const signInValidation = yup.object({
-  email: yup.string().required('Email is required!'),
-  password: yup.string().required('Password is required!'),
+    email: yup.string().required('Email is required!'),
+    password: yup.string().required('Password is required!'),
 })
 
 export const signupValidation = yup.object().shape({
-  email: yup
-    .string()
-    .email('Please enter valid email!')
-    .matches(/@[^.]*\./)
-    .required('Email is required!'),
-  password: yup
-    .string()
-    .required('Password is required')
-    .min(6, 'Password must be at least 6 characters'),
-  confirm_password: yup
-    .string()
-    .oneOf([yup.ref('password'), null], 'Passwords must match')
-    .required('Confirm Password is required'),
+    email: yup
+        .string()
+        .email('Please enter valid email!')
+        .matches(/@[^.]*\./)
+        .required('Email is required!'),
+    password: yup
+        .string()
+        .required('Password is required')
+        .min(6, 'Password must be at least 6 characters'),
+    confirm_password: yup
+        .string()
+        .oneOf([yup.ref('password'), null], 'Passwords must match')
+        .required('Confirm Password is required'),
 })
 
 export const otpVerifyValidation = yup.object({
-  otp: yup
-    .string()
-    .required('OTP is required')
-    .length(4, 'OTP must be exactly 4 digits'),
+    otp: yup
+        .string()
+        .required('OTP is required')
+        .length(4, 'OTP must be exactly 4 digits'),
 })
 
 export const forgotPasswordValidation = yup.object({
-  email: yup.string().required('Email is required!'),
+    email: yup.string().required('Email is required!'),
 })
 
 export const forgotPasswordOTPVerifyValidation = yup.object({
-  email: yup.string().required('Email is required!'),
-  otp: yup
-    .string()
-    .required('OTP is required')
-    .length(4, 'OTP must be exactly 4 digits'),
+    email: yup.string().required('Email is required!'),
+    otp: yup
+        .string()
+        .required('OTP is required')
+        .length(4, 'OTP must be exactly 4 digits'),
 })
 
 export const resetPasswordValidation = yup.object({
-  password: yup
-    .string()
-    .required('Password is required')
-    .min(6, 'Password must be at least 6 characters'),
-  confirm_password: yup
-    .string()
-    .oneOf([yup.ref('password'), null], 'Passwords must match')
-    .required('Confirm Password is required'),
+    password: yup
+        .string()
+        .required('Password is required')
+        .min(6, 'Password must be at least 6 characters'),
+    confirm_password: yup
+        .string()
+        .oneOf([yup.ref('password'), null], 'Passwords must match')
+        .required('Confirm Password is required'),
 })
 
 export const jobFormValidation = yup.object({
@@ -101,7 +101,76 @@ export const jobFormValidation = yup.object({
         .max(3, 'You can add up to 3 sub skills'),
 
     career_role: yup.string().required('Career role is required'),
+    career_industry: yup.string()
+        .trim()
+        .required('Career industry is required'),
+    career_field: yup.string()
+        .trim()
+        .required('Career field is required'),
+
+
     video: yup.mixed().nullable().required('Video is required'),
+
+    workExperience: yup.array().of(
+        yup.object().shape({
+            work_experience_industry: yup
+                .string()
+                .required('Industry is required'),
+
+            work_experience_sub_industry: yup
+                .string()
+                .required('Sub Industry is required'),
+
+            work_experience_country: yup
+                .string()
+                .required('Country is required'),
+
+            work_experience_job_title: yup
+                .string()
+                .required('Role is required'),
+
+            work_experience_company_name: yup
+                .string()
+                .required('Company Name is required'),
+
+            work_experience_company_website: yup
+                .string()
+                .url('Enter a valid URL')
+                .required('Website Url is required'),
+            // .nullable(),
+
+            experience_start_date: yup
+                .string()
+                .typeError('Start Date is required')
+                .required('Start Date is required'),
+
+            experience_end_date: yup
+                .string()
+                .required('End Date is required'),
+        })
+    ),
+    // career_role: yup
+    //     .string()
+    //     .required('Career role is required'),
+    //
+    // career_industry: yup
+    //     .string()
+    //     .required('Industry is required'),
+    //
+    // career_field: yup
+    //     .string()
+    //     .required('Career field is required'),
+
+    // .when('isCurrentlyWorking', {
+    //     is: false,
+    //     then: yup
+    //         .date()
+    //         .typeError('End Date is required')
+    //         .required('End Date is required')
+    //         .min(yup.ref('experience_start_date'), 'End Date cannot be before Start Date'),
+    //     otherwise: yup.date().nullable(),
+    // }),
+
 
     isInternationalEducation: yup.boolean(),
 
@@ -168,6 +237,45 @@ export const jobFormValidation = yup.object({
             //     }),
         })
     ),
+    // isCanadianEducation: yup.boolean(),
+
+    isCanadianEducation: yup.boolean(),
+
+    internationalCEducation: yup.array().of(
+        yup.lazy((_, { context }) => {
+            const isCanadianEducation = context?.isCanadianEducation;
+
+            return yup.object().shape({
+                university: isCanadianEducation
+                    ? yup.string().required('University is required')
+                    : yup.string().nullable(),
+
+                city: isCanadianEducation
+                    ? yup.string().required('City is required')
+                    : yup.string().nullable(),
+
+                level_of_education_canadian: isCanadianEducation
+                    ? yup.string().required('Level of education is required')
+                    : yup.string().nullable(),
+
+                field_of_study_canadian: isCanadianEducation
+                    ? yup.string().required('Field of study is required')
+                    : yup.string().nullable(),
+
+                year_of_completion: isCanadianEducation
+                    ? yup.string().required('Year of completion is required')
+                    : yup.string().nullable(),
+
+                gpa: isCanadianEducation
+                    ? yup
+                        .number()
+                        .typeError('GPA must be a number')
+                        .required('GPA is required')
+                    : yup.number().nullable(),
+            });
+        })
+    ),
+
 });
 
 

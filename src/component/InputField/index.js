@@ -156,6 +156,9 @@ export const DropDownInput = ({
 
     const handleSearchChange = (e) => {
         setSearchTerm(e.target.value)
+        if (e.target.value === '') {
+            onChange({target: {name, value: ''}})
+        }
     }
 
     const filteredOptions = options
@@ -258,7 +261,11 @@ export const DropDown = ({
         setSearchTerm(value || '')
     }, [value])
     const handleSearchChange = (e) => {
-        setSearchTerm(e.target.value)
+        const newValue = e.target.value;
+        setSearchTerm(newValue);
+        if (newValue === '') {
+            onChange({target: {name, value: ''}})
+        }
     }
 
     const filteredOptions = options
